@@ -1,0 +1,4 @@
+<strong>Estado da verificação (14/09/2026).</strong> Todas as cinco questões confirmadas por 4 de 4 verificadores
+independentes na última rodada: Q1 na 4ª rodada, Q2 na 2ª, Q3 na 3ª, Q4 na 2ª, Q5 na 5ª — 64 verificadores
+ao todo. Nenhuma correção mudou resposta final nem tocou enunciado; caíram justificativas e contagens (por
+exemplo, a leitura dupla de A[meio] na Q2 e uma frase introduzida pela própria correção da Q1).

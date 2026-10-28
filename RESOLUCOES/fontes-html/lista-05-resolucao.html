@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>PAA — Lista de Exercícios V — Resolução</title>
+<style>
+  @page { size: A4; margin: 9mm 11mm 11mm 11mm; }
+
+  :root {
+    --tinta: #16181d;
+    --fraco: #5b6068;
+    --linha: #c8ccd2;
+    --caixa: #f2f3f5;
+    --realce: #1a4a7a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: "Charter", "Georgia", "Times New Roman", serif;
+    font-size: 9.1pt;
+    line-height: 1.34;
+    color: var(--tinta);
+    margin: 0;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  h1 { font-size: 13pt; margin: 0 0 1mm 0; letter-spacing: -0.15pt; }
+
+  .cabecalho { border-bottom: 1.2pt solid var(--tinta); padding-bottom: 2mm; margin-bottom: 3.5mm; }
+  .cabecalho .meta { font-size: 8pt; color: var(--fraco); line-height: 1.4; }
+
+  h2 {
+    font-size: 10.5pt; margin: 5mm 0 1.5mm 0; padding-bottom: 0.8mm;
+    border-bottom: 0.6pt solid var(--linha); break-after: avoid;
+  }
+
+  h3 { font-size: 9.3pt; margin: 3mm 0 1mm 0; color: var(--realce); break-after: avoid; }
+
+  p { margin: 0 0 1.6mm 0; }
+
+  .enunciado {
+    background: var(--caixa); border-left: 2pt solid var(--fraco);
+    padding: 2mm 2.5mm 1.4mm 2.5mm; margin: 0 0 2.5mm 0;
+    font-size: 8.6pt; break-inside: avoid;
+  }
+  .enunciado p { margin-bottom: 1.2mm; }
+  .enunciado .rot {
+    font-variant: small-caps; letter-spacing: 0.4pt; color: var(--fraco);
+    font-size: 7.6pt; display: block; margin-bottom: 0.8mm;
+  }
+  .enunciado ol { margin: 0.8mm 0 0 4.5mm; padding: 0; }
+  .enunciado ol li { margin-bottom: 0.6mm; }
+
+  .resp { font-weight: 700; color: var(--realce); }
+
+  /* Na lista 4 as seções são longas; manter o item inteiro numa página só abre
+     vãos grandes. Deixa-se o item quebrar, protegendo os blocos curtos. */
+  .item { margin-bottom: 2.4mm; }
+  .passo { break-inside: avoid; }
+  h3 + p, h3 + div { break-before: avoid; }
+
+  code, .cod { font-family: "SF Mono", "Menlo", "Consolas", monospace; font-size: 7.6pt; }
+
+  .mat { font-family: "Cambria Math", "Georgia", serif; font-style: italic; }
+
+  .centro { text-align: center; margin: 1.4mm 0; font-family: "Cambria Math", "Georgia", serif; }
+
+  .passo {
+    margin: 1.2mm 0 1.2mm 0;
+    padding-left: 2.5mm;
+    border-left: 1pt solid var(--linha);
+  }
+  .passo .rot2 {
+    font-weight: 700; font-style: normal; color: var(--tinta);
+  }
+
+  table {
+    width: 100%; border-collapse: collapse; font-size: 8.2pt;
+    margin: 1.5mm 0 2mm 0; break-inside: avoid;
+  }
+  th, td { border: 0.4pt solid var(--linha); padding: 0.9mm 1.5mm; text-align: left; vertical-align: top; }
+  th { background: var(--caixa); font-weight: 700; font-size: 7.9pt; }
+  td.n { text-align: center; white-space: nowrap; }
+
+  .nota {
+    font-size: 8pt; color: var(--fraco);
+    border-left: 1.5pt solid var(--linha);
+    padding-left: 2mm; margin: 1.5mm 0;
+  }
+
+  .rodape {
+    margin-top: 6mm; padding-top: 2mm;
+    border-top: 0.6pt solid var(--linha);
+    font-size: 7.6pt; color: var(--fraco);
+  }
+
+  sub, sup { font-size: 68%; line-height: 0; position: relative; font-style: normal; }
+  sub { bottom: -0.25em; }
+  sup { top: -0.32em; }
+
+  /* 06/10/2026 — enunciados literais: numeração de linhas dos códigos do professor */
+  pre.cod .ln { display: inline-block; width: 1.6em; margin-right: 1.2em; text-align: right;
+                color: #9aa0a6; user-select: none; }
+  .enunciado.enun-cod pre.cod { margin: 0.8mm 0 0 0; background: #fff; }
+  .enunciado .lit { margin: 0.4mm 0; }
+
+  pre.cod { font-family: "SF Mono", "Menlo", "Consolas", monospace; font-size: 7.5pt;
+            line-height: 1.3; background: var(--caixa); border: 0.4pt solid var(--linha);
+            padding: 1.2mm 2mm; margin: 1.2mm 0; white-space: pre-wrap; break-inside: avoid; }
+  .recuo { display: inline-block; padding-left: 4mm; }
+  .recuo2 { display: inline-block; padding-left: 8mm; }
+  .caixa-resposta { border: 0.8pt solid var(--realce); padding: 1.6mm 2.4mm; background: #f6f8fb; }
+  .caixa-resposta h3 { margin-top: 0.5mm; }
+</style>
+</head>
+<body>
+
+<div class="cabecalho">
+  <h1>Projeto e Análise de Algoritmos — Lista de Exercícios V</h1>
+  <div class="meta">
+    Instituto Federal de Minas Gerais, Campus Formiga · Bacharelado em Ciência da Computação · 2026/2 · Lista avaliada (5 pontos), entrega em 24/09/2026<br>
+    Professor: Mário Luiz Rodrigues Oliveira · Aluna: Luisa Caetano
+  </div>
+</div>
+
+<div class="nota">
+<strong>Como ler esta resolução.</strong> Cada questão traz o enunciado literal, a solução em seções
+e, no fim, um quadro <em>Resposta</em>. Toda afirmação de Θ vem com <span class="mat">c<sub>1</sub>,
+c<sub>2</sub>, n<sub>0</sub></span> numéricos, conferidos em <span class="mat">n = n<sub>0</sub></span>
+exatamente. Ao citar o Teorema Mestre, “primeira/segunda/terceira linha” segue a ordem impressa no
+formulário da lista: <span class="mat">a &lt; b<sup>k</sup></span>, <span class="mat">a = b<sup>k</sup></span>,
+<span class="mat">a &gt; b<sup>k</sup></span>.
+</div>
+
+<!-- ══════════════════════ QUESTÃO 1 ══════════════════════ -->
+<h2>Questão 1 — máximo por divisão e conquista</h2>
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+<p>"Considere o problema de encontrar o valor máximo em um vetor contendo n números reais. Projete um algoritmo usando o paradigma divisão e conquista para esse problema. Considere que n é um número par. Projete duas abordagens, conforme indicado:<br>
+(a) (0.5 ponto) Projete um algoritmo para resolver o problema considerando um subproblema de tamanho n − 1.<br>
+(b) (0.5 ponto) Projete um algoritmo para resolver o problema dividindo-o em dois subproblemas de tamanho n/2.<br>
+(c) (0.5 ponto) Qual abordagem produz um algoritmo assintoticamente mais eficiente no pior caso? Justifique sua resposta. Respostas sem justificativas não serão consideradas."</p>
+<p>Formulário fornecido pela lista (Teorema Mestre, forma de Brassard &amp; Bratley): sejam as constantes naturais a ≥ 1, b ≥ 2 e k ≥ 0; f(n) = c·n<sup>k</sup> com c &gt; 0 real; T(n) = aT(n/b) + f(n); n potência exata de b; T leva naturais em reais positivos e é assintoticamente não decrescente. Então T(n) ∈ θ(n<sup>k</sup>) se a &lt; b<sup>k</sup>; θ(n<sup>k</sup>·lg n) se a = b<sup>k</sup>; θ(n<sup>log<sub>b</sub> a</sup>) se a &gt; b<sup>k</sup>.</p>
+</div>
+<div class="item">
+<h3>0. Convenções</h3>
+<p>Vetor A[1..n] de reais, n ≥ 1. Custo medido em operações primitivas do modelo RAM (CLRS 3ª ed., §2.2): cada linha executada dos pseudocódigos abaixo, fora o tempo gasto dentro das chamadas recursivas, custa uma constante. Contam-se também, à parte, as <strong>comparações entre elementos</strong> do vetor, que é a medida usual para este problema.</p>
+<p>Custo de uma chamada, fora as chamadas recursivas que ela faz. Cada algoritmo tem <strong>as suas próprias</strong> constantes — índice a para MaxA, índice b para MaxB; as de um não têm relação com as do outro:<br>
+<span class="recuo">– com tamanho 1 (caso base): uma constante d<sub>a</sub> &gt; 0 (MaxA) ou d<sub>b</sub> &gt; 0 (MaxB);</span><br>
+<span class="recuo">– com tamanho ≥ 2: depende do ramo tomado na combinação (o ramo "senão" executa uma linha a</span><br>
+<span class="recuo2">mais), mas fica sempre entre duas constantes, 0 &lt; c′<sub>a</sub> ≤ c″<sub>a</sub> em MaxA e 0 &lt; c′<sub>b</sub> ≤ c″<sub>b</sub> em</span><br>
+<span class="recuo2">MaxB, onde c″ é o custo quando o ramo "senão" é tomado.</span></p>
+<p>Sobre "n é par": os dois algoritmos são escritos para <strong>todo</strong> n ≥ 1, e precisam ser. Em (a) o subproblema tem tamanho n − 1, que é ímpar; em (b), n par garante apenas que a <strong>primeira</strong> divisão é exatamente n/2 + n/2 — já com n = 6 os subproblemas têm tamanho 3, que se dividem em 2 + 1. Um algoritmo que só funcionasse para n par não se aplicaria aos próprios subproblemas.</p>
+</div>
+<div class="item">
+<h3>(a) Um subproblema de tamanho n − 1</h3>
+<pre class="cod">MaxA(A, n)                  ▷ devolve max{A[1], …, A[n]},  n ≥ 1
+1  se n = 1 então devolva A[1]
+2  m ← MaxA(A, n − 1)       ▷ conquista: máximo dos n − 1 primeiros
+3  se m ≥ A[n] então devolva m
+4  senão devolva A[n]       ▷ combina: compara com o último</pre>
+<p>Chamada inicial: MaxA(A, n).</p>
+<p><strong>Correção.</strong> P(n): "MaxA(A, n) devolve max{A[1..n]}", para todo n ≥ 1.<br>
+Base n = 1: a linha 1 devolve A[1] = max{A[1]}.<br>
+H.i.: seja n ≥ 2 e suponha P(n − 1) (note que n − 1 ≥ 1, então P(n − 1) está no domínio). Passo: pela h.i., a linha 2 obtém m = max{A[1..n−1]}; as linhas 3–4 devolvem o maior entre m e A[n], e max{A[1..n]} = max(max{A[1..n−1]}, A[n]). Logo P(n). ∎</p>
+<p><strong>Custo.</strong> Uma execução de MaxA(A, n) faz n chamadas no total (a inicial e n − 1 recursivas, com tamanhos n, n − 1, …, 1): uma com tamanho 1, de custo d<sub>a</sub>, e n − 1 com tamanho ≥ 2, cada uma de custo entre c′<sub>a</sub> e c″<sub>a</sub>. Somando chamada a chamada, <strong>toda</strong> entrada de tamanho n custa entre d<sub>a</sub> + c′<sub>a</sub>(n − 1) e d<sub>a</sub> + c″<sub>a</sub>(n − 1).<br>
+(Com um custo constante c<sub>a</sub> por chamada de tamanho ≥ 2 — c<sub>a</sub> = c″<sub>a</sub> no pior caso —, isso é a recorrência T<sub>a</sub>(1) = d<sub>a</sub>, T<sub>a</sub>(n) = T<sub>a</sub>(n − 1) + c<sub>a</sub> para n ≥ 2, cuja forma fechada é T<sub>a</sub>(n) = d<sub>a</sub> + c<sub>a</sub>·(n − 1): n = 1 dá d<sub>a</sub> ✓; se vale para n − 1, T<sub>a</sub>(n) = d<sub>a</sub> + c<sub>a</sub>(n − 2) + c<sub>a</sub> = d<sub>a</sub> + c<sub>a</sub>(n − 1) ✓.)<br>
+<strong>Pior caso.</strong> O vetor estritamente crescente toma o ramo "senão" (linha 4) em todas as n − 1 combinações, pois ali A[n] é maior que todos os anteriores; seu custo é d<sub>a</sub> + c″<sub>a</sub>(n − 1), que é também a cota superior de qualquer entrada. Portanto o custo de pior caso é exatamente<br>
+<span class="recuo">T<sub>a</sub><sup>pior</sup>(n) = d<sub>a</sub> + c″<sub>a</sub>·(n − 1).</span><br>
+Θ(n) com c₁ = min(c″<sub>a</sub>, d<sub>a</sub>), c₂ = c″<sub>a</sub> + d<sub>a</sub>, n₀ = 1:<br>
+<span class="recuo">– cota inferior: d<sub>a</sub> + c″<sub>a</sub>(n − 1) ≥ min(c″<sub>a</sub>,d<sub>a</sub>)·1 + min(c″<sub>a</sub>,d<sub>a</sub>)·(n − 1) = min(c″<sub>a</sub>,d<sub>a</sub>)·n;</span><br>
+<span class="recuo">– cota superior: d<sub>a</sub> + c″<sub>a</sub>(n − 1) ≤ d<sub>a</sub>·n + c″<sub>a</sub>·n = (c″<sub>a</sub> + d<sub>a</sub>)·n, pois n ≥ 1.</span> Em n = n₀ = 1: min(c″<sub>a</sub>,d<sub>a</sub>) ≤ d<sub>a</sub> ≤ c″<sub>a</sub> + d<sub>a</sub> ✓. (As mesmas contas com c′<sub>a</sub> mostram que até o melhor caso é Θ(n).)<br>
+(Este algoritmo não é da forma aT(n/b) + f(n): o Teorema Mestre não se aplica; resolve-se por expansão, como acima.)<br>
+Comparações entre elementos: C<sub>a</sub>(1) = 0 e C<sub>a</sub>(n) = C<sub>a</sub>(n − 1) + 1, logo <strong>C<sub>a</sub>(n) = n − 1</strong> — esta contagem não depende dos valores do vetor.<br>
+Chamadas (contando a inicial): n. Profundidade da pilha: n.</p>
+</div>
+<div class="item">
+<h3>(b) Dois subproblemas de tamanho n/2</h3>
+<pre class="cod">MaxB(A, i, j)                  ▷ devolve max{A[i], …, A[j]},  i ≤ j
+1  se i = j então devolva A[i]
+2  q ← ⌊(i + j)/2⌋             ▷ divide ao meio
+3  esq ← MaxB(A, i, q)         ▷ conquista a metade esquerda
+4  dir ← MaxB(A, q + 1, j)     ▷ conquista a metade direita
+5  se esq ≥ dir então devolva esq
+6  senão devolva dir           ▷ combina</pre>
+<p>Chamada inicial: MaxB(A, 1, n).</p>
+<p><strong>Tamanhos.</strong> Seja s = j − i + 1 ≥ 2. A metade esquerda tem q − i + 1 = ⌊(j − i)/2⌋ + 1 = ⌊(s − 1)/2⌋ + 1 = ⌈s/2⌉ elementos; a direita tem s − ⌈s/2⌉ = ⌊s/2⌋. Para s ≥ 2 os dois são ≥ 1 e &lt; s, então a recursão termina. Com s = n par, os dois têm exatamente n/2, como pede o enunciado.</p>
+<p><strong>Correção.</strong> Indução forte em s. P(s): "MaxB devolve o máximo de qualquer trecho de s elementos", para todo s ≥ 1. Base s = 1: linha 1. H.i.: seja s ≥ 2 e suponha P(t) para todo 1 ≤ t &lt; s. Passo: os tamanhos ⌈s/2⌉ e ⌊s/2⌋ estão em [1, s − 1], então pela h.i. esq = máximo da metade esquerda e dir = máximo da metade direita; o máximo do trecho é o maior dos dois, que as linhas 5–6 devolvem. Logo P(s). ∎</p>
+<p><strong>Custo.</strong> Primeiro, um fato sobre a recorrência<br>
+<span class="recuo">R(1) = u,   R(s) = R(⌈s/2⌉) + R(⌊s/2⌋) + v  para s ≥ 2,</span><br>
+com u, v reais quaisquer: sua solução é <strong>exata para todo s ≥ 1</strong> (não é preciso supor potência de 2):<br>
+<span class="recuo">R(s) = u·s + v·(s − 1).</span><br>
+Prova por indução forte: s = 1 dá u ✓; para s ≥ 2, pela h.i.,<br>
+R(s) = u⌈s/2⌉ + v(⌈s/2⌉ − 1) + u⌊s/2⌋ + v(⌊s/2⌋ − 1) + v = u·s + v(s − 2) + v = u·s + v(s − 1) ✓, usando ⌈s/2⌉ + ⌊s/2⌋ = s (a indução não usa o sinal de u nem de v).<br>
+A árvore de chamadas de MaxB depende só de s, não dos valores do vetor. O número de chamadas de tamanho 1 satisfaz R com (u, v) = (1, 0), e o de chamadas de tamanho ≥ 2 satisfaz R com (u, v) = (0, 1): são s e s − 1 (2s − 1 no total). Somando chamada a chamada, toda entrada de tamanho n custa entre d<sub>b</sub>·n + c′<sub>b</sub>(n − 1) e d<sub>b</sub>·n + c″<sub>b</sub>(n − 1). Com um custo constante c<sub>b</sub> por chamada de tamanho ≥ 2 (c<sub>b</sub> = c″<sub>b</sub> no pior caso), o custo é T<sub>b</sub>(1) = d<sub>b</sub>,<br>
+T<sub>b</sub>(s) = T<sub>b</sub>(⌈s/2⌉) + T<sub>b</sub>(⌊s/2⌋) + c<sub>b</sub>, isto é, R com (u, v) = (d<sub>b</sub>, c<sub>b</sub>):<br>
+T<sub>b</sub>(s) = d<sub>b</sub>·s + c<sub>b</sub>·(s − 1).<br>
+<strong>Pior caso.</strong> No vetor estritamente crescente, em toda combinação o máximo da metade direita é maior que o da esquerda, e o ramo "senão" (linha 6) é tomado em todas as n − 1 combinações; o custo é d<sub>b</sub>·n + c″<sub>b</sub>(n − 1), a cota superior. Portanto<br>
+<span class="recuo">T<sub>b</sub><sup>pior</sup>(n) = d<sub>b</sub>·n + c″<sub>b</sub>·(n − 1).</span><br>
+Θ(n) com c₁ = d<sub>b</sub>, c₂ = c″<sub>b</sub> + d<sub>b</sub>, n₀ = 1: d<sub>b</sub>·n ≤ d<sub>b</sub>·n + c″<sub>b</sub>(n − 1) ≤ (c″<sub>b</sub> + d<sub>b</sub>)·n para n ≥ 1. Em n = 1: d<sub>b</sub> ≤ d<sub>b</sub> ≤ c″<sub>b</sub> + d<sub>b</sub> ✓.</p>
+<p><strong>Confirmação pelo Teorema Mestre</strong> (n potência exata de 2, onde a recorrência vira T<sub>b</sub>(n) = 2T<sub>b</sub>(n/2) + c<sub>b</sub> = 2T<sub>b</sub>(n/2) + c<sub>b</sub>·n⁰; aqui a, b, k são os parâmetros do formulário, e c<sub>b</sub> faz o papel do seu c): a = 2, b = 2, k = 0, c<sub>b</sub> &gt; 0; b<sup>k</sup> = 2⁰ = 1 &lt; 2 = a, isto é, a &gt; b<sup>k</sup> — <strong>terceira linha</strong> do formulário: T<sub>b</sub>(n) ∈ Θ(n<sup>log₂ 2</sup>) = Θ(n). As hipóteses sobre T valem: T<sub>b</sub>(s) = (c<sub>b</sub> + d<sub>b</sub>)s − c<sub>b</sub> ≥ d<sub>b</sub> &gt; 0 é positiva e crescente em s. Para n par que não é potência de 2 vale a forma fechada exata acima, que dá a mesma classe.<br>
+Comparações entre elementos: C<sub>b</sub>(1) = 0, C<sub>b</sub>(s) = C<sub>b</sub>(⌈s/2⌉) + C<sub>b</sub>(⌊s/2⌋) + 1, logo <strong>C<sub>b</sub>(n) = n − 1</strong> (R com (u, v) = (0, 1)) — também independente dos valores.<br>
+Chamadas (contando a inicial): 2n − 1. Profundidade da pilha: 1 + ⌈lg n⌉.</p>
+</div>
+<div class="item">
+<h3>(c) Qual é assintoticamente mais eficiente no pior caso?</h3>
+<p><strong>Nenhuma das duas.</strong> Ambas levam tempo <strong>Θ(n)</strong> no pior caso:<br>
+<span class="recuo">T<sub>a</sub><sup>pior</sup>(n) = d<sub>a</sub> + c″<sub>a</sub>(n − 1) ∈ Θ(n)   e   T<sub>b</sub><sup>pior</sup>(n) = d<sub>b</sub>·n + c″<sub>b</sub>(n − 1) ∈ Θ(n),</span> com as testemunhas exibidas em (a) e (b). Como as duas estão em Θ(n), vale T<sub>a</sub><sup>pior</sup> ∈ Θ(T<sub>b</sub><sup>pior</sup>): nenhuma é assintoticamente melhor. (As constantes de uma e de outra não são comparáveis entre si — cada uma depende das linhas do seu pseudocódigo —, e a pergunta é sobre a classe.) O desvio que depende dos dados (linhas 3–4 em MaxA, 5–6 em MaxB) só altera o custo de cada chamada dentro de uma faixa constante; por isso até o melhor caso de cada uma é Θ(n) — a classe não depende da entrada, só as constantes.</p>
+<p>Mais do que isso: as duas fazem <strong>exatamente o mesmo número de comparações entre elementos, n − 1</strong>, qualquer que seja a entrada. A divisão ao meio não reduz trabalho — ela só organiza o mesmo número de comparações numa árvore balanceada em vez de numa cadeia. Em chamadas (contando a inicial), (b) até faz mais: 2n − 1 contra n — diferença de constante, não de classe.</p>
+<p><strong>Por que dividir ao meio não dá lg n aqui.</strong> A intuição da busca binária engana: lá há <strong>um</strong> subproblema de tamanho n/2 (a = 1, T(n) = T(n/2) + Θ(1) ∈ Θ(lg n)); aqui há <strong>dois</strong> (a = 2). Para n potência de 2, o nível i (0 ≤ i &lt; lg n) da árvore de recursão de MaxB tem 2<sup>i</sup> chamadas internas, cada uma com uma combinação de custo constante, e o nível lg n tem as n folhas, que não combinam: o número de combinações dobra de um nível para o seguinte enquanto o tamanho cai pela metade, e a soma de 2<sup>i</sup> para i = 0, …, lg n − 1 dá n − 1 (soma vazia se n = 1). Para n qualquer, a contagem n − 1 vem da recorrência de C<sub>b</sub> acima.</p>
+<p><strong>Nenhuma abordagem pode ser melhor que Θ(n).</strong> Considere qualquer algoritmo determinístico correto que acessa o vetor só lendo posições, ao custo de ao menos uma operação por leitura. Ele precisa ler as n posições: se numa entrada ele nunca lê A[p], troque A[p] por um valor maior que o valor devolvido e que todos os demais elementos; a execução não muda (A[p] não é lido), a saída não muda, e agora está errada. Logo todo algoritmo gasta ao menos 1·n operações para todo n ≥ 1, isto é, Ω(n), e as duas abordagens são ótimas.</p>
+<p><strong>A diferença que existe é de espaço, não de tempo:</strong> a pilha de recursão tem profundidade n em<br>
+(a) e 1 + ⌈lg n⌉ em (b). Com A passado por referência e cada quadro de pilha de tamanho constante, isso é Θ(n) contra Θ(lg n) de memória auxiliar; para o segundo,<br>
+lg n ≤ 1 + ⌈lg n⌉ ≤ 2 lg n para todo n ≥ 2 (c₁ = 1, c₂ = 2, n₀ = 2): a cota inferior vale porque ⌈lg n⌉ ≥ lg n; a superior, para n ≥ 4, porque 1 + ⌈lg n⌉ &lt; 2 + lg n ≤ 2 lg n, e em n = 2 e n = 3 por conta direta (2 ≤ 2; 3 ≤ 2 lg 3 ≈ 3,17). n₀ = 1 não serve, pois lg 1 = 0 e a profundidade em n = 1 é 1.</p>
+</div>
+<div class="item">
+<div class="caixa-resposta">
+<h3>Resposta</h3>
+<p>(a) MaxA: resolve A[1..n−1] recursivamente e compara o resultado com A[n].<br>
+<span class="recuo2">Recorrência T<sub>a</sub>(1) = d<sub>a</sub>, T<sub>a</sub>(n) = T<sub>a</sub>(n−1) + c<sub>a</sub>; pior caso (vetor estritamente crescente,</span><br>
+<span class="recuo2">c<sub>a</sub> = c″<sub>a</sub>): T<sub>a</sub><sup>pior</sup>(n) = d<sub>a</sub> + c″<sub>a</sub>(n−1) ∈ Θ(n); n − 1 comparações em toda entrada.</span><br>
+(b) MaxB: divide em duas metades (⌈n/2⌉ e ⌊n/2⌋; exatamente n/2 e n/2 na primeira divisão, pois<br>
+<span class="recuo2">n é par), resolve cada uma e devolve o maior dos dois resultados.</span><br>
+<span class="recuo2">T<sub>b</sub>(n) = 2T<sub>b</sub>(n/2) + c<sub>b</sub> ⇒ Θ(n) pelo Teorema Mestre (n potência de 2; a = 2 &gt; b<sup>k</sup> = 1,</span><br>
+<span class="recuo2">terceira linha); para todo n, pior caso exatamente T<sub>b</sub><sup>pior</sup>(n) = d<sub>b</sub>·n + c″<sub>b</sub>(n−1) ∈ Θ(n);</span><br>
+<span class="recuo2">n − 1 comparações em toda entrada.</span><br>
+(c) Nenhuma é assintoticamente mais eficiente: ambas são Θ(n) no pior caso (e mesmo no melhor),<br>
+<span class="recuo2">com exatamente n − 1 comparações; e Θ(n) é ótimo, pois todo algoritmo precisa ler as n</span><br>
+<span class="recuo2">posições. A única diferença assintótica é a profundidade da pilha: Θ(n) em (a), Θ(lg n)</span><br>
+<span class="recuo2">em (b).</span></p>
+</div>
+</div>
+<!-- ══════════════════════ QUESTÃO 2 ══════════════════════ -->
+<h2>Questão 2 — busca num vetor sem fim</h2>
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+<p>"Resolva o seguinte problema:<br>
+a) (0.5 ponto) Dado um vetor A [.] de tamanho infinito no qual as primeiras m posições contêm números inteiros em ordem crescente e as demais posições são preenchidas com o valor ∞. Não se conhece o valor de m. Descreva um algoritmo que recebe um valor inteiro x como entrada e encontra uma posição no vetor contendo o valor x, se tal posição existir, em tempo o(n). (Se você não se sente confortável com o fato do vetor ter comprimento infinito, assuma em vez disso comprimento de tamanho n, contudo você não conhece esse comprimento. Assuma, também, que a implementação da estrutura de dados vetor em sua linguagem de programação preferida retorna a mensagem de erro ∞ sempre que elementos A[i] com i &gt; n são acessados).<br>
+b) (0.5 ponto) Argumente que seu algoritmo tem a complexidade solicitada."</p>
+</div>
+<div class="item">
+<h3>0. Modelo</h3>
+<p>Posições 1, 2, 3, …; A[1..m] são inteiros em ordem crescente (o argumento abaixo vale também para ordem não decrescente, com repetições); A[i] = ∞ para i &gt; m; m ≥ 0 é desconhecido. O valor ∞ é tratado como maior que todo inteiro, então a sequência inteira A[1], A[2], … é não decrescente:<br>
+<span class="recuo">(Monotonia)  i &lt; i′  ⇒  A[i] ≤ A[i′].</span><br>
+Na versão de comprimento finito n (desconhecido), as posições m &lt; i ≤ n contêm ∞ e o acesso a i &gt; n devolve ∞; o algoritmo enxerga exatamente a mesma sequência que na versão infinita, e m ≤ n.<br>
+Custo: cada acesso A[i] e cada operação aritmética ou comparação custa Θ(1) (modelo RAM); conta-se o número de acessos ao vetor, e o tempo é no máximo uma constante vezes esse número.</p>
+<p><strong>Tamanho da entrada.</strong> Na versão infinita o único parâmetro é m, e o(n) se lê com n = m; na versão finita, n é o comprimento e m ≤ n. Define-se<br>
+<span class="recuo">f(m) = 2⌊lg m⌋ + 3 para m ≥ 1,   f(0) = 2.</span><br>
+f é não decrescente em m ≥ 0 (f(0) = 2 &lt; 3 = f(1), e ⌊lg m⌋ não decresce), de modo que f(m) ≤ f(n) em qualquer das leituras, sempre que m ≤ n.</p>
+</div>
+<div class="item">
+<h3>(a) O algoritmo: galope seguido de busca binária</h3>
+<pre class="cod">BuscaIlimitada(A, x)
+ 1  i ← 1
+ 2  enquanto A[i] &lt; x faça        ▷ fase 1 (galope): testa as posições 1, 2, 4, 8, …
+ 3      i ← 2·i
+ 4  lo ← ⌊i/2⌋ + 1;  hi ← i        ▷ se i = 1, então lo = hi = 1
+ 5  enquanto lo ≤ hi faça          ▷ fase 2: busca binária em A[lo..hi]
+ 6      meio ← ⌊(lo + hi)/2⌋;  v ← A[meio]
+ 7      se v = x então devolva meio
+ 8      se v &lt; x então lo ← meio + 1
+ 9      senão hi ← meio − 1
+10  devolva "x não está no vetor"</pre>
+<p>A ideia: não se conhece o fim da parte útil, então se procura, dobrando o índice, a primeira potência de 2 cujo conteúdo já é ≥ x. Isso delimita um trecho onde x tem de estar, e nele se faz a busca binária usual. Nenhum passo usa m ou n. Na fase 2 cada volta lê o vetor <strong>uma</strong> vez (linha 6) e guarda o valor em v.</p>
+</div>
+<div class="item">
+<h3>(b) Correção e complexidade</h3>
+<p><strong>Lema 1 (a fase 1 termina, e quantas voltas dá).</strong> Seja J o número de vezes que o corpo da linha 3 executa. Então i = 2<sup>J</sup> ao fim da fase 1, e<br>
+<span class="recuo">J = 0 se m = 0;   J ≤ ⌊lg m⌋ + 1 se m ≥ 1.</span><br>
+Prova. O teste A[i] &lt; x só é verdadeiro se A[i] é finito, isto é, i ≤ m (pois ∞ &lt; x é falso). Logo, cada vez que o corpo executa, o valor corrente i = 2<sup>t</sup> satisfaz 2<sup>t</sup> ≤ m, com t = 0, 1, 2, … em sequência. Se m = 0, A[1] = ∞ e o laço não executa: J = 0. Se m ≥ 1, os valores de t com 2<sup>t</sup> ≤ m são 0, 1, …, ⌊lg m⌋ — no máximo ⌊lg m⌋ + 1 deles —, e portanto o corpo executa no máximo ⌊lg m⌋ + 1 vezes; em particular a fase 1 sempre termina. ∎</p>
+<p><strong>Lema 2 (invariante ao fim da fase 1).</strong> Ao fim da fase 1, A[i] ≥ x (o laço parou) e, se J ≥ 1, A[i/2] &lt; x (o teste anterior foi verdadeiro, na posição i/2 = 2<sup>J−1</sup>).</p>
+<p><strong>Lema 3 (x, se existe, está em A[lo..hi]).</strong> Se existe p com A[p] = x, então existe uma tal posição em [lo, hi].<br>
+Prova. Se A[i] = x, a própria posição i = hi serve. Se A[i] &gt; x, seja p qualquer posição com A[p] = x. Para p ≥ i, a Monotonia daria A[p] ≥ A[i] &gt; x; logo p &lt; i = hi. Se J ≥ 1, para p ≤ i/2 a Monotonia daria A[p] ≤ A[i/2] &lt; x; logo p &gt; i/2, isto é, p ≥ ⌊i/2⌋ + 1 = lo. Se J = 0, lo = 1 ≤ p trivialmente. ∎</p>
+<p><strong>Lema 4 (busca binária).</strong> Invariante do laço 5–9: "toda posição de [lo₀, hi₀] com valor x está em [lo, hi]", onde [lo₀, hi₀] é o trecho inicial. Vale no início. Se v = A[meio] &lt; x, toda posição p ≤ meio tem A[p] ≤ A[meio] &lt; x, então descartar [lo, meio] preserva o invariante; se v &gt; x, toda posição p ≥ meio tem A[p] &gt; x, e descartar [meio, hi] o preserva. Logo, se o laço termina sem devolver, [lo, hi] ficou vazio e x não ocorre em [lo₀, hi₀] — e, pelo Lema 3, não ocorre no vetor. Reciprocamente, o algoritmo só devolve meio quando A[meio] = x. As posições com ∞ dentro do trecho não atrapalham: ∞ &gt; x, e o trecho continua ordenado.<br>
+Número de voltas: se o trecho tem L ≥ 1 posições, após uma volta sem retorno ele tem no máximo ⌊L/2⌋ (a esquerda [lo, meio − 1] tem ⌊(L − 1)/2⌋ ≤ ⌊L/2⌋ posições; a direita [meio + 1, hi] tem ⌈(L − 1)/2⌉ = ⌊L/2⌋). Depois de r voltas, no máximo ⌊L/2<sup>r</sup>⌋; como uma volta só começa com trecho não vazio, r voltas executadas implicam L/2<sup>r−1</sup> ≥ 1, isto é, r ≤ ⌊lg L⌋ + 1. ∎</p>
+<p><strong>Correção.</strong> Pelos Lemas 3 e 4, o algoritmo devolve uma posição p com A[p] = x quando x ocorre no vetor, e responde que x não está quando não ocorre. ∎</p>
+<p><strong>Contagem de acessos — cota superior.</strong> Fase 1: J + 1 acessos (J testes verdadeiros e o falso que encerra). Fase 2: o trecho tem L = hi − lo + 1 = i − ⌊i/2⌋ posições, isto é, L = 2<sup>J−1</sup> se J ≥ 1 e L = 1 se J = 0; pelo Lema 4, no máximo ⌊lg L⌋ + 1 voltas, com <strong>uma</strong> leitura por volta (linha 6): no máximo J leituras se J ≥ 1, e 1 leitura se J = 0. Total:<br>
+<span class="recuo">J = 0:  no máximo 1 + 1 = 2 acessos;</span><br>
+<span class="recuo">J ≥ 1:  no máximo (J + 1) + J = 2J + 1 ≤ 2(⌊lg m⌋ + 1) + 1 = 2⌊lg m⌋ + 3  (Lema 1).</span> Como J ≥ 1 exige m ≥ 1, conclui-se: <strong>para todo m ≥ 0, no máximo f(m) acessos</strong> (f(m) = 2⌊lg m⌋ + 3 para m ≥ 1, e f(0) = 2). O tempo total é no máximo K·f(m) para uma constante K &gt; 0 (cada volta de cada laço faz Θ(1) operações além do acesso), isto é, O(lg m) para m ≥ 2. A cota é atingida quando m = 2<sup>t</sup> − 1 e x &gt; A[m] (conferido por força bruta para m ≤ 699: atingida em m = 1, 3, 7, 15, …, 511).</p>
+<p><strong>Contagem de acessos — cota inferior (pior caso).</strong> Seja m ≥ 1 e tome x = A[m] + 1 (inteiro, maior que todo elemento finito). Então A[2<sup>t</sup>] &lt; x para toda posição 2<sup>t</sup> ≤ m, e o teste da linha 2 é verdadeiro exatamente para t = 0, 1, …, ⌊lg m⌋: J = ⌊lg m⌋ + 1, e só a fase 1 já faz J + 1 = ⌊lg m⌋ + 2 acessos. Logo o pior caso W(m) (máximo de acessos sobre as entradas com esse m) satisfaz<br>
+<span class="recuo">⌊lg m⌋ + 2 ≤ W(m) ≤ 2⌊lg m⌋ + 3   para todo m ≥ 1.</span><br>
+Testemunhas de W ∈ Θ(lg m): c₁ = 1, c₂ = 5, m₀ = 2. A cota inferior vale porque ⌊lg m⌋ + 2 &gt; lg m; a superior, porque 2⌊lg m⌋ + 3 ≤ 2 lg m + 3 lg m = 5 lg m quando lg m ≥ 1, isto é, m ≥ 2. Em m = m₀ = 2: lg 2 = 1, e 1 ≤ W(2) ≤ 5 (de fato W(2) = 4). m₀ = 1 não serve: lg 1 = 0.</p>
+<p><strong>Por que isso é o(n).</strong> Pela definição (CLRS 3ª ed., §3.1), g(n) ∈ o(n) se para <strong>toda</strong> constante c &gt; 0 existe n₀ &gt; 0 tal que 0 ≤ g(n) &lt; c·n para todo n ≥ n₀.<br>
+Lema 5. 2<sup>j</sup> ≥ j² para todo inteiro j ≥ 4.<br>
+<span class="recuo">Base j = 4: 16 ≥ 16. Passo: se 2<sup>j</sup> ≥ j² com j ≥ 4, então 2<sup>j+1</sup> = 2·2<sup>j</sup> ≥ 2j², e</span><br>
+<span class="recuo">2j² − (j + 1)² = j² − 2j − 1 = (j − 1)² − 2 ≥ 9 − 2 &gt; 0; logo 2<sup>j+1</sup> ≥ (j + 1)². ∎</span><br>
+<span class="recuo">(Falha em j = 3: 8 &lt; 9 — por isso a restrição.)</span><br>
+Consequência: para n ≥ 16, j = ⌊lg n⌋ ≥ 4 e n ≥ 2<sup>j</sup> ≥ j², donde ⌊lg n⌋ ≤ √n. Então, para n ≥ 16,<br>
+<span class="recuo">f(n) = 2⌊lg n⌋ + 3 ≤ 2√n + 3√n = 5√n    (pois √n ≥ 1).</span><br>
+Dado c &gt; 0, tome n₀ = max(16, ⌊25/c²⌋ + 1). Para n ≥ n₀ vale n &gt; 25/c², isto é, √n &gt; 5/c; multiplicando por c·√n &gt; 0: c·n &gt; 5√n ≥ f(n). Então 0 ≤ f(n) &lt; c·n para todo n ≥ n₀, e f ∈ o(n). Para o tempo K·f(n), repita com c/K no lugar de c: n₀ = max(16, ⌊25K²/c²⌋ + 1). Exemplo em n = n₀: c = 1 dá n₀ = 26, f(26) = 11 &lt; 26; c = 1/10 dá n₀ = 2501, f(2501) = 25 &lt; 250,1.<br>
+Na versão finita (n ≥ 1), o tempo é ≤ K·f(m) ≤ K·f(n) (f não decrescente, m ≤ n), portanto também o(n).</p>
+<p><strong>Por que as alternativas óbvias não servem.</strong> A busca linear lê A[1], A[2], … até achar x ou um valor &gt; x; com x &gt; A[m] ela lê m + 1 posições — Θ(m) no pior caso, que <strong>não</strong> é o(n) (na leitura n = m, ou na versão finita com m = n). A busca binária direta precisa do extremo direito do trecho, que é justamente o que não se conhece. O galope descobre um extremo válido: hi = 2<sup>J</sup>, com hi ≤ 2m quando J ≥ 1 (pois 2<sup>J−1</sup> ≤ m) e hi = 1 quando J = 0 — em no máximo ⌊lg m⌋ + 2 acessos se m ≥ 1, e 1 acesso se m = 0.</p>
+</div>
+<div class="item">
+<div class="caixa-resposta">
+<h3>Resposta</h3>
+<p>(a) Galope + busca binária: teste A[1], A[2], A[4], …, A[2<sup>t</sup>], … até achar a primeira posição<br>
+<span class="recuo2">i = 2<sup>J</sup> com A[i] ≥ x (as posições com ∞ garantem a parada); então faça busca binária em</span><br>
+<span class="recuo2">A[⌊i/2⌋ + 1 .. i], lendo A[meio] uma vez por volta. Devolve uma posição com valor x, ou</span><br>
+<span class="recuo2">"não está".</span><br>
+(b) A fase 1 dá J ≤ ⌊lg m⌋ + 1 dobras (só se dobra enquanto A[i] é finito, isto é, i ≤ m), e a<br>
+<span class="recuo2">fase 2 busca num trecho de 2<sup>J−1</sup> posições (1 posição se J = 0), com no máximo J leituras</span><br>
+<span class="recuo2">(1 se J = 0). Total: no máximo 2⌊lg m⌋ + 3 acessos para m ≥ 1 (2 para m = 0); como x maior</span><br>
+<span class="recuo2">que todos força ⌊lg m⌋ + 2 acessos, o pior caso é Θ(lg m) (c₁ = 1, c₂ = 5, m₀ = 2), com</span><br>
+<span class="recuo2">m ≤ n. E 2⌊lg n⌋ + 3 &lt; c·n para n ≥ max(16, ⌊25/c²⌋ + 1), qualquer que seja c &gt; 0 — logo o</span><br>
+<span class="recuo2">tempo é o(n).</span></p>
+</div>
+</div>
+<!-- ══════════════════════ QUESTÃO 3 ══════════════════════ -->
+<h2>Questão 3 — qual dos algoritmos A, B, C</h2>
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+<p>"Suponha que, para um problema com entradas de tamanho n, você tenha que escolher um dentre três algoritmos A, B e C. Considere que trata-se do pior caso de cada algoritmo.<br>
+1. O algoritmo A resolve problemas dividindo-os em cinco subproblemas de tamanho n/2, recursivamente resolve cada subproblema e então combina as soluções em tempo linear. 2. O algoritmo B resolve problemas de tamanho n, recursivamente resolvendo dois subproblema [sic] de tamanho n − 1 e então combina as soluções em tempo constante.<br>
+3. O algoritmo C resolve problemas dividindo-os em nove subproblemas de tamanho n/3, recursivamente resolve cada subproblema e então combina as soluções em tempo θ(n²). Indique qual dos algoritmos é assintoticamente mais eficiente no pior caso. Expresse sua resposta em termos da notação θ. Justifique sua resposta. Resposta sem justificativa não será considerada."</p>
+<p>Formulário fornecido pela lista (Teorema Mestre, forma de Brassard &amp; Bratley): sejam as constantes naturais a ≥ 1, b ≥ 2 e k ≥ 0; f(n) = c·n<sup>k</sup> com c &gt; 0 real; T(n) = aT(n/b) + f(n); n potência exata de b; T leva naturais em reais positivos e é assintoticamente não decrescente. Então T(n) ∈ θ(n<sup>k</sup>) se a &lt; b<sup>k</sup>; θ(n<sup>k</sup>·lg n) se a = b<sup>k</sup>; θ(n<sup>log<sub>b</sub> a</sup>) se a &gt; b<sup>k</sup>. A lista também fornece a hierarquia 1 ≺ log n ≺ √n ≺ n ≺ n·log n ≺ n<sup>c</sup> ≺ c<sup>n</sup> ≺ n! ≺ n<sup>n</sup>, "onde c é uma constante arbitrária inteira ≥ 2". Ela não cobre diretamente as comparações desta questão (log₂ 5 não é inteiro, e em n<sup>c</sup> ≺ c<sup>n</sup> a base é o mesmo c do expoente); por isso a §5 as prova diretamente.</p>
+</div>
+<div class="item">
+<h3>0. As três recorrências</h3>
+<p>Casos base: T(1) = t &gt; 0 (qualquer constante positiva). O custo de combinar é positivo:<br>
+<span class="recuo">A: T<sub>A</sub>(n) = 5·T<sub>A</sub>(n/2) + f<sub>A</sub>(n),  f<sub>A</sub>(n) ∈ Θ(n)   ("tempo linear")</span><br>
+<span class="recuo">B: T<sub>B</sub>(n) = 2·T<sub>B</sub>(n − 1) + f<sub>B</sub>(n), f<sub>B</sub>(n) ∈ Θ(1)  ("tempo constante")</span><br>
+<span class="recuo">C: T<sub>C</sub>(n) = 9·T<sub>C</sub>(n/3) + f<sub>C</sub>(n),  f<sub>C</sub>(n) ∈ Θ(n²)</span><br>
+Primeiro resolve-se cada uma com f exatamente da forma c·n<sup>k</sup>, c &gt; 0 (a que o teorema exige); depois, na §4, mostra-se que trocar "= c·n<sup>k</sup>" por "∈ Θ(n<sup>k</sup>)" não muda a classe.</p>
+<p>Hipótese de monotonia (a última do formulário, "T assintoticamente não decrescente"), para quaisquer t, c &gt; 0. Nas potências de b, onde a recorrência define T: T(b·n) = a·T(n) + f(b·n) &gt; T(n), pois a ≥ 1, T(n) &gt; 0 e f(b·n) &gt; 0; e T(1) = t &gt; 0, então por indução T é positiva e crescente sobre as potências de b. Para B, do mesmo modo, T<sub>B</sub>(n) = 2T<sub>B</sub>(n − 1) + c &gt; T<sub>B</sub>(n − 1) &gt; 0. Que o custo não diminua com n a partir de algum N (isto é, T(n) ≤ T(n + 1) para todo n ≥ N) é o que "T assintoticamente não decrescente" significa; o formulário o assume, é natural para tempo de pior caso, e é usado na Observação da §5.</p>
+</div>
+<div class="item">
+<h3>1. Algoritmo A — Teorema Mestre, terceira linha</h3>
+<p>T<sub>A</sub>(n) = 5T<sub>A</sub>(n/2) + c·n: a = 5, b = 2, k = 1, c &gt; 0. b<sup>k</sup> = 2¹ = 2 e a = 5 &gt; 2: <strong>terceira linha</strong> do formulário (a &gt; b<sup>k</sup>). Logo<br>
+<span class="recuo"><strong>T<sub>A</sub>(n) ∈ Θ(n<sup>log₂ 5</sup>)</strong>, com log₂ 5 ≈ 2,3219.</span><br>
+Forma fechada (n = 2<sup>m</sup>, T(1) = t): T<sub>A</sub>(n) = (t + 2c/3)·n<sup>log₂ 5</sup> − (2c/3)·n.<br>
+Checagem com t = c = 1: T<sub>A</sub>(n) = (5/3)·n<sup>log₂ 5</sup> − (2/3)·n; T<sub>A</sub>(2) = 5·1 + 2 = 7 e (5/3)·5 − (2/3)·2 = 25/3 − 4/3 = 7 ✓.<br>
+Testemunhas (t, c quaisquer): c₁ = t, c₂ = t + 2c/3, n₀ = 1. A cota superior é imediata; a inferior, (t + 2c/3)n<sup>log₂ 5</sup> − (2c/3)n ≥ t·n<sup>log₂ 5</sup>, equivale a (2c/3)(n<sup>log₂ 5</sup> − n) ≥ 0, verdadeira para n ≥ 1 porque log₂ 5 &gt; 1. Com t = c = 1: c₁ = 1, c₂ = 5/3, e em n = n₀ = 1: 1 ≤ 1 ≤ 5/3 ✓.</p>
+</div>
+<div class="item">
+<h3>2. Algoritmo B — fora do Teorema Mestre</h3>
+<p>A chamada é T(n − 1), não T(n/b): subtrair 1 não é dividir por uma constante b (n − 1 = n/b exigiria b = n/(n − 1), que varia com n). O teorema não se aplica; resolve-se por expansão. Com T<sub>B</sub>(1) = t e custo de combinação constante f<sub>B</sub>(n) = c &gt; 0:<br>
+<span class="recuo">T<sub>B</sub>(n) = 2<sup>n−1</sup>·t + c·(2<sup>n−1</sup> − 1) = 2<sup>n−1</sup>·(t + c) − c   para n ≥ 1.</span><br>
+Prova por indução: n = 1 dá t + c − c = t ✓; se vale para n − 1 (n ≥ 2),<br>
+2·[2<sup>n−2</sup>(t + c) − c] + c = 2<sup>n−1</sup>(t + c) − c ✓.<br>
+Testemunhas: (t/2)·2<sup>n</sup> = 2<sup>n−1</sup>·t ≤ T<sub>B</sub>(n) ≤ 2<sup>n−1</sup>(t + c) = ((t + c)/2)·2<sup>n</sup> para n ≥ 1, isto é c₁ = t/2, c₂ = (t + c)/2, n₀ = 1. Com t = c = 1: T<sub>B</sub>(n) = 2<sup>n</sup> − 1, c₁ = 1/2, c₂ = 1, e em n = 1: 1 ≤ 1 ≤ 2 ✓. Logo <strong>T<sub>B</sub>(n) ∈ Θ(2<sup>n</sup>)</strong>.<br>
+(Intuição: a árvore de recursão é binária completa de altura n − 1, com 2<sup>n</sup> − 1 nós.)</p>
+</div>
+<div class="item">
+<h3>3. Algoritmo C — Teorema Mestre, segunda linha</h3>
+<p>T<sub>C</sub>(n) = 9T<sub>C</sub>(n/3) + c·n²: a = 9, b = 3, k = 2, c &gt; 0. b<sup>k</sup> = 3² = 9 = a: <strong>segunda linha</strong> (a = b<sup>k</sup>). Logo<br>
+<span class="recuo"><strong>T<sub>C</sub>(n) ∈ Θ(n²·lg n)</strong>.</span><br>
+Forma fechada (n = 3<sup>m</sup>, T(1) = t): T<sub>C</sub>(n) = n²·(t + c·log₃ n) — cada um dos m níveis da árvore custa c·9<sup>i</sup>·(3<sup>m−i</sup>)² = c·9<sup>m</sup> = c·n², mais as n² folhas de custo t.<br>
+Checagem com t = c = 1: T<sub>C</sub>(n) = n²(log₃ n + 1); T<sub>C</sub>(3) = 9 + 9 = 18 = 9·(1 + 1) ✓. Testemunhas (t, c quaisquer): c₁ = c/lg 3, c₂ = (t + c)/lg 3, n₀ = 3. Como log₃ n = lg n / lg 3 e, para n ≥ 3, 1 ≤ lg n / lg 3: (c/lg 3)·n² lg n ≤ n²(t + c log₃ n) ≤ ((t + c)/lg 3)·n² lg n. Com t = c = 1: c₁ = 1/lg 3, c₂ = 2/lg 3; em n = n₀ = 3, n² lg n = 9 lg 3, logo c₁·9 lg 3 = 9 ≤ 18 ≤ 18 = c₂·9 lg 3 ✓ (igualdade na cota superior).<br>
+n₀ = 1 não serve: lg 1 = 0 e T<sub>C</sub>(1) = t &gt; 0.</p>
+</div>
+<div class="item">
+<h3>4. De "= c·n<sup>k</sup>" para "∈ Θ(n<sup>k</sup>)"</h3>
+<p>O enunciado diz "tempo linear", "tempo constante" e "θ(n²)", não exatamente c·n<sup>k</sup>. Isso não muda nenhuma classe, pelo seguinte lema de comparação.<br>
+Lema. Sejam T e T′ definidas pela mesma recorrência (mesmo a, mesma forma de chamada), com o mesmo valor no caso base e com f(n) ≤ f′(n) para todo n. Então T(n) ≤ T′(n) para todo n. Prova: indução sobre n (nas potências de b, ou em n ≥ 1 para B), usando a &gt; 0: T(n) = a·T(·) + f(n) ≤ a·T′(·) + f′(n) = T′(n). ∎<br>
+Como f(n) ∈ Θ(n<sup>k</sup>) e f(n) &gt; 0 para todo n (combinar custa alguma coisa), existem c′, c″ &gt; 0 com c′·n<sup>k</sup> ≤ f(n) ≤ c″·n<sup>k</sup> para <strong>todo</strong> n ≥ 1: para n ≥ n₀ isso é a definição de Θ, e para os finitos n &lt; n₀ basta diminuir c′ e aumentar c″ (f(n)/n<sup>k</sup> é positivo em cada um deles). Pelo Lema, T fica entre as soluções com f = c′·n<sup>k</sup> e com f = c″·n<sup>k</sup>, e as duas estão na mesma classe Θ (§1–§3, cujas formas fechadas e testemunhas valem para quaisquer t, c &gt; 0). Logo T<sub>A</sub> ∈ Θ(n<sup>log₂ 5</sup>), T<sub>B</sub> ∈ Θ(2<sup>n</sup>), T<sub>C</sub> ∈ Θ(n² lg n).</p>
+</div>
+<div class="item">
+<h3>5. Comparação</h3>
+<p><strong>C é assintoticamente mais eficiente que A.</strong> n² lg n / n<sup>log₂ 5</sup> = lg n / n<sup>ε</sup> com ε = log₂ 5 − 2 = log₂(5/4) ≈ 0,3219 &gt; 0. Aplicando L'Hôpital às funções de variável real x &gt; 0 (o limite da sequência é o mesmo),<br>
+lim lg x / x<sup>ε</sup> = lim (1/(x ln 2)) / (ε·x<sup>ε−1</sup>) = lim 1/(ε·ln 2·x<sup>ε</sup>) = 0.<br>
+Então n² lg n ∈ o(n<sup>log₂ 5</sup>): para quaisquer constantes positivas c₂<sup>C</sup> e c₁<sup>A</sup>, a partir de algum n vale c₂<sup>C</sup>·n² lg n &lt; c₁<sup>A</sup>·n<sup>log₂ 5</sup>, e portanto — com as duas cotas valendo no mesmo n, pela Observação abaixo — T<sub>C</sub>(n) &lt; T<sub>A</sub>(n).<br>
+<strong>A é assintoticamente mais eficiente que B.</strong> n<sup>log₂ 5</sup> ≤ n³ para n ≥ 1, e n³/2<sup>n</sup> → 0 (três aplicações de L'Hôpital, de novo em variável real: x³/2<sup>x</sup> → 3x²/(2<sup>x</sup> ln 2) → 6x/(2<sup>x</sup> ln² 2) → 6/(2<sup>x</sup> ln³ 2) → 0, cada seta significando "tem o mesmo limite que"). Logo n<sup>log₂ 5</sup> ∈ o(2<sup>n</sup>). Ordem: <strong>C ≺ A ≺ B</strong>, isto é, Θ(n² lg n) ≺ Θ(n<sup>log₂ 5</sup>) ≺ Θ(2<sup>n</sup>).</p>
+<p>Observação — comparar A (definido nas potências de 2) com C (potências de 3) no mesmo n. O teorema é enunciado para n potência exata de b; é a hipótese "T assintoticamente não decrescente" que permite estender a conclusão a todo n. Esboço: se T é não decrescente para n ≥ N e c₁g(b<sup>j</sup>) ≤ T(b<sup>j</sup>) ≤ c₂g(b<sup>j</sup>) para b<sup>j</sup> ≥ n₀, então para b<sup>j</sup> ≤ n &lt; b<sup>j+1</sup> (com<br>
+b<sup>j</sup> ≥ máx(n₀, N, b)) vale<br>
+T(n) ≤ T(b<sup>j+1</sup>) ≤ c₂g(b<sup>j+1</sup>) ≤ c₂g(b·n) e T(n) ≥ T(b<sup>j</sup>) ≥ c₁g(b<sup>j</sup>) ≥ c₁g(n/b), usando que g é não decrescente para n ≥ 1; para g(n) = n<sup>e</sup>·lg<sup>p</sup> n (e &gt; 0, p ≥ 0 — é o caso de n<sup>log₂ 5</sup> e de n² lg n) tem-se g(b·n) ≤ b<sup>e</sup>·2<sup>p</sup>·g(n) e g(n/b) ≥ g(n)/(b<sup>e</sup>·2<sup>p</sup>) para n ≥ b², de modo que a classe Θ(g) vale para todo n grande. Com isso, T<sub>A</sub> e T<sub>C</sub> são comparáveis no mesmo n.</p>
+<p>A vantagem de C é assintótica: para as funções de referência (sem as constantes ocultas, que não se conhecem), a razão lg n / n<sup>0,3219</sup> ainda vale ≈ 1,07 em n = 2<sup>10</sup> e cai para ≈ 0,23 em n = 2<sup>20</sup>.</p>
+</div>
+<div class="item">
+<div class="caixa-resposta">
+<h3>Resposta</h3>
+<p>A: T(n) = 5T(n/2) + Θ(n) ⇒ a = 5 &gt; b<sup>k</sup> = 2 (terceira linha) ⇒ Θ(n<sup>log₂ 5</sup>), com<br>
+<span class="recuo">log₂ 5 ≈ 2,32.</span><br>
+B: T(n) = 2T(n − 1) + Θ(1) ⇒ fora do teorema (n − 1 não é n/b); com T(1) = t e custo de<br>
+<span class="recuo">combinação constante c, a expansão dá T(n) = 2<sup>n−1</sup>(t + c) − c, e pelo lema da §4 qualquer</span><br>
+<span class="recuo">custo em Θ(1) fica entre duas dessas ⇒ Θ(2<sup>n</sup>).</span><br>
+C: T(n) = 9T(n/3) + Θ(n²) ⇒ a = 9 = b<sup>k</sup> = 9 (segunda linha) ⇒ Θ(n² lg n).<br>
+O mais eficiente no pior caso é <strong>C, com Θ(n² lg n)</strong>; a ordem é C ≺ A ≺ B, porque n² lg n ∈ o(n<sup>log₂ 5</sup>) (log₂ 5 &gt; 2 e lg n ∈ o(n<sup>ε</sup>) para ε &gt; 0) e n<sup>log₂ 5</sup> ∈ o(2<sup>n</sup>).</p>
+</div>
+</div>
+<!-- ══════════════════════ QUESTÃO 4 ══════════════════════ -->
+<h2>Questão 4 — prova por indução</h2>
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+<p>"(1.0 ponto) Prove a assertiva abaixo usando o método da indução matemática.<br>
+a) 1/2 + 1/4 + 1/8 + ··· + 1/2<sup>n</sup> &lt; 1 , ∀n ≥ 1"</p>
+</div>
+<div class="item">
+<h3>Notação</h3>
+<p>Para cada inteiro n ≥ 1, S(n) = ∑<sub>i=1</sub><sup>n</sup> 1/2<sup>i</sup>. A escrita 1/2 + 1/4 + 1/8 + … + 1/2<sup>n</sup> do enunciado é a notação usual para essa soma: só entram os termos com i ≤ n. Para n ≤ 2 a forma com reticências é apenas ilustrativa — vale a definição por ∑: S(1) = 1/2 (um único termo) e S(2) = 1/2 + 1/4 = 3/4.</p>
+</div>
+<div class="item">
+<h3>Por que a indução ingênua (separando o último termo) não fecha</h3>
+<p>Tentando provar Q(n): S(n) &lt; 1 separando o <strong>último</strong> termo, o passo seria<br>
+S(n+1) = S(n) + 1/2<sup>n+1</sup> &lt; 1 + 1/2<sup>n+1</sup> — e isso não é &lt; 1. Usando só a informação "S(n) &lt; 1", o passo exigiria a implicação, para todo real s, "se s &lt; 1 então<br>
+s + 1/2<sup>n+1</sup> &lt; 1", que é falsa (contraexemplo da implicação, não da assertiva: s = 31/32 e n = 3 dão 31/32 + 1/16 = 33/32 ≥ 1). A hipótese "S(n) &lt; 1" perde a informação de <strong>quanto</strong> falta para 1. Há duas saídas: fortalecer a hipótese (Prova 1) ou separar o <strong>primeiro</strong> termo em vez do último (Prova 2). As duas são provas completas; basta uma.</p>
+</div>
+<div class="item">
+<h3>Prova 1 — fortalecendo a hipótese</h3>
+<p>Proposição. Para todo inteiro n ≥ 1, P(n): S(n) = 1 − 1/2<sup>n</sup>.</p>
+<p>Base (n = 1). Lado esquerdo: S(1) = 1/2. Lado direito: 1 − 1/2¹ = 1/2. Iguais: P(1) vale.</p>
+<p>Hipótese de indução. Seja n ≥ 1 um inteiro fixado e suponha P(n): S(n) = 1 − 1/2<sup>n</sup>.</p>
+<p>Passo. Separando o último termo da soma até n + 1:<br>
+<span class="recuo">S(n+1) = S(n) + 1/2<sup>n+1</sup></span><br>
+<span class="recuo2">= 1 − 1/2<sup>n</sup> + 1/2<sup>n+1</sup>          ← h.i. aplicada a S(n)</span><br>
+<span class="recuo2">= 1 − 2/2<sup>n+1</sup> + 1/2<sup>n+1</sup></span><br>
+<span class="recuo2">= 1 − 1/2<sup>n+1</sup>,</span><br>
+que é P(n+1). Como P(1) vale e P(n) ⇒ P(n+1) para todo n ≥ 1, pelo princípio da indução P(n) vale para todo n ≥ 1.</p>
+<p>Conclusão. Como 2<sup>n</sup> &gt; 0, tem-se 1/2<sup>n</sup> &gt; 0 e S(n) = 1 − 1/2<sup>n</sup> &lt; 1 para todo n ≥ 1. ∎</p>
+</div>
+<div class="item">
+<h3>Prova 2 — a própria assertiva como hipótese de indução, Q(n), separando o primeiro termo</h3>
+<p>Proposição. Para todo inteiro n ≥ 1, Q(n): S(n) &lt; 1.</p>
+<p>Base (n = 1). S(1) = 1/2 &lt; 1.</p>
+<p>Hipótese de indução. Seja n ≥ 1 um inteiro fixado e suponha Q(n): S(n) &lt; 1.</p>
+<p>Passo. Separando o primeiro termo e pondo 1/2 em evidência no restante:<br>
+<span class="recuo">S(n+1) = 1/2 + ∑<sub>i=2</sub><sup>n+1</sup> 1/2<sup>i</sup> = 1/2 + ∑<sub>j=1</sub><sup>n</sup> 1/2<sup>j+1</sup> = 1/2 + (1/2)·∑<sub>j=1</sub><sup>n</sup> 1/2<sup>j</sup></span><br>
+<span class="recuo2">= 1/2 + S(n)/2</span><br>
+<span class="recuo2">&lt; 1/2 + 1/2 = 1                  ← h.i.: S(n) &lt; 1, logo S(n)/2 &lt; 1/2 (divide-se por 2 &gt; 0)</span> isto é, Q(n+1). Como Q(1) vale e Q(n) ⇒ Q(n+1) para todo n ≥ 1, pelo princípio da indução Q(n) vale para todo n ≥ 1. ∎<br>
+(A troca de índice é j = i − 1, que leva i = 2, …, n+1 em j = 1, …, n; com n = 1 as duas somas têm um único termo, 1/4.)</p>
+</div>
+<div class="item">
+<h3>Conferência</h3>
+<p>S(1) = 1/2, S(2) = 3/4, S(3) = 7/8 = 1 − 1/8. A identidade S(n) = 1 − 1/2<sup>n</sup>, a desigualdade S(n) &lt; 1 e a relação S(n+1) = 1/2 + S(n)/2 foram conferidas em aritmética racional exata para n = 1, …, 399.</p>
+</div>
+<div class="item">
+<div class="caixa-resposta">
+<h3>Resposta</h3>
+<p>Por indução em n, prova-se a forma mais forte P(n): 1/2 + 1/4 + … + 1/2<sup>n</sup> = 1 − 1/2<sup>n</sup> (base: 1/2 = 1/2; passo: 1 − 1/2<sup>n</sup> + 1/2<sup>n+1</sup> = 1 − 1/2<sup>n+1</sup>); daí a soma é &lt; 1, pois 1/2<sup>n</sup> &gt; 0. A indução direta em "&lt; 1" separando o último termo não fecha; ela fecha separando o primeiro: S(n+1) = 1/2 + S(n)/2 &lt; 1/2 + 1/2 = 1.</p>
+</div>
+</div>
+<!-- ══════════════════════ QUESTÃO 5 ══════════════════════ -->
+<h2>Questão 5 — Teorema Mestre em dez recorrências</h2>
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+<p>"(0.5 ponto) Usando o teorema mestre, indique o limite assintótico usando a notação Θ, para cada uma das equações de recorrência abaixo. Considere o caso base T(1) = 1 ou T(n) = c, para alguma constante c e ∀n ≤ n0, para alguma constante n0. Suponha, também, que n uma [sic] potência exata de b. Escolha o valor adequado para b conforme a equação de recorrência a ser resolvida. Justifique todas as suas respostas. Respostas sem justificativas não serão consideradas. Pode acontecer de não ser aplicável a versão do teorema mestre discutida em sala de aula e também apresentada nessa lista de exercícios (veja em Informações que pode [sic] ser úteis). Nesse(s) caso(s) apresente o motivo pelo qual essa versão do teorema mestre não se aplica.<br>
+(a) T(n) = T(n/3) + 1<br>
+(b) T(n) = 2T(n/2) + n ∗ lgn<br>
+(c) T(n) = T(2n/3) + n<br>
+(d) T(n) = 5T(n/4) − n<br>
+(e) T(n) = T(n − 1) + 3<br>
+(f) T(n) = T(n/3) + 0<br>
+(g) T(n) = 5T(n/4) − n²<br>
+(h) T(n) = T(2n/4) + n<br>
+(i) T(n) = 3/2T(n/4) − n²<br>
+(j) T(n) = 3T(n/2) + n"</p>
+<p>Teorema mestre (literal, das "Informações que podem ser úteis"): "Sejam as constantes naturais a ≥ 1, b ≥ 2 e k ≥ 0. Considere a função f(n) da forma c ∗ n<sup>k</sup>, na qual c &gt; 0 e ∈ R, seja a equação de recorrência dada por T(n) = aT(n/b) + f(n) e suponha n uma potência exata de b. Considere ainda que T é uma função que leva números naturais em números reais positivos e que T é assintoticamente não decrescente, Nessas condições, [BRASSARD and BRATLEY, 1996] indicam que a solução dessa recorrência é limitada assintoticamente por T(n) = θ(n<sup>k</sup>) se a &lt; b<sup>k</sup>; θ(n<sup>k</sup> ∗ lg n) se a = b<sup>k</sup>; θ(n<sup>log<sub>b</sub> a</sup>) se a &gt; b<sup>k</sup>."</p>
+</div>
+<div class="item">
+<h3>0. O que o teorema exige — a lista de conferência</h3>
+<p>Para aplicar esta versão é preciso ter, <strong>todas ao mesmo tempo</strong>:<br>
+<span class="recuo">(H1) a forma T(n) = a·T(n/b) + f(n) — uma única chamada "dividida por b", repetida a vezes;</span><br>
+<span class="recuo">(H2) a natural, a ≥ 1;</span><br>
+<span class="recuo">(H3) b natural, b ≥ 2;</span><br>
+<span class="recuo">(H4) f(n) = c·n<sup>k</sup> exatamente, com c &gt; 0 real e k ≥ 0 natural;</span><br>
+<span class="recuo">(H5) T com valores reais positivos e assintoticamente não decrescente (conferida abaixo nas</span><br>
+<span class="recuo2">potências de b, que é onde a recorrência define T).</span><br>
+Os casos, <strong>na ordem em que o formulário os imprime</strong>:<br>
+<span class="recuo">1ª linha: a &lt; b<sup>k</sup> → Θ(n<sup>k</sup>);  2ª linha: a = b<sup>k</sup> → Θ(n<sup>k</sup> lg n);  3ª linha: a &gt; b<sup>k</sup> → Θ(n<sup>log<sub>b</sub> a</sup>).</span> Nos itens aplicáveis confere-se o resultado com a forma fechada exata (T(1) = 1, n = b<sup>m</sup>) e exibem-se testemunhas c₁, c₂, n₀ verificadas em n = n₀. Nos itens não aplicáveis dá-se o motivo e, à parte, o que a recorrência realmente faz — o que mostra que a hipótese violada não é detalhe: em (f), (g) e (i), aplicar a fórmula às cegas daria resposta <strong>errada</strong> qualquer que seja o caso base; em (d), daria resposta errada com o caso base T(1) = 1 do enunciado (e com qualquer T(1) ≤ 4).</p>
+</div>
+<div class="item">
+<h3>(a) T(n) = T(n/3) + 1 — APLICA</h3>
+<p>a = 1, b = 3, f(n) = 1 = 1·n⁰ ⇒ c = 1 &gt; 0, k = 0. (H1)–(H4) valem.<br>
+b<sup>k</sup> = 3⁰ = 1 = a: <strong>2ª linha</strong> ⇒ T(n) ∈ Θ(n⁰·lg n) = <strong>Θ(lg n)</strong>.<br>
+Forma fechada (n = 3<sup>m</sup>, T(1) = 1): T(3<sup>m</sup>) = m + 1, isto é, T(n) = log₃ n + 1. Positiva e crescente nas potências de 3: (H5) ✓.<br>
+Testemunhas: c₁ = 1/lg 3, c₂ = 2/lg 3, n₀ = 3. Com log₃ n = lg n / lg 3 e 1 ≤ lg n / lg 3 para n ≥ 3: (1/lg 3)·lg n ≤ log₃ n + 1 ≤ (2/lg 3)·lg n. Em n = n₀ = 3: 1 ≤ T(3) = 2 ≤ 2 ✓. n₀ = 1 não serve: lg 1 = 0 e T(1) = 1 &gt; c₂·0.</p>
+</div>
+<div class="item">
+<h3>(b) T(n) = 2T(n/2) + n·lg n — NÃO APLICA</h3>
+<p>a = 2, b = 2 servem, mas <strong>f(n) = n lg n não é da forma c·n<sup>k</sup></strong> (viola H4). Não existem c, k com n lg n = c·n<sup>k</sup> para todo n potência de 2: n = 2 daria 2 = c·2<sup>k</sup> e n = 4 daria 8 = c·4<sup>k</sup>, donde 2<sup>k</sup> = 4, k = 2 e c = 1/2; mas em n = 8, c·8<sup>k</sup> = 32 ≠ 24 = 8·lg 8. Nem mesmo "f ∈ Θ(n<sup>k</sup>)" salvaria: para k ∈ {0, 1}, n lg n / n<sup>k</sup> ≥ lg n → ∞; para k ≥ 2, n lg n / n<sup>k</sup> ≤ lg n / n → 0. Então f não está em Θ(n<sup>k</sup>) para k natural nenhum.<br>
+À parte (fora do teorema): por expansão, T(2<sup>m</sup>) = 2<sup>m</sup>·(1 + m(m + 1)/2), isto é, T(n) = n·(1 + lg n·(lg n + 1)/2) ∈ Θ(n lg² n) (c₁ = 1/2, c₂ = 2, n₀ = 2; em n = 2: 1 ≤ 4 ≤ 4).</p>
+</div>
+<div class="item">
+<h3>(c) T(n) = T(2n/3) + n — NÃO APLICA</h3>
+<p>2n/3 = n/(3/2): o "b" seria <strong>3/2, que não é natural nem ≥ 2</strong> (viola H3). Também não há "n potência exata de b" inteira: (3/2)<sup>m</sup> = 3<sup>m</sup>/2<sup>m</sup>, com numerador ímpar e denominador par, não é inteiro para m ≥ 1.<br>
+À parte: com piso, T(n) = T(⌊2n/3⌋) + n e T(1) = 1, vale n ≤ T(n) ≤ 3n (soma geométrica de razão 2/3), logo Θ(n) — conferido para n = 1…200 000.</p>
+</div>
+<div class="item">
+<h3>(d) T(n) = 5T(n/4) − n — NÃO APLICA</h3>
+<p>a = 5, b = 4, mas f(n) = −n = (−1)·n¹: <strong>c = −1 &lt; 0</strong> (viola H4). Com o caso base T(1) = 1, (H5) também falha: T(4) = 5 − 4 = 1 e T(16) = 5 − 16 = −11 &lt; 0 — T deixa de ser positiva. À parte: com a recorrência aplicada desde n = 4, T(4<sup>m</sup>) = (T(1) − 4)·n<sup>log₄ 5</sup> + 4n. A resposta dependeria do caso base: Θ(n<sup>log₄ 5</sup>) se T(1) &gt; 4; exatamente 4n se T(1) = 4; negativa a partir de algum n se T(1) &lt; 4. Com a outra opção do enunciado, T(n) = C para n ≤ n0 (chama-se aqui de C a constante do caso base, que o enunciado chama de c, para não confundir com o coeficiente c = −1 de f), o limiar muda: sendo 4<sup>m0</sup> a maior potência de 4 que é ≤ n0 (n0 ≥ 1),<br>
+T(4<sup>m</sup>) = ((C − 4·4<sup>m0</sup>)/5<sup>m0</sup>)·n<sup>log₄ 5</sup> + 4n para m ≥ m0; o sinal do coeficiente líder é o de C − 4·4<sup>m0</sup>: positivo dá Θ(n<sup>log₄ 5</sup>), zero dá exatamente 4n, negativo faz T ficar negativa (por exemplo, n0 = 4 e C = 10 dão T(4⁶) &lt; 0). Aplicar o teorema às cegas (a = 5 &gt; 4 = b<sup>k</sup>, 3ª linha) daria Θ(n<sup>log₄ 5</sup>) — errado com T(1) = 1, quando T é negativa; só coincidiria com o comportamento real quando T(1) &gt; 4 (ou C &gt; 4·4<sup>m0</sup>).</p>
+</div>
+<div class="item">
+<h3>(e) T(n) = T(n − 1) + 3 — NÃO APLICA</h3>
+<p>A chamada é T(n − 1), não T(n/b) (viola H1): n − 1 = n/b exigiria b = n/(n − 1), que varia com n (vale 2 só em n = 2 e fica entre 1 e 2 para n ≥ 3) — não é uma constante. É uma recorrência subtrativa.<br>
+À parte: por expansão, T(n) = T(1) + 3(n − 1) = 3n − 2 (com T(1) = 1) ∈ Θ(n); c₁ = 1, c₂ = 3, n₀ = 1 (n ≤ 3n − 2 ⟺ n ≥ 1; em n = 1: 1 ≤ 1 ≤ 3).</p>
+</div>
+<div class="item">
+<h3>(f) T(n) = T(n/3) + 0 — NÃO APLICA</h3>
+<p>a = 1, b = 3, mas f(n) = 0 <strong>não é da forma c·n<sup>k</sup> com c &gt; 0</strong> (viola H4): 0 = c·n<sup>k</sup> obriga c = 0. A exigência não é formalidade: aplicando a fórmula com "c = 0, k = 0" (a = 1 = b⁰, 2ª linha) sairia Θ(lg n), que é <strong>falso</strong>.<br>
+À parte: T(3<sup>m</sup>) = T(1) para todo m — T é constante, Θ(1) (c₁ = c₂ = 1, n₀ = 1, com T(1) = 1).</p>
+</div>
+<div class="item">
+<h3>(g) T(n) = 5T(n/4) − n² — NÃO APLICA</h3>
+<p>a = 5, b = 4, mas f(n) = −n²: <strong>c = −1 &lt; 0</strong> (viola H4). E T não é positiva (viola H5): com T(1) = 1, T(4) = 5 − 16 = −11.<br>
+À parte: T(4<sup>m</sup>) = (T(1) + 16/11)·n<sup>log₄ 5</sup> − (16/11)·n². Como log₄ 5 ≈ 1,161 &lt; 2, o termo −(16/11)n² domina e T fica negativa a partir de algum n <strong>qualquer que seja o caso base</strong> (com T(1) = 1 já em n = 4; com T(1) = 10⁶, em n = 4¹²); com T(n) = C para n ≤ n0 muda só o coeficiente de n<sup>log₄ 5</sup>, e o de n², −16/11, não depende do caso base. Às cegas (a = 5 &lt; 16 = b<sup>k</sup>, 1ª linha) sairia Θ(n²) — absurdo para uma função que tende a −∞.</p>
+</div>
+<div class="item">
+<h3>(h) T(n) = T(2n/4) + n — APLICA</h3>
+<p>Simplificando o argumento: 2n/4 = n/2, logo <strong>b = 2</strong> (natural ≥ 2). a = 1, f(n) = n = 1·n¹ ⇒ c = 1 &gt; 0, k = 1. (H1)–(H4) valem.<br>
+b<sup>k</sup> = 2¹ = 2 &gt; 1 = a, isto é, a &lt; b<sup>k</sup>: <strong>1ª linha</strong> ⇒ T(n) ∈ <strong>Θ(n)</strong>.<br>
+Forma fechada (n = 2<sup>m</sup>, T(1) = 1): T(n) = 2n − 1 (T(2) = 1 + 2 = 3 ✓). Positiva e crescente: (H5) ✓.<br>
+Testemunhas: c₁ = 1, c₂ = 2, n₀ = 1: n ≤ 2n − 1 ⟺ n ≥ 1, e 2n − 1 ≤ 2n. Em n = 1: 1 ≤ 1 ≤ 2 ✓. A armadilha do item: ler "2n/4" e escolher b = 4 (ou a = 2). O valor adequado de b sai do argumento já simplificado.</p>
+</div>
+<div class="item">
+<h3>(i) T(n) = (3/2)·T(n/4) − n² — NÃO APLICA</h3>
+<p>Lendo "3/2T(n/4)" como (3/2)·T(n/4): <strong>a = 3/2 não é natural</strong> (viola H2) e <strong>c = −1 &lt; 0</strong> (viola H4) — dois motivos independentes. (Na outra leitura, 3/(2·T(n/4)), nem a forma a·T(n/b) + f(n) existe — H1; e em qualquer leitura f(n) = −n² tem c &lt; 0. O veredito não depende da leitura.) E T não é positiva (H5): com T(1) = 1, T(4) = 3/2 − 16 = −29/2.<br>
+À parte: T(4<sup>m</sup>) = (T(1) + 32/29)·(3/2)<sup>m</sup> − (32/29)·n², negativa a partir de algum n para qualquer caso base, pois (3/2)<sup>m</sup> = n<sup>log₄(3/2)</sup> e log₄(3/2) ≈ 0,29 &lt; 2 (com T(n) = C para n ≤ n0 muda só o coeficiente de (3/2)<sup>m</sup>; o de n², −32/29, não depende do caso base). Às cegas (a = 3/2 &lt; 16 = b<sup>k</sup>, 1ª linha) sairia Θ(n²) — absurdo para uma função que tende a −∞.</p>
+</div>
+<div class="item">
+<h3>(j) T(n) = 3T(n/2) + n — APLICA</h3>
+<p>a = 3, b = 2, f(n) = n = 1·n¹ ⇒ c = 1 &gt; 0, k = 1. (H1)–(H4) valem.<br>
+b<sup>k</sup> = 2 &lt; 3 = a: <strong>3ª linha</strong> ⇒ T(n) ∈ <strong>Θ(n<sup>log₂ 3</sup>)</strong>, com log₂ 3 ≈ 1,585.<br>
+Forma fechada (n = 2<sup>m</sup>, T(1) = 1): T(n) = 3·n<sup>log₂ 3</sup> − 2n, isto é, T(2<sup>m</sup>) = 3<sup>m+1</sup> − 2<sup>m+1</sup> (T(2) = 3 + 2 = 5 = 9 − 4 ✓). Positiva e crescente: T(2<sup>m+1</sup>) − T(2<sup>m</sup>) = 2·3<sup>m+1</sup> − 2<sup>m+1</sup> &gt; 0. Testemunhas: c₁ = 1, c₂ = 3, n₀ = 1: a cota inferior 3n<sup>log₂ 3</sup> − 2n ≥ n<sup>log₂ 3</sup> equivale a n<sup>log₂ 3 − 1</sup> ≥ 1, verdadeira para n ≥ 1. Em n = 1: 1 ≤ 1 ≤ 3 ✓.</p>
+</div>
+<div class="item">
+<h3>O caso base não muda as classes dos itens aplicáveis</h3>
+<p>Com T(1) = t &gt; 0 em vez de 1: (a) T(n) = log₃ n + t; (h) T(n) = 2n − 2 + t; (j) T(n) = (t + 2)·n<sup>log₂ 3</sup> − 2n. Com T(n) = C para n ≤ n0 (a outra opção do enunciado, com a constante do caso base chamada de C como em (d); C &gt; 0, pois o teorema pede T positiva, e n0 ≥ 1), sendo b<sup>m0</sup> a maior potência de b que é ≤ n0: (a) T(3<sup>m</sup>) = C + (m − m0); (h) T(2<sup>m</sup>) = 2n + C − 2<sup>m0+1</sup>;<br>
+(j) T(2<sup>m</sup>) = ((C + 2·2<sup>m0</sup>)/3<sup>m0</sup>)·n<sup>log₂ 3</sup> − 2n, para m ≥ m0. Em todos os casos o termo dominante tem coeficiente positivo e as classes Θ(lg n), Θ(n) e Θ(n<sup>log₂ 3</sup>) se mantêm; só as constantes c₁, c₂ (e o n₀ das testemunhas) mudam.</p>
+</div>
+<div class="item">
+<h3>Quadro-resumo</h3>
+<table>
+<tr><th>item</th><th>a</th><th>b</th><th>f(n)</th><th>hipótese violada</th><th>resposta</th></tr>
+<tr><td>(a)</td><td>1</td><td>3</td><td>1 = n⁰</td><td>—</td><td>a = b<sup>k</sup> = 1, 2ª linha: Θ(lg n)</td></tr>
+<tr><td>(b)</td><td>2</td><td>2</td><td>n lg n</td><td>H4: não é c·n<sup>k</sup></td><td>não aplica (de fato Θ(n lg² n))</td></tr>
+<tr><td>(c)</td><td>1</td><td>3/2</td><td>n</td><td>H3: b = 3/2</td><td>não aplica (de fato Θ(n))</td></tr>
+<tr><td>(d)</td><td>5</td><td>4</td><td>−n</td><td>H4: c &lt; 0; H5 com T(1) = 1</td><td>não aplica (T fica negativa com T(1) = 1)</td></tr>
+<tr><td>(e)</td><td>—</td><td>—</td><td>3</td><td>H1: T(n − 1)</td><td>não aplica (de fato Θ(n); 3n − 2 com T(1) = 1)</td></tr>
+<tr><td>(f)</td><td>1</td><td>3</td><td>0</td><td>H4: c = 0</td><td>não aplica (de fato Θ(1), não Θ(lg n))</td></tr>
+<tr><td>(g)</td><td>5</td><td>4</td><td>−n²</td><td>H4: c &lt; 0; H5</td><td>não aplica (T → −∞ para todo caso base)</td></tr>
+<tr><td>(h)</td><td>1</td><td>2</td><td>n</td><td>—</td><td>a = 1 &lt; b<sup>k</sup> = 2, 1ª linha: Θ(n)</td></tr>
+<tr><td>(i)</td><td>3/2</td><td>4</td><td>−n²</td><td>H2: a = 3/2; H4: c &lt; 0; H5</td><td>não aplica (T → −∞ para todo caso base)</td></tr>
+<tr><td>(j)</td><td>3</td><td>2</td><td>n</td><td>—</td><td>a = 3 &gt; b<sup>k</sup> = 2, 3ª linha: Θ(n<sup>log₂ 3</sup>)</td></tr>
+</table>
+</div>
+<div class="item">
+<div class="caixa-resposta">
+<h3>Resposta</h3>
+<p>(a) Θ(lg n) — a = 1, b = 3, k = 0, a = b<sup>k</sup>.<br>
+(b) Não se aplica: f(n) = n lg n não é da forma c·n<sup>k</sup>.<br>
+(c) Não se aplica: b = 3/2 não é natural ≥ 2.<br>
+(d) Não se aplica: c = −1 &lt; 0 (e, com T(1) = 1, T fica negativa: T(16) = −11).<br>
+(e) Não se aplica: T(n − 1) não é da forma T(n/b) (recorrência subtrativa).<br>
+(f) Não se aplica: f(n) = 0 exige c = 0, e o teorema pede c &gt; 0 (a fórmula daria Θ(lg n); o<br>
+<span class="recuo2">certo é Θ(1)).</span><br>
+(g) Não se aplica: c = −1 &lt; 0 (e T fica negativa: T(4) = −11 com T(1) = 1).<br>
+(h) Θ(n) — 2n/4 = n/2, logo a = 1, b = 2, k = 1, a &lt; b<sup>k</sup>.<br>
+(i) Não se aplica: a = 3/2 não é natural, e c = −1 &lt; 0.<br>
+(j) Θ(n<sup>log₂ 3</sup>) — a = 3, b = 2, k = 1, a &gt; b<sup>k</sup>.</p>
+</div>
+</div>
+
+<h2>Informações que podem ser úteis</h2>
+<div class="enunciado" id="informacoes-lista">
+  <span class="rot">Anexo da lista (transcrição literal)</span>
+  <p><strong>Somatórios e Logaritmos:</strong></p>
+  <ul>
+    <li>Σ<sub>i=1</sub><sup>n</sup> (i) = n(n + 1)/2</li>
+    <li>Σ<sub>i=1</sub><sup>n</sup> (a<sup>i</sup>) = a(a<sup>n</sup> − 1)/(a − 1)</li>
+    <li>log (a ∗ b) = log a + log b</li>
+    <li>log (a/b) = log a − log b</li>
+    <li>log<sub>b</sub> a = log<sub>c</sub> a/ log<sub>c</sub> b</li>
+    <li>log<sub>b</sub> a<sup>c</sup> = c ∗ log<sub>b</sub> a</li>
+    <li>lg a = log<sub>2</sub> a</li>
+  </ul>
+  <p><strong>Hierarquia de funções:</strong></p>
+  <p>A seguinte hierarquia de funções pode ser definida do ponto de vista assintótico:</p>
+  <p class="centro">1 ≺ log(n) ≺ √n ≺ n ≺ n ∗ log(n) ≺ n<sup>c</sup> ≺ c<sup>n</sup> ≺ n! ≺ n<sup>n</sup></p>
+  <p>onde c é uma constante arbitrária inteira ≥ 2.</p>
+  <p><strong>Teorema mestre:</strong></p>
+  <p>Sejam as constantes naturais a ≥ 1, b ≥ 2 e k ≥ 0. Considere a função f(n) da forma c ∗ n<sup>k</sup>,
+  na qual c &gt; 0 e ∈ R, seja a equação de recorrência dada por T(n) = aT(n/b) + f(n) e suponha n uma
+  potência exata de b. Considere ainda que T é uma função que leva números naturais em números reais
+  positivos e que T é assintoticamente não decrescente, Nessas condições, [BRASSARD and BRATLEY, 1996]
+  indicam que a solução dessa recorrência é limitada assintoticamente por</p>
+  <p class="centro">T(n) = θ(n<sup>k</sup>) se a &lt; b<sup>k</sup>; &nbsp; θ(n<sup>k</sup> ∗ lg n) se a = b<sup>k</sup>;
+  &nbsp; θ(n<sup>log<sub>b</sub> a</sup>) se a &gt; b<sup>k</sup></p>
+  <p><strong>Referências</strong></p>
+  <ul><li>[BRASSARD and BRATLEY, 1996] BRASSARD, G. and BRATLEY, P. (1996). Fundamentals of Algorithms.
+  Prentice-Hall.</li></ul>
+  <p style="font-size:7.6pt;color:#5b6068;">O PDF da lista não tem folha de rosto nem bloco de instruções:
+  começa na Questão 1, com numeração de página a partir de 2.</p>
+</div>
+
+<div class="rodape">
+<strong>Sobre esta resolução.</strong> Fluxo da seção 5 do <code>CLAUDE.md</code>: chão
+determinístico em Python puro antes de qualquer redação (<code>verificacao/lista05-chao-deterministico.py</code>);
+redação; verificadores adversariais em contexto limpo, quatro por questão e por rodada, cegos ao
+raciocínio e uns aos outros, com Bash para conferir as contas; voto assimétrico (4 HOLDS confirma,
+2 HOLE refuta); correções; e reverificação da versão corrigida, até a confirmação.
+<strong>Estado da verificação (14/09/2026).</strong> Todas as cinco questões confirmadas por 4 de 4 verificadores
+independentes na última rodada: Q1 na 4ª rodada, Q2 na 2ª, Q3 na 3ª, Q4 na 2ª, Q5 na 5ª — 64 verificadores
+ao todo. Nenhuma correção mudou resposta final nem tocou enunciado; caíram justificativas e contagens (por
+exemplo, a leitura dupla de A[meio] na Q2 e uma frase introduzida pela própria correção da Q1).<br>
+<strong>Texto-fonte.</strong> Este HTML é gerado por <code>geradores/gerar_lista05.py</code> a partir
+dos arquivos <code>geradores/dados/lista05/q*-limpo.md</code> — os mesmos que os verificadores leram —,
+e o gerador confere que nenhuma linha deles caiu ou duplicou. Registro das correções, com o motivo
+e quem achou: <code>geradores/dados/lista05/correcoes-lista05.md</code>.<br>
+<strong>Enunciados.</strong> Transcritos literalmente do PDF do professor, com os erros de
+digitação marcados com <em>[sic]</em> e nunca corrigidos.<br>
+Lista avaliada — IFMG Campus Formiga, 2026/2.
+</div>
+
+</body>
+</html>

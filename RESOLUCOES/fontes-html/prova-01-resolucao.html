@@ -1,0 +1,292 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<title>PAA — Prova I de 2025 — Resolução</title>
+<style>
+@page { size: A4; margin: 9mm 11mm 11mm 11mm; }
+:root { --tinta:#16181d; --fraco:#5b6068; --linha:#c8ccd2; --caixa:#f2f3f5; --realce:#1a4a7a; --caiu:#a3400f; }
+* { box-sizing:border-box; }
+body { font-family:"Charter","Georgia","Times New Roman",serif; font-size:9.1pt; line-height:1.34;
+       color:var(--tinta); margin:0; text-align:justify; hyphens:auto; }
+h1 { font-size:15pt; margin:0 0 1mm 0; letter-spacing:-0.2pt; }
+h2 { font-size:11.5pt; margin:6mm 0 2mm 0; padding-bottom:1mm; border-bottom:1pt solid var(--tinta); break-after:avoid; }
+h3 { font-size:9.6pt; margin:4mm 0 1.5mm 0; color:var(--realce); break-after:avoid;
+     border-bottom:0.4pt solid var(--linha); padding-bottom:0.6mm; }
+h4 { font-size:9.2pt; margin:2.5mm 0 1mm 0; break-after:avoid; }
+p { margin:0 0 1.5mm 0; }
+.capa { border-bottom:1.5pt solid var(--tinta); padding-bottom:3mm; margin-bottom:4mm; }
+.capa .meta { font-size:8pt; color:var(--fraco); line-height:1.45; }
+.parte { break-before:page; text-align:center; padding:6mm 0 3mm 0; border-bottom:1.5pt solid var(--tinta); margin-bottom:4mm; }
+.parte .n { font-size:8pt; letter-spacing:2pt; color:var(--fraco); font-variant:small-caps; }
+.parte h1 { font-size:17pt; margin:1mm 0 1mm 0; }
+.parte .sub { font-size:8.4pt; color:var(--fraco); }
+.q { margin:0 0 2.6mm 0; break-inside:avoid; }
+.q .cab { margin-bottom:0.8mm; }
+.q .fonte { margin-right:2mm; }
+.q .num { font-weight:700; color:var(--realce); font-size:9.4pt; white-space:nowrap; margin-right:2mm; }
+.q .fonte { font-size:7.5pt; color:var(--fraco); font-variant:small-caps; letter-spacing:0.3pt; }
+.tag { font-size:7pt; font-variant:small-caps; letter-spacing:0.5pt; padding:0.2mm 1.1mm;
+       border:0.5pt solid var(--caiu); color:var(--caiu); border-radius:1mm; white-space:nowrap; }
+.tag.pv { border-color:var(--realce); color:var(--realce); }
+.dica { font-size:7.8pt; color:var(--fraco); font-style:italic; }
+.cod2 { font-family:"SF Mono","Menlo","Consolas",monospace; font-size:7.5pt; line-height:1.3;
+        background:var(--caixa); border:0.4pt solid var(--linha); padding:1.2mm 2mm; margin:1mm 0; }
+pre.cod { font-family:"SF Mono","Menlo","Consolas",monospace; font-size:7.4pt; line-height:1.28;
+          background:var(--caixa); border:0.4pt solid var(--linha); padding:1.2mm 2mm; margin:1.2mm 0;
+          white-space:pre-wrap; break-inside:avoid; }
+code { font-family:"SF Mono","Menlo","Consolas",monospace; font-size:7.6pt; }
+.mat { font-family:"Cambria Math","Georgia",serif; font-style:italic; }
+.centro { text-align:center; margin:1.4mm 0; font-family:"Cambria Math","Georgia",serif; }
+.resp { font-weight:700; color:var(--realce); }
+table { width:100%; border-collapse:collapse; font-size:8pt; margin:1.4mm 0 2mm 0; break-inside:avoid; }
+th,td { border:0.4pt solid var(--linha); padding:0.8mm 1.4mm; text-align:left; vertical-align:top; }
+th { background:var(--caixa); font-weight:700; font-size:7.7pt; }
+td.n { text-align:center; white-space:nowrap; }
+.nota { font-size:7.9pt; color:var(--fraco); border-left:1.2pt solid var(--linha); padding-left:2mm; margin:1.4mm 0; }
+.item { margin-bottom:2mm; }
+.passo { margin:1.2mm 0; padding-left:2.5mm; border-left:1pt solid var(--linha); }
+.passo .rot2 { font-weight:700; font-style:normal; color:var(--tinta); }
+.enunciado { background:var(--caixa); border-left:2pt solid var(--fraco); padding:1.6mm 2mm;
+             margin:0 0 2mm 0; font-size:8.5pt; }
+.enunciado .rot { font-variant:small-caps; letter-spacing:0.4pt; color:var(--fraco); font-size:7.4pt;
+                  display:block; margin-bottom:0.6mm; }
+sub,sup { font-size:68%; line-height:0; position:relative; font-style:normal; }
+sub { bottom:-0.25em; } sup { top:-0.32em; }
+.ex img { width:70%; border:0.5pt solid var(--linha); margin:0.8mm auto; display:block; }
+.ex { break-inside:avoid; margin-bottom:2mm; }
+.indice td { border:none; padding:0.5mm 1mm; }
+.indice .t { font-weight:700; }
+.rodape { margin-top:6mm; padding-top:2mm; border-top:0.6pt solid var(--linha); font-size:7.5pt; color:var(--fraco); }
+</style></head><body>
+<div class="capa"><h1>Projeto e Análise de Algoritmos — Prova I de 2025</h1><div class="meta">Resolução comentada · IFMG, Campus Formiga · Bacharelado em Ciência da Computação<br>Professor: Mário Luiz Rodrigues Oliveira · 25 pontos · 120 minutos</div></div>
+<p class="nota"><b>Por que esta prova importa.</b> Cinco das onze questões saem direto das listas
+de exercícios — uma delas idêntica palavra por palavra (2(c)) e outra a menos de uma expressão (4(a)). As tarjas <span class="tag">de onde veio</span> indicam
+a origem de cada uma. <b>Atenção à Questão 2(a):</b> ela é a Q3(c) da Lista 2 com o sinal trocado de + para −,
+e a resposta inverte de verdadeira para falsa. Decorar o gabarito da lista faz perder os pontos.</p>
+<div class="enunciado" id="instrucoes-prova"><span class="rot">Cabeçalho, código de honra e instruções da prova (transcrição literal)</span>
+<p>Instituto Federal de Educação, Ciência e Tecnologia · Curso: Bacharelado em Ciência da Computação ·
+Disciplina: Projeto Análise de Algoritmos · Professor: Mário Luiz Rodrigues Oliveira · Atividade: Prova I ·
+Formiga, MG, 13 de junho de 2025</p>
+<p><b>Código de honra e conduta discente:</b><br>Eu, ______________________, matrícula __________ prometo pela
+minha honra que fui honesto(a) e não trapaceei nessa avaliação passando ou recebendo cola.<br>
+Formiga, MG, 13 de junho de 2025.</p>
+<p><b>Instruções:</b></p>
+<ol>
+<li>Esta atividade deve, obrigatoriamente, ser resolvida <b>individualmente</b>.</li>
+<li>Caso você ache que falta algum detalhe nas especificações, você deverá fazer as suposições que julgar
+necessárias e escrevê-las junto à resolução da atividade. Pode acontecer também que a descrição desta atividade
+contenha dados e/ou especificações supérfluas para sua solução. Utilize sua capacidade de julgamento para
+separar o supérfluo do necessário.</li>
+<li>Na(s) folha(s) contendo a solução desta atividade coloque seu nome e matrícula. Na correção desta prova
+será considerado apenas e tão somente o conteúdo que estiver na(s) folha(s) de solução.</li>
+<li><b>Não basta apresentar apenas o(s) resultado(s). É necessário mostrar a resolução ou o raciocínio
+utilizado para responder às questões. Portanto, justifique formalmente todas as suas respostas. Questões sem
+respostas ou com respostas sem justificativas não serão consideradas</b>.</li>
+<li>É permitido aos discentes consultar materiais impressos, tais como: livros, materiais disponibilizados
+pelo professor e anotações produzidas pelo discente.</li>
+<li>Não são permitidas consultas a materiais/conteúdos disponíveis na <i>Web</i>.</li>
+<li>Durante a realização desta atividade não é permitido o uso de celulares e outros dispositivos
+eletrônicos; bem como também conversas e/ou diálogos com colegas.</li>
+<li>Seja honesto(a) e lembre-se: você deu sua palavra de honra.</li>
+<li><b>Plágio ou a tentativa de plágio implicará em nota 0 (zero) a todos os envolvidos</b>. Sem prejuízo de
+demais sanções/pebalidades cabíveis nesta situação.</li>
+<li>O valor desta atividade é <b>25 pontos</b> e você terá até 120 minutos para resolvê-la.</li>
+</ol></div>
+<div class="q"><h3>Questão 1 <span style="font-weight:400;font-size:8pt;color:#5b6068">(5,0 pontos)</span></h3>
+<div class="enunciado"><span class="rot">Enunciado</span><p>Você está em um campo minado infinitamente grande. Você tem um detector de minas que só consegue identificar uma mina localizada no máximo a um passo de distância. Você deve encontrar a primeira mina do campo, mas a única informação que você tem sobre esta mina é que ela está diretamente a sua esquerda ou diretamente a sua direita. Entretanto, você não sabe a quantidade <span class='mat'>m</span> de passos de onde você está até a mina.<br>(3.0 pontos) Projete um algoritmo para achar a mina em O(<span class='mat'>f</span>(<span class='mat'>m</span>)) passos. A função <span class='mat'>f</span>(<span class='mat'>m</span>) deve ser polinomial no parâmetro <span class='mat'>m</span>.<br>(2.0 pontos) Argumente que seu algoritmo tem a complexidade requerida.</p></div>
+<p><b>Resposta.</b> Busca por duplicação (exponential search): sonda-se o detector na origem ANTES de tudo e, em seguida, alternando os dois lados, para i = 0, 1, 2, ... anda-se 2^i passos para a direita (checando o detector a CADA passo), volta-se à origem, anda-se 2^i passos para a esquerda (checando a cada passo) e volta-se à origem. O algoritmo encontra a mina gastando menos de 14m passos, isto é, O(m) passos — logo f(m) = m, que é polinomial em m.</p>
+<p>PARTE 1 — O ALGORITMO (3,0)</p>
+<p>Modelo. A origem é a posição 0; a mina está na posição +m ou -m, com m &gt;= 1 inteiro desconhecido. O detector, estando o agente na posição p, acusa a mina se ela estiver a no máximo um passo de distância, ou seja, se |p - (posição da mina)| &lt;= 1. Um &quot;passo&quot; é o movimento de uma unidade; contamos passos.</p>
+<p>Por que não basta varrer um lado só. O campo é infinito e não se sabe o lado. Se o algoritmo caminhasse indefinidamente para a direita e a mina estivesse à esquerda, ele nunca terminaria. Portanto qualquer algoritmo correto tem de alternar os dois lados, e cada troca de lado obriga a voltar pela origem. É esse vaivém que precisa ser contabilizado.</p>
+<p>Algoritmo (busca por duplicação, com sondagens alternadas):</p>
+<pre class="cod">se o detector acusar ja na origem, PARE (a mina esta a um passo)
+  i &lt;- 0
+  repita
+     ande 2^i passos para a DIREITA, acionando o detector a cada passo;
+        se o detector acusar, PARE (mina encontrada)
+     volte 2^i passos, retornando à origem
+     ande 2^i passos para a ESQUERDA, acionando o detector a cada passo;
+        se o detector acusar, PARE (mina encontrada)
+     volte 2^i passos, retornando à origem
+     i &lt;- i + 1
+  fim repita</pre>
+<p>Dois pontos essenciais. Primeiro, e preciso SONDAR A ORIGEM antes de entrar no laco: sem isso, com m = 1 o agente nao consulta o detector estando a um passo da mina e acaba PISANDO nela (para a mina em -1 ele gasta 3 passos e pisa; para +1, gasta 1 e pisa). Com a sondagem inicial, m = 1 e resolvido em 0 passos. Ressalva honesta: na origem o detector acusa se e so se m = 1, mas nao informa se a mina esta em +1 ou em -1. Nenhum algoritmo que nao pise na mina consegue distinguir os dois casos, entao &#x27;encontrar&#x27; aqui significa detectar a presenca a um passo, que e o maximo que o detector permite. Segundo, o detector tem alcance 1, então NÃO se pode apenas testar no ponto final do salto de 2^i passos — a mina estaria em alguma posicao intermediaria do trajeto e o agente PISARIA nela antes de qualquer sondagem — o passo e o movimento de uma unidade, entao ele percorre fisicamente todas as posicoes do caminho. É preciso acionar o detector a cada passo do percurso. Isso não aumenta o número de passos (andar 2^i unidades custa 2^i passos, com ou sem sondagem), mas é o que garante a corretude e o que torna a contagem abaixo legítima.</p>
+<p>Corretude e término. Seja k o menor inteiro k &gt;= 0 com 2^k &gt;= m. Ele existe porque as potências de 2 crescem sem limite. Na iteração i = k, ao varrer o lado correto o agente percorre todas as posições 1, 2, ..., 2^k desse lado; como m &lt;= 2^k, o agente alcanca a posicao m-1 ainda nessa iteracao. Como o detector e acionado a cada passo e tem alcance 1, ele acusa a mina ali e o agente PARA — sem nunca ocupar a posicao m. (Simulando o pseudocodigo para m = 1 ate 2999 nos dois lados, o agente jamais pisa na mina: ele para em m-1, ou na propria origem quando m = 1.) Logo o algoritmo termina, e termina na iteração k ou antes.</p>
+<p>PARTE 2 — COMPLEXIDADE (2,0)</p>
+<p>Seja T(m) o número de passos no pior caso.</p>
+<p>(i) Iterações completas 0, 1, ..., k-1. Como cota superior, suponha o pior: nenhuma delas encontra a mina (encontrar antes só diminui o custo). Uma iteração completa i custa    2^i (ida à direita) + 2^i (volta) + 2^i (ida à esquerda) + 2^i (volta) = 4·2^i passos. Somando a progressão geométrica em forma fechada:    soma_{i=0}^{k-1} 4·2^i = 4·(2^k - 1).</p>
+<p>(ii) Iteração k. Nela a mina é certamente encontrada. O pior caso é a mina estar à ESQUERDA, pois aí gasta-se a varredura completa à direita (2^k), a volta (2^k) e no máximo mais 2^k passos à esquerda até acusá-la: no máximo 3·2^k passos. (Se estivesse à direita, custaria no máximo 2^k, ainda menos.)</p>
+<p>Total:    T(m) &lt;= 4·(2^k - 1) + 3·2^k = 7·2^k - 4 &lt; 7·2^k.</p>
+<p>Falta relacionar 2^k com m. Pela MINIMALIDADE de k:    - se k &gt;= 1, então 2^(k-1) &lt; m, e multiplicando por 2: 2^k &lt; 2m;    - se k = 0, então 2^k = 1 &lt;= m &lt; 2m (pois m &gt;= 1). Em ambos os casos 2^k &lt; 2m. Portanto    T(m) &lt; 7·(2m) = 14m  para todo m &gt;= 1.</p>
+<p>Testemunhas: c = 14 e m0 = 1 satisfazem 0 &lt;= T(m) &lt;= c·m para todo m &gt;= m0. Conferindo em m = m0 = 1 exatamente: com a sondagem inicial, T(1) = 0 (a mina esta a um passo da origem e e acusada antes de qualquer movimento), e 0 &lt;= 14*1. Sem a sondagem inicial o pior caso seria T(1) = 3 (mina em -1), e 3 &lt;= 14*1 tambem vale. A desigualdade e satisfeita em m0 nos dois casos. Simulando m = 1 ate 299, a maior razao T(m)/m observada foi 12,888 (em m = 258), sempre abaixo de 14.</p>
+<p>Conclusão: T(m) = O(m). Tomando f(m) = m, o algoritmo roda em O(f(m)) passos com f polinomial (grau 1) em m, como exigido.</p>
+<p>Observação sobre alternativas. A estratégia ingênua de alternar os lados com incrementos 1, 2, 3, 4, ... (isto é, ir j passos para cada lado na j-ésima rodada) também é correta, mas custa 4*(1 + 2 + ... + m) = 2m(m+1) = Theta(m^2) passos — o fator 4 vem de ida e volta em cada um dos dois lados, e o somatorio 1+2+...+m sozinho contaria apenas as idas de um lado: é polinomial e portanto aceitável pelo enunciado, mas estritamente pior. A duplicação atinge Theta(m), que é ótimo a menos de constante, ja que qualquer algoritmo precisa de pelo menos m-1 passos para chegar a vizinhanca da mina — e isso se justifica assim: para acusar a mina, que esta a distancia m, o agente precisa ocupar alguma posicao a distancia no maximo 1 dela, e partindo da origem isso exige no minimo m-1 movimentos.</p>
+</div>
+<div class="q"><h3>Questão 2(a) <span style="font-weight:400;font-size:8pt;color:#5b6068">(2,0 pontos)</span></h3>
+<div class="enunciado"><span class="rot">Enunciado</span><p>Prove que as afirmativas abaixo são verdadeiras ou falsas, usando para isso as definições das notações assintóticas e/ou contra exemplos. Considere que as funções <span class='mat'>f</span>(n) e <span class='mat'>g</span>(n) são assintoticamente não negativas.<br>a) (2.0 pontos) Se <span class='mat'>f</span>(n) ∈ O(<span class='mat'>u</span>(n)) e <span class='mat'>g</span>(n) ∈ O(<span class='mat'>v</span>(n)) então <span class='mat'>f</span>(n) − <span class='mat'>g</span>(n) ∈ O(<span class='mat'>u</span>(n) − <span class='mat'>v</span>(n)).</p></div>
+<p style="margin-bottom:1.6mm"><span class="tag">de onde veio</span> &nbsp;Lista 2, Q3(c) — <b>mesma sentença com + trocado por −, e a resposta se inverte</b></p>
+<p><b>Resposta.</b> FALSA.</p>
+<p><b>AFIRMATIVA:</b> se f(n) = O(u(n)) e g(n) = O(v(n)), então f(n) - g(n) = O(u(n) - v(n)).</p>
+<p><b>É FALSA.</b> Dois motivos independentes.</p>
+<p>Motivo 1 — contraexemplo concreto. Tome    f(n) = 2n,  u(n) = n,  g(n) = n,  v(n) = n. Todas são assintoticamente não negativas.</p>
+<p>(1) f(n) = O(u(n)): tomando c = 2 e n0 = 1, vale 0 &lt;= 2n &lt;= 2·n para todo n &gt;= 1. Em n = n0 = 1: 0 &lt;= 2 &lt;= 2. OK. (2) g(n) = O(v(n)): tomando c = 1 e n0 = 1, vale 0 &lt;= n &lt;= 1·n para todo n &gt;= 1. Em n = n0 = 1: 0 &lt;= 1 &lt;= 1. OK.</p>
+<p>Mas    f(n) - g(n) = 2n - n = n   e   u(n) - v(n) = n - n = 0. Se f - g estivesse em O(u - v), existiriam c &gt; 0 e n0 tais que 0 &lt;= n &lt;= c·0 = 0 para todo n &gt;= n0. Isso obriga n &lt;= 0 para todo n &gt;= n0, o que é falso já em n = n0 (por exemplo, para qualquer n0 &gt;= 1, em n = n0 &gt;= 1 teríamos 1 &lt;= n0 &lt;= 0, absurdo). Como nenhum par (c, n0) serve, f(n) - g(n) NÃO pertence a O(u(n) - v(n)).</p>
+<p>Motivo 2 — a expressão pode nem estar bem definida. A definição de O(h(n)) pressupõe h assintoticamente não negativa (é a hipótese padrão do CLRS para que a classe faça sentido). Nada nas hipóteses garante que u(n) - v(n) seja assintoticamente não negativa: basta tomar u(n) = n e v(n) = n^2, com f(n) = n em O(u) e g(n) = n^2 em O(v); aí u(n) - v(n) = n - n^2 &lt; 0 para todo n &gt;= 2, e a própria notação O(u - v) fica mal formada. Ou seja, além de a implicação falhar, o lado direito pode sequer denotar uma classe legítima.</p>
+<p>A raiz do erro: a notação O é fechada para SOMA (se f = O(u) e g = O(v), então f + g = O(u + v), pois as cotas superiores se somam), mas não para subtração: subtrair destrói a monotonia das desigualdades — de f &lt;= c1·u e g &lt;= c2·v não se conclui nada sobre f - g comparado a u - v, porque a cota de g é superior, e o que se precisaria ali seria uma cota INFERIOR de g.</p>
+</div>
+<div class="q"><h3>Questão 2(b) <span style="font-weight:400;font-size:8pt;color:#5b6068">(2,0 pontos)</span></h3>
+<div class="enunciado"><span class="rot">Enunciado</span><p>Prove que as afirmativas abaixo são verdadeiras ou falsas, usando para isso as definições das notações assintóticas e/ou contra exemplos. Considere que as funções <span class='mat'>f</span>(n) e <span class='mat'>g</span>(n) são assintoticamente não negativas.<br>b) (2.0 pontos) Se <span class='mat'>f</span>(n) ∈ O(<span class='mat'>g</span>(n)) então <span class='mat'>g</span>(n) ∈ Ω(<span class='mat'>f</span>(n)).</p></div>
+<p style="margin-bottom:1.6mm"><span class="tag">de onde veio</span> &nbsp;Lista 2, Q3(a) — uma das duas direções do “se e somente se”</p>
+<p><b>Resposta.</b> VERDADEIRA.</p>
+<p><b>AFIRMATIVA:</b> se f(n) = O(g(n)), então g(n) = Omega(f(n)).</p>
+<p><b>É VERDADEIRA.</b> As duas notações expressam a MESMA desigualdade, lida de um lado e do outro.</p>
+<p>Hipótese. f(n) = O(g(n)) significa: existem uma constante c &gt; 0 e um n0 &gt; 0 tais que    0 &lt;= f(n) &lt;= c·g(n)   para todo n &gt;= n0.   (*) Aqui c e n0 são fixados de uma vez e não dependem de n.</p>
+<p>Tese. Queremos exibir uma constante d &gt; 0 e um m0 &gt; 0 tais que    0 &lt;= d·f(n) &lt;= g(n)   para todo n &gt;= m0, que é exatamente a definição de g(n) = Omega(f(n)).</p>
+<p>Construção das testemunhas. Tome    d = 1/c   e   m0 = n0. A escolha é legítima: como c &gt; 0 estritamente, 1/c está definido e 1/c &gt; 0. Além disso d e m0 são constantes — não dependem de n.</p>
+<p>Verificação. Seja n &gt;= m0 = n0 qualquer. Por (*), f(n) &lt;= c·g(n). Dividindo ambos os lados por c &gt; 0 (o que preserva o sentido da desigualdade, pois c é positivo):    (1/c)·f(n) &lt;= g(n),  isto é,  d·f(n) &lt;= g(n). Falta a não negatividade: por (*) também vale f(n) &gt;= 0, e como d &gt; 0, temos d·f(n) &gt;= 0. Juntando,    0 &lt;= d·f(n) &lt;= g(n)   para todo n &gt;= m0.</p>
+<p>Isso é precisamente a definição de g(n) = Omega(f(n)), com testemunhas d = 1/c e m0 = n0. Como o argumento vale para qualquer par (c, n0) dado pela hipótese, a implicação é verdadeira em geral.</p>
+<p>Exemplo ilustrativo (não é a prova, apenas leitura concreta): f(n) = n, g(n) = n^2, com c = 1 e n0 = 1 dão n &lt;= n^2 para n &gt;= 1; então d = 1 e m0 = 1 dão 0 &lt;= n &lt;= n^2, ou seja, n^2 = Omega(n).</p>
+</div>
+<div class="q"><h3>Questão 2(c) <span style="font-weight:400;font-size:8pt;color:#5b6068">(2,0 pontos)</span></h3>
+<div class="enunciado"><span class="rot">Enunciado</span><p>Prove que as afirmativas abaixo são verdadeiras ou falsas, usando para isso as definições das notações assintóticas e/ou contra exemplos. Considere que as funções <span class='mat'>f</span>(n) e <span class='mat'>g</span>(n) são assintoticamente não negativas.<br>c) (2.0 pontos) Se <span class='mat'>f</span>(n) ∈ O(<span class='mat'>g</span>(n)) e <span class='mat'>g</span>(n) ∈ O(<span class='mat'>f</span>(n)) então <span class='mat'>f</span>(n) ∈ θ(<span class='mat'>g</span>(n)).</p></div>
+<p style="margin-bottom:1.6mm"><span class="tag">de onde veio</span> &nbsp;Lista 2, Q3(d) — <b>o item é idêntico, palavra por palavra</b> (o enunciado comum da lista diz “sentenças”; o da prova, “afirmativas”)</p>
+<p><b>Resposta.</b> VERDADEIRA (é o Teorema 3.1 do CLRS, depois de reescrever g = O(f) como f = Omega(g) usando o item (b) com os papéis trocados).</p>
+<p><b>AFIRMATIVA:</b> se f(n) = O(g(n)) e g(n) = O(f(n)), então f(n) = Theta(g(n)).</p>
+<p><b>É VERDADEIRA.</b></p>
+<p>Hipóteses (com nomes de constantes distintos, para não colidirem). (H1) f(n) = O(g(n)): existem b &gt; 0 e n1 &gt; 0 com 0 &lt;= f(n) &lt;= b·g(n) para todo n &gt;= n1. (H2) g(n) = O(f(n)): existem a &gt; 0 e n2 &gt; 0 com 0 &lt;= g(n) &lt;= a·f(n) para todo n &gt;= n2.</p>
+<p>De (H2), dividindo por a &gt; 0 (permitido, pois a é estritamente positivo, e a divisão por positivo preserva a desigualdade):    (1/a)·g(n) &lt;= f(n)   para todo n &gt;= n2.   (**) Ou seja, (H2) fornece uma cota INFERIOR para f em termos de g — que é justamente o que falta para Theta.</p>
+<p>Tese. Queremos c1 &gt; 0, c2 &gt; 0 e n0 &gt; 0 com    0 &lt;= c1·g(n) &lt;= f(n) &lt;= c2·g(n)   para todo n &gt;= n0, que é a definição de f(n) = Theta(g(n)).</p>
+<p>Construção das testemunhas. Tome    c1 = 1/a,   c2 = b,   n0 = max(n1, n2). São legítimas: a &gt; 0 garante c1 = 1/a &gt; 0; b &gt; 0 por (H1); e n0 é uma constante, o máximo de duas constantes, não dependendo de n.</p>
+<p>Verificação. Seja n &gt;= n0 qualquer. Então n &gt;= n1 e n &gt;= n2 simultaneamente, de modo que valem (H1) e (**) ao mesmo tempo:    - de (**):  c1·g(n) = (1/a)·g(n) &lt;= f(n);    - de (H1):  f(n) &lt;= b·g(n) = c2·g(n);    - não negatividade: g(n) &gt;= 0 (hipótese do enunciado, f e g assintoticamente não negativas; alternativamente, de 0 &lt;= f(n) &lt;= b·g(n) com b &gt; 0 já segue g(n) &gt;= 0 para n &gt;= n1), e como c1 &gt; 0, tem-se c1·g(n) &gt;= 0. Encadeando:    0 &lt;= c1·g(n) &lt;= f(n) &lt;= c2·g(n)   para todo n &gt;= n0.</p>
+<p>Isso é exatamente a definição de f(n) = Theta(g(n)), com testemunhas c1 = 1/a, c2 = b e n0 = max(n1, n2). Logo a implicação é verdadeira.</p>
+<p>Leitura conceitual: f = O(g) diz que f não cresce mais rápido que g; g = O(f) diz que g não cresce mais rápido que f; as duas juntas prendem f entre dois múltiplos positivos de g, que é a mesma taxa de crescimento a menos de constantes — Theta. Note também a coerência com o item (b): por (b), aplicado com os papeis trocados (f := g, g := f), g = O(f) implica f = Omega(g) — note que (b) demonstra so essa direcao, e e exatamente a de que precisamos aqui; portanto as hipóteses dizem f = O(g) e f = Omega(g), e Theta é precisamente a conjunção de O com Omega.</p>
+<p>Exemplo ilustrativo: f(n) = 3n + 5 e g(n) = n. Vale 3n + 5 &lt;= 8n para n &gt;= 1 (b = 8, n1 = 1) e n &lt;= 1·(3n + 5) para n &gt;= 1 (a = 1, n2 = 1); logo c1 = 1, c2 = 8, n0 = 1, e 0 &lt;= n &lt;= 3n + 5 &lt;= 8n para todo n &gt;= 1 — conferindo em n = 1: 0 &lt;= 1 &lt;= 8 &lt;= 8. Correto.</p>
+</div>
+<div class="q"><h3>Questão 3(a) <span style="font-weight:400;font-size:8pt;color:#5b6068">(2,0 pontos)</span></h3>
+<div class="enunciado"><span class="rot">Enunciado</span><p>A respeito da análise de algoritmos e propriedades das notações assintóticas, responda <b>V</b> para as sentenças que julgar verdadeiras e <b>F</b> para as sentenças que julgar falsas. Justifique suas respostas. Respostas sem justificativas não serão consideradas.<br>a) ( ) (2.0 pontos) A solução da equação de recorrência <span class='mat'>T</span>(n) = 2<span class='mat'>T</span>(n/7) + n ∈ O(n<sup>2</sup>).</p></div>
+<p style="margin-bottom:1.6mm"><span class="tag">de onde veio</span> &nbsp;Loureiro, ex. 5–8 — mesma técnica (Teorema Mestre), recorrência nova</p>
+<p><b>Resposta.</b> V (verdadeira) — mas é um limite superior correto e NÃO justo</p>
+<p>Sentença: a solução de T(n) = 2T(n/7) + n pertence a O(n^2). VERDADEIRA.</p>
+<p>1) Resolução da recorrência pelo Teorema Mestre (forma de Brassard &amp; Bratley). A recorrência tem o formato T(n) = a*T(n/b) + c*n^k, com a = 2, b = 7, k = 1 e c = 1 (todos naturais, a &gt;= 1, b &gt;= 2, k &gt;= 0, c &gt; 0). Supomos, como na hipótese do teorema, n potência exata de 7 e T assintoticamente não decrescente. Compara-se a com b^k:   b^k = 7^1 = 7  e  a = 2. Como a = 2 &lt; 7 = b^k, estamos no primeiro caso, logo   T(n) = Theta(n^k) = Theta(n).</p>
+<p>Intuição (por que o caso &#x27;a &lt; b^k&#x27; dá Theta(n)): o custo total é a soma dos níveis da árvore de recursão. O nível i tem 2^i subproblemas de tamanho n/7^i, cada um custando n/7^i, ou seja, o nível i custa (2/7)^i * n. Somando:   n * SOMA_{i&gt;=0} (2/7)^i = n * 1/(1 - 2/7) = n * 7/5 = 1,4n. A série é geométrica de razão 2/7 &lt; 1, portanto converge para uma constante: o custo é dominado pela raiz e o total é Theta(n).</p>
+<p>2) De Theta(n) para O(n^2). T(n) = Theta(n) implica em particular T(n) = O(n): existem c0 &gt; 0 e n1 tais que T(n) &lt;= c0*n para todo n &gt;= n1. Como n &lt;= n^2 para todo n &gt;= 1, segue   T(n) &lt;= c0*n &lt;= c0*n^2  para todo n &gt;= max(n1, 1). TESTEMUNHAS: c = c0 e n0 = max(n1, 1). Verificação em n = n0: T(n0) &lt;= c0*n0 &lt;= c0*n0^2, pois n0 &gt;= 1. Logo T(n) pertence a O(n^2) e a sentença é VERDADEIRA.</p>
+<p>3) Observação que a questão pede implicitamente: O(n^2) é um limite superior VÁLIDO porém FROUXO (não justo). O limite superior justo é O(n), pois T(n) = Theta(n). Isso não torna a sentença falsa: a notação O é apenas um teto, não uma promessa de ajuste fino — Theta(n) está contido em O(n^2), assim como está contido em O(n^3), O(2^n) etc.</p>
+</div>
+<div class="q"><h3>Questão 3(b) <span style="font-weight:400;font-size:8pt;color:#5b6068">(2,0 pontos)</span></h3>
+<div class="enunciado"><span class="rot">Enunciado</span><p>A respeito da análise de algoritmos e propriedades das notações assintóticas, responda <b>V</b> para as sentenças que julgar verdadeiras e <b>F</b> para as sentenças que julgar falsas. Justifique suas respostas. Respostas sem justificativas não serão consideradas.<br>b) ( ) (2.0 pontos) Se <span class='mat'>f</span>(n) = 3 ∗ n<sup>2</sup> − n + 4 então <span class='mat'>f</span>(n) ∈ Θ(n<sup>2</sup>).</p></div>
+<p style="margin-bottom:1.6mm"><span class="tag">de onde veio</span> &nbsp;Lista 1, Q3(c) — mesma técnica, polinômio trocado</p>
+<p><b>Resposta.</b> V (verdadeira)</p>
+<p>Sentença: f(n) = 3n^2 - n + 4 pertence a Theta(n^2). VERDADEIRA.</p>
+<p>Pela definição, precisamos exibir c1 &gt; 0, c2 &gt; 0 e n0 tais que   0 &lt;= c1*n^2 &lt;= 3n^2 - n + 4 &lt;= c2*n^2  para todo n &gt;= n0.</p>
+<p><b>TESTEMUNHAS:</b> c1 = 2, c2 = 6, n0 = 1.</p>
+<p>(i) Limite inferior: 2n^2 &lt;= 3n^2 - n + 4. Equivale a 0 &lt;= 3n^2 - n + 4 - 2n^2 = n^2 - n + 4. O polinômio n^2 - n + 4 tem discriminante D = (-1)^2 - 4*1*4 = 1 - 16 = -15 &lt; 0 e coeficiente líder 1 &gt; 0, logo não possui raízes reais e é estritamente positivo para TODO n real. Em particular vale para todo n &gt;= 1. Conferindo em n = n0 = 1: 2*1^2 = 2 e f(1) = 3 - 1 + 4 = 6; de fato 2 &lt;= 6. OK.</p>
+<p>(ii) Limite superior: 3n^2 - n + 4 &lt;= 6n^2. Equivale a 0 &lt;= 6n^2 - 3n^2 + n - 4 = 3n^2 + n - 4 = (3n + 4)(n - 1). Para n &gt;= 1 tem-se 3n + 4 &gt; 0 e n - 1 &gt;= 0, logo o produto é &gt;= 0. Vale para todo n &gt;= 1. Conferindo em n = n0 = 1: f(1) = 6 e 6*1^2 = 6; de fato 6 &lt;= 6 (igualdade, e a definição usa &lt;=). OK.</p>
+<p>(iii) Positividade: para n &gt;= 1, f(n) &gt;= 2n^2 &gt; 0, então as três quantidades da definição são não negativas.</p>
+<p>Como as duas desigualdades valem simultaneamente a partir de n0 = 1, concluímos f(n) = Theta(n^2).</p>
+<p><b>CUIDADO COM O FENCEPOST:</b> a escolha c2 = 4 com n0 = 1 seria ERRADA, pois em n = 1 teríamos f(1) = 6 e 4*1^2 = 4, e 6 &lt;= 4 é falso. Com c2 = 4 seria necessário n0 = 2 (f(2) = 12 - 2 + 4 = 14 &lt;= 4*4 = 16, e 4n^2 - 3n^2 + n - 4 = n^2 + n - 4 &gt;= 0 para n &gt;= 2). Por isso conferimos a desigualdade exatamente em n = n0.</p>
+<p>Comentário conceitual: o resultado é o caso particular do fato geral de que todo polinômio de grau d com coeficiente líder positivo é Theta(n^d) — os termos de menor ordem (-n e +4) e a constante multiplicativa 3 são exatamente o que a notação assintótica descarta.</p>
+</div>
+<div class="q"><h3>Questão 3(c) <span style="font-weight:400;font-size:8pt;color:#5b6068">(2,0 pontos)</span></h3>
+<div class="enunciado"><span class="rot">Enunciado</span><p>A respeito da análise de algoritmos e propriedades das notações assintóticas, responda <b>V</b> para as sentenças que julgar verdadeiras e <b>F</b> para as sentenças que julgar falsas. Justifique suas respostas. Respostas sem justificativas não serão consideradas.<br>c) ( ) (2.0 pontos) Sejam as funções <span class='mat'>f</span>(n) e <span class='mat'>g</span>(n) assintoticamente positivas e considere que <span class='mat'>g</span>(n) domina assintoticamente <span class='mat'>f</span>(n), então <span class='mat'>f</span>(n) + <span class='mat'>g</span>(n) ∈ Ω(<span class='mat'>f</span>(n)).</p></div>
+<p style="margin-bottom:1.6mm"><span class="tag">de onde veio</span> &nbsp;definição de “domina assintoticamente” vem dos slides do Loureiro</p>
+<p><b>Resposta.</b> V (verdadeira)</p>
+<p>Sentença: f e g assintoticamente positivas, g domina assintoticamente f; então f(n) + g(n) pertence a Omega(f(n)). VERDADEIRA.</p>
+<p>Por definição, f e g assintoticamente positivas significa que existem N1 e N2 com f(n) &gt; 0 para n &gt;= N1 e g(n) &gt; 0 para n &gt;= N2. Tome N = max(N1, N2).</p>
+<p>Para todo n &gt;= N vale g(n) &gt; 0, logo   f(n) + g(n) &gt;= f(n) + 0 = f(n) = 1 * f(n), e além disso f(n) + g(n) &gt; 0, de modo que ambos os lados são positivos, como exige a definição.</p>
+<p><b>TESTEMUNHAS:</b> c = 1 e n0 = N. Conferindo exatamente em n = n0 = N: f(N) + g(N) &gt;= f(N) porque g(N) &gt; 0. OK.</p>
+<p>Portanto existe c = 1 &gt; 0 e existe n0 = N tais que, para todo n &gt;= n0, f(n) + g(n) &gt;= c*f(n), ou seja, f(n) + g(n) = Omega(f(n)).</p>
+<p><b>OBSERVAÇÃO IMPORTANTE:</b> a hipótese de que g DOMINA assintoticamente f (nos slides do Loureiro: existem constantes positivas C e m tais que |f(n)| &lt;= C*|g(n)| para todo n &gt;= m — isto é, f(n) = O(g(n)), e NÃO f(n) = o(g(n)); a letra C, maiúscula, para não colidir com a testemunha c = 1 acima) NÃO foi utilizada e NÃO é necessária. A conclusão vale para quaisquer f e g assintoticamente não negativas — basta que g não seja negativa a partir de certo ponto para que somar g só possa aumentar o valor. A dominância é, aqui, dado supérfluo do enunciado (as instruções da prova alertam que pode haver informação supérflua). O que a dominância acrescenta, se quisermos usá-la, é o resultado MAIS FORTE f(n) + g(n) = Theta(g(n)): como f(n) &lt;= C*g(n) para n &gt;= m (a constante C da definição, que pode ser maior que 1), tem-se, para todo n &gt;= max(N, m) — faixa em que f e g são positivas, de modo que o módulo pode ser retirado —, g(n) &lt;= f(n) + g(n) &lt;= (1 + C)*g(n).</p>
+<p>Esta sentença é exatamente a mesma da Questão 4(b), e a resposta lá é a mesma: sim, pode-se afirmar.</p>
+</div>
+<div class="q"><h3>Questão 4(a) <span style="font-weight:400;font-size:8pt;color:#5b6068">(2,0 pontos)</span></h3>
+<div class="enunciado"><span class="rot">Enunciado</span><p>A respeito da análise de algoritmos e propriedades das notações assintóticas, responda:<br>(a) (2 pontos) Alice e Bob estão discutindo sobre o desempenho de seus algoritmos de ordenação. Alice afirma que o seu algoritmo de ordenação executando em tempo θ(n ∗ lgn) é melhor que algoritmo de Bob que executa em tempo θ(n<sup>2</sup>). Para decidir qual é melhor algoritmo, implementaram e executaram os dois algoritmos no mesmo ambiente (mesma arquitetura, mesmo sistema operacional, mesma linguagem de programação e mesmo compilador) em uma série de dados. Para espanto de Alice, descobriram que quando n &lt; 100 o algoritmo θ(n<sup>2</sup>) é mais rápido e apenas quando n ≥ 100 é que o algoritmo θ(n ∗ lgn) é melhor. Explique como essa situação pode ocorrer.</p></div>
+<p style="margin-bottom:1.6mm"><span class="tag">de onde veio</span> &nbsp;Lista 3, Q1 — <b>idêntica, exceto por uma expressão</b>: a lista diz “executaram <i>ambos os</i> algoritmos”, a prova diz “executaram <i>os dois</i> algoritmos”</p>
+<p><b>Resposta.</b> É perfeitamente possível: Theta descarta constantes multiplicativas e termos de menor ordem, e só garante o comportamento a partir de um n0; para n pequeno as constantes mandam.</p>
+<p>A situação descrita não contradiz coisa alguma. A notação Theta é uma afirmação sobre o COMPORTAMENTO ASSINTÓTICO, isto é, sobre o que acontece quando n cresce indefinidamente, e ela deliberadamente joga fora duas coisas: (i) as CONSTANTES MULTIPLICATIVAS e (ii) os TERMOS DE MENOR ORDEM. Além disso, a própria definição só exige que as desigualdades valham &#x27;para todo n &gt;= n0&#x27; — nada é prometido para os n pequenos.</p>
+<p>Par concreto que reproduz exatamente o relato de Alice e Bob:   Alice: T_A(n) = 15*n*lg n + 20   (de fato Theta(n lg n))   Bob:   T_B(n) = n^2             (de fato Theta(n^2))</p>
+<p>Valores:   n = 1:   T_A = 20        contra T_B = 1          -&gt; Bob mais rápido   n = 50:  T_A ~ 4.253     contra T_B = 2.500      -&gt; Bob mais rápido   n = 99:  T_A ~ 9.865     contra T_B = 9.801      -&gt; Bob mais rápido   n = 100: T_A ~ 9.986     contra T_B = 10.000     -&gt; ALICE mais rápida   n = 1000: T_A ~ 149.507  contra T_B = 1.000.000  -&gt; Alice mais rápida, e por muito</p>
+<p>O termo constante +20 é ESSENCIAL no exemplo: sem ele teríamos T_A(1) = 15*1*lg 1 = 0, pois lg 1 = 0, e Alice &#x27;venceria&#x27; em n = 1 com tempo zero, o que contradiria o enunciado. Nenhum algoritmo real custa zero: sempre há um custo fixo de inicialização, e é ele que o termo constante modela.</p>
+<p><b>PONTO DE CRUZAMENTO.</b> Igualando as duas funções (na forma dominante) 15*n*lg n = n^2 e dividindo por n*lg n — divisão legítima apenas para n &gt;= 2, pois exige lg n &gt; 0 — obtemos   n / lg n = 15. A função n/lg n tem mínimo em n = e e é monótona crescente a partir daí; restringindo-nos a n &gt;= 3, ela é crescente e portanto a raiz é única. Numericamente,   99 / lg 99  = 99 / 6,6294  ~ 14,93  (&lt; 15)   100 / lg 100 = 100 / 6,6439 ~ 15,05  (&gt; 15) ou seja, a raiz de n / lg n = 15 está em n ~ 99,56, ENTRE 99 e 100 — não &#x27;exatamente em 100&#x27;. (Com o termo +20 incluído, isto é, resolvendo 15*n*lg n + 20 = n^2, o cruzamento exato das duas funções do exemplo fica em n ~ 99,82 — também entre 99 e 100.) Como n é inteiro, o primeiro inteiro em que Alice passa a vencer é n = 100, exatamente o que Alice e Bob observaram.</p>
+<p><b>CUIDADO CONCEITUAL:</b> esse 100 é o PONTO DE CRUZAMENTO entre T_A e T_B, provocado pela constante multiplicativa 15 de Alice; ele NÃO é o n0 das definições de Theta de cada algoritmo (para T_A e T_B as testemunhas de Theta podem ser obtidas já com n0 = 2). É um erro chamar o cruzamento de &#x27;n0 do par&#x27;.</p>
+<p>O que mais pode explicar a diferença na prática, além da constante multiplicativa: - TERMOS DE MENOR ORDEM: o algoritmo de Alice pode custar, digamos, 15n lg n + 40n + 20; para n pequeno os termos 40n e 20 pesam mais que o termo dominante. - FATORES QUE O MODELO RAM NÃO ENXERGA: localidade de cache (um algoritmo simples e sequencial percorre memória contígua e sofre menos cache miss), custo de chamada de função e de recursão (empilhar/desempilhar quadros), alocação de memória auxiliar e cópia de vetores.</p>
+<p>ESTE É EXATAMENTE O CASO CLÁSSICO insertion sort vs. mergesort: insertion sort é Theta(n^2) mas com constante minúscula e ótimo comportamento de cache, sendo mais rápido para entradas pequenas; mergesort é Theta(n lg n) mas paga recursão e vetor auxiliar. Por isso implementações reais de mergesort/quicksort trocam para insertion sort quando o subvetor fica menor que um limiar (tipicamente entre 10 e 50 elementos).</p>
+<p><b>CONCLUSÃO:</b> Alice está certa assintoticamente — para n suficientemente grande seu algoritmo é melhor, e a vantagem cresce sem limite. Mas &#x27;assintoticamente melhor&#x27; não significa &#x27;melhor para todo n&#x27;. Se a aplicação só processa entradas com n &lt; 100, o algoritmo de Bob é a escolha correta.</p>
+</div>
+<div class="q"><h3>Questão 4(b) <span style="font-weight:400;font-size:8pt;color:#5b6068">(2,0 pontos)</span></h3>
+<div class="enunciado"><span class="rot">Enunciado</span><p>A respeito da análise de algoritmos e propriedades das notações assintóticas, responda:<br>(b) (2 pontos) Sejam as funções <span class='mat'>f</span>(n) e <span class='mat'>g</span>(n) assintoticamente positivas e considere que <span class='mat'>g</span>(n) domina assintoticamente <span class='mat'>f</span>(n). Pode-se afirmar que <span class='mat'>f</span>(n) + <span class='mat'>g</span>(n) ∈ Ω(<span class='mat'>f</span>(n)) ? Justifique formalmente sua resposta.</p></div>
+<p style="margin-bottom:1.6mm"><span class="tag">de onde veio</span> &nbsp;repete a Questão 3(c) desta mesma prova</p>
+<p><b>Resposta.</b> Sim, pode-se afirmar: f(n) + g(n) pertence a Omega(f(n))</p>
+<p>Sim. E a demonstração é a mesma da Questão 3(c) — as duas questões são a MESMA sentença, e por isso as respostas são idênticas e consistentes.</p>
+<p>Hipóteses: f e g são assintoticamente positivas, ou seja, existem N1 e N2 tais que f(n) &gt; 0 para todo n &gt;= N1 e g(n) &gt; 0 para todo n &gt;= N2. Defina N = max(N1, N2).</p>
+<p>Demonstração formal. Precisamos exibir c &gt; 0 e n0 tais que 0 &lt;= c*f(n) &lt;= f(n) + g(n) para todo n &gt;= n0. Tome c = 1 e n0 = N. Para todo n &gt;= n0 = N:   - f(n) &gt; 0, logo c*f(n) = f(n) &gt; 0 (a condição de não negatividade está satisfeita);   - g(n) &gt; 0, portanto f(n) + g(n) &gt;= f(n) + 0 = f(n) = c*f(n). Conferência exatamente em n = n0 = N: f(N) + g(N) &gt;= f(N), pois g(N) &gt; 0. A desigualdade vale já no primeiro ponto, sem erro de fencepost.</p>
+<p>Como exibimos testemunhas concretas c = 1 e n0 = N, satisfazendo a definição &#x27;existe c &gt; 0, existe n0, para todo n &gt;= n0&#x27;, concluímos   f(n) + g(n) = Omega(f(n)).</p>
+<p><b>OBSERVAÇÃO QUE VALE PONTOS:</b> a hipótese de que g DOMINA assintoticamente f (nos slides do Loureiro: |f(n)| &lt;= C*|g(n)| para todo n &gt;= m, com C e m constantes positivas — ou seja, f(n) = O(g(n)); C maiúscula para não colidir com a testemunha c = 1) NÃO foi usada em momento algum e é desnecessária. O argumento só precisa que g seja não negativa a partir de certo ponto — somar uma parcela não negativa nunca diminui o valor. Logo a afirmação vale para QUAISQUER f e g assintoticamente não negativas; a dominância é informação supérflua do enunciado.</p>
+<p>Se quisermos usar a dominância, ela permite uma conclusão mais forte: como a dominância dá f(n) &lt;= C*g(n) para todo n &gt;= m, temos, para n &gt;= max(N, m),   1*g(n) &lt;= f(n) + g(n) &lt;= (1 + C)*g(n), ou seja, f(n) + g(n) = Theta(g(n)) — a soma é governada pela função dominante (regra da soma). Isso, aliás, também dá Omega(f(n)) por outro caminho, já que f(n) + g(n) &gt;= g(n) &gt;= (1/C)*f(n) nessa faixa.</p>
+</div>
+<div class="q"><h3>Questão 5(a) <span style="font-weight:400;font-size:8pt;color:#5b6068">(3,0 pontos)</span></h3>
+<div class="enunciado"><span class="rot">Enunciado</span><p>Suponha que, para resolver um problema com entradas de tamanho n, você tenha que escolher um dentre dois algoritmos A e B.<br>1. O algoritmo A resolve problemas dividindo-o em um único subproblema de tamanho n/5, resolve recursivamente o subproblema e então combina as soluções em tempo θ(n).<br>2. O algoritmo B resolve problemas de tamanho n, dividindo-o em único subproblema de tamanho n − 1, resolve recursivamente o subproblema e então combina as soluções em tempo constante.<br>Considere essas informações e responda:<br>(a) (3.0 pontos) Qual o consumo de tempo de cada um dos algoritmos? Expresse sua resposta em termos da notação θ. Justifique sua resposta. Respostas sem justificativas não serão consideradas.</p></div>
+<p style="margin-bottom:1.6mm"><span class="tag">de onde veio</span> &nbsp;Lista 3, Q4(d) e (e) — mesma técnica de recorrência, casos novos (antes da atualização de 09/09/2026 era a Q3)</p>
+<p><b>Resposta.</b> Algoritmo A: Theta(n) (n potência exata de 5, como supõe o formulário). Algoritmo B: Theta(n).</p>
+<p><b>ALGORITMO A.</b> Ele gera UM ÚNICO subproblema de tamanho n/5 e gasta Theta(n) para dividir/combinar. A recorrência é   T_A(n) = T_A(n/5) + Theta(n),  com T_A(1) = Theta(1).</p>
+<p>Aplicando o Teorema Mestre na forma de Brassard &amp; Bratley (T(n) = a*T(n/b) + c*n^k):   a = 1 (um único subproblema), b = 5, k = 1, c &gt; 0.   b^k = 5^1 = 5. Como a = 1 &lt; 5 = b^k, cai-se no primeiro caso e   T_A(n) = Theta(n^k) = Theta(n).</p>
+<p><b>HIPÓTESE DO FORMULÁRIO.</b> O teorema impresso na prova exige f(n) = c*n^k EXATAMENTE, e o enunciado só diz que combinar custa Theta(n). SUPOSIÇÃO (declarada, como a instrução 2 da prova pede quando o enunciado é omisso): o custo de combinar é positivo em todo n &gt;= 1 — toda combinação executa ao menos uma operação. A ponte: como esse custo é Theta(n) e positivo, existem constantes 0 &lt; c1 &lt;= c2 com c1*n &lt;= f(n) &lt;= c2*n para todo n &gt;= 1 (os finitos n abaixo do n0 do Theta são absorvidos ajustando c1 e c2). Defina T_inf(n) = T_inf(n/5) + c1*n e T_sup(n) = T_sup(n/5) + c2*n, com o mesmo caso base T_A(1). Por indução sobre n = 5^j, T_inf(n) &lt;= T_A(n) &lt;= T_sup(n): na base as três são iguais, e no passo T_A(n) = T_A(n/5) + f(n) fica entre T_inf(n/5) + c1*n e T_sup(n/5) + c2*n. As duas recorrências extremas já têm a forma exata do formulário (a = 1, b = 5, k = 1, c = c1 ou c2), com n potência exata de 5, e expandindo dão T_sup(n) = T_A(1) + c2*(5n - 5)/4, que é não decrescente; o mesmo para T_inf. Logo ambas são Theta(n), e T_A, presa entre elas, também é — para n potência exata de 5, que é exatamente o domínio que o formulário supõe. Testemunhas explícitas, das formas fechadas: para n potência de 5 com n &gt;= 5, T_A(n) &gt;= T_inf(n) = T_A(1) + c1*(5n - 5)/4 &gt;= c1*n (pois 5n - 5 &gt;= 4n quando n &gt;= 5), e T_A(n) &lt;= T_sup(n) = T_A(1) + c2*(5n - 5)/4 &lt;= (T_A(1) + 5*c2/4)*n. Logo c1&#x27; = c1, c2&#x27; = T_A(1) + 5*c2/4 e n0 = 5 (em n = 5: T_inf(5) = T_A(1) + 5*c1 &gt;= 5*c1, e T_sup(5) = T_A(1) + 5*c2 &lt;= 5*T_A(1) + 25*c2/4).</p>
+<p>Intuição / verificação pela árvore de recursão: a árvore é um caminho (um filho por nível). O nível i custa c*(n/5^i). Somando a série geométrica de razão 1/5:   c*n * SOMA_{i&gt;=0} (1/5)^i = c*n * 1/(1 - 1/5) = c*n * 5/4 = 1,25*c*n, que é uma COTA SUPERIOR: a árvore é finita, e a soma exata dos níveis é c*(5n - 5)/4, mais o caso base. É uma série geométrica DECRESCENTE: o termo do topo, c*n, domina: para n potência de 5 com n &gt;= 5, a soma dos níveis fica entre c*n e no máximo 5/4 disso, fora o caso base (em n = 1 não há nível de combinação, e a soma é 0). Daí T_A(n) = Theta(n). A profundidade da recursão é log_5 n = Theta(log n).</p>
+<p>ATENÇÃO À PEGADINHA: é tentador achar que &#x27;dividir em subproblemas&#x27; produz algo logarítmico, mas aqui o custo de combinação é linear e é ele que domina; a redução de tamanho por fator 5 só faz a série convergir.</p>
+<p><b>ALGORITMO B.</b> Ele gera UM ÚNICO subproblema de tamanho n-1 e combina em tempo constante:   T_B(n) = T_B(n-1) + Theta(1),  com T_B(1) = Theta(1).</p>
+<pre class="cod">O TEOREMA MESTRE NÃO SE APLICA aqui: a recorrência não tem o formato a*T(n/b) + f(n) — o tamanho do subproblema é obtido por SUBTRAÇÃO (n-1) e não por DIVISÃO (n/b). Resolve-se por expansão (método iterativo). Escrevendo o custo de combinação como uma constante c &gt; 0:
+  T_B(n) = T_B(n-1) + c
+         = T_B(n-2) + 2c
+         = T_B(n-3) + 3c
+         = ...
+         = T_B(n-i) + i*c.
+Parando em n - i = 1, isto é, i = n - 1:
+  T_B(n) = T_B(1) + (n-1)*c = c*n + (T_B(1) - c).
+Em forma fechada, o somatório é SOMA_{i=1}^{n-1} c = c*(n-1), mais o caso base.</pre>
+<p>Portanto T_B(n) = c*n + d, uma função linear em n, e assim T_B(n) = Theta(n). Testemunhas (supondo T_B(1) = c, ou seja, T_B(n) = c*n): c1 = c, c2 = c, n0 = 1, pois c*n &lt;= c*n &lt;= c*n para todo n &gt;= 1. No caso geral T_B(n) = c*n + d, o sinal de d = T_B(1) - c é qualquer (o caso base pode custar menos que uma combinação), mas c + d = T_B(1) &gt; 0. Escreva T_B(n)/n = c*(n-1)/n + T_B(1)/n: é uma média ponderada de c e T_B(1), com pesos (n-1)/n e 1/n. Logo, para todo n &gt;= 1, min(c, T_B(1))*n &lt;= T_B(n) &lt;= max(c, T_B(1))*n, e as testemunhas são c1 = min(c, T_B(1)), c2 = max(c, T_B(1)), n0 = 1 (conferindo em n = 1: T_B(1) está entre min e max de {c, T_B(1)}, correto). Se o custo de combinar variar com n entre duas constantes 0 &lt; c&#x27; &lt;= c&#x27;&#x27; (é o que Theta(1) garante a partir de algum n0; os finitos n abaixo dele são absorvidos como em A, pela mesma SUPOSIÇÃO de positividade, que vale também para o custo constante de combinar de B), o mesmo argumento, feito com c&#x27; e com c&#x27;&#x27;, prende T_B entre duas funções lineares.</p>
+<p>CONCLUSÃO DE (a): T_A(n) = Theta(n), para n potência exata de 5 (o domínio do formulário), e T_B(n) = Theta(n), para todo n &gt;= 1.</p>
+</div>
+<div class="q"><h3>Questão 5(b) <span style="font-weight:400;font-size:8pt;color:#5b6068">(1,0 pontos)</span></h3>
+<div class="enunciado"><span class="rot">Enunciado</span><p>Suponha que, para resolver um problema com entradas de tamanho n, você tenha que escolher um dentre dois algoritmos A e B.<br>1. O algoritmo A resolve problemas dividindo-o em um único subproblema de tamanho n/5, resolve recursivamente o subproblema e então combina as soluções em tempo θ(n).<br>2. O algoritmo B resolve problemas de tamanho n, dividindo-o em único subproblema de tamanho n − 1, resolve recursivamente o subproblema e então combina as soluções em tempo constante.<br>Considere essas informações e responda:<br>(b) (1.0 ponto) Qual dos algoritmos é assintoticamente mais eficiente no pior caso? Justifique sua resposta. Respostas sem justificativas não serão consideradas.</p></div>
+<p><b>Resposta.</b> Nenhum dos dois — são assintoticamente equivalentes, ambos Theta(n).</p>
+<p>Como mostrado em (a), T_A(n) = Theta(n) e T_B(n) = Theta(n). Logo T_A(n) = Theta(T_B(n)) e T_B(n) = Theta(T_A(n)): as duas funções de custo pertencem à MESMA classe assintótica. Portanto NENHUM dos dois algoritmos é assintoticamente mais eficiente que o outro no pior caso — eles são assintoticamente EQUIVALENTES.</p>
+<p>Esta é a pegadinha da questão: a aparência dos dois algoritmos é bem diferente (um reduz o tamanho por um fator 5 com combinação linear, o outro reduz de 1 em 1 com combinação constante), mas os dois efeitos se compensam exatamente. Em A a recursão é rasa (log_5 n níveis) e cada nível é caro (linear, em série geométrica que converge para 5n/4); em B a recursão é profunda (n níveis) e cada nível é barato (constante, somando c*n). Responder &#x27;A é melhor&#x27; ou &#x27;B é melhor&#x27; é errado.</p>
+<p>Onde a diferença realmente aparece — e não é assintótica no tempo: 1) CONSTANTES MULTIPLICATIVAS: A gasta cerca de (5/4)*c_A*n, onde c_A é o custo POR ELEMENTO da combinação linear de A; B gasta cerca de c_B*n, onde c_B é o custo de UMA combinação de B. São constantes de naturezas diferentes, que dependem da implementação — o enunciado não permite dizer qual algoritmo tem a menor. E a notação Theta descarta constantes, então isso não muda a resposta assintótica. 2) CONSUMO DE PILHA (memória), e aqui sim há diferença ASSINTÓTICA: A faz Theta(log n) chamadas recursivas aninhadas, enquanto B faz Theta(n). Em uma implementação recursiva sem otimização de chamada de cauda, B usa espaço de pilha Theta(n) e pode causar estouro de pilha para n grande, ao passo que A usa Theta(log n) e é seguro. Na prática, portanto, A tende a ser preferível — mas por causa do espaço, não do tempo.</p>
+<p><b>RESPOSTA FINAL:</b> nenhum é assintoticamente mais eficiente em tempo no pior caso; ambos são Theta(n). Se for preciso desempatar, o critério é o espaço de pilha, e aí A (Theta(log n)) leva vantagem sobre B (Theta(n)).</p>
+</div>
+<h2>Informações que podem ser úteis</h2>
+<div class="enunciado" id="informacoes-prova"><span class="rot">Anexo da prova (transcrição literal)</span>
+<p><b>Somatórios e Logaritmos:</b></p>
+<ul>
+<li>Σ<sub>i=1</sub><sup>n</sup> (i) = n(n + 1)/2</li>
+<li>Σ<sub>i=1</sub><sup>n</sup> (a<sup>i</sup>) = a(a<sup>n</sup> − 1)/(a − 1)</li>
+<li>log (a ∗ b) = log a + log b</li>
+<li>log (a/b) = log a − log b</li>
+<li>log<sub>b</sub> a = log<sub>c</sub> a/ log<sub>c</sub> b</li>
+<li>log<sub>b</sub> a<sup>c</sup> = c ∗ log<sub>b</sub> a</li>
+<li>lg a = log<sub>2</sub> a</li>
+</ul>
+<p><b>Hierarquia de funções:</b></p>
+<p>A seguinte hierarquia de funções pode ser definida do ponto de vista assintótico:
+1 ≺ log(n) ≺ √n ≺ n ≺ n ∗ log(n) ≺ n<sup>c</sup> ≺ c<sup>n</sup> ≺ n! ≺ n<sup>n</sup> onde c é uma constante
+arbitrária inteira ≥ 2.</p>
+<p><b>Teorema mestre:</b></p>
+<p>Sejam as constantes naturais a ≥ 1, b ≥ 2 e k ≥ 0. Considere a função f(n) da forma c∗n<sup>k</sup>, na qual
+c &gt; 0 e ∈ R, seja a equação de recorrência dada por T(n) = aT(n/b)+f(n) e suponha n uma potência exata de b.
+Considere ainda que T é uma função que leva números naturais em números reais positivos e que T é
+assintoticamente não decrescente, Nessas condições, [BRASSARD and BRATLEY, 1996] indicam que a solução dessa
+recorrência é limitada assintoticamente por</p>
+<p style="text-align:center">T(n) = θ(n<sup>k</sup>) se a &lt; b<sup>k</sup>; &nbsp; θ(n<sup>k</sup> ∗ lg n) se a = b<sup>k</sup>;
+&nbsp; θ(n<sup>log<sub>b</sub> a</sup>) se a &gt; b<sup>k</sup></p>
+<p><b>Referências</b></p>
+<p>[BRASSARD and BRATLEY, 1996] BRASSARD, G. and BRATLEY, P. (1996). Fundamentals of Algorithms. Prentice-Hall.</p>
+</div>
+<div class="rodape"><b>Sobre esta resolução.</b> Produzida com verificação adversarial em contexto
+isolado e conferida numericamente: o algoritmo do campo minado foi simulado (a razão máxima passos/m observada
+em m = 1…299 foi 12,888, confirmando a testemunha c = 14), as recorrências da Questão 5 foram resolvidas por
+expansão direta, e as testemunhas da Questão 3(b) foram testadas em 300 000 valores de n. Os scripts estão em
+<code>RESOLUCOES/verificacao/</code>.<br><b>Auditoria de 06/10/2026.</b> Enunciados, cabeçalho, instruções e anexo
+transcritos literalmente da prova (antes estavam resumidos). Corrigidos, sem mudar nenhuma resposta: a definição de
+“domina assintoticamente” nas 3(c) e 4(b) (nos slides do Loureiro é |f| ≤ C|g|, um O, e não um o); o ponto de cruzamento
+da 4(a) (a raiz de n/lg n = 15 é 99,56; 99,82 é a do exemplo com +20); as testemunhas de B na 5(a) (caso base mais barato
+que uma combinação); a ponte entre Θ(n) e a forma c·n<sup>k</sup> do formulário, com testemunhas numéricas, na 5(a); e a
+comparação de constantes da 5(b). Patches no lote 7 e 8 de <code>geradores/correcoes.py</code>. Verificação: 4 rodadas de 4
+verificadores independentes; todas deram HOLDS em todas as questões, e os achados de cada rodada (cada vez menores) foram
+corrigidos e reverificados. IFMG Campus Formiga.</div></body></html>

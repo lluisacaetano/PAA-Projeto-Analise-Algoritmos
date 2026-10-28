@@ -1,0 +1,102 @@
+{
+ "Campello, ex. 1": {
+  "pagina": 27,
+  "html": "Exercício: f(n) = 5n é o(n) ? Justifique<p class='orig'>[transcrição literal — Campello, Análise de Algoritmos II 27]</p>"
+ },
+ "Campello, ex. 2": {
+  "pagina": 28,
+  "html": "Exercício: f(n) = 5n<sup>2</sup> é ω(n<sup>2</sup>) ? Justifique<p class='orig'>[transcrição literal — Campello, Análise de Algoritmos II 28]</p>"
+ },
+ "Campello, ex. 3": {
+  "pagina": 32,
+  "html": "<p><strong>Exercícios Adicionais</strong></p>Seja f(n) que assume o valor 3n<sup>2</sup> se n for par ou 7n se n for ímpar. Mostre que essa função é O(n<sup>2</sup>) e Ω(n)<p class='orig'>[transcrição literal — Campello, Análise de Algoritmos II 32]</p>"
+ },
+ "Campello, ex. 4": {
+  "pagina": 32,
+  "html": "<p><strong>Exercícios Adicionais</strong></p>Qual é o maior tamanho de entrada n de um problema P tal que P pode ser resolvido em tempo t se o algoritmo para resolver P leva f(n) micro-segundos? Responda em uma tabela com todas as combinações de t = 1s, 1hora, 1mês, 1 século e f(n) = log(n), n, n*log(n), n<sup>2</sup>, n<sup>3</sup>, 2<sup>n</sup>. Relacione os resultados obtidos com as discussões em aula<p class='orig'>[transcrição literal — Campello, Análise de Algoritmos II 32]</p>"
+ },
+ "Campello, ex. 5": {
+  "pagina": 32,
+  "html": "<p><strong>Exercícios Adicionais</strong></p>Qual a complexidade assintótica de <b>pior caso</b> para o tempo de execução do algoritmo de busca binária iterativo visto em aula? Justifique formalmente usando a definição do operador BIG-O<p class='orig'>[transcrição literal — Campello, Análise de Algoritmos II 32]</p>"
+ },
+ "Campello, ex. 6": {
+  "pagina": 33,
+  "html": "<p><strong>Exercícios Adicionais</strong></p>Diz-se que um algoritmo que executa um no. constante de operações primitivas (que independe do tamanho n da entrada) “executa em tempo O(1)” ou simplesmente “é O(1)”. Mostre, usando a definição formal do operador BIG-O, que qualquer função f(n) = d, onde d é uma constante positiva qualquer, é O(1)<p class='orig'>[transcrição literal — Campello, Análise de Algoritmos II 33]</p>"
+ },
+ "Campello, ex. 7": {
+  "pagina": 33,
+  "html": "<p><strong>Exercícios Adicionais</strong></p>Explique porque, no <b>melhor caso</b> (com relação às possíveis composições da entrada) o tempo de execução do algoritmo de busca binária iterativo visto em aula é O(1)<br>&nbsp;&nbsp;&nbsp;&nbsp;Pode-se então concluir que esse algoritmo é Ω(1) ?<p class='orig'>[transcrição literal — Campello, Análise de Algoritmos II 33]</p>"
+ },
+ "Campello, ex. 8": {
+  "pagina": 33,
+  "html": "<p><strong>Exercícios Adicionais</strong></p>Ordene as seguintes funções de acordo com as suas taxas de crescimento assintótico (justifique!): 4*n*log(n) + 2n, &nbsp;2<sup>10</sup>, &nbsp;2<sup>log(n)</sup>, 3n + 100log(n), &nbsp;4n, &nbsp;2<sup>n</sup>, &nbsp;3<sup>3n</sup> , n<sup>2</sup> + 10n, &nbsp;n<sup>3</sup>, &nbsp;n*log(n)<p class='orig'>[transcrição literal — Campello, Análise de Algoritmos II 33]</p>"
+ },
+ "IFMG, ex. 1": {
+  "pagina": 14,
+  "html": "<p><strong>Exercícios (Para Casa)</strong></p><p>Prove, para <i>n</i> inteiro positivo, que</p>\n<p>0<sup>2</sup> + 1<sup>2</sup> + 2<sup>2</sup> + . . . <i>n</i><sup>2</sup> = (2<i>n</i> + 1)(<i>n</i> + 1)(<i>n</i>) / 6</p><p class='orig'>[transcrição literal — Diego Mello, Matemática Discreta (IFMG), slide 14]</p>"
+ },
+ "IFMG, ex. 2": {
+  "pagina": 14,
+  "html": "<p><strong>Exercícios (Para Casa)</strong></p><p>Prove, para <i>n</i> inteiro positivo, que</p>\n<p>1 + 4 + 7 + · · · + (3<i>n</i> − 2) = <i>n</i>(3<i>n</i> − 1) / 2</p><p class='orig'>[transcrição literal — Diego Mello, Matemática Discreta (IFMG), slide 14]</p>"
+ },
+ "IFMG, ex. 3": {
+  "pagina": 24,
+  "html": "<p><strong>Exercícios (Para Casa)</strong></p><p>Projete um algoritmo recursivo, em pseudo-código, que calcule o valor <i>F<sub>n</sub></i> da sequência de Fibonacci para o valor de <i>n</i> informado.</p><p class='orig'>[transcrição literal — Diego Mello, Matemática Discreta (IFMG), slide 24]</p>"
+ },
+ "IFMG, ex. 4": {
+  "pagina": 24,
+  "html": "<p><strong>Exercícios (Para Casa)</strong></p><p>Desenhe um diagrama de árvore que ilustre as chamadas recursivas do algoritmo acima para <i>n</i> = 6.</p><p class='orig'>[transcrição literal — Diego Mello, Matemática Discreta (IFMG), slide 24]</p>"
+ },
+ "IFMG, ex. 5": {
+  "pagina": 28,
+  "html": "<p><strong>Exercícios (Para Casa)</strong></p><p>Dê a relação de recorrência para o algoritmo recursivo abaixo:</p>\n<pre><b>Algoritmo 9</b> ORDENACAO-POR-SELECAO(<i>V</i>: vetor, <i>j</i>: inteiro)\n 1: <b>if</b> (<i>j</i> = 1) <b>then</b>\n 2:     <b>return</b> <i>V</i>\n 3: <b>else</b>\n 4:     indice ← 1\n 5:     <b>for</b> (<i>i</i> ← 1 to <i>j</i>) <b>do</b>\n 6:         <b>if</b> (<i>V</i>[ <i>i</i> ] &gt; <i>V</i>[ indice ]) <b>then</b>\n 7:             indice ← <i>i</i>\n 8:         <b>end if</b>\n 9:     <b>end for</b>\n10:     aux ← <i>V</i>[ <i>j</i> ]\n11:     <i>V</i>[ <i>j</i> ] ← <i>V</i>[ indice ]\n12:     <i>V</i>[ indice ] ← aux\n13:     ORDENACAO-POR-SELECAO(<i>V</i>, <i>j</i> − 1)\n14: <b>end if</b></pre><p class='orig'>[transcrição literal — Diego Mello, Matemática Discreta (IFMG), slide 28]</p>"
+ },
+ "IFMG, ex. 6": {
+  "pagina": 35,
+  "html": "<p><strong>Exercícios (Para Casa)</strong></p><p>Nos slides sobre algoritmos recursivos, conhecemos o jogo ‘Torre de Hanoi’. Pelo que estudamos, o menor número de movimentações para transferir os discos da primeira torre para a última é dado pela relação de recorrência:</p>\n<ul>\n<li><i>T</i>(1) = 1</li>\n<li><i>T</i>(<i>n</i>) = 2 · <i>T</i>(<i>n</i> − 1) + 1</li>\n</ul>\n<p>De posse desta informação, use o método ‘<b>expandir, conjecturar e verificar</b>’ para encontrar uma solução em forma fechada que dê o número de movimentações necessárias para completar o jogo com <i>n</i> discos.</p><p class='orig'>[transcrição literal — Diego Mello, Matemática Discreta (IFMG), slide 35]</p>"
+ },
+ "USP, ex. 2.1": {
+  "pagina": 9,
+  "html": "<p><strong>Exercício 2.1: (Trabalho p/ casa)</strong></p><p>Mostre que</p><p>1/(1 · 2) + 1/(2 · 3) + · · · + 1/(<i>n</i> · (<i>n</i> + 1)) = <i>n</i>/(<i>n</i> + 1),</p><p>para todos <i>n</i> ≥ 1.</p><p class='orig'>[transcrição literal — Princípio de Indução Finita (IME-USP) 9]</p>"
+ },
+ "USP, ex. 2.2": {
+  "pagina": 9,
+  "html": "<p><strong>Exercício 2.2: (Trabalho p/ casa)</strong></p><p>Mostre que 2<i>n</i><sup>3</sup> &gt; 3<i>n</i><sup>2</sup> + 3<i>n</i> + 1 para todos <i>n</i> ≥ 3.</p><p class='orig'>[transcrição literal — Princípio de Indução Finita (IME-USP) 9]</p>"
+ },
+ "USP, ex. 2.3": {
+  "pagina": 9,
+  "html": "<p><strong>Exercício 2.3: (Trabalho p/ casa)</strong></p><p>Mostre que na sequencia [sic] de Fibonacci <i>F</i><sub>5<i>n</i></sub> sempre é um multiplo [sic] de 5.</p><p class='orig'>[transcrição literal — Princípio de Indução Finita (IME-USP) 9]</p>"
+ },
+ "USP, ex. 2.4": {
+  "pagina": 9,
+  "html": "<p><strong>Exercício 2.4: (Trabalho p/ casa)</strong></p><p>Mostre que (<i>PIF</i>) ⇒ (<i>PBO</i>), ou seja por indução, mostre que todo conjunto não-vazio dos inteiros positivos contém elemento minimal.</p><p class='orig'>[transcrição literal — Princípio de Indução Finita (IME-USP) 9]</p>"
+ },
+ "Loureiro, ex. 5": {
+  "pagina": 168,
+  "html": "<p><strong>Uso do teorema: Exercício 5</strong></p><p><i>T</i>(<i>n</i>) = 4<i>T</i>(<i>n</i>/2) + <i>n</i></p><p class='orig'>[transcrição literal — Loureiro, Análise de Complexidade (UFMG), slide 168]</p>"
+ },
+ "Loureiro, ex. 6": {
+  "pagina": 169,
+  "html": "<p><strong>Uso do teorema: Exercício 6</strong></p><p><i>T</i>(<i>n</i>) = 4<i>T</i>(<i>n</i>/2) + <i>n</i><sup>2</sup></p><p class='orig'>[transcrição literal — Loureiro, Análise de Complexidade (UFMG), slide 169]</p>"
+ },
+ "Loureiro, ex. 7": {
+  "pagina": 170,
+  "html": "<p><strong>Uso do teorema: Exercício 7</strong></p><p><i>T</i>(<i>n</i>) = 4<i>T</i>(<i>n</i>/2) + <i>n</i><sup>3</sup></p><p class='orig'>[transcrição literal — Loureiro, Análise de Complexidade (UFMG), slide 170]</p>"
+ },
+ "Loureiro, ex. 8": {
+  "pagina": 171,
+  "html": "<p><strong>Uso do teorema: Exercício 8</strong></p><p>O tempo de execução de um algoritmo <i>A</i> é descrito pela recorrência</p><p><i>T</i>(<i>n</i>) = 7<i>T</i>(<i>n</i>/2) + <i>n</i><sup>2</sup></p><p>Um outro algoritmo <i>A</i>′ tem um tempo de execução descrito pela recorrência</p><p><i>T</i>′(<i>n</i>) = <i>aT</i>′(<i>n</i>/4) + <i>n</i><sup>2</sup></p><p>Qual é o maior valor inteiro de <i>a</i> tal que <i>A</i>′ é assintoticamente mais rápido que <i>A</i>?</p><p class='orig'>[transcrição literal — Loureiro, Análise de Complexidade (UFMG), slide 171]</p>"
+ },
+ "Walace (IFMG), ex. 1": {
+  "pagina": 16,
+  "html": "<p><strong>3.2. Perturbação</strong></p>\n<p><strong>Exercícios:</strong></p><p>Examine o processo de perturbação da soma dos quadrados</p>\n<p>&sum;<sub>i=1</sub><sup>n+1</sup> i<sup>2</sup> = ?</p><p class='orig'>[transcrição literal — Walace Rodrigues, Somatórios (IFMG), slide 16]</p>"
+ },
+ "Walace (IFMG), ex. 2": {
+  "pagina": 19,
+  "html": "<p><strong>3.3. Operador diferença</strong></p>\n<p><strong>Exercício:</strong></p><p>Resolva usando o operador diferença</p>\n<p>&sum;<sub>i=1</sub><sup>n</sup> i &lowast; 2<sup>i</sup> = ?</p><p class='orig'>[transcrição literal — Walace Rodrigues, Somatórios (IFMG), slide 19]</p>"
+ },
+ "Slides UNICAMP MC458, Exemplo 3": {
+  "pagina": 3,
+  "html": "<p><strong>Exemplo 3 - Complexidade</strong></p><p><strong>Exercício:</strong></p>\n<p>Há algum ganho em complexidade quando ambos n<sub>e</sub> e n<sub>d</sub> são aproximadamente n/2 ao longo da recursão?</p><p class='orig'>[transcrição literal — MC458 (UNICAMP), página 3]</p>"
+ }
+}

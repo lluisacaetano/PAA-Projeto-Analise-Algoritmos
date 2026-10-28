@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>PAA — Lista de Exercícios III — Resolução</title>
+<style>
+  @page { size: A4; margin: 9mm 11mm 11mm 11mm; }
+
+  :root {
+    --tinta: #16181d;
+    --fraco: #5b6068;
+    --linha: #c8ccd2;
+    --caixa: #f2f3f5;
+    --realce: #1a4a7a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: "Charter", "Georgia", "Times New Roman", serif;
+    font-size: 9.1pt;
+    line-height: 1.34;
+    color: var(--tinta);
+    margin: 0;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  h1 { font-size: 13pt; margin: 0 0 1mm 0; letter-spacing: -0.15pt; }
+
+  .cabecalho { border-bottom: 1.2pt solid var(--tinta); padding-bottom: 2mm; margin-bottom: 3.5mm; }
+  .cabecalho .meta { font-size: 8pt; color: var(--fraco); line-height: 1.4; }
+
+  h2 {
+    font-size: 10.5pt; margin: 5mm 0 1.5mm 0; padding-bottom: 0.8mm;
+    border-bottom: 0.6pt solid var(--linha); break-after: avoid;
+  }
+
+  h3 { font-size: 9.3pt; margin: 3mm 0 1mm 0; color: var(--realce); break-after: avoid; }
+
+  p { margin: 0 0 1.6mm 0; }
+
+  .enunciado {
+    background: var(--caixa); border-left: 2pt solid var(--fraco);
+    padding: 2mm 2.5mm 1.4mm 2.5mm; margin: 0 0 2.5mm 0;
+    font-size: 8.6pt; break-inside: avoid;
+  }
+  .enunciado p { margin-bottom: 1.2mm; }
+  .enunciado .rot {
+    font-variant: small-caps; letter-spacing: 0.4pt; color: var(--fraco);
+    font-size: 7.6pt; display: block; margin-bottom: 0.8mm;
+  }
+  .enunciado ol { margin: 0.8mm 0 0 4.5mm; padding: 0; }
+  .enunciado ol li { margin-bottom: 0.6mm; }
+
+  .resp { font-weight: 700; color: var(--realce); }
+
+  .item { margin-bottom: 2.4mm; break-inside: avoid; }
+
+  code, .cod { font-family: "SF Mono", "Menlo", "Consolas", monospace; font-size: 7.6pt; }
+
+  .mat { font-family: "Cambria Math", "Georgia", serif; font-style: italic; }
+
+  .centro { text-align: center; margin: 1.4mm 0; font-family: "Cambria Math", "Georgia", serif; }
+
+  .passo {
+    margin: 1.2mm 0 1.2mm 0;
+    padding-left: 2.5mm;
+    border-left: 1pt solid var(--linha);
+  }
+  .passo .rot2 {
+    font-weight: 700; font-style: normal; color: var(--tinta);
+  }
+
+  table {
+    width: 100%; border-collapse: collapse; font-size: 8.2pt;
+    margin: 1.5mm 0 2mm 0; break-inside: avoid;
+  }
+  th, td { border: 0.4pt solid var(--linha); padding: 0.9mm 1.5mm; text-align: left; vertical-align: top; }
+  th { background: var(--caixa); font-weight: 700; font-size: 7.9pt; }
+  td.n { text-align: center; white-space: nowrap; }
+
+  .nota {
+    font-size: 8pt; color: var(--fraco);
+    border-left: 1.5pt solid var(--linha);
+    padding-left: 2mm; margin: 1.5mm 0;
+  }
+
+  .rodape {
+    margin-top: 6mm; padding-top: 2mm;
+    border-top: 0.6pt solid var(--linha);
+    font-size: 7.6pt; color: var(--fraco);
+  }
+
+  sub, sup { font-size: 68%; line-height: 0; position: relative; font-style: normal; }
+  sub { bottom: -0.25em; }
+  sup { top: -0.32em; }
+
+  /* 06/10/2026 — enunciados literais: numeração de linhas dos códigos do professor */
+  pre.cod .ln { display: inline-block; width: 1.6em; margin-right: 1.2em; text-align: right;
+                color: #9aa0a6; user-select: none; }
+  .enunciado.enun-cod pre.cod { margin: 0.8mm 0 0 0; background: #fff; }
+  .enunciado .lit { margin: 0.4mm 0; }
+</style>
+</head>
+<body>
+
+<div class="cabecalho">
+  <h1>Projeto e Análise de Algoritmos — Lista de Exercícios III</h1>
+  <div class="meta">
+    Instituto Federal de Minas Gerais, Campus Formiga · Bacharelado em Ciência da Computação · 2026/2<br>
+    Professor: Mário Luiz Rodrigues Oliveira · Aluna: Luisa Caetano
+  </div>
+</div>
+
+<div class="nota">
+<strong>Lista revisada pelo professor</strong> (arquivo de 09/09/2026; o cabeçalho da lista manteve a
+data original). Entraram duas questões novas — a
+Questão 3 (moeda falsa) e a Questão 5 (passo indutivo sem base) — e a antiga Questão 3 passou a ser a
+Questão 4, sem mudança de conteúdo. A versão anterior está arquivada em
+<code>listas-de-exercicios/versoes-anteriores/</code>.
+</div>
+
+<div class="nota">
+<strong>Estrutura das provas por indução.</strong> Cada item da Questão 4 segue o mesmo esqueleto:
+enunciar <span class="mat">P(n)</span>; verificar a <strong>base</strong> no valor inicial que o
+enunciado exige, com os dois lados avaliados; escrever a <strong>hipótese indutiva</strong>; e provar
+o <strong>passo</strong>, marcando o ponto exato em que a hipótese é aplicada. Nas recorrências,
+o passo parte da <em>definição recursiva</em> e chega à fórmula fechada — partir da fórmula fechada
+querendo chegar nela mesma seria circular. A Questão 3 aplica o mesmo esqueleto a um
+<em>procedimento</em> (a hipótese é aplicada a um subconjunto das moedas), e a Questão 5 mostra o que
+sobra quando só o passo vale e a base falha.
+</div>
+
+<!-- ══════════════════════ QUESTÃO 1 ══════════════════════ -->
+
+<div class="enunciado" id="instrucoes-lista">
+  <span class="rot">Cabeçalho e instruções da lista (transcrição literal)</span>
+  <p>Instituto Federal de Educação, Ciência e Tecnologia · Curso: Bacharelado em Ciência da Computação ·
+  Disciplina: Projeto e Análise de Algoritmos · Professor: Mário Luiz Rodrigues Oliveira ·
+  Atividade: Lista Exercícios III · Formiga,MG, 23 de agosto de 2026</p>
+  <p><strong>Instruções:</strong></p>
+  <ol>
+    <li>Essa lista não será avaliada e, portanto, não precisa ser entregue. Resolva os exercícios
+    como forma de fixação do conteúdo ministrado.</li>
+    <li>Caso você ache que falta algum detalhe nas especificações, você deverá fazer as suposições
+    que julgar necessárias e escrevê-las junto à resolução do trabalho. Pode acontecer também que a
+    descrição dessa atividade contenha dados e/ou especificações supérfluas para sua solução.
+    Utilize sua capacidade de julgamento para separar o supérfluo do necessário.</li>
+    <li>Não basta escrever apenas o resultado. É necessário mostrar a resolução ou o raciocínio
+    utilizado para responder às questões. Portanto, justifique todas as suas respostas.</li>
+  </ol>
+</div>
+<h2>Questão 1</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Alice e Bob estão discutindo sobre o desempenho de seus algoritmos de ordenação. Alice afirma
+  que o seu algoritmo de ordenação executando em tempo θ(n ∗ lgn) é melhor que algoritmo de Bob que
+  executa em tempo θ(n²). Para decidir qual é melhor algoritmo, implementaram e executaram ambos
+  os algoritmos no mesmo ambiente (mesma arquitetura, mesmo sistema operacional, mesma linguagem de
+  programação e mesmo compilador) em uma série de dados. Para espanto de Alice, descobriram que
+  quando n &lt; 100 o algoritmo θ(n²) é mais rápido e apenas quando n ≥ 100 é que o algoritmo
+  θ(n ∗ lgn) é melhor. Explique como essa situação pode ocorrer.</p>
+</div>
+
+<p><span class="resp">Não há contradição alguma.</span> Alice está certa <em>assintoticamente</em>,
+e a medição também está certa <em>na faixa testada</em>. As duas coisas convivem porque Θ descarta
+exatamente aquilo que decide o desempenho para n pequeno.</p>
+
+<div class="item">
+<h3>1. O que Θ afirma — e o que não afirma</h3>
+<p>Por definição, <span class="mat">T(n) = Θ(g(n))</span> significa que existem
+<span class="mat">c<sub>1</sub>, c<sub>2</sub> &gt; 0</span> e
+<span class="mat">n<sub>0</sub> &gt; 0</span> com
+<span class="mat">0 ≤ c<sub>1</sub>g(n) ≤ T(n) ≤ c<sub>2</sub>g(n)</span> para todo
+<span class="mat">n ≥ n<sub>0</sub></span>. Disso decorrem três coisas:</p>
+<p>(i) as constantes <span class="mat">c<sub>1</sub>, c<sub>2</sub></span> são arbitrárias — nada
+limita seu tamanho; (ii) termos de menor ordem desaparecem, pois
+<span class="mat">5n lg n + 500n + 20000</span> também é <span class="mat">Θ(n lg n)</span>; e
+(iii) a garantia só vale a partir de um <span class="mat">n<sub>0</sub></span>, que pode ser grande.</p>
+<p>Ou seja, "Θ(n lg n) é melhor que Θ(n²)" é afirmação sobre o <em>limite</em>, não sobre cada valor
+de <span class="mat">n</span>.</p>
+</div>
+
+<div class="item">
+<h3>2. Um exemplo concreto que reproduz o cenário</h3>
+<p>Tome</p>
+<p class="centro">T<sub>A</sub>(n) = 15·n·lg n + 20&nbsp;&nbsp;(Alice)&nbsp;&nbsp;&nbsp;e&nbsp;&nbsp;&nbsp;T<sub>B</sub>(n) = n²&nbsp;&nbsp;(Bob).</p>
+<p><span class="mat">T<sub>A</sub></span> é <span class="mat">Θ(n lg n)</span> e
+<span class="mat">T<sub>B</sub></span> é <span class="mat">Θ(n²)</span>, exatamente como Alice e Bob
+anunciaram. A única diferença estrutural é a constante 15 e o termo constante 20 — precisamente o que
+Θ apaga. O 20 tem leitura natural: é o custo fixo de preparação, como alocar o vetor auxiliar de um
+mergesort.</p>
+<table>
+  <tr><th class="n">n</th><th class="n">T<sub>A</sub> = 15n lg n + 20</th><th class="n">T<sub>B</sub> = n²</th><th>mais rápido</th></tr>
+  <tr><td class="n">1</td><td class="n">20</td><td class="n">1</td><td>Bob</td></tr>
+  <tr><td class="n">10</td><td class="n">518</td><td class="n">100</td><td>Bob</td></tr>
+  <tr><td class="n">50</td><td class="n">4 253</td><td class="n">2 500</td><td>Bob</td></tr>
+  <tr><td class="n">99</td><td class="n">9 865</td><td class="n">9 801</td><td>Bob</td></tr>
+  <tr><td class="n">100</td><td class="n">9 986</td><td class="n">10 000</td><td><strong>Alice</strong></td></tr>
+  <tr><td class="n">200</td><td class="n">22 952</td><td class="n">40 000</td><td><strong>Alice</strong></td></tr>
+  <tr><td class="n">1000</td><td class="n">149 507</td><td class="n">1 000 000</td><td><strong>Alice</strong></td></tr>
+</table>
+<p class="nota">O termo constante 20 não é decoração: sem ele, com
+<span class="mat">T<sub>A</sub>(n) = 15n lg n</span>, teríamos
+<span class="mat">T<sub>A</sub>(1) = 15·1·lg 1 = 0</span>, porque
+<span class="mat">lg 1 = 0</span>. Alice "venceria" em <span class="mat">n = 1</span> com tempo zero —
+um artefato degenerado que contradiz o enunciado, já que ele afirma que Bob é mais rápido para
+<em>todo</em> <span class="mat">n &lt; 100</span>. Com o termo constante, Bob vence em todos os
+inteiros de 1 a 99, sem furos.</p>
+</div>
+
+<div class="item">
+<h3>3. O ponto de cruzamento, algebricamente</h3>
+<p>Ignorando o termo constante para achar a ordem de grandeza do cruzamento, resolve-se</p>
+<p class="centro">15·n·lg n = n² &nbsp;⟺&nbsp; 15·lg n = n &nbsp;⟺&nbsp; n / lg n = 15,</p>
+<p>onde a divisão por <span class="mat">lg n</span> exige <span class="mat">lg n &gt; 0</span>, isto
+é, <span class="mat">n ≥ 2</span> — restrição que precisa ser declarada.</p>
+<p>Seja <span class="mat">φ(n) = n / lg n</span>. Derivando,
+<span class="mat">φ'(n) = ln 2·(ln n − 1)/(ln n)²</span>, que é positiva quando
+<span class="mat">ln n &gt; 1</span>, ou seja <span class="mat">n &gt; e ≈ 2,718</span>. Logo
+<span class="mat">φ</span> é estritamente crescente <strong>a partir de n = 3</strong>, e só nessa
+região a equação <span class="mat">φ(n) = 15</span> tem solução única.</p>
+<p class="centro">φ(99) = 14,93 &lt; 15 &lt; 15,05 = φ(100).</p>
+<p class="nota">Esse <em>bracket</em> localiza a raiz da equação <strong>simplificada</strong>
+<span class="mat">15n·lg n = n²</span>, que é <span class="mat">n ≈ 99,563</span>. A raiz da equação
+<strong>completa</strong> <span class="mat">15n·lg n + 20 = n²</span> é outra:
+<span class="mat">n ≈ 99,819</span>. O bracket correspondente é
+<span class="mat">T<sub>A</sub>(99) = 9 864,6 &gt; 9 801 = T<sub>B</sub>(99)</span> e
+<span class="mat">T<sub>A</sub>(100) = 9 985,8 &lt; 10 000 = T<sub>B</sub>(100)</span>.</p>
+<p>Resolvendo numericamente <span class="mat">T<sub>A</sub>(n) = T<sub>B</sub>(n)</span>, o
+cruzamento cai em <span class="mat">n ≈ 99,82</span> — entre 99 e 100. Portanto o
+<strong>primeiro inteiro</strong> em que Alice vence é <span class="mat">n = 100</span>, exatamente o
+limiar observado.</p>
+<p><em>Por que não volta a inverter.</em> Seja
+<span class="mat">h(n) = T<sub>B</sub>(n) − T<sub>A</sub>(n) = n² − 15n·lg n − 20</span>. Sua derivada é
+<span class="mat">h′(n) = 2n − 15·lg n − 15/ln 2</span>, que é negativa só para
+<span class="mat">n ≤ 53</span> e positiva a partir de <span class="mat">n = 54</span>. Logo
+<span class="mat">h</span> é crescente em todo <span class="mat">n ≥ 54</span> e, como
+<span class="mat">h(99) &lt; 0 &lt; h(100)</span>, ela troca de sinal <strong>uma única vez</strong>.
+Assim Bob vence exatamente em <span class="mat">1 ≤ n ≤ 99</span>, sem furos, e Alice de
+<span class="mat">n = 100</span> em diante, sem reversão.</p>
+<p class="nota"><strong>Cuidado com dois limiares diferentes.</strong> O número 100 é o
+<em>ponto de cruzamento entre T<sub>A</sub> e T<sub>B</sub></em>, causado pela constante 15. Ele
+<strong>não é o <span class="mat">n<sub>0</sub></span> mínimo</strong> de nenhuma das duas
+declarações Θ — nelas basta <span class="mat">n<sub>0</sub> = 2</span> — e nada na definição de Θ o
+determina. (Rigorosamente, <span class="mat">n<sub>0</sub></span> não é único: qualquer valor maior
+também serve, inclusive 100. O que se quer dizer é que o cruzamento não é o menor
+<span class="mat">n<sub>0</sub></span> possível, e que ele vem da constante 15, não da definição.) Chamar o
+cruzamento de "<span class="mat">n<sub>0</sub></span> do par" confunde duas constantes que não têm
+relação: uma liga um algoritmo à sua própria classe, a outra compara dois algoritmos.</p>
+</div>
+
+<div class="item">
+<h3>4. Outros fatores que contribuem</h3>
+<p><strong>Termos de menor ordem.</strong> O custo real de Alice poderia ser
+<span class="mat">5n lg n + 500n + 3000</span>, que continua sendo
+<span class="mat">Θ(n lg n)</span>. Para <span class="mat">n</span> pequeno o
+<span class="mat">500n</span> e a constante dominam; para <span class="mat">n</span> grande somem
+diante de <span class="mat">5n lg n</span>.</p>
+<p><strong>Fatores que o modelo RAM não enxerga.</strong> O modelo cobra custo unitário por
+operação, mas na máquina real o algoritmo <span class="mat">Θ(n²)</span> pode ter localidade de
+referência muito melhor (varre vetores contíguos, que cabem em cache), pode ser iterativo — sem o
+custo de empilhar chamadas recursivas — e pode operar <em>in place</em>, sem alocar memória auxiliar
+nem pagar cópias. Todos esses custos entram na constante multiplicativa do algoritmo
+assintoticamente melhor.</p>
+<p>É exatamente o caso do <em>insertion sort</em> (Θ(n²) no pior caso) contra o <em>mergesort</em> (Θ(n lg n)):
+para entradas pequenas o insertion sort é mais rápido na prática, e por isso implementações reais de
+mergesort e quicksort trocam para insertion sort quando o subproblema fica abaixo de um limiar de
+algumas dezenas de elementos.</p>
+</div>
+
+<div class="item">
+<h3>5. Conclusão</h3>
+<p>A afirmação de Alice é sobre o comportamento quando <span class="mat">n → ∞</span>, e é
+verdadeira: a partir de <span class="mat">n = 100</span> seu algoritmo é mais rápido, e a vantagem
+cresce sem limite, pois <span class="mat">T<sub>B</sub>(n)/T<sub>A</sub>(n) ≈ n/(15 lg n) → ∞</span>.
+A observação empírica apenas revela onde está o ponto de cruzamento desse par de implementações —
+e quem o determina são as constantes, que a notação Θ deliberadamente ignora.</p>
+</div>
+
+<!-- ══════════════════════ QUESTÃO 2 ══════════════════════ -->
+<h2>Questão 2</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Considere</p>
+  <p class="centro">f(n) = { n &nbsp;&nbsp; se n é ímpar; &nbsp;&nbsp; n<sup>2</sup> &nbsp;&nbsp; se n é par }</p>
+  <p>Apresente um limite assintótico para a função f tão firme (restrito/justo) quanto possível,
+  usando a notação Big O.</p>
+</div>
+
+<p class="centro" style="font-size:10pt"><strong>Resposta: f(n) = O(n²)</strong>, com testemunhas
+c = 1 e n<sub>0</sub> = 1.</p>
+
+<table>
+  <tr><th class="n">n</th><td class="n">1</td><td class="n">2</td><td class="n">3</td><td class="n">4</td><td class="n">5</td><td class="n">6</td><td class="n">7</td><td class="n">8</td><td class="n">9</td><td class="n">10</td></tr>
+  <tr><th class="n">f(n)</th><td class="n">1</td><td class="n">4</td><td class="n">3</td><td class="n">16</td><td class="n">5</td><td class="n">36</td><td class="n">7</td><td class="n">64</td><td class="n">9</td><td class="n">100</td></tr>
+</table>
+
+<div class="item">
+<h3>(1) Limite superior: f(n) = O(n²)</h3>
+<p>Testemunhas <span class="mat">c = 1</span> e <span class="mat">n<sub>0</sub> = 1</span>, fixadas
+antes e independentes de <span class="mat">n</span>. Seja <span class="mat">n ≥ 1</span>:</p>
+<p><em>Caso n par:</em> <span class="mat">f(n) = n² ≤ 1·n²</span>, com igualdade.<br>
+<em>Caso n ímpar:</em> <span class="mat">f(n) = n</span>. De <span class="mat">1 ≤ n</span>,
+multiplicando pelo positivo <span class="mat">n</span>, vem
+<span class="mat">n ≤ n²</span>. Logo <span class="mat">f(n) ≤ 1·n²</span>.</p>
+<p>Em ambos <span class="mat">f(n) ≥ 0</span>. Portanto
+<span class="mat">0 ≤ f(n) ≤ 1·n²</span> para todo <span class="mat">n ≥ 1</span>. ∎</p>
+</div>
+
+<div class="item">
+<h3>(2) Esse teto não pode ser trocado por um menor: f(n) não é O(n)</h3>
+<p>Nos índices <em>pares</em> a função vale exatamente <span class="mat">n²</span>, então nenhuma
+função <span class="mat">g</span> com <span class="mat">g(n) = o(n²)</span> pode servir de teto.</p>
+<p>Suponha por absurdo <span class="mat">f(n) = O(n)</span>: existem
+<span class="mat">c &gt; 0</span> e <span class="mat">n<sub>0</sub></span> com
+<span class="mat">f(n) ≤ c·n</span> para <span class="mat">n ≥ n<sub>0</sub></span>. Escolha um
+<span class="mat">n</span> <strong>par</strong> com
+<span class="mat">n &gt; máx(n<sub>0</sub>, c)</span> — existe, pois há infinitos pares. Aí
+<span class="mat">f(n) = n²</span>, e a desigualdade daria
+<span class="mat">n² ≤ c·n</span>; dividindo por <span class="mat">n &gt; 0</span>,
+<span class="mat">n ≤ c</span>, contradizendo <span class="mat">n &gt; c</span>. ∎</p>
+<p>O mesmo argumento vale para qualquer <span class="mat">g</span> com
+<span class="mat">g(n) = o(n²)</span>. Mais que isso: entre as funções não decrescentes — como todas
+as da hierarquia do anexo —, <span class="mat">n²</span> é o menor teto a menos de constante. Se
+<span class="mat">g</span> é não decrescente e <span class="mat">f(n) ≤ c·g(n)</span> para
+<span class="mat">n ≥ n<sub>0</sub></span>, então nos <span class="mat">n</span> pares
+<span class="mat">g(n) ≥ n²/c</span>, e nos ímpares com <span class="mat">n − 1 ≥ n<sub>0</sub></span>
+vale <span class="mat">g(n) ≥ g(n − 1) ≥ (n − 1)²/c ≥ n²/(4c)</span>; logo
+<span class="mat">g = Ω(n²)</span>. (Sem a restrição, a própria <span class="mat">f</span> seria um teto
+mais firme: <span class="mat">f = O(f)</span>, mas <span class="mat">n²</span> não é
+<span class="mat">O(f)</span>.) Nesse sentido, <span class="mat">n²</span> é o teto justo.</p>
+</div>
+
+<div class="item">
+<h3>(3) Ponto central: f(n) <em>não</em> é Θ(n²)</h3>
+<p>Θ exige teto <strong>e</strong> piso da mesma ordem. O teto vale, mas o piso não — e é isso que a
+questão testa.</p>
+<p>Suponha por absurdo <span class="mat">f(n) = Ω(n²)</span>: existem
+<span class="mat">c &gt; 0</span> e <span class="mat">n<sub>0</sub></span> com
+<span class="mat">c·n² ≤ f(n)</span> para <span class="mat">n ≥ n<sub>0</sub></span>. Escolha um
+<span class="mat">n</span> <strong>ímpar</strong> com
+<span class="mat">n &gt; máx(n<sub>0</sub>, 1/c)</span>. Aí
+<span class="mat">f(n) = n</span>, e a desigualdade daria
+<span class="mat">c·n² ≤ n</span>; dividindo por <span class="mat">n &gt; 0</span>,
+<span class="mat">c·n ≤ 1</span>, isto é <span class="mat">n ≤ 1/c</span> — contradizendo
+<span class="mat">n &gt; 1/c</span>. ∎</p>
+<p class="nota">Note que a constante <span class="mat">c</span> não salva a situação por menor que
+seja: ela apenas <em>afasta</em> o primeiro ponto de falha, sem eliminá-lo. Para
+<span class="mat">c = 1</span> a desigualdade falha já em <span class="mat">n = 3</span>; para
+<span class="mat">c = 0,01</span> falha a partir de <span class="mat">n = 101</span>; para
+<span class="mat">c = 0,0001</span>, a partir de <span class="mat">n = 10 001</span>. Sempre restam
+infinitos ímpares onde falha.</p>
+<p>Como <span class="mat">f(n) ≥ n</span> para todo <span class="mat">n ≥ 1</span>, vale
+<span class="mat">f(n) = Ω(n)</span>. Assim <span class="mat">n ≤ f(n) ≤ n²</span>: a função fica
+espremida entre as duas ordens <strong>sem ser Θ de nenhuma das duas</strong>, porque oscila entre
+elas conforme a paridade.</p>
+</div>
+
+<!-- ══════════════════════ QUESTÃO 3 (nova em 09/09/2026) ══════════════════════ -->
+<h2>Questão 3</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Têm-se 2<sup>n</sup> moedas de ouro, sendo uma delas falsa, com peso menor do que as demais.
+  Dispõe-se de uma balança de dois pratos, sem nenhum peso. Vamos mostrar, por indução sobre n, que é
+  possível achar a moeda falsa com n pesagens.</p>
+</div>
+
+<div class="item">
+<p><span class="resp">Bissecção: divide-se em duas metades, pesa-se uma contra a outra, e a metade mais
+leve é um problema do mesmo tipo com a metade das moedas.</span> A indução formaliza isso — e o ponto
+delicado é enunciar <span class="mat">P(n)</span> para <em>qualquer</em> conjunto de moedas, porque a
+hipótese será aplicada a um subconjunto.</p>
+<h3>1. Suposições e a proposição</h3>
+<p><span class="rot2">Suposições declaradas.</span> (1) Todas as moedas verdadeiras têm o mesmo peso
+<span class="mat">p</span>; a falsa tem peso <span class="mat">q &lt; p</span>. (“As demais” são as
+verdadeiras; o enunciado diz que a falsa pesa menos que elas.) (2) Uma pesagem põe um
+conjunto de moedas em cada prato e observa um de três resultados: prato esquerdo mais pesado, prato
+direito mais pesado, ou equilíbrio. (3) “Com n pesagens” é lido como “com no máximo n pesagens”; o
+procedimento abaixo usa exatamente <span class="mat">n</span>. (4) <span class="mat">n</span> é inteiro,
+<span class="mat">n ≥ 1</span> (se <span class="mat">0 ∈ ℕ</span>, o caso <span class="mat">n = 0</span>
+também vale e é tratado à parte).</p>
+<p><span class="rot2">Proposição.</span> <span class="mat">P(n)</span>: para todo conjunto
+<span class="mat">M</span> de <span class="mat">2<sup>n</sup></span> moedas no qual exatamente uma é falsa,
+de peso <span class="mat">q</span>, e as demais têm todas o mesmo peso <span class="mat">p &gt; q</span>,
+é possível identificar a moeda falsa de <span class="mat">M</span> usando <span class="mat">n</span>
+pesagens.</p>
+<p class="nota">A quantificação “para todo conjunto <span class="mat">M</span>” é essencial: no passo, a
+hipótese de indução será aplicada a um <strong>subconjunto</strong> das moedas originais, não ao
+conjunto original.</p>
+</div>
+
+<div class="item">
+<h3>2. A indução</h3>
+<div class="passo">
+<p><span class="rot2">Base (n = 1).</span> <span class="mat">M</span> tem <span class="mat">2<sup>1</sup> = 2</span>
+moedas. Põe-se uma em cada prato (1 pesagem). Um prato tem peso <span class="mat">q</span> e o outro,
+<span class="mat">p</span>; como <span class="mat">q &lt; p</span>, a balança não equilibra, e a moeda do
+prato mais leve é a falsa. <span class="mat">P(1)</span> vale, com 1 pesagem. (Caso
+<span class="mat">n = 0</span>, se <span class="mat">0 ∈ ℕ</span>: <span class="mat">M</span> tem
+<span class="mat">2<sup>0</sup> = 1</span> moeda, que é a falsa; 0 pesagens. <span class="mat">P(0)</span> vale.)</p>
+<p><span class="rot2">Hipótese de indução.</span> Seja <span class="mat">n ≥ 1</span> fixado e suponha
+<span class="mat">P(n)</span>: em qualquer conjunto de <span class="mat">2<sup>n</sup></span> moedas com
+exatamente uma falsa, mais leve, e as demais de mesmo peso, acha-se a falsa com
+<span class="mat">n</span> pesagens.</p>
+<p><span class="rot2">Passo.</span> Seja <span class="mat">M</span> um conjunto qualquer de
+<span class="mat">2<sup>n+1</sup></span> moedas com exatamente uma falsa (peso <span class="mat">q</span>) e as
+demais de peso <span class="mat">p &gt; q</span>. Como <span class="mat">2<sup>n+1</sup> = 2·2<sup>n</sup></span>,
+divide-se <span class="mat">M</span> em dois conjuntos disjuntos <span class="mat">M<sub>1</sub></span> e
+<span class="mat">M<sub>2</sub></span> com <span class="mat">2<sup>n</sup></span> moedas cada, e põe-se um em
+cada prato (1 pesagem). A falsa está em exatamente um dos dois; chame-o de
+<span class="mat">M<sub>i</sub></span> e o outro de <span class="mat">M<sub>j</sub></span>. Então</p>
+<p class="centro">peso(M<sub>i</sub>) = (2<sup>n</sup> − 1)·p + q &nbsp;&nbsp; e &nbsp;&nbsp; peso(M<sub>j</sub>) = 2<sup>n</sup>·p,
+&nbsp;&nbsp; logo &nbsp; peso(M<sub>j</sub>) − peso(M<sub>i</sub>) = p − q &gt; 0.</p>
+<p>A balança não equilibra e o prato mais leve é o de <span class="mat">M<sub>i</sub></span>: a pesagem
+revela qual grupo contém a falsa. <span class="mat">M<sub>i</sub></span> é um conjunto de
+<span class="mat">2<sup>n</sup></span> moedas com exatamente uma falsa, de peso <span class="mat">q</span>, e as
+demais de peso <span class="mat">p &gt; q</span> — exatamente a situação de <span class="mat">P(n)</span>.
+Pela hipótese de indução, <em>aplicada ao conjunto <span class="mat">M<sub>i</sub></span></em>, a falsa de
+<span class="mat">M<sub>i</sub></span> (que é a falsa de <span class="mat">M</span>) é identificada com
+<span class="mat">n</span> pesagens. Total: <span class="mat">1 + n = n + 1</span> pesagens. Logo
+<span class="mat">P(n+1)</span>.</p>
+<p><span class="rot2">Conclusão.</span> Pelo princípio da indução (base <span class="mat">P(1)</span>,
+passo <span class="mat">P(n) → P(n+1)</span> para todo <span class="mat">n ≥ 1</span>),
+<span class="mat">P(n)</span> vale para todo <span class="mat">n ≥ 1</span>: com
+<span class="mat">2<sup>n</sup></span> moedas, acha-se a falsa com <span class="mat">n</span> pesagens. ∎
+(Se <span class="mat">0 ∈ ℕ</span>, a base <span class="mat">P(0)</span> com o mesmo passo, aplicado
+também em <span class="mat">n = 0</span> — divide 2 moedas em grupos de 1, pesa, e
+<span class="mat">P(0)</span> identifica a falsa no grupo mais leve —, dá o resultado para todo
+<span class="mat">n ≥ 0</span>.)</p>
+</div>
+<p class="nota"><strong>Fencepost.</strong> Passo com <span class="mat">n = 1</span> (o menor em que é
+aplicado, na leitura <span class="mat">n ≥ 1</span>): 4 moedas → dois grupos de 2 → 1 pesagem → grupo
+mais leve de 2 moedas → base: 1 pesagem. Total <span class="mat">2 = n + 1</span>. O número de
+pesagens satisfaz <span class="mat">W(1) = 1, W(n+1) = W(n) + 1</span>, logo
+<span class="mat">W(n) = n = lg(2<sup>n</sup>)</span>, o logaritmo do número de moedas.</p>
+</div>
+
+<div class="item">
+<h3>3. Observações</h3>
+<p>Neste procedimento o resultado “equilíbrio” nunca ocorre: os dois pratos têm o mesmo número de
+moedas e só um contém a falsa.</p>
+<p><strong>n pesagens bastam, mas não são o mínimo para n ≥ 3.</strong> Cada pesagem tem 3 resultados
+possíveis, e há <span class="mat">2<sup>n</sup></span> possibilidades para a posição da falsa; logo qualquer
+estratégia precisa de pelo menos <span class="mat">⌈log<sub>3</sub> 2<sup>n</sup>⌉</span> pesagens, e dividir
+em três grupos aproveita o resultado “equilíbrio”. Exemplo: 8 moedas (<span class="mat">n = 3</span>) em
+2 pesagens — pesa-se 3 contra 3; se equilibrar, a falsa está entre as 2 restantes, e pesa-se uma contra
+a outra; se não, está entre as 3 do prato mais leve, e pesa-se uma contra outra dessas três: o prato
+mais leve indica a falsa e, no equilíbrio, a falsa é a terceira. Para todo <span class="mat">n ≥ 3</span>
+isso dá uma estratégia com menos de <span class="mat">n</span> pesagens: faz-se a bissecção por
+<span class="mat">n − 3</span> pesagens, até restar um grupo de <span class="mat">2<sup>3</sup> = 8</span>
+moedas que contém a falsa, e resolve-se esse grupo em 2 pesagens como acima; total
+<span class="mat">(n − 3) + 2 = n − 1 &lt; n</span>. O enunciado pede apenas que
+<span class="mat">n</span> pesagens sejam suficientes, que é o que a indução mostra.</p>
+</div>
+
+<!-- ══════════════════════ QUESTÃO 4 (a antiga Questão 3) ══════════════════════ -->
+<h2>Questão 4</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Prove as assertivas abaixo usando o método da indução matemática.</p>
+  <ol type="a">
+    <li>P(n) : n! &gt; 2<sup>n</sup> , ∀n ≥ 4</li>
+    <li>P(n) : 2 + 4 + 6+ … +2 ∗ n = n<sup>2</sup> + n , ∀n ≥ 1</li>
+    <li>P(n) : 1 + 2 + 3+ … +n = n ∗ (n + 1)/2 , ∀n ≥ 1</li>
+    <li>T(n) = { 1 se n = 1; &nbsp; T(n − 1) + n se n ≥ 2 }<br>
+        A fórmula fechada para essa recorrência é T(n) = n ∗ (n + 1)/2</li>
+    <li>T(n) = { 1 se n = 1; &nbsp; 2 ∗ T(n − 1) + 1 se n ≥ 2 }<br>
+        A fórmula fechada para essa recorrência é T(n) = 2<sup>n</sup> − 1</li>
+  </ol>
+</div>
+
+<div class="item">
+<h3>(a) n! &gt; 2<sup>n</sup>, para todo n ≥ 4</h3>
+<p><span class="mat">P(n)</span>: <span class="mat">n! &gt; 2<sup>n</sup></span>.</p>
+<div class="passo">
+<p><span class="rot2">Base (n = 4).</span> <span class="mat">4! = 24</span> e
+<span class="mat">2<sup>4</sup> = 16</span>. Como <span class="mat">24 &gt; 16</span>,
+<span class="mat">P(4)</span> é verdadeira.</p>
+<p><span class="rot2">Hipótese indutiva.</span> Suponha
+<span class="mat">n! &gt; 2<sup>n</sup></span> para algum <span class="mat">n ≥ 4</span>.</p>
+<p><span class="rot2">Passo.</span> Queremos
+<span class="mat">(n+1)! &gt; 2<sup>n+1</sup></span>. Da definição de fatorial,</p>
+<p class="centro">(n+1)! = (n+1)·n! &gt; (n+1)·2<sup>n</sup>&nbsp;&nbsp;
+<span style="font-style:normal">← aqui a hipótese é aplicada</span></p>
+<p>Como <span class="mat">n ≥ 4</span>, tem-se <span class="mat">n + 1 ≥ 5 &gt; 2</span>, logo</p>
+<p class="centro">(n+1)·2<sup>n</sup> &gt; 2·2<sup>n</sup> = 2<sup>n+1</sup>.</p>
+<p>Encadeando, <span class="mat">(n+1)! &gt; 2<sup>n+1</sup></span>, isto é,
+<span class="mat">P(n+1)</span>. ∎</p>
+</div>
+<p class="nota"><strong>A base em 4 é justa, não folgada.</strong> A afirmação é <em>falsa</em>
+antes disso: <span class="mat">1! = 1 &gt; 2</span> é falso;
+<span class="mat">2! = 2 &gt; 4</span> é falso; <span class="mat">3! = 6 &gt; 8</span> é falso. Só em
+<span class="mat">n = 4</span> ela passa a valer. Começar a base em
+<span class="mat">n = 1</span> não seria apenas erro de forma — seria "provar" algo falso. E note
+que a restrição <span class="mat">n ≥ 4</span> é usada exatamente uma vez no passo: para garantir
+<span class="mat">n + 1 &gt; 2</span>.</p>
+</div>
+
+<div class="item">
+<h3>(b) 2 + 4 + 6 + … + 2n = n² + n, para todo n ≥ 1</h3>
+<p><span class="mat">P(n)</span>: <span class="mat">Σ<sub>i=1..n</sub> 2i = n² + n</span>.</p>
+<div class="passo">
+<p><span class="rot2">Base (n = 1).</span> Esquerda: <span class="mat">2·1 = 2</span>.
+Direita: <span class="mat">1² + 1 = 2</span>. Iguais.</p>
+<p><span class="rot2">Hipótese indutiva.</span> Suponha
+<span class="mat">2 + 4 + … + 2n = n² + n</span> para algum <span class="mat">n ≥ 1</span>.</p>
+<p><span class="rot2">Passo.</span> A soma até <span class="mat">2(n+1)</span> é</p>
+<p class="centro">(2 + 4 + … + 2n) + 2(n+1) = (n² + n) + 2n + 2&nbsp;&nbsp;
+<span style="font-style:normal">← hipótese aplicada</span></p>
+<p class="centro">= n² + 3n + 2.</p>
+<p>E a fórmula avaliada em <span class="mat">n+1</span> dá</p>
+<p class="centro">(n+1)² + (n+1) = n² + 2n + 1 + n + 1 = n² + 3n + 2.</p>
+<p>As duas expressões coincidem, logo <span class="mat">P(n+1)</span>. ∎</p>
+</div>
+</div>
+
+<div class="item">
+<h3>(c) 1 + 2 + 3 + … + n = n(n+1)/2, para todo n ≥ 1</h3>
+<p><span class="mat">P(n)</span>: <span class="mat">Σ<sub>i=1..n</sub> i = n(n+1)/2</span>.</p>
+<div class="passo">
+<p><span class="rot2">Base (n = 1).</span> Esquerda: <span class="mat">1</span>.
+Direita: <span class="mat">1·2/2 = 1</span>. Iguais.</p>
+<p><span class="rot2">Hipótese indutiva.</span> Suponha
+<span class="mat">1 + 2 + … + n = n(n+1)/2</span> para algum <span class="mat">n ≥ 1</span>.</p>
+<p><span class="rot2">Passo.</span></p>
+<p class="centro">(1 + 2 + … + n) + (n+1) = n(n+1)/2 + (n+1)&nbsp;&nbsp;
+<span style="font-style:normal">← hipótese aplicada</span></p>
+<p>Fatorando <span class="mat">(n+1)</span>:</p>
+<p class="centro">= (n+1)·(n/2 + 1) = (n+1)·(n+2)/2,</p>
+<p>que é a fórmula avaliada em <span class="mat">n+1</span>. ∎</p>
+</div>
+</div>
+
+<div class="item">
+<h3>(d) T(n) = T(n−1) + n, T(1) = 1 &nbsp;⟹&nbsp; T(n) = n(n+1)/2</h3>
+<p><span class="mat">P(n)</span>: <span class="mat">T(n) = n(n+1)/2</span>.</p>
+<div class="passo">
+<p><span class="rot2">Base (n = 1).</span> Pela definição, <span class="mat">T(1) = 1</span>. Pela
+fórmula, <span class="mat">1·(1+1)/2 = 1</span>. Iguais.</p>
+<p><span class="rot2">Hipótese indutiva.</span> Suponha
+<span class="mat">T(n−1) = (n−1)·n/2</span> para algum <span class="mat">n ≥ 2</span>.</p>
+<p><span class="rot2">Passo.</span> Como <span class="mat">n ≥ 2</span>, vale o caso recursivo da
+definição — e é <em>dele</em> que se parte:</p>
+<p class="centro">T(n) = T(n−1) + n = (n−1)·n/2 + n&nbsp;&nbsp;
+<span style="font-style:normal">← hipótese aplicada</span></p>
+<p class="centro">= (n² − n)/2 + 2n/2 = (n² + n)/2 = n(n+1)/2. ∎</p>
+</div>
+<p class="nota">Primeiros valores pela recorrência: 1, 3, 6, 10, 15, 21, 28, 36 — que coincidem com
+<span class="mat">n(n+1)/2</span>.</p>
+</div>
+
+<div class="item">
+<h3>(e) T(n) = 2·T(n−1) + 1, T(1) = 1 &nbsp;⟹&nbsp; T(n) = 2<sup>n</sup> − 1</h3>
+<p><span class="mat">P(n)</span>: <span class="mat">T(n) = 2<sup>n</sup> − 1</span>.</p>
+<div class="passo">
+<p><span class="rot2">Base (n = 1).</span> Pela definição, <span class="mat">T(1) = 1</span>. Pela
+fórmula, <span class="mat">2<sup>1</sup> − 1 = 1</span>. Iguais.</p>
+<p><span class="rot2">Hipótese indutiva.</span> Suponha
+<span class="mat">T(n−1) = 2<sup>n−1</sup> − 1</span> para algum <span class="mat">n ≥ 2</span>.</p>
+<p><span class="rot2">Passo.</span> Como <span class="mat">n ≥ 2</span>, parte-se do caso recursivo
+da definição:</p>
+<p class="centro">T(n) = 2·T(n−1) + 1 = 2·(2<sup>n−1</sup> − 1) + 1&nbsp;&nbsp;
+<span style="font-style:normal">← hipótese aplicada</span></p>
+<p class="centro">= 2<sup>n</sup> − 2 + 1 = 2<sup>n</sup> − 1. ∎</p>
+</div>
+<p class="nota">O fecho da conta é o <span class="mat">−2 + 1 = −1</span>: é ali que a fórmula se
+encaixa, e é o passo que não se deve pular. Primeiros valores pela recorrência: 1, 3, 7, 15, 31, 63,
+127, 255 — que coincidem com <span class="mat">2<sup>n</sup> − 1</span>.</p>
+</div>
+
+<p class="nota"><strong>Sobre a estrutura dos itens (d) e (e).</strong> Nos dois, o passo começa
+aplicando a <em>definição recursiva</em> e termina na fórmula fechada. O caminho inverso — escrever
+a fórmula em <span class="mat">n</span> e manipulá-la até chegar em algo verdadeiro — é circular:
+usaria a tese para provar a tese. A distinção é sutil na leitura e decisiva na correção.</p>
+
+<!-- ══════════════════════ QUESTÃO 5 (nova em 09/09/2026) ══════════════════════ -->
+<h2>Questão 5</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Seja a sentença aberta em ℕ:</p>
+  <p class="centro">P(n) : &nbsp; 1 + 2 + ··· + n = n(n + 1)/2 + 1,</p>
+  <p>mostre que:<br>
+  (i) Qualquer que seja n ∈ ℕ, se P(n) é verdadeira, então P(n + 1) é verdadeira.<br>
+  (ii) P(n) não é verdadeira para nenhum valor de n ∈ ℕ.</p>
+</div>
+
+<div class="item">
+<p><span class="resp">O passo vale, a base não — e sem base a indução não conclui nada.</span> Seja
+<span class="mat">S(n) = 1 + 2 + ··· + n = Σ<sub>k=1..n</sub> k</span>. O enunciado não diz se
+<span class="mat">0 ∈ ℕ</span>; a solução cobre as duas convenções. Para <span class="mat">n = 0</span>,
+<span class="mat">S(0)</span> é a soma vazia, igual a 0. Assim, <span class="mat">P(n)</span> é a
+afirmação <span class="mat">S(n) = n(n+1)/2 + 1</span>.</p>
+<h3>(i) Para todo n ∈ ℕ, P(n) → P(n+1)</h3>
+<p>Seja <span class="mat">n ∈ ℕ</span> arbitrário e suponha <span class="mat">P(n)</span>, isto é,
+<span class="mat">S(n) = n(n+1)/2 + 1</span>. Como <span class="mat">S(n+1) = S(n) + (n+1)</span>
+(separação do último termo; vale também para <span class="mat">n = 0</span>, pois
+<span class="mat">S(1) = 0 + 1</span>),</p>
+<p class="centro">S(n+1) = S(n) + (n+1) = n(n+1)/2 + 1 + (n+1)&nbsp;&nbsp;
+<span style="font-style:normal">← hipótese P(n)</span></p>
+<p class="centro">= [n(n+1) + 2(n+1)]/2 + 1 = (n+1)(n+2)/2 + 1.</p>
+<p>Como <span class="mat">(n+1)((n+1)+1)/2 = (n+1)(n+2)/2</span>, isto é exatamente
+<span class="mat">P(n+1)</span>. Como <span class="mat">n</span> foi arbitrário, a implicação vale para
+todo <span class="mat">n ∈ ℕ</span>. ∎</p>
+<p class="nota">A prova de (i) é direta e usa apenas a hipótese <span class="mat">P(n)</span> e a
+definição de <span class="mat">S</span>; não usa (ii) nem a fórmula verdadeira de
+<span class="mat">S(n)</span>.</p>
+</div>
+
+<div class="item">
+<h3>(ii) P(n) é falsa para todo n ∈ ℕ</h3>
+<p><span class="rot2">Lema.</span> Para todo <span class="mat">n ∈ ℕ</span>,
+<span class="mat">S(n) = n(n+1)/2</span>.</p>
+<div class="passo">
+<p><span class="rot2">Base.</span> <span class="mat">S(1) = 1 = 1·2/2</span>; e, se
+<span class="mat">0 ∈ ℕ</span>, <span class="mat">S(0) = 0 = 0·1/2</span>.</p>
+<p><span class="rot2">Hipótese.</span> Para um <span class="mat">n ∈ ℕ</span> fixado,
+<span class="mat">S(n) = n(n+1)/2</span>.</p>
+<p><span class="rot2">Passo.</span> <span class="mat">S(n+1) = S(n) + (n+1) = n(n+1)/2 + (n+1) = (n+1)(n+2)/2</span>
+&nbsp;<span style="font-style:normal">← hipótese aplicada</span>. Logo o Lema vale para todo
+<span class="mat">n ∈ ℕ</span>. ∎</p>
+</div>
+<p>(É a mesma identidade da Questão 4(c) desta lista, aqui estendida a <span class="mat">n = 0</span>.)</p>
+<p><span class="rot2">Conclusão de (ii).</span> Para qualquer <span class="mat">n ∈ ℕ</span>, pelo Lema,
+o lado esquerdo de <span class="mat">P(n)</span> vale <span class="mat">S(n) = n(n+1)/2</span>, e o
+lado direito vale <span class="mat">n(n+1)/2 + 1 = S(n) + 1</span>. Como
+<span class="mat">S(n) ≠ S(n) + 1</span>, <span class="mat">P(n)</span> é falsa. Como
+<span class="mat">n</span> foi arbitrário, <span class="mat">P(n)</span> não é verdadeira para nenhum
+<span class="mat">n ∈ ℕ</span>. ∎</p>
+<p class="nota"><strong>Por que (ii) não se prova só olhando a base.</strong> Verificar que
+<span class="mat">P(1)</span> é falsa (<span class="mat">1 ≠ 2</span>) mostra que a base falha, mas
+<em>não</em> mostra que <span class="mat">P(n)</span> é falsa para todo <span class="mat">n</span>: uma
+propriedade pode falhar nos primeiros valores e valer depois (por exemplo,
+<span class="mat">n! &gt; 2<sup>n</sup></span> é falsa em <span class="mat">n = 1, 2, 3</span> e verdadeira
+para todo <span class="mat">n ≥ 4</span> — Questão 4(a) desta lista). Por isso (ii) precisa de um
+argumento que valha para <strong>todo</strong> <span class="mat">n</span>, e não só da base. Aqui esse
+argumento é o Lema, que mostra que os dois lados diferem por exatamente 1 em todo
+<span class="mat">n</span>. Não é o único caminho: a conta de (i) é reversível — como
+<span class="mat">S(n+1) = S(n) + (n+1)</span> e
+<span class="mat">(n+1)(n+2)/2 + 1 = [n(n+1)/2 + 1] + (n+1)</span>, vale
+<span class="mat">S(n+1) = (n+1)(n+2)/2 + 1</span> se e somente se
+<span class="mat">S(n) = n(n+1)/2 + 1</span> —, logo <span class="mat">P(n+1) → P(n)</span>, isto é,
+<span class="mat">¬P(n) → ¬P(n+1)</span>; uma indução sobre <span class="mat">¬P</span>, com base
+<span class="mat">¬P(1)</span> (ou <span class="mat">¬P(0)</span>), também prova (ii). Nos dois caminhos
+há base <strong>e</strong> passo: a falha da base, sozinha, não basta.</p>
+</div>
+
+<div class="item">
+<h3>O que a questão ensina</h3>
+<p>(i) e (ii) juntos mostram que o passo indutivo sozinho não prova nada: aqui
+<span class="mat">P(n) → P(n+1)</span> vale para todo <span class="mat">n</span> e, mesmo assim,
+<span class="mat">P(n)</span> é falsa para todo <span class="mat">n</span>. O que falta é um ponto de
+partida: <span class="mat">P(1)</span> (ou <span class="mat">P(0)</span>) é falsa e, por (ii), nenhum
+<span class="mat">P(m)</span> é verdadeiro, de modo que a cadeia de implicações nunca é disparada,
+qualquer que seja o valor inicial escolhido. A questão mostra que a base é indispensável: um passo
+válido, sozinho, não prova nada.</p>
+</div>
+
+
+<h2>Informações que podem ser úteis</h2>
+<div class="enunciado" id="informacoes-lista">
+  <span class="rot">Anexo da lista (transcrição literal)</span>
+  <p><strong>Somatórios e Logaritmos:</strong></p>
+  <ul>
+    <li>Σ<sub>i=1</sub><sup>n</sup> (i) = n(n + 1)/2</li>
+    <li>Σ<sub>i=1</sub><sup>n</sup> (a<sup>i</sup>) = a(a<sup>n</sup> − 1)/(a − 1)</li>
+    <li>log (a ∗ b) = log a + log b</li>
+    <li>log (a/b) = log a − log b</li>
+    <li>log<sub>b</sub> a = log<sub>c</sub> a/ log<sub>c</sub> b</li>
+    <li>log<sub>b</sub> a<sup>c</sup> = c ∗ log<sub>b</sub> a</li>
+    <li>lg a = log<sub>2</sub> a</li>
+  </ul>
+  <p><strong>Hierarquia de funções:</strong></p>
+  <p>A seguinte hierarquia de funções pode ser definida do ponto de vista assintótico:</p>
+  <p class="centro">1 ≺ log(n) ≺ √n ≺ n ≺ n ∗ log(n) ≺ n<sup>c</sup> ≺ c<sup>n</sup> ≺ n! ≺ n<sup>n</sup></p>
+  <p>onde c é uma constante arbitrária inteira ≥ 2.</p>
+</div>
+<div class="rodape">
+<strong>Atualização de 09/09/2026.</strong> As Questões 3 e 5 são novas; a Questão 4 é a antiga
+Questão 3, com o mesmo texto. Textos-fonte verificados:
+<code>geradores/dados/lista03/q3-moedas-limpo.md</code> e <code>q5-passo-sem-base-limpo.md</code>.
+Na Questão 3, 4 de 4 verificadores sem defeito; uma observação lateral (“não são o mínimo para
+n ≥ 3”) só estava demonstrada para n = 3 e ganhou a construção geral, reverificada com 4 de 4. Na
+Questão 5, 3 de 4 verificadores derrubaram uma nota que dizia que (ii) “exige” o Lema — falso, há o
+caminho por ¬P —; corrigida, 4 de 4 na reverificação. A bissecção foi simulada para n = 0…12 em toda
+posição da moeda falsa, e a estratégia de n − 1 pesagens para n = 3…11; as identidades da Questão 5
+em n = 0…10⁵ (<code>verificacao/atualizacao-2026-09-chao-deterministico.py</code>).<br>
+<strong>Sobre esta resolução.</strong> As fórmulas fechadas das recorrências (d) e (e) da Questão 4 foram
+conferidas por recursão direta em n = 1…2999 e n = 1…599 respectivamente; as somas de (b) e (c) em
+n = 1…4999; e a fronteira de (a) verificada item a item, confirmando que a afirmação é falsa em
+n = 1, 2, 3 e verdadeira a partir de n = 4. As constantes da Questão 1 foram calibradas e testadas
+em toda a faixa n = 1…200, incluindo o caso degenerado <span class="mat">lg 1 = 0</span>. Na Questão 2,
+a ausência de cota inferior de ordem n² foi verificada para c = 1, 0,5, 0,01 e 0,0001. Os scripts
+estão em <code>resolucoes/verificacao/</code>. As demonstrações foram submetidas a verificadores
+independentes em contexto isolado, que receberam apenas o enunciado e a prova final.
+Lista de estudo, sem entrega — IFMG Campus Formiga, 2026/2.
+</div>
+
+</body>
+</html>

@@ -1,0 +1,548 @@
+{
+  "summary": "Resolve os 24 exercicios dos materiais complementares de PAA com verificacao adversarial",
+  "agentCount": 13,
+  "logs": [
+    "Consolidado: IFMG=REFUTADO | CAMPELLO=REVISAR | LOUREIRO=CONFIRMADO | USP=CONFIRMADO"
+  ],
+  "result": [
+    {
+      "fonte": "IFMG",
+      "status": "REFUTADO",
+      "votos": {
+        "holds": 0,
+        "holes": 2,
+        "total": 2
+      },
+      "solucao": {
+        "itens": [
+          {
+            "id": "(1)",
+            "resposta": "Verdadeiro: para todo inteiro n >= 1 vale 0^2 + 1^2 + ... + n^2 = n(n+1)(2n+1)/6. Provado por inducao em n.",
+            "justificativa": "ENUNCIADO. Seja P(n) a proposicao\n\n    P(n):  soma de i^2 para i = 0 ate n  =  (2n+1)(n+1)(n)/6.\n\nObserve que o termo i = 0 contribui 0^2 = 0, entao a soma que comeca em 0 e igual a soma que comeca em 1; isso nao muda nada, mas justifica a base valer ja em n = 1.\n\nBASE (n = 1).\nLado esquerdo:  0^2 + 1^2 = 0 + 1 = 1.\nLado direito:   (2*1+1)(1+1)(1)/6 = 3*2*1/6 = 6/6 = 1.\nOs dois lados valem 1, logo P(1) e verdadeira.\n\nHIPOTESE DE INDUCAO (HI).\nSuponha que, para um inteiro fixo n >= 1, P(n) seja verdadeira, isto e,\n\n    0^2 + 1^2 + ... + n^2 = n(n+1)(2n+1)/6.\n\nPASSO INDUTIVO. Queremos provar P(n+1), ou seja,\n\n    0^2 + 1^2 + ... + n^2 + (n+1)^2 = (n+1)(n+2)(2n+3)/6,\n\npois substituindo n por n+1 na formula obtem-se (2(n+1)+1)((n+1)+1)(n+1)/6 = (2n+3)(n+2)(n+1)/6.\n\nPartindo do lado esquerdo e separando o ultimo termo:\n\n    [0^2 + 1^2 + ... + n^2] + (n+1)^2\n  = n(n+1)(2n+1)/6 + (n+1)^2        <-- AQUI se aplica a HI (troca do colchete pela forma fechada)\n  = (n+1) * [ n(2n+1) + 6(n+1) ] / 6      (fator comum (n+1); o segundo termo virou 6(n+1)^2/6)\n  = (n+1) * (2n^2 + n + 6n + 6) / 6\n  = (n+1) * (2n^2 + 7n + 6) / 6\n  = (n+1)(n+2)(2n+3) / 6,\n\nonde na ultima linha usamos a fatoracao 2n^2 + 7n + 6 = (n+2)(2n+3), que se confere expandindo: (n+2)(2n+3) = 2n^2 + 3n + 4n + 6 = 2n^2 + 7n + 6.\n\nO resultado obtido e exatamente o lado direito de P(n+1). Logo P(n) implica P(n+1).\n\nCONCLUSAO. P(1) e verdadeira e P(n) => P(n+1) para todo n >= 1; pelo Principio da Inducao Matematica, P(n) vale para todo inteiro n >= 1. Em particular, a soma dos quadrados dos n primeiros inteiros e Theta(n^3), pois n(n+1)(2n+1)/6 esta entre (1/3)n^3 e (1/2)n^3 * (1+o(1)); testemunhas: c1 = 1/3, c2 = 1, n0 = 1 satisfazem (1/3)n^3 <= n(n+1)(2n+1)/6 <= n^3 para todo n >= 1.\n\nCONFERENCIA. A igualdade foi conferida termo a termo para n = 1, 2, 3 (1 = 1; 1+4 = 5 = 2*3*5/6; 1+4+9 = 14 = 3*4*7/6) e vale sem excecao em toda a faixa de inteiros testada ate n = 2999.\n\nCONFIANCA: confirmado."
+          },
+          {
+            "id": "(2)",
+            "resposta": "Verdadeiro: para todo inteiro n >= 1 vale 1 + 4 + 7 + ... + (3n-2) = n(3n-1)/2. Provado por inducao em n.",
+            "justificativa": "ENUNCIADO. O termo geral da soma e a_i = 3i - 2, com i = 1, 2, ..., n (de fato a_1 = 1, a_2 = 4, a_3 = 7, a_4 = 10, ...). Seja P(n) a proposicao\n\n    P(n):  soma de (3i - 2) para i = 1 ate n  =  n(3n - 1)/2.\n\nBASE (n = 1).\nLado esquerdo:  3*1 - 2 = 1.\nLado direito:   1*(3*1 - 1)/2 = 1*2/2 = 1.\nOs dois lados valem 1, logo P(1) e verdadeira.\n\nHIPOTESE DE INDUCAO (HI).\nSuponha que, para um inteiro fixo n >= 1,\n\n    1 + 4 + 7 + ... + (3n - 2) = n(3n - 1)/2.\n\nPASSO INDUTIVO. Queremos provar P(n+1). O proximo termo da soma e\n\n    a_{n+1} = 3(n+1) - 2 = 3n + 1,\n\ne a formula avaliada em n+1 e\n\n    (n+1)(3(n+1) - 1)/2 = (n+1)(3n + 2)/2.\n\nPartindo do lado esquerdo de P(n+1) e separando o ultimo termo:\n\n    [1 + 4 + ... + (3n - 2)] + (3n + 1)\n  = n(3n - 1)/2 + (3n + 1)          <-- AQUI se aplica a HI\n  = (3n^2 - n)/2 + (6n + 2)/2\n  = (3n^2 - n + 6n + 2)/2\n  = (3n^2 + 5n + 2)/2\n  = (n + 1)(3n + 2)/2,\n\nusando a fatoracao 3n^2 + 5n + 2 = (n+1)(3n+2), que se confere expandindo: (n+1)(3n+2) = 3n^2 + 2n + 3n + 2 = 3n^2 + 5n + 2.\n\nO resultado e exatamente o lado direito de P(n+1). Logo P(n) implica P(n+1).\n\nCONCLUSAO. P(1) vale e P(n) => P(n+1) para todo n >= 1; pelo Principio da Inducao Matematica, P(n) vale para todo inteiro n >= 1.\n\nOBSERVACAO (por que a formula tinha de ser essa). Trata-se de uma progressao aritmetica de razao 3, primeiro termo 1 e ultimo termo 3n - 2. A soma de uma PA e (primeiro + ultimo) * numero de termos / 2 = (1 + 3n - 2) * n / 2 = n(3n - 1)/2, o que confirma a forma fechada por um segundo caminho independente. Assintoticamente a soma e Theta(n^2): testemunhas c1 = 1, c2 = 2 e n0 = 1 dao 1*n^2 <= n(3n-1)/2 <= 2*n^2 para todo n >= 1 (a esquerda: (3n^2 - n)/2 >= n^2 equivale a n^2 >= n, verdade para n >= 1; a direita: (3n^2 - n)/2 <= 2n^2 equivale a -n <= n^2, sempre verdade).\n\nCONFERENCIA. Conferido termo a termo para n = 1, 2, 3 (1 = 1; 1+4 = 5 = 2*5/2; 1+4+7 = 12 = 3*8/2) e sem excecao em toda a faixa de inteiros testada ate n = 2999.\n\nCONFIANCA: confirmado."
+          },
+          {
+            "id": "(3)",
+            "resposta": "Algoritmo recursivo direto da definicao: FIBONACCI(n) devolve n se n <= 1 e devolve FIBONACCI(n-1) + FIBONACCI(n-2) caso contrario. Ele esta correto, mas custa tempo exponencial, Theta(phi^n) com phi = (1+raiz(5))/2 (aprox. 1,618).",
+            "justificativa": "DEFINICAO USADA. A sequencia de Fibonacci e definida por F_0 = 0, F_1 = 1 e F_n = F_{n-1} + F_{n-2} para n >= 2. O algoritmo abaixo e a transcricao literal dessa definicao.\n\nPSEUDO-CODIGO.\n\n    FIBONACCI(n)\n    1: if n = 0 then\n    2:     return 0\n    3: end if\n    4: if n = 1 then\n    5:     return 1\n    6: end if\n    7: return FIBONACCI(n-1) + FIBONACCI(n-2)\n\nCORRETUDE (inducao forte sobre n). Seja P(n): FIBONACCI(n) devolve F_n.\nBase: n = 0 cai na linha 2 e devolve 0 = F_0; n = 1 cai na linha 5 e devolve 1 = F_1.\nHipotese forte: suponha que P(k) vale para todo k com 0 <= k < n, para um n >= 2 fixo.\nPasso: para n >= 2 o algoritmo executa a linha 7. Como n-1 e n-2 estao ambos em [0, n-1], a hipotese forte garante que as chamadas devolvem F_{n-1} e F_{n-2}; a soma e F_{n-1} + F_{n-2} = F_n por definicao. Logo P(n) vale.\nTerminacao: cada chamada recursiva reduz o argumento em pelo menos 1, e argumentos 0 e 1 param; logo nao ha recursao infinita para n >= 0.\n\nCUSTO. Seja C(n) o numero total de chamadas de FIBONACCI geradas por uma chamada FIBONACCI(n) (contando a propria). Entao\n\n    C(0) = C(1) = 1,\n    C(n) = 1 + C(n-1) + C(n-2)  para n >= 2.\n\nA solucao em forma fechada e\n\n    C(n) = 2*F_{n+1} - 1.\n\nVerificacao por inducao forte: para n = 0, 2*F_1 - 1 = 2*1 - 1 = 1 = C(0); para n = 1, 2*F_2 - 1 = 2*1 - 1 = 1 = C(1). Passo (n >= 2): C(n) = 1 + C(n-1) + C(n-2) = 1 + (2F_n - 1) + (2F_{n-1} - 1) = 2(F_n + F_{n-1}) - 1 = 2F_{n+1} - 1.\n\nComo F_m = (phi^m - psi^m)/raiz(5), com phi = (1+raiz(5))/2 e |psi| = |(1-raiz(5))/2| < 1, tem-se F_m = Theta(phi^m), logo\n\n    C(n) = Theta(phi^n),  com phi aprox. 1,618.\n\nTestemunhas para a cota inferior exponencial (forma simples de exibir): prova-se por inducao que F_n >= 2^((n-1)/2) para todo n >= 1, portanto C(n) >= 2*2^((n-1)/2) - 1 >= 2^(n/2) para n >= 2; isto e, C(n) = Omega(2^(n/2)) com c = 1 e n0 = 2. Em palavras: o tempo cresce exponencialmente.\n\nPOR QUE E TAO CARO. A arvore de recursao recalcula os mesmos subproblemas muitas vezes: FIBONACCI(n-2) e resolvido tanto dentro de FIBONACCI(n-1) quanto diretamente por FIBONACCI(n), e isso se repete em cascata (ver o item (4)). Nao ha memoria entre os ramos.\n\nCOMO CORRIGIR (Theta(n)).\n\n(a) Recursao com memorizacao (top-down): guarda-se cada F_k ja calculado num vetor M[0..n] inicializado com NIL.\n\n    FIB-MEMO(n, M)\n    1: if n <= 1 then return n end if\n    2: if M[n] <> NIL then return M[n] end if\n    3: M[n] <- FIB-MEMO(n-1, M) + FIB-MEMO(n-2, M)\n    4: return M[n]\n\nCada indice 0..n e calculado uma unica vez, com O(1) de trabalho proprio: tempo Theta(n), espaco Theta(n).\n\n(b) Versao iterativa (bottom-up), com apenas duas variaveis:\n\n    FIB-ITER(n)\n    1: if n <= 1 then return n end if\n    2: a <- 0 ; b <- 1\n    3: for i <- 2 to n do\n    4:     t <- a + b ; a <- b ; b <- t\n    5: end for\n    6: return b\n\nO laco executa n-1 iteracoes de custo O(1): tempo Theta(n) e espaco Theta(1) (contando operacoes aritmeticas a custo unitario).\n\nCONFERENCIA. Os valores devolvidos coincidem com F_0..F_11 = 0,1,1,2,3,5,8,13,21,34,55,89. O numero de chamadas contado na execucao para n = 0..11 e 1, 1, 3, 5, 9, 15, 25, 41, 67, 109, 177, 287, exatamente igual a 2*F_{n+1} - 1 em todos esses casos.\n\nCONFIANCA: confirmado."
+          },
+          {
+            "id": "(4)",
+            "resposta": "Arvore de chamadas de FIBONACCI(6): 25 nos no total (= 2*F_7 - 1 = 2*13 - 1), altura 6. F(4) aparece 2 vezes, F(3) 3 vezes, F(2) 5 vezes, F(1) 8 vezes e F(0) 5 vezes — as repeticoes seguem os proprios numeros de Fibonacci.",
+            "justificativa": "Cada no e uma chamada; os dois filhos de F(k) sao F(k-1) (esquerda) e F(k-2) (direita). As folhas sao F(1) e F(0), que devolvem 1 e 0 sem recursao. A arvore, em texto indentado (cada nivel de indentacao = um nivel de profundidade):\n\nF(6)\n|-- F(5)\n|   |-- F(4)\n|   |   |-- F(3)\n|   |   |   |-- F(2)\n|   |   |   |   |-- F(1)   -> 1\n|   |   |   |   +-- F(0)   -> 0\n|   |   |   +-- F(1)       -> 1\n|   |   +-- F(2)\n|   |       |-- F(1)       -> 1\n|   |       +-- F(0)       -> 0\n|   +-- F(3)\n|       |-- F(2)\n|       |   |-- F(1)       -> 1\n|       |   +-- F(0)       -> 0\n|       +-- F(1)           -> 1\n+-- F(4)\n    |-- F(3)\n    |   |-- F(2)\n    |   |   |-- F(1)       -> 1\n    |   |   +-- F(0)       -> 0\n    |   +-- F(1)           -> 1\n    +-- F(2)\n        |-- F(1)           -> 1\n        +-- F(0)           -> 0\n\nOS TRES PRIMEIROS NIVEIS, resumidos:\n  Nivel 0: F(6)\n  Nivel 1: F(5), F(4)\n  Nivel 2: F(4), F(3) (filhos de F(5)) e F(3), F(2) (filhos de F(4))\n\nSOMA DOS VALORES. Folhas com valor 1 sao as chamadas F(1): ha 8 delas, e 8 = F_6. As folhas F(0) valem 0 e nao contribuem. Como o valor de cada no e a soma dos filhos, o valor da raiz e o numero de folhas F(1), ou seja, F(6) = 8 — coerente com F_6 = 8.\n\nREPETICAO DE SUBPROBLEMAS (o ponto do exercicio). Contando quantas vezes cada rotulo aparece na arvore inteira:\n\n  F(6): 1 vez\n  F(5): 1 vez\n  F(4): 2 vezes\n  F(3): 3 vezes\n  F(2): 5 vezes\n  F(1): 8 vezes\n  F(0): 5 vezes\n\nOs numeros 1, 1, 2, 3, 5, 8 sao os proprios termos da sequencia de Fibonacci: em geral, na arvore de F(n), o rotulo F(k) aparece F_{n-k+1} vezes para 1 <= k <= n. Isso mostra por que o algoritmo e exponencial: o mesmo subproblema e resolvido do zero um numero de vezes que cresce como Fibonacci. Por exemplo, F(2) e recalculado 5 vezes so para n = 6.\n\nTOTAL DE CHAMADAS. Somando: 1 + 1 + 2 + 3 + 5 + 8 + 5 = 25 nos. Isso confirma a formula C(n) = 2*F_{n+1} - 1 do item (3): C(6) = 2*F_7 - 1 = 2*13 - 1 = 25. A altura da arvore e 6 (o caminho mais longo, F(6) -> F(5) -> F(4) -> F(3) -> F(2) -> F(1), desce sempre pela esquerda); o caminho mais curto ate uma folha tem comprimento 3 (descendo sempre pela direita), o que mostra que a arvore e bastante desbalanceada — dai a base phi aprox. 1,618 em vez de 2.\n\nCONFERENCIA. A arvore foi percorrida chamada a chamada: 25 nos no total, com as multiplicidades por rotulo exatamente 1, 1, 2, 3, 5, 8 e 5 para F(6) ate F(0), e 2*F_7 - 1 = 25.\n\nCONFIANCA: confirmado."
+          },
+          {
+            "id": "(5)",
+            "resposta": "T(1) = c (constante) e T(j) = T(j-1) + a*j + b para j >= 2, isto e, T(n) = T(n-1) + Theta(n) com T(1) = Theta(1). Resolvendo por expansao, T(n) = Theta(n^2), no melhor e no pior caso (o custo nao depende do conteudo do vetor).",
+            "justificativa": "CONTAGEM DE CUSTO DE UMA CHAMADA. Considere a chamada ORDENACAO-POR-SELECAO(V, j) e conte o trabalho feito fora da recursao:\n\n  - linha 1: um teste, O(1);\n  - linha 4: uma atribuicao, O(1);\n  - linhas 5-9: o laco 'for i <- 1 to j' executa exatamente j iteracoes, e cada iteracao faz uma comparacao (linha 6) e, no maximo, uma atribuicao (linha 7) — custo O(1) por iteracao. Total do laco: a*j operacoes, para alguma constante a > 0;\n  - linhas 10-12: a troca (tres atribuicoes), O(1);\n  - linha 13: uma chamada recursiva sobre o subvetor de tamanho j-1, custo T(j-1).\n\nAgrupando as parcelas constantes numa constante b > 0, o trabalho local e a*j + b.\n\nCASO BASE. Se j = 1, so se executa o teste da linha 1 e o return da linha 2: custo constante c > 0.\n\nRELACAO DE RECORRENCIA.\n\n    T(1) = c\n    T(j) = T(j-1) + a*j + b,   para j >= 2\n\nou, em notacao assintotica,\n\n    T(1) = Theta(1)\n    T(n) = T(n-1) + Theta(n).\n\nObserve que nao ha distincao entre melhor e pior caso: o laco das linhas 5-9 sempre executa j iteracoes, qualquer que seja o conteudo de V. O teste da linha 6 pode alterar a linha 7, mas isso nao muda a contagem de iteracoes. Portanto a recorrencia acima vale para TODA entrada, e o resultado assintotico e o mesmo em todos os casos.\n\nRESOLUCAO POR EXPANSAO (iteracao).\n\n    T(n) = T(n-1) + a*n + b\n         = T(n-2) + a*(n-1) + b + a*n + b\n         = T(n-3) + a*(n-2) + a*(n-1) + a*n + 3b\n         = ...\n         = T(n-k) + a*[ n + (n-1) + ... + (n-k+1) ] + k*b.\n\nParando em n - k = 1, ou seja, k = n - 1:\n\n    T(n) = T(1) + a*[ n + (n-1) + ... + 2 ] + (n-1)*b\n         = c + a*( n(n+1)/2 - 1 ) + b*(n-1),\n\nonde usamos a forma fechada 2 + 3 + ... + n = n(n+1)/2 - 1. Expandindo:\n\n    T(n) = (a/2)*n^2 + (a/2 + b)*n + (c - a - b).\n\nE um polinomio de grau 2 com coeficiente lider a/2 > 0, logo T(n) = Theta(n^2).\n\nTESTEMUNHAS EXPLICITAS. Tomando o custo unitario a = b = c = 1 (cada operacao elementar custa 1), a expressao acima da\n\n    T(n) = (n^2 + 3n - 2)/2.\n\nAfirmo que T(n) = Theta(n^2) com c1 = 1/2, c2 = 2 e n0 = 1:\n  - cota inferior: (n^2 + 3n - 2)/2 >= (1/2)*n^2  <=>  3n - 2 >= 0  <=>  n >= 1. Vale para todo n >= 1.\n  - cota superior: (n^2 + 3n - 2)/2 <= 2*n^2  <=>  n^2 + 3n - 2 <= 4n^2  <=>  3n^2 - 3n + 2 >= 0, cujo discriminante e 9 - 24 < 0, logo e sempre positivo. Vale para todo n >= 1.\nAssim, (1/2)*n^2 <= T(n) <= 2*n^2 para todo n >= n0 = 1, com c1 e c2 escolhidos antes de n e independentes de n.\n\nNo caso geral (a, b, c quaisquer positivos), as testemunhas sao c1 = a/4 e c2 = a, com n0 escolhido grande o bastante para absorver os termos de grau 1 e 0 — o argumento e o mesmo, pois o termo (a/2)n^2 domina os demais.\n\nVERIFICACAO DA SOLUCAO POR INDUCAO (metodo da substituicao, com a constante intacta). Seja P(n): T(n) = (n^2 + 3n - 2)/2, com T(1) = 1 e T(n) = T(n-1) + n + 1.\nBase n = 1: lado esquerdo T(1) = 1; lado direito (1 + 3 - 2)/2 = 2/2 = 1. Confere.\nHipotese: T(n-1) = ((n-1)^2 + 3(n-1) - 2)/2 = (n^2 + n - 4)/2, para um n >= 2 fixo.\nPasso: T(n) = T(n-1) + n + 1 = (n^2 + n - 4)/2 + (2n + 2)/2 <-- AQUI se aplica a hipotese = (n^2 + 3n - 2)/2, que e exatamente P(n). As constantes 1/2, 3/2 e -1 reaparecem identicas, sem crescer.\n\nOBSERVACAO SOBRE O ALGORITMO. Ele e a ordenacao por selecao escrita recursivamente: em cada chamada localiza o indice do MAIOR elemento de V[1..j] (linhas 4-9), coloca-o na posicao j (linhas 10-12) e ordena recursivamente V[1..j-1]. Ao final, o vetor fica em ordem nao decrescente. O numero total de comparacoes e n + (n-1) + ... + 2 = n(n+1)/2 - 1, confirmando a ordem quadratica.\n\nCONFERENCIA. A contagem de operacoes feita executando a recorrencia da 1, 6, 12 para n = 1, 2, 3, e a razao entre o numero de operacoes contadas e n^2 estabiliza (n = 50: 0,569; n = 200: 0,517; n = 800: 0,504), convergindo para a constante a/2 = 1/2 prevista pela forma fechada — comportamento tipico de Theta(n^2).\n\nCONFIANCA: confirmado."
+          },
+          {
+            "id": "(6)",
+            "resposta": "T(n) = 2^n - 1 movimentos. Obtido pelo metodo expandir, conjecturar e verificar; a verificacao final e por inducao. Assintoticamente, T(n) = Theta(2^n).",
+            "justificativa": "RECORRENCIA DADA.\n\n    T(1) = 1\n    T(n) = 2*T(n-1) + 1,  para n >= 2\n\n(mover n discos = mover n-1 discos para o pino auxiliar, mover o disco maior, mover os n-1 de volta sobre ele).\n\nPASSO 1 — EXPANDIR. Substituimos repetidamente a definicao de T:\n\n    T(n) = 2*T(n-1) + 1\n         = 2*[2*T(n-2) + 1] + 1 = 4*T(n-2) + 2 + 1\n         = 4*[2*T(n-3) + 1] + 2 + 1 = 8*T(n-3) + 4 + 2 + 1\n         = 16*T(n-4) + 8 + 4 + 2 + 1\n         = ...\n\nApos k substituicoes:\n\n    T(n) = 2^k * T(n-k) + (2^(k-1) + 2^(k-2) + ... + 2 + 1).\n\nO parenteses e uma progressao geometrica de razao 2 com k termos, cuja forma fechada e 2^k - 1. Logo\n\n    T(n) = 2^k * T(n-k) + 2^k - 1,  valido para 1 <= k <= n-1.\n\nPASSO 2 — CONJECTURAR. A expansao so para quando o argumento chega no caso base n - k = 1, ou seja, k = n - 1. Substituindo:\n\n    T(n) = 2^(n-1) * T(1) + 2^(n-1) - 1\n         = 2^(n-1) * 1 + 2^(n-1) - 1\n         = 2 * 2^(n-1) - 1\n         = 2^n - 1.\n\nCONJECTURA:  T(n) = 2^n - 1 para todo n >= 1.\n\nPASSO 3 — VERIFICAR (inducao sobre n). Este passo e obrigatorio: a expansao com reticencias e uma heuristica, nao uma prova. Seja\n\n    P(n):  T(n) = 2^n - 1.\n\nBASE (n = 1). Pela recorrencia, T(1) = 1. Pela formula, 2^1 - 1 = 2 - 1 = 1. Os dois lados valem 1, logo P(1) e verdadeira.\n\nHIPOTESE DE INDUCAO. Suponha que, para um inteiro fixo n >= 2, valha P(n-1), isto e, T(n-1) = 2^(n-1) - 1.\n\nPASSO INDUTIVO. Para n >= 2, a recorrencia da\n\n    T(n) = 2*T(n-1) + 1\n         = 2*(2^(n-1) - 1) + 1        <-- AQUI se aplica a hipotese de inducao\n         = 2^n - 2 + 1\n         = 2^n - 1,\n\nque e exatamente P(n). Note que em nenhum momento a tese foi usada para provar a tese: partiu-se da recorrencia e substituiu-se apenas o termo T(n-1) pela hipotese.\n\nCONCLUSAO. P(1) vale e P(n-1) => P(n) para todo n >= 2; pelo Principio da Inducao Matematica, T(n) = 2^n - 1 para todo inteiro n >= 1.\n\nORDEM ASSINTOTICA. T(n) = Theta(2^n), com testemunhas c1 = 1/2, c2 = 1 e n0 = 1:\n  - superior: 2^n - 1 <= 1 * 2^n para todo n (subtrair 1 so diminui);\n  - inferior: 2^n - 1 >= (1/2)*2^n  <=>  (1/2)*2^n >= 1  <=>  2^(n-1) >= 1  <=>  n >= 1.\nLogo (1/2)*2^n <= T(n) <= 2^n para todo n >= 1. Em termos praticos: cada disco a mais dobra (e mais um) o numero de movimentos; para os 64 discos da lenda seriam 2^64 - 1 = 18.446.744.073.709.551.615 movimentos.\n\nCONFERENCIA. Os primeiros valores gerados pela recorrencia sao 1, 3, 7, 15, 31, 63, 127, 255 para n = 1..8, coincidindo com 2^n - 1 (2-1, 4-1, 8-1, 16-1, 32-1, 64-1, 128-1, 256-1). A igualdade foi conferida sem excecao em toda a faixa testada, n = 1 ate 499.\n\nCONFIANCA: confirmado."
+          }
+        ],
+        "observacoes": "Todos os seis itens foram resolvidos e conferidos numericamente antes da redacao: (1) e (2) valem sem excecao para n = 1..2999; (3) e (4) tiveram a arvore de chamadas percorrida no,a no, confirmando 25 nos para n = 6 e a formula C(n) = 2*F_{n+1} - 1 para n = 0..11; (5) teve a contagem de operacoes comparada com a forma fechada (razao operacoes/n^2 convergindo para 1/2); (6) foi conferido para n = 1..499. Nenhum item ficou sem solucao confiavel. Observacoes de conteudo que valem destacar para a aluna: no item (1) a soma comeca em i = 0, mas 0^2 = 0, entao a base correta e n = 1 e nada muda; no item (5) o algoritmo do enunciado seleciona o MAIOR elemento de V[1..j] e o coloca na posicao j, e o custo independe do conteudo do vetor (melhor caso = pior caso = Theta(n^2)); no item (6) os tres passos do metodo (expandir, conjecturar, verificar) foram escritos separadamente, com a verificacao final por inducao, porque a expansao com reticencias sozinha nao e prova."
+      },
+      "problemas": [
+        {
+          "item": "3",
+          "local": "Bloco CUSTO, parágrafo das testemunhas: \"prova-se por inducao que F_n >= 2^((n-1)/2) para todo n >= 1, portanto C(n) >= 2*2^((n-1)/2) - 1 >= 2^(n/2) para n >= 2; isto e, C(n) = Omega(2^(n/2)) com c = 1 e n0 = 2\"",
+          "padrao": "IND-1 / #23 / #17 — lema universalmente quantificado FALSO num caso de borda, e o n0 exibido nao funciona",
+          "porque": "O lema e falso em n = 2: F_2 = 1 e 2^((2-1)/2) = 1,41421..., logo F_2 < 2^((n-1)/2). Ele so vale para n = 1 e n >= 3 (o enunciado classico exige n >= 3). E a cadeia derivada quebra exatamente no n0 anunciado: em n = 2, 2*2^(1/2) - 1 = 1,82843 < 2 = 2^(2/2). Portanto 'com c = 1 e n0 = 2' e falso; a desigualdade so passa a valer em n >= 3 (n=3: 3,000 >= 2,8284). Conferido numericamente: lema falha so em n = 2 (n = 1..9); cadeia falha so em n = 2 (n = 2..7). A conclusao C(n) = Omega(2^(n/2)) continua verdadeira (C(2) = 3 >= 2), mas a justificativa apresentada nao a sustenta no ponto em que e aplicada.",
+          "corrigivel": "Sim, correcao local: enunciar o lema para n = 1 e n >= 3 (ou usar F_{n+1} >= 2^(n/2), valido para n >= 2) e trocar a testemunha para n0 = 3. O resto do item 3 (C(n) = 2*F_{n+1} - 1, conferido em n = 0..11: 1,1,3,5,9,15,25,41,67,109,177,287) esta correto."
+        },
+        {
+          "item": "4",
+          "local": "Paragrafo TOTAL DE CHAMADAS e a linha 'Resposta': \"A altura da arvore e 6 (o caminho mais longo, F(6) -> F(5) -> F(4) -> F(3) -> F(2) -> F(1) ...); o caminho mais curto ate uma folha tem comprimento 3\"",
+          "padrao": "#60 / #58 — duas convencoes de medida incompativeis na mesma frase",
+          "porque": "O caminho mais curto ate uma folha e F(6)->F(4)->F(2)->F(0), com 3 ARESTAS (4 nos); ao chama-lo de 'comprimento 3' a solucao adota contagem por arestas. Sob essa mesma convencao o caminho mais longo, que ela propria lista, tem 5 arestas — nao 6. 'Altura 6' so vale contando nos/niveis, e ai o caminho curto teria de ser comprimento 4. Com a definicao padrao (altura = numero de arestas do maior caminho raiz-folha), a altura da arvore de F(6) e 5.",
+          "corrigivel": "Sim: escrever 'altura 5 (6 niveis)' mantendo 'comprimento 3', ou usar niveis nos dois casos (6 e 4). O restante do item 4 foi verificado por execucao e esta correto: 25 nos, multiplicidades F(6)..F(0) = 1,1,2,3,5,8,5, e F(k) aparece F_{n-k+1} vezes."
+        },
+        {
+          "item": "5",
+          "local": "Choque entre 'TESTEMUNHAS EXPLICITAS' (\"Tomando o custo unitario a = b = c = 1 ... T(n) = (n^2 + 3n - 2)/2\") e 'CONFERENCIA' (\"a contagem de operacoes ... da 1, 6, 12 para n = 1, 2, 3\")",
+          "padrao": "#17 — os numeros da conferencia nao batem com a formula que ela diz conferir",
+          "porque": "Com a = b = c = 1 a propria forma fechada da solucao da T(1), T(2), T(3) = 1, 4, 8 — nao 1, 6, 12. A sequencia 1, 6, 12 corresponde a a = 1, b = 3, c = 1 (incrementos 5 e 6 = a*j + b). Os dois blocos usam constantes diferentes sem avisar, entao a CONFERENCIA nao valida a expressao exibida logo acima dela. Verifiquei que com a = 1, b = 3, c = 1 a formula geral reproduz 1, 6, 12 e exatamente as razoes citadas 0,569 / 0,517 / 0,504 para n = 50/200/800 — ou seja, e incoerencia de exposicao, nao de resultado. A recorrencia T(j) = T(j-1) + a*j + b, T(1) = c e a conclusao Theta(n^2) resistem.",
+          "corrigivel": "Sim: usar o mesmo par de constantes nos dois blocos (por exemplo fixar a = 1, b = 3, c = 1 e reescrever a testemunha como T(n) = (n^2 + 7n - 6)/2), ou declarar que a conferencia usa outras constantes."
+        },
+        {
+          "item": "3",
+          "local": "Secao CUSTO, paragrafo 'Testemunhas para a cota inferior exponencial': \"prova-se por inducao que F_n >= 2^((n-1)/2) para todo n >= 1\"",
+          "padrao": "#23 / IND-5",
+          "porque": "O lema afirmado e FALSO. Em n = 2: F_2 = 1 e 2^((2-1)/2) = 2^0,5 = 1,41421... Logo 1 >= 1,414 e falso e nenhuma inducao pode provar o enunciado 'para todo n >= 1'. O lema classico vale so para n >= 3 (F_3 = 2 >= 2^1 = 2), ou com expoente (n-2)/2. Verificado por calculo: a unica falha na faixa n = 1..19 e exatamente n = 2.",
+          "corrigivel": "sim — trocar 'para todo n >= 1' por 'para todo n >= 3' (ou usar F_n >= 2^((n-2)/2)); a conclusao C(n) = Omega(2^(n/2)) permanece verdadeira"
+        },
+        {
+          "item": "3",
+          "local": "Mesma frase: \"portanto C(n) >= 2*2^((n-1)/2) - 1 >= 2^(n/2) para n >= 2; isto e, C(n) = Omega(2^(n/2)) com c = 1 e n0 = 2\"",
+          "padrao": "#58 / #23",
+          "porque": "A desigualdade encadeada quebra precisamente no n0 declarado. Em n = 2: 2*2^((2-1)/2) - 1 = 2*1,41421 - 1 = 1,82843, que e MENOR que 2^(2/2) = 2. Ou seja, a segunda desigualdade '>= 2^(n/2)' e falsa em n = 2, o unico ponto que fixa a testemunha n0 = 2. (Vale a partir de n = 3: 3,0 >= 2,828.) O fato C(2) = 3 >= 2 e verdadeiro, mas nao decorre da cadeia apresentada.",
+          "corrigivel": "sim — n0 = 3, ou verificar n = 2 na mao a parte"
+        },
+        {
+          "item": "4",
+          "local": "Fim da secao TOTAL DE CHAMADAS: \"A altura da arvore e 6 (o caminho mais longo, F(6) -> F(5) -> F(4) -> F(3) -> F(2) -> F(1) ...); o caminho mais curto ate uma folha tem comprimento 3\"",
+          "padrao": "#60 / #58",
+          "porque": "Duas metricas incompativeis na mesma frase. O caminho mais longo citado tem 6 NOS e 5 ARESTAS; o caminho mais curto F(6)->F(4)->F(2)->F(0) tem 4 NOS e 3 ARESTAS. Ao dizer 'comprimento 3' para o curto, adota-se a contagem por arestas; nessa mesma contagem o mais longo tem comprimento 5, nao 6. Pela definicao padrao (altura = numero de arestas do caminho raiz-folha mais longo), a altura da arvore de F(6) e 5. Se a intencao fosse contar niveis/nos, o caminho curto teria de ser 4.",
+          "corrigivel": "sim — dizer 'altura 5 (6 niveis)' e manter 'comprimento 3', ou uniformizar tudo em nos"
+        },
+        {
+          "item": "5",
+          "local": "Secao CONFERENCIA: \"A contagem de operacoes feita executando a recorrencia da 1, 6, 12 para n = 1, 2, 3\"",
+          "padrao": "IND-5 / OUTRO-1",
+          "porque": "Nao bate com a forma fechada que a propria solucao acabou de exibir. Com as constantes que ela fixa (a = b = c = 1) tem-se T(n) = (n^2+3n-2)/2, ou seja T(1) = 1, T(2) = 4, T(3) = 8 — e nao 1, 6, 12. Os valores 1, 6, 12 e as razoes citadas (0,569 / 0,517 / 0,504) correspondem a um modelo diferente e nunca declarado, a = 1 e b = 3, isto e T(n) = (n^2+7n-6)/2 (confirmei: 1, 6, 12 e 0,5688 / 0,51743 / 0,50437). A conferencia portanto nao confere a formula que antecede.",
+          "corrigivel": "sim — usar 1, 4, 8 (modelo a=b=c=1) ou declarar b = 3; o resultado Theta(n^2) com a/2 = 1/2 nao muda"
+        }
+      ],
+      "todosVereditos": [
+        "HOLE_FOUND",
+        "HOLE_FOUND"
+      ]
+    },
+    {
+      "fonte": "CAMPELLO",
+      "status": "REVISAR",
+      "votos": {
+        "holds": 1,
+        "holes": 1,
+        "total": 2
+      },
+      "solucao": {
+        "itens": [
+          {
+            "id": "(1)",
+            "resposta": "NÃO. 5n não é o(n).",
+            "justificativa": "Definição adotada no material: f(n) é o(g(n)) se, para QUALQUER constante real c > 0, existe n0 tal que f(n) < c*g(n) para todo n >= n0. A ordem dos quantificadores é: para todo c > 0, existe n0, para todo n >= n0. Ou seja, a desigualdade tem de valer para TODA constante c, por menor que seja — e não apenas para alguma.\n\nPara negar, basta exibir UMA constante c > 0 para a qual nenhum n0 funciona.\n\nTestemunha da falha: tome c = 1. Seria preciso ter 5n < 1*n para todo n >= n0, isto é, 5n < n, ou seja, 4n < 0, ou seja, n < 0. Isso é falso para todo n >= 1. Logo não existe n0 algum que sirva para c = 1, e a definição de little-o já está violada.\n\nO caso geral deixa claro o que acontece. Para n > 0 podemos dividir por n:\n  5n < c*n  <=>  5 < c.\nA desigualdade não depende de n: ela é verdadeira para todo n se c > 5, e falsa para todo n se c <= 5. Portanto, para qualquer c <= 5 (por exemplo c = 5, c = 4, c = 1, c = 0,5) NÃO existe nenhum n a partir do qual 5n < c*n. Como a definição exige que a propriedade valha para toda constante positiva c, e ela falha em toda a faixa 0 < c <= 5, concluímos que 5n não é o(n).\n\nInterpretação (o coração do item): little-o exige crescimento ESTRITAMENTE menor, isto é, que a razão f(n)/g(n) tenda a zero. Aqui 5n/n = 5 para todo n, e 5 não tende a 0. De fato 5n = Theta(n): a função e a referência têm exatamente a mesma taxa de crescimento, e uma constante multiplicativa não muda ordem assintótica. Por isso 5n é O(n) (com c = 5 e n0 = 1) mas nunca o(n).\n\nRegra geral que vale guardar: nenhuma função é little-o de si mesma, nem de qualquer função da mesma ordem. o(g) é sempre um subconjunto ESTRITO de O(g), e a diferença entre os dois é exatamente o quantificador: O(g) pede 'existe c', o(g) pede 'para todo c'.\n\nConferência: para c = 0,5; 1; 4; 5 não existe nenhum n no intervalo testado (n de 1 até 200000) satisfazendo 5n < c*n; a desigualdade só passa a valer quando c > 5 (já para c = 5,0001 vale para todo n >= 1). Confirmado."
+          },
+          {
+            "id": "(2)",
+            "resposta": "NÃO. 5n^2 não é omega(n^2).",
+            "justificativa": "Definição adotada no material: f(n) é omega(g(n)) se, para QUALQUER constante real c > 0, existe n0 tal que f(n) > c*g(n) para todo n >= n0. De novo o quantificador é universal em c: a desigualdade tem de valer para TODA constante positiva, inclusive as grandes.\n\nPara negar, basta exibir uma constante c > 0 para a qual nenhum n0 funciona.\n\nTestemunha da falha: tome c = 5. Seria preciso 5n^2 > 5*n^2 para todo n >= n0, isto é, 0 > 0. Falso para todo n. Logo não existe n0 para c = 5, e a definição de little-omega está violada.\n\nCaso geral: para n > 0, dividindo por n^2,\n  5n^2 > c*n^2  <=>  5 > c.\nOutra vez a desigualdade não depende de n: vale para todo n se c < 5 e falha para todo n se c >= 5. Como existe (infinitas) constantes c >= 5 para as quais nenhum n serve, 5n^2 não é omega(n^2).\n\nInterpretação: little-omega é o espelho de little-o — exige crescimento ESTRITAMENTE maior, isto é, f(n)/g(n) -> infinito. Aqui 5n^2/n^2 = 5, que é constante e não tende a infinito. Como 5n^2 = Theta(n^2), as duas funções têm a MESMA taxa de crescimento; uma função nunca pode ser little-omega de outra da mesma ordem. Ela é, sim, Omega(n^2) (Omega maiúsculo, com c = 5 e n0 = 1, ou qualquer c <= 5), mas isso é outro operador: Omega pede 'existe c', omega pede 'para todo c'.\n\nConferência: a desigualdade 5n^2 > c*n^2 foi testada para n de 1 até 200000; vale para todo n quando c = 1 ou c = 4,999 e falha para todo n quando c = 5 ou c = 6. Confirmado."
+          },
+          {
+            "id": "(3)",
+            "resposta": "f(n) é O(n^2) com c = 7 e n0 = 1; e é Omega(n) com c = 3 e n0 = 1. (Observação: f não é Theta(n^2) nem Theta(n).)",
+            "justificativa": "Seja f(n) = 3n^2 se n é par, e f(n) = 7n se n é ímpar. Note que f(n) > 0 para todo n >= 1, então a exigência 0 <= f(n) das definições está automaticamente satisfeita.\n\nPARTE 1 — f(n) é O(n^2).\nPrecisamos exibir c > 0 e n0 > 0 tais que 0 <= f(n) <= c*n^2 para todo n >= n0.\nTestemunhas: c = 7 e n0 = 1.\nProva por casos, para n >= 1:\n  - n par: f(n) = 3n^2 <= 7n^2, pois 3 <= 7. Vale.\n  - n ímpar: f(n) = 7n <= 7n^2, pois 7n^2 - 7n = 7n(n - 1) >= 0 sempre que n >= 1. Vale.\nComo os dois casos cobrem todo n >= 1, temos 0 <= f(n) <= 7n^2 para todo n >= 1. Logo f(n) = O(n^2). (Qualquer c >= 7 também serve.)\n\nPARTE 2 — f(n) é Omega(n).\nPrecisamos exibir c > 0 e n0 > 0 tais que f(n) >= c*n >= 0 para todo n >= n0.\nTestemunhas: c = 3 e n0 = 1.\nProva por casos, para n >= 1:\n  - n par: f(n) = 3n^2 >= 3n, pois 3n^2 - 3n = 3n(n - 1) >= 0 para n >= 1. Vale.\n  - n ímpar: f(n) = 7n >= 3n, pois 7 >= 3. Vale.\nLogo f(n) >= 3n para todo n >= 1, e f(n) = Omega(n). (Qualquer 0 < c <= 3 também serve.)\n\nObserve o que foi feito: como a função é definida por casos, a técnica é limitar CADA ramo separadamente e depois tomar a constante que serve para os dois (o maior c no teto, o menor c no piso). O n0 escolhido tem de valer para os dois ramos simultaneamente.\n\nOBSERVAÇÃO IMPORTANTE — f não é Theta(n^2) nem Theta(n).\nEsse é o ponto interessante do exercício: f oscila entre duas ordens diferentes, então o teto e o piso justos não coincidem.\n\n  (a) f NÃO é Theta(n^2). Para isso faltaria o piso: seria preciso existir c1 > 0 e n0 com f(n) >= c1*n^2 para TODO n >= n0. Mas nos índices ímpares f(n) = 7n, e 7n >= c1*n^2 equivale a n <= 7/c1. Como existem ímpares arbitrariamente grandes, a desigualdade falha em infinitos valores de n, qualquer que seja c1 > 0 e qualquer que seja n0. Exemplo concreto com c1 = 1: em n = 9 temos f(9) = 63 < 81 = 9^2; o mesmo ocorre em n = 11, 13, 15, 17, ...\n\n  (b) f NÃO é Theta(n). Aqui faltaria o teto: seria preciso existir c2 > 0 e n0 com f(n) <= c2*n para todo n >= n0. Mas nos índices pares f(n) = 3n^2, e 3n^2 <= c2*n equivale a n <= c2/3, que falha em todos os pares grandes. Exemplo concreto com c2 = 100: já em n = 34 temos f(34) = 3468 > 3400.\n\nConclusão: f(n) fica presa entre n e n^2 — é O(n^2) (teto) e Omega(n) (piso) —, mas não admite descrição Theta por nenhuma das duas, porque sua taxa de crescimento não é única: ela alterna infinitas vezes entre ordem linear e ordem quadrática.\n\nConferência: as desigualdades 0 <= f(n) <= 7n^2 e f(n) >= 3n foram verificadas para todo n de 1 até 200000 — ambas válidas em todo o intervalo. As falhas apontadas em (a) e (b) foram localizadas exatamente em n = 9, 11, 13, ... (para c1 = 1) e n = 34, 36, 38, ... (para c2 = 100). Confirmado."
+          },
+          {
+            "id": "(4)",
+            "resposta": "Tabela abaixo. Destaque: para f(n) = log n o limite não é o tempo (qualquer n representável cabe já em 1 segundo); para f(n) = 2^n, passar de 1 segundo para 1 século SOMA apenas 32 ao maior n resolvível (19 -> 51).",
+            "justificativa": "Modelo: o algoritmo gasta f(n) micro-segundos, e dispomos de t de tempo. O maior n resolvível é o maior inteiro n tal que f(n) <= t, com t convertido para micro-segundos.\n\nConversões (1 s = 10^6 us; mês = 30 dias; século = 100 anos de 365 dias):\n  1 segundo = 10^6 us\n  1 hora    = 3600 * 10^6 = 3,6 * 10^9 us\n  1 mês     = 30 * 24 * 3600 * 10^6 = 2,592 * 10^12 us\n  1 século  = 100 * 365 * 24 * 3600 * 10^6 = 3,1536 * 10^15 us\n\nLogaritmos na base 2 (lg).\n\n  f(n)      |   1 segundo   |    1 hora      |      1 mês         |      1 século\n ---------- + ------------- + -------------- + ------------------ + ---------------------\n  log n     | ilimitado (*) | ilimitado (*)  | ilimitado (*)      | ilimitado (*)\n  n         | 1.000.000     | 3.600.000.000  | 2.592.000.000.000  | 3.153.600.000.000.000\n  n log n   | 62.746        | 133.378.058    | 71.870.856.404     | 68.610.956.750.570\n  n^2       | 1.000         | 60.000         | 1.609.968          | 56.156.922\n  n^3       | 100           | 1.532          | 13.736             | 146.645\n  2^n       | 19            | 31             | 41                 | 51\n\n(*) log n: resolver lg n <= 10^6 dá n <= 2^(10^6), um número com cerca de 301.030 algarismos decimais — muito maior que o número de átomos do universo observável. Ou seja, para uma entrada logarítmica o gargalo deixa de ser o tempo e passa a ser a própria representação/armazenamento de n. Por isso a resposta honesta é 'praticamente ilimitado', e não um número.\n\nComo cada célula foi obtida:\n  - f(n) = n: n <= t direto. Ex.: 1 s -> n = 10^6.\n  - f(n) = n^2: n <= raiz(t). Ex.: 1 h -> raiz(3,6*10^9) = 60.000 exato.\n  - f(n) = n^3: n <= t^(1/3). Ex.: 1 s -> 100 exato; 1 h -> (3,6*10^9)^(1/3) ~ 1532,6 -> 1532.\n  - f(n) = n lg n: não tem forma fechada elementar; resolve-se numericamente a equação n lg n = t. Ex.: 62.746 * lg(62.746) ~ 62.746 * 15,94 ~ 9,9998 * 10^5 <= 10^6, e 62.747 já ultrapassa.\n  - f(n) = 2^n: n <= lg t. Ex.: 1 s -> lg(10^6) ~ 19,93 -> n = 19 (2^19 = 524.288 <= 10^6, mas 2^20 = 1.048.576 > 10^6).\n\nLEITURA DA TABELA — o argumento sobre intratabilidade.\nDe 1 segundo para 1 século o orçamento de tempo é multiplicado por 3,1536 * 10^9 (mais de três bilhões de vezes). Veja o efeito em cada linha:\n  - linear: o n resolvível é MULTIPLICADO pelo mesmo fator ~3*10^9 (de 10^6 para 3,15*10^15);\n  - quadrático: multiplicado por raiz(3*10^9) ~ 56.000 (de 1.000 para 56 milhões);\n  - cúbico: multiplicado por (3*10^9)^(1/3) ~ 1.466 (de 100 para 146.645);\n  - exponencial: SOMADO de 32 unidades apenas (de 19 para 51), porque n <= lg t e o logaritmo transforma o fator 3*10^9 em lg(3,1536*10^9) ~ 31,55.\n\nEsse contraste é a essência da noção de intratabilidade: num algoritmo polinomial, ganhar hardware (ou tempo) mais rápido por um fator k aumenta o tamanho tratável por um fator k^(1/grau) — um ganho MULTIPLICATIVO. Num algoritmo exponencial, o mesmo fator k só acrescenta lg k ao tamanho tratável — um ganho ADITIVO e minúsculo. Por isso um problema exponencial não é resolvido esperando o computador melhorar: mesmo um século de computação só leva de 19 para 51 elementos de entrada.\n\nConferência: todas as células foram obtidas por busca binária sobre n verificando f(n) <= t, e os valores de fronteira foram checados nos dois lados (o n listado cabe, o n+1 estoura). Confirmado."
+          },
+          {
+            "id": "(5)",
+            "resposta": "O pior caso da busca binária iterativa é Theta(lg n); em particular, T_pior(n) = O(lg n), com testemunhas c = 2a + b e n0 = 2 (a e b são as constantes de custo por iteração e de custo fixo).",
+            "justificativa": "ALGORITMO. Busca binária iterativa em um vetor ORDENADO A[1..n] procurando x: mantém-se um intervalo [esq, dir], inicialmente [1, n]; enquanto esq <= dir, calcula-se meio = piso((esq+dir)/2), compara-se x com A[meio] e ou se devolve meio, ou se descarta metade do intervalo (esq = meio+1, ou dir = meio-1). Se o laço terminar, devolve-se 'não encontrado'.\n\nPASSO 1 — quantas iterações o laço executa no pior caso.\nSeja n_k o número de elementos do intervalo de busca no INÍCIO da iteração k+1 (portanto n_0 = n). Numa iteração, o elemento do meio é descartado junto com uma das metades, então\n  n_{k+1} <= piso(n_k / 2) <= n_k / 2.\nPor indução simples em k, n_k <= n / 2^k para todo k >= 0.\n(Base: n_0 = n = n/2^0. Passo: se n_k <= n/2^k, então n_{k+1} <= n_k/2 <= n/2^(k+1).)\n\nO laço só executa mais uma iteração enquanto o intervalo é não vazio, isto é, enquanto n_k >= 1. Se k > lg n, então 2^k > n e portanto n_k <= n/2^k < 1, ou seja, n_k = 0 e o laço já parou. Logo o número de iterações é no máximo\n  piso(lg n) + 1.\nEssa cota é ATINGIDA (a menos de 1) quando x não está no vetor: nenhuma comparação acerta, e o algoritmo é obrigado a reduzir o intervalo até esvaziá-lo. Por isso o pior caso realmente cresce como lg n, e não menos.\n\nPASSO 2 — custo total.\nCada iteração faz um número constante de operações primitivas (uma soma, uma divisão inteira, uma ou duas comparações, uma atribuição): custo <= a, para alguma constante a > 0. Fora do laço há um custo fixo de inicialização e retorno, <= b, com b > 0. Portanto, para todo n >= 1,\n  T_pior(n) <= a * (piso(lg n) + 1) + b <= a*lg n + a + b.\n\nPASSO 3 — testemunhas formais de O(lg n).\nDefinição: T(n) = O(lg n) se existem c > 0 e n0 > 0 tais que 0 <= T(n) <= c*lg n para todo n >= n0.\nTome n0 = 2 e c = 2a + b.\nJustificativa: para n >= 2 vale lg n >= 1, logo a constante a + b pode ser absorvida, pois a + b <= (a + b)*lg n. Então, para todo n >= 2,\n  T_pior(n) <= a*lg n + (a + b) <= a*lg n + (a + b)*lg n = (2a + b)*lg n = c*lg n.\nE T_pior(n) >= 0 trivialmente. Logo T_pior(n) = O(lg n), com c = 2a + b e n0 = 2, ambos constantes que não dependem de n — respeitando a ordem 'existe c, existe n0, para todo n >= n0'.\n\nPASSO 4 — a cota inferior (por que é Theta e não só O).\nO enunciado pede O, mas vale registrar que a cota é justa. Considere a entrada em que x não pertence a A. Cada iteração reduz o intervalo a NO MÁXIMO metade dele: n_{k+1} >= piso((n_k - 1)/2), de modo que são necessárias pelo menos piso(lg n) iterações para esvaziar o intervalo. Como cada iteração custa pelo menos a' > 0, temos T_pior(n) >= a'*piso(lg n) >= (a'/2)*lg n para n >= 2 (pois piso(lg n) >= lg(n)/2 quando n >= 2). Testemunhas: c = a'/2 e n0 = 2, logo T_pior(n) = Omega(lg n). Combinando com o Passo 3, T_pior(n) = Theta(lg n).\n\nOBSERVAÇÃO sobre a base do logaritmo: ela é irrelevante em notação assintótica, pois log_b n = lg n / lg b, e 1/lg b é constante positiva — trocar de base só muda a constante c.\n\nConferência: a recorrência do pior caso, T(1) = 1 e T(n) = T(piso(n/2)) + 1, foi tabulada e comparada com piso(lg n) + 1; os valores coincidem para n de 1 até 2^13, inclusive nos casos de fronteira n = 1, 2, 3. Confirmado."
+          },
+          {
+            "id": "(6)",
+            "resposta": "Sim. Para f(n) = d com d > 0 constante, tome c = d e n0 = 1: vale 0 <= f(n) <= c*1 para todo n >= 1. Logo f(n) = O(1).",
+            "justificativa": "DEFINIÇÃO. f(n) = O(g(n)) se existem constantes c > 0 e n0 > 0 tais que 0 <= f(n) <= c*g(n) para todo n >= n0. Aqui g(n) = 1, a função constante igual a 1; portanto c*g(n) = c*1 = c para qualquer n.\n\nDEMONSTRAÇÃO. Seja f(n) = d, com d uma constante real positiva qualquer (o valor de d não depende de n — é exatamente isso que significa 'número constante de operações primitivas, independente do tamanho da entrada').\n\nEscolha das testemunhas: c = d e n0 = 1. Repare que ambas são constantes fixadas ANTES de qualquer n, respeitando a ordem 'existe c, existe n0, para todo n >= n0'; e c = d > 0 por hipótese, e n0 = 1 > 0.\n\nVerificação, para todo n >= n0 = 1:\n  - lado esquerdo: 0 <= f(n), pois f(n) = d > 0. OK.\n  - lado direito: f(n) = d <= d*1 = c*g(n). Vale com IGUALDADE, o que é permitido, já que a definição usa <= e não <.\nComo a cadeia 0 <= d <= c*1 vale para todo n >= 1 (na verdade para todo n, pois nada na desigualdade depende de n), a definição está satisfeita. Portanto f(n) = d é O(1).\n\nOBSERVAÇÕES.\n1. Qualquer c >= d serve igualmente bem (por exemplo c = d + 1, com folga estrita), e qualquer n0 > 0 serve, porque a desigualdade não depende de n. A liberdade de escolha é grande justamente porque o problema é trivial — mas a definição exige que a escolha seja EXIBIDA, e é isso que a prova faz.\n2. Vale também a recíproca: f(n) = d >= d*1 com c = d e n0 = 1, logo f(n) = Omega(1) e, portanto, f(n) = Theta(1). Ou seja, um algoritmo com número constante de operações não só 'não passa de' tempo constante como de fato gasta tempo constante.\n3. Por que se escreve O(1) e não, digamos, O(5) ou O(d): em notação assintótica a constante multiplicativa é absorvida por c. Como d <= d*1, toda função constante positiva pertence à mesma classe O(1); escrever O(d) seria redundante, pois O(d) = O(1) para qualquer d > 0 constante.\n\nConferência: a desigualdade 0 <= d <= c*1 com c = d é uma identidade que não envolve n; a verificação é imediata e não admite contraexemplo. Confirmado."
+          },
+          {
+            "id": "(7)",
+            "resposta": "No melhor caso o algoritmo acerta o elemento na PRIMEIRA comparação (x está exatamente na posição do meio), executando um número constante de operações — logo T_melhor(n) = O(1) (e de fato Theta(1)). Mas NÃO se pode concluir que 'o algoritmo é Theta(1)': isso significaria que TODA execução custa tempo constante, e no pior caso ele custa Theta(lg n).",
+            "justificativa": "PARTE 1 — por que o melhor caso é O(1).\nNa busca binária iterativa, a primeira iteração calcula meio = piso((1 + n)/2) e compara x com A[meio]. Existe uma composição de entrada — aquela em que o elemento procurado está justamente nessa posição central — em que essa primeira comparação já tem sucesso e o algoritmo retorna imediatamente.\n\nNesse cenário o algoritmo executa: a inicialização de esq e dir, o teste do laço, o cálculo de meio, uma comparação e o retorno. É um número FIXO de operações primitivas, digamos d > 0, que não depende de n (não há nenhuma repetição: o laço executa uma única vez).\n\nAssim T_melhor(n) = d, uma função constante. Pelo item (6), com testemunhas c = d e n0 = 1, temos 0 <= T_melhor(n) <= c*1 para todo n >= 1, ou seja, T_melhor(n) = O(1). E como também T_melhor(n) = d >= d*1, temos T_melhor(n) = Omega(1), e portanto T_melhor(n) = Theta(1).\n\nObserve que o melhor caso existe para todo n: qualquer que seja o tamanho do vetor, há sempre uma entrada (a que coloca x no meio) que é resolvida com uma comparação. É por isso que a função de melhor caso é constante, e não apenas 'pequena'.\n\nPARTE 2 — pode-se concluir que o algoritmo é Theta(1)? NÃO.\n\nO erro que esse item testa é confundir 'a FUNÇÃO de melhor caso é Theta(1)' com 'o ALGORITMO é Theta(1)'. São afirmações diferentes:\n\n  - 'T_melhor(n) = Theta(1)' fala de uma função específica: o custo do algoritmo sobre a entrada MAIS FAVORÁVEL de cada tamanho n. Essa afirmação é verdadeira.\n  - 'o algoritmo é Theta(1)', dito sem qualificação, é lido como uma afirmação sobre TODAS as execuções: o tempo de execução seria limitado por constantes por cima e por baixo, para qualquer entrada. Essa afirmação é FALSA. Pelo item (5), quando x não está no vetor o algoritmo executa piso(lg n) + 1 iterações, e seu custo é Theta(lg n), que cresce sem limite. Não existe constante c tal que o custo dessa execução seja <= c*1 para todo n: bastaria n grande o suficiente para violar a desigualdade.\n\nPor que a inferência é inválida do ponto de vista lógico: O, Omega e Theta são cotas para uma FUNÇÃO. Antes de aplicá-los é preciso dizer QUAL função — melhor caso, pior caso ou caso médio. Provar algo sobre a função de melhor caso não transfere nada para as outras duas, porque elas são funções distintas. É o mesmo tipo de erro de quantificador do item (1): mostrar que a propriedade vale para ALGUMA entrada de cada tamanho não mostra que vale para TODAS.\n\nRESUMO CORRETO PARA A BUSCA BINÁRIA ITERATIVA:\n  - Melhor caso:  T_melhor(n) = Theta(1).\n  - Pior caso:    T_pior(n)   = Theta(lg n).\n  - Caso médio (busca bem-sucedida, posições equiprováveis): Theta(lg n).\n  - Sobre TODAS as entradas: T(n) = O(lg n) (o pior caso é teto para qualquer execução) e T(n) = Omega(1) (o melhor caso é piso para qualquer execução). Não existe um Theta único válido para todas as entradas, justamente porque o piso e o teto do algoritmo são de ordens diferentes.\n\nA única formulação em que 'Theta(1)' é correta é a qualificada: 'o tempo de execução de MELHOR CASO da busca binária é Theta(1)'. Sem o qualificador, a frase é falsa.\n\nConferência: a recorrência do pior caso foi tabulada (item 5) e cresce como piso(lg n) + 1, portanto ilimitada — o que refuta diretamente qualquer cota constante válida para todas as entradas. Confirmado."
+          },
+          {
+            "id": "(8)",
+            "resposta": "Ordem crescente de taxa de crescimento: 2^10 < 2^(lg n) = 3n + 100 log n = 4n < n log n = 4n log n + 2n < n^2 + 10n < n^3 < 2^n < 3^(3n). (Os sinais '=' indicam funções que são Theta uma da outra, isto é, empatadas.)",
+            "justificativa": "PASSO 1 — simplificar cada função à sua classe Theta.\nEm notação assintótica, constantes multiplicativas somem e apenas o termo dominante da soma sobrevive.\n\n  2^10 = 1024                -> Theta(1).      É um número, não depende de n.\n  2^(lg n) = n               -> Theta(n).      Pois 2^(log_2 n) = n, por definição de logaritmo na base 2.\n                                              (Se o material usasse log na base 10, seria 2^(log_10 n) = n^(log_10 2) = n^0,301,\n                                               que ficaria ENTRE a constante e a linear. Adoto a convenção do curso, lg = base 2.)\n  3n + 100 log n             -> Theta(n).      log n = o(n), então 3n domina: 3n <= 3n + 100 log n <= 103n para n >= 1.\n  4n                         -> Theta(n).      Constante 4 é absorvida.\n  n log n                    -> Theta(n log n).\n  4n log n + 2n              -> Theta(n log n). Pois n = o(n log n): para n >= 2, 4n log n <= 4n log n + 2n <= 6n log n.\n  n^2 + 10n                  -> Theta(n^2).    Para n >= 10: n^2 <= n^2 + 10n <= 2n^2.\n  n^3                        -> Theta(n^3).\n  2^n                        -> Theta(2^n).\n  3^(3n) = (3^3)^n = 27^n    -> Theta(27^n).   Aqui está a pegadinha do item: o expoente 3n vira base 27.\n\nPASSO 2 — encadear as classes.\nA hierarquia usada é a padrão, e cada elo é justificado pelo limite da razão (razão -> 0 significa crescimento estritamente menor):\n\n  1  <<  n  <<  n log n  <<  n^2  <<  n^3  <<  2^n  <<  27^n\n\n  - 1 << n:            1/n -> 0.\n  - n << n log n:      n/(n log n) = 1/log n -> 0 (para n >= 2 já vale n <= n log n).\n  - n log n << n^2:    (n log n)/n^2 = (log n)/n -> 0, pois log n cresce mais devagar que qualquer potência positiva de n.\n  - n^2 << n^3:        n^2/n^3 = 1/n -> 0.\n  - n^3 << 2^n:        toda exponencial de base > 1 supera qualquer polinômio; n^3/2^n -> 0 (por L'Hôpital três vezes, ou notando que 2^n = e^(n ln 2) e n^3 = e^(3 ln n), com n ln 2 >> 3 ln n).\n  - 2^n << 27^n:       27^n/2^n = (27/2)^n = 13,5^n -> infinito. Ou seja, 3^(3n) não apenas supera 2^n como o faz por um fator que ele próprio é exponencial. É de longe a função que mais cresce da lista.\n\nPASSO 3 — ordenação final, com os empates agrupados.\n\n  1º)  2^10                                  -> Theta(1)        (constante)\n  2º)  2^(lg n),  3n + 100 log n,  4n        -> Theta(n)        (as três EMPATADAS: uma é Theta da outra)\n  3º)  n log n,  4n log n + 2n               -> Theta(n log n)  (as duas EMPATADAS)\n  4º)  n^2 + 10n                             -> Theta(n^2)\n  5º)  n^3                                   -> Theta(n^3)\n  6º)  2^n                                   -> Theta(2^n)\n  7º)  3^(3n) = 27^n                         -> Theta(27^n)\n\nEm linha:\n  2^10  <  2^(lg n) = 3n + 100 log n = 4n  <  n log n = 4n log n + 2n  <  n^2 + 10n  <  n^3  <  2^n  <  3^(3n)\n\nJUSTIFICATIVA DOS EMPATES (por que '=' e não '<'):\n  - 2^(lg n) = n e 4n: n/(4n) = 1/4, constante; logo n = Theta(4n) (testemunhas: 1/4 * 4n <= n <= 1 * 4n, para todo n >= 1). Constante multiplicativa não altera ordem.\n  - 3n + 100 log n e 4n: para n >= 1 temos 3n <= 3n + 100 log n <= 103n, e 103n = Theta(4n). Um termo de ordem menor somado não altera a classe.\n  - n log n e 4n log n + 2n: para n >= 2, 1*(n log n) <= 4n log n + 2n <= 6*(n log n), pois 2n <= 2n log n quando log n >= 1. Testemunhas c1 = 1, c2 = 6, n0 = 2.\n\nDOIS PONTOS DE ATENÇÃO DO EXERCÍCIO:\n  (i) 2^(lg n) parece exponencial mas NÃO é: a exponenciação e o logaritmo na mesma base se cancelam, e a função é exatamente linear. Só é exponencial de verdade quando o expoente é proporcional a n, não a log n.\n  (ii) 3^(3n) parece 'só mais uma exponencial' mas é a maior de todas: reescrevendo como 27^n fica claro que a base é 27, não 3. Comparar exponenciais exige colocá-las na forma b^n e comparar as bases.\n\nConferência: as razões entre funções consecutivas foram avaliadas em n crescentes e confirmam a monotonia da ordem (por exemplo, (n log n)/n^2 decrescente para 0; 27^n/2^n = 13,5^n explodindo). As desigualdades dos empates (1 <= (4n log n + 2n)/(n log n) <= 6 para n >= 2; 3 <= (3n + 100 log n)/n <= 103 para n >= 1) foram checadas numericamente. Confirmado."
+          }
+        ],
+        "observacoes": "Todos os oito itens foram conferidos numericamente antes da redação (varredura de n = 1 até 200000 para as testemunhas dos itens 1-3; busca binária sobre n para cada célula da tabela do item 4, com checagem de fronteira nos dois lados; tabulação da recorrência do pior caso da busca binária para o item 5). Pontos que valem destaque para a aluna: (a) itens (1) e (2) são armadilhas de quantificador — little-o e little-omega exigem \"para TODO c > 0\", e nenhuma função pode ser little-o ou little-omega de algo da mesma ordem Theta; (b) item (3) merece a observação extra de que a função oscilante não é Theta de nenhuma das duas cotas; (c) item (7) testa a distinção entre \"a função de melhor caso é Theta(1)\" e \"o algoritmo é Theta(1)\" — só a primeira é verdadeira; (d) item (8) depende da convenção de base do logaritmo em 2^(log n): adotei lg = base 2 (convenção do curso), o que dá exatamente n, e registrei na resposta o que aconteceria em outra base; (e) a tabela do item 4 usa mês = 30 dias e século = 100 anos de 365 dias — se o professor usar outra convenção, só as duas últimas colunas mudam ligeiramente, e a conclusão sobre intratabilidade permanece idêntica."
+      },
+      "problemas": [
+        {
+          "item": "(4)",
+          "local": "Linha f(n) = log n da tabela: as quatro células trazem \"ilimitado (*)\" em vez de um valor, e o rodapé (*) só calcula o caso de 1 segundo.",
+          "padrao": "OUTRO-1 (tabela pedida não entregue completa) + afirmação literalmente falsa",
+          "porque": "O enunciado pede \"o MAIOR tamanho de entrada n\" para CADA combinação. Para f(n) = lg n esse máximo é finito e fechado: n = 2^t com t em micro-segundos. Os quatro valores são 2^(10^6) (1 s), 2^(3,6*10^9) (1 h), 2^(2,592*10^12) (1 mês) e 2^(3,1536*10^15) (1 século) — respectivamente ~301.030, ~1,08*10^9, ~7,80*10^11 e ~9,49*10^14 algarismos decimais. Dizer \"ilimitado\" é falso (existe um maior n) e ainda contradiz o próprio rodapé, que exibe o limite finito n <= 2^(10^6). Além disso, três das quatro células ficam sem qualquer valor, nem no rodapé — a tabela pedida está incompleta em 3/24 células. O comentário sobre representação/armazenamento é bom, mas é observação, não substitui a resposta.",
+          "corrigivel": "sim — preencher as quatro células com 2^(10^6), 2^(3,6*10^9), 2^(2,592*10^12), 2^(3,1536*10^15) e manter o comentário atual como nota de rodapé"
+        },
+        {
+          "item": "(5)",
+          "local": "PASSO 4, primeira frase: \"Cada iteração reduz o intervalo a NO MÁXIMO metade dele: n_{k+1} >= piso((n_k - 1)/2)\"",
+          "padrao": "#60 / direção da desigualdade invertida na prosa",
+          "porque": "A prosa afirma o oposto da fórmula que a acompanha e do que a cota inferior exige. Para provar Omega(lg n) é preciso dizer que cada iteração descarta NO MÁXIMO metade (equivalentemente, SOBRA pelo menos ~metade), que é exatamente o que n_{k+1} >= piso((n_k-1)/2) diz. \"Reduz a no máximo metade\" é a afirmação usada no PASSO 1 (cota superior, n_{k+1} <= piso(n_k/2)). A fórmula está certa e a conclusão (>= piso(lg n) iterações) confere numericamente para todo n de 1 a 100000; o defeito é só a frase, mas ela inverte o sentido do argumento no ponto exato em que a cota inferior é estabelecida.",
+          "corrigivel": "sim — trocar por \"cada iteração descarta no máximo metade do intervalo (sobra pelo menos piso((n_k-1)/2))\""
+        }
+      ],
+      "todosVereditos": [
+        "HOLDS",
+        "HOLE_FOUND"
+      ]
+    },
+    {
+      "fonte": "LOUREIRO",
+      "status": "CONFIRMADO",
+      "votos": {
+        "holds": 2,
+        "holes": 0,
+        "total": 2
+      },
+      "solucao": {
+        "itens": [
+          {
+            "id": "(5)",
+            "resposta": "T(n) = Theta(n^2)  (Caso 1 do Teorema Mestre)",
+            "justificativa": "TEOREMA MESTRE (CLRS, Teorema 4.1). Seja T(n) = a*T(n/b) + f(n), com a >= 1 e b > 1 constantes, e seja E = log_b(a). Entao:\n  Caso 1: se f(n) = O(n^(E - eps)) para algum eps > 0, entao T(n) = Theta(n^E).\n  Caso 2: se f(n) = Theta(n^E), entao T(n) = Theta(n^E * lg n).\n  Caso 3: se f(n) = Omega(n^(E + eps)) para algum eps > 0 E vale a condicao de regularidade a*f(n/b) <= c*f(n) para alguma constante c < 1 e todo n suficientemente grande, entao T(n) = Theta(f(n)).\n\nIntuicao: n^E = n^(log_b a) e o custo total das FOLHAS da arvore de recursao e f(n) e o custo da RAIZ. O teorema compara os dois: se as folhas dominam, vale Caso 1; se empatam, Caso 2 (aparece o fator lg n, que conta os niveis); se a raiz domina (e o domínio e 'estavel', o que a regularidade garante), Caso 3.\n\nAPLICACAO. T(n) = 4T(n/2) + n, logo a = 4, b = 2, f(n) = n.\nE = log_2(4) = 2, ou seja n^E = n^2.\n\nComparacao: f(n) = n = n^1 e n^E = n^2, e 1 < 2. Tome eps = 1 > 0. Entao n^(E - eps) = n^(2-1) = n, e vale\n  0 <= n <= 1 * n   para todo n >= 1,\nisto e, f(n) = O(n^(E - eps)) com testemunhas c = 1 e n0 = 1. (Qualquer eps em (0,1] serve; para 0 < eps < 1 basta n <= 1*n^(2-eps) para todo n >= 1, pois 2 - eps >= 1.)\n\nEstamos no CASO 1, e portanto\n  T(n) = Theta(n^E) = Theta(n^2).\n\nLeitura: as folhas dominam. A arvore tem log_2 n niveis, o nivel i tem 4^i subproblemas de tamanho n/2^i com custo n/2^i cada, ou seja 2^i * n por nivel; a soma geometrica e dominada pelo ultimo nivel, que vale Theta(n^2)."
+          },
+          {
+            "id": "(6)",
+            "resposta": "T(n) = Theta(n^2 * lg n)  (Caso 2 do Teorema Mestre)",
+            "justificativa": "Mesmo Teorema Mestre enunciado no item (5).\n\nAPLICACAO. T(n) = 4T(n/2) + n^2, logo a = 4, b = 2, f(n) = n^2.\nE = log_2(4) = 2, ou seja n^E = n^2.\n\nComparacao: f(n) = n^2 = n^E exatamente. Formalmente, f(n) = Theta(n^2) com testemunhas c1 = 1, c2 = 1 e n0 = 1, pois\n  1 * n^2 <= n^2 <= 1 * n^2   para todo n >= 1.\n\nEstamos no CASO 2, e portanto\n  T(n) = Theta(n^E * lg n) = Theta(n^2 * lg n).\n\nLeitura: aqui folhas e raiz custam a mesma ordem, e todos os niveis da arvore custam Theta(n^2) cada um. Como ha Theta(lg n) niveis (o nivel i tem 4^i subproblemas de tamanho n/2^i, cada um custando (n/2^i)^2 = n^2/4^i, totalizando n^2 por nivel), o custo total e n^2 vezes o numero de niveis, isto e Theta(n^2 * lg n). O fator lg n vem exatamente desse empate — ele nao aparece nos itens (5) e (7)."
+          },
+          {
+            "id": "(7)",
+            "resposta": "T(n) = Theta(n^3)  (Caso 3 do Teorema Mestre, com a condicao de regularidade verificada)",
+            "justificativa": "Mesmo Teorema Mestre enunciado no item (5).\n\nAPLICACAO. T(n) = 4T(n/2) + n^3, logo a = 4, b = 2, f(n) = n^3.\nE = log_2(4) = 2, ou seja n^E = n^2.\n\nPasso 1 — dominancia polinomial. Tome eps = 1 > 0. Entao n^(E + eps) = n^(2+1) = n^3, e vale\n  n^3 >= 1 * n^3   para todo n >= 1,\nisto e, f(n) = Omega(n^(E + eps)) com testemunhas c = 1 e n0 = 1. A raiz domina as folhas por um fator polinomial n^1.\n\nPasso 2 — condicao de regularidade (obrigatoria no Caso 3, nao basta citar). Precisamos de uma constante c < 1 com a*f(n/b) <= c*f(n) para todo n suficientemente grande:\n  a * f(n/b) = 4 * (n/2)^3 = 4 * n^3/8 = n^3/2 = 0,5 * n^3.\nLogo a*f(n/b) <= c * f(n) = c * n^3 vale com c = 1/2 < 1, para todo n >= 1 (na verdade vale com igualdade). Testemunhas: c = 1/2, n0 = 1. Condicao SATISFEITA.\n\nCom os dois passos verificados, estamos no CASO 3, e portanto\n  T(n) = Theta(f(n)) = Theta(n^3).\n\nLeitura: a raiz domina. O custo por nivel cai geometricamente por fator 1/2 (nivel 0 custa n^3, nivel 1 custa 4*(n/2)^3 = n^3/2, nivel 2 custa 16*(n/4)^3 = n^3/4, ...), e a serie geometrica soma no maximo 2*n^3 = Theta(n^3). E exatamente isso que a condicao de regularidade formaliza."
+          },
+          {
+            "id": "(8)",
+            "resposta": "a = 48",
+            "justificativa": "Mesmo Teorema Mestre enunciado no item (5).\n\nPASSO 1 — resolver A: T(n) = 7T(n/2) + n^2.\nAqui a = 7, b = 2, f(n) = n^2, e E_A = log_2(7) = 2,807354... (irracional, mas 2 < log_2(7) < 3 porque 4 < 7 < 8).\nComparacao: f(n) = n^2 e n^E_A = n^(log_2 7), com 2 < log_2(7). Tome eps = log_2(7) - 2 = 0,807354... > 0. Entao n^(E_A - eps) = n^2 e vale 0 <= n^2 <= 1 * n^2 para todo n >= 1, ou seja f(n) = O(n^(E_A - eps)) com testemunhas c = 1 e n0 = 1.\nCASO 1, portanto:\n  T(n) = Theta(n^(log_2 7)),  com log_2(7) = 2,807354...\n\nPASSO 2 — resolver A': T'(n) = a*T'(n/4) + n^2.\nAqui b = 4, f(n) = n^2, e E' = log_4(a). O resultado depende de a:\n  - se log_4(a) > 2, isto e a > 16: CASO 1 (tome eps = log_4(a) - 2 > 0; n^2 <= 1*n^2 para n >= 1) e T'(n) = Theta(n^(log_4 a));\n  - se a = 16: log_4(16) = 2, f(n) = Theta(n^2), CASO 2 e T'(n) = Theta(n^2 * lg n);\n  - se a < 16: log_4(a) < 2, CASO 3 (eps = 2 - log_4(a) > 0; regularidade: a*(n/4)^2 = (a/16)*n^2 <= c*n^2 com c = a/16 < 1) e T'(n) = Theta(n^2).\nComo queremos o MAIOR a possivel, e todo a >= 16 ja da uma classe >= Theta(n^2 lg n), o candidato relevante esta na faixa a > 16, onde T'(n) = Theta(n^(log_4 a)).\n\nPASSO 3 — a condicao 'A' e assintoticamente mais rapido que A'.\nA' e assintoticamente mais rapido que A quando T'(n) = o(T(n)), isto e quando o expoente dominante de A' e ESTRITAMENTE MENOR que o de A:\n  log_4(a) < log_2(7).\nMudando de base (ln): log_4(a) = ln a / ln 4 = ln a / (2 ln 2) e log_2(7) = ln 7 / ln 2. Logo\n  ln a / (2 ln 2) < ln 7 / ln 2\n  <=> ln a < 2 * ln 7        (multiplicando ambos os lados por 2 ln 2 > 0)\n  <=> ln a < ln (7^2)\n  <=> a < 49                  (exponencial e estritamente crescente).\nComo a deve ser inteiro (numero de subproblemas), o maior valor e\n  a = 48.\n\nPASSO 4 — por que 49 NAO serve (o ponto delicado do exercicio).\nPara a = 49: log_4(49) = ln 49 / (2 ln 2) = 2 ln 7 / (2 ln 2) = ln 7 / ln 2 = log_2(7) EXATAMENTE. Note que 49 = 7^2 e 4 = 2^2, entao log_4(49) = log_(2^2)(7^2) = log_2(7).\nNesse caso f(n) = n^2 continua sendo O(n^(log_4(49) - eps)) com eps = log_2(7) - 2 > 0, logo ainda vale o CASO 1 e\n  T'(n) = Theta(n^(log_4 49)) = Theta(n^(log_2 7)) = mesma classe de T(n).\nOs dois algoritmos ficam na MESMA classe assintotica — e um EMPATE, e empatar nao e 'ser assintoticamente mais rapido' (nao vale T'(n) = o(T(n)); a razao T'(n)/T(n) fica limitada entre duas constantes positivas, nao tende a 0). Por isso a resposta e 48, e nao 49.\n\nCONFERENCIA DOS EXPOENTES (comparacao numerica):\n  log_2(7)  = 2,807355\n  log_4(48) = 2,792481  < 2,807355  -> A' mais rapido  (VALE)\n  log_4(49) = 2,807355  = 2,807355  -> empate          (NAO vale)\n  log_4(50) = 2,821928  > 2,807355  -> A' mais lento   (NAO vale)\nE, de fato, para a = 48: T'(n) = Theta(n^2,792481) e T(n) = Theta(n^2,807355); a razao T'(n)/T(n) = Theta(n^(-0,014874)) -> 0, confirmando T'(n) = o(T(n)).\n\nRESPOSTA: a = 48, e nesse caso T'(n) = Theta(n^(log_4 48))."
+          }
+        ],
+        "observacoes": "Teorema Mestre usado em todos os itens (CLRS, Teorema 4.1), enunciado por extenso na justificativa do item (5) e referenciado nos demais: para T(n) = a*T(n/b) + f(n), com a >= 1, b > 1 e E = log_b(a) — Caso 1: f(n) = O(n^(E-eps)) para algum eps > 0 => T(n) = Theta(n^E); Caso 2: f(n) = Theta(n^E) => T(n) = Theta(n^E * lg n); Caso 3: f(n) = Omega(n^(E+eps)) para algum eps > 0 e a*f(n/b) <= c*f(n) com c < 1 para n grande => T(n) = Theta(f(n)).\n\nObservacoes de rigor: (i) em todo item o eps foi exibido numericamente e a testemunha (c, n0) da relacao O/Omega/Theta foi escrita, nunca apenas afirmada; (ii) no item (7) a condicao de regularidade foi efetivamente verificada com a conta 4*(n/2)^3 = 0,5*n^3 <= (1/2)*n^3, e nao apenas mencionada — Caso 3 sem regularidade nao esta demonstrado; (iii) no item (8) o ponto central e que a = 49 produz log_4(49) = log_2(7) exatamente (pois 49 = 7^2 e 4 = 2^2), o que coloca A' na MESMA classe Theta(n^(log_2 7)) de A: empate nao e ser mais rapido, entao o maior inteiro que serve e 48.\n\nConfianca: confirmado. Os quatro resultados sao Theta(n^2), Theta(n^2 lg n), Theta(n^3) e a = 48, coerentes com a comparacao numerica dos expoentes (log_2 7 = 2,807355; log_4 48 = 2,792481; log_4 49 = 2,807355; log_4 50 = 2,821928)."
+      },
+      "problemas": [],
+      "todosVereditos": [
+        "HOLDS",
+        "HOLDS"
+      ]
+    },
+    {
+      "fonte": "USP",
+      "status": "CONFIRMADO",
+      "votos": {
+        "holds": 3,
+        "holes": 0,
+        "total": 3
+      },
+      "solucao": {
+        "itens": [
+          {
+            "id": "2.1",
+            "resposta": "Vale a igualdade 1/(1*2) + 1/(2*3) + ... + 1/(n*(n+1)) = n/(n+1) para todo n >= 1, demonstrada por inducao sobre n.",
+            "justificativa": "ENUNCIADO DE P(n)\nPara cada inteiro n >= 1, seja P(n) a afirmacao:\n\n  P(n):  soma_{k=1}^{n} 1/(k*(k+1)) = n/(n+1).\n\nBASE (n = 1)\nLado esquerdo: a soma tem um unico termo, k = 1, e vale 1/(1*2) = 1/2.\nLado direito: n/(n+1) com n = 1 da 1/(1+1) = 1/2.\nOs dois lados valem 1/2, logo P(1) e verdadeira.\n\n(Confirmacao adicional em n = 2, so para ilustrar: 1/2 + 1/(2*3) = 1/2 + 1/6 = 2/3 = 2/(2+1).)\n\nHIPOTESE DE INDUCAO\nSeja n >= 1 um inteiro fixo e suponha que P(n) e verdadeira, isto e:\n\n  (HI)  soma_{k=1}^{n} 1/(k*(k+1)) = n/(n+1).\n\nPASSO INDUTIVO (P(n) => P(n+1))\nQueremos mostrar que soma_{k=1}^{n+1} 1/(k*(k+1)) = (n+1)/(n+2).\nSeparando o ultimo termo da soma (o termo k = n+1, que vale 1/((n+1)*(n+2))):\n\n  soma_{k=1}^{n+1} 1/(k*(k+1))\n    = [ soma_{k=1}^{n} 1/(k*(k+1)) ] + 1/((n+1)*(n+2))\n    = n/(n+1) + 1/((n+1)*(n+2))          <-- AQUI se aplica a hipotese (HI)\n\nAgora e algebra pura. Colocando tudo sobre o denominador comum (n+1)*(n+2):\n\n  n/(n+1) + 1/((n+1)*(n+2))\n    = [ n*(n+2) ] / [ (n+1)*(n+2) ]  +  1 / [ (n+1)*(n+2) ]\n    = [ n*(n+2) + 1 ] / [ (n+1)*(n+2) ]\n    = [ n^2 + 2n + 1 ] / [ (n+1)*(n+2) ]\n    = (n+1)^2 / [ (n+1)*(n+2) ]\n    = (n+1)/(n+2).\n\nObserve que (n+1) e (n+2) sao positivos para n >= 1, entao o cancelamento de um fator (n+1) e legitimo (nao ha divisao por zero).\n\nO resultado (n+1)/(n+2) e exatamente a formula m/(m+1) avaliada em m = n+1. Logo P(n+1) e verdadeira.\n\nCONCLUSAO\nP(1) vale e, para todo n >= 1, P(n) => P(n+1). Pelo Principio de Inducao Finita, P(n) vale para todo inteiro n >= 1, ou seja:\n\n  1/(1*2) + 1/(2*3) + ... + 1/(n*(n+1)) = n/(n+1)  para todo n >= 1.\n\nOBSERVACAO (por que a formula 'funciona')\nO motivo estrutural e que 1/(k*(k+1)) = 1/k - 1/(k+1), de modo que a soma telescopa e sobra 1 - 1/(n+1) = n/(n+1). Isso nao substitui a inducao pedida, mas explica por que o passo indutivo fecha tao limpo."
+          },
+          {
+            "id": "2.2",
+            "resposta": "Vale 2n^3 > 3n^2 + 3n + 1 para todo inteiro n >= 3. A base tem de ser n = 3 porque a desigualdade e FALSA em n = 1 e em n = 2.",
+            "justificativa": "ENUNCIADO DE P(n)\nPara cada inteiro n >= 3, seja P(n) a afirmacao:\n\n  P(n):  2n^3 > 3n^2 + 3n + 1.\n\nPOR QUE A BASE E n = 3 (e nao antes)\nA desigualdade nao vale para n < 3:\n  n = 1: lado esquerdo 2*1 = 2; lado direito 3 + 3 + 1 = 7. Como 2 > 7 e falso, P(1) e falsa.\n  n = 2: lado esquerdo 2*8 = 16; lado direito 3*4 + 3*2 + 1 = 12 + 6 + 1 = 19. Como 16 > 19 e falso, P(2) e falsa.\nPortanto o menor inteiro em que a afirmacao pode comecar a valer e n = 3, e e ali que a base deve ser feita. (Isso e importante: o passo indutivo abaixo so sera usado a partir de n >= 3.)\n\nBASE (n = 3)\nLado esquerdo: 2*3^3 = 2*27 = 54.\nLado direito: 3*3^2 + 3*3 + 1 = 27 + 9 + 1 = 37.\nComo 54 > 37, P(3) e verdadeira.\n\nHIPOTESE DE INDUCAO\nSeja n >= 3 um inteiro fixo e suponha que P(n) e verdadeira, isto e:\n\n  (HI)  2n^3 > 3n^2 + 3n + 1.\n\nPASSO INDUTIVO (P(n) => P(n+1), para n >= 3)\nQueremos mostrar que 2(n+1)^3 > 3(n+1)^2 + 3(n+1) + 1.\n\n1) Expandindo o lado esquerdo em n+1:\n  2(n+1)^3 = 2*(n^3 + 3n^2 + 3n + 1) = 2n^3 + 6n^2 + 6n + 2.\n\n2) Aplicando a hipotese (HI) ao pedaco 2n^3 (a desigualdade e estrita e os demais termos sao somados dos dois lados, o que preserva a desigualdade estrita):\n  2n^3 + 6n^2 + 6n + 2 > (3n^2 + 3n + 1) + 6n^2 + 6n + 2      <-- AQUI se aplica (HI)\n                        = 9n^2 + 9n + 3.\n\n3) Expandindo o lado direito em n+1:\n  3(n+1)^2 + 3(n+1) + 1 = 3*(n^2 + 2n + 1) + 3n + 3 + 1\n                        = 3n^2 + 6n + 3 + 3n + 4\n                        = 3n^2 + 9n + 7.\n\n4) Falta comparar o que obtivemos (9n^2 + 9n + 3) com o alvo (3n^2 + 9n + 7):\n  9n^2 + 9n + 3 >= 3n^2 + 9n + 7\n  <=> 9n^2 - 3n^2 >= 7 - 3\n  <=> 6n^2 >= 4.\nComo n >= 3, temos n^2 >= 9, logo 6n^2 >= 54 >= 4. (De fato 6n^2 >= 4 ja vale para todo n >= 1, pois 6*1 = 6 >= 4; para n >= 3 vale com folga enorme.) Portanto\n  9n^2 + 9n + 3 >= 3n^2 + 9n + 7.\n\n5) Encadeando 1)-4):\n  2(n+1)^3 = 2n^3 + 6n^2 + 6n + 2  >  9n^2 + 9n + 3  >=  3n^2 + 9n + 7  =  3(n+1)^2 + 3(n+1) + 1.\n\nA cadeia tem uma desigualdade estrita (>) seguida de uma nao-estrita (>=), o que da desigualdade estrita no total:\n  2(n+1)^3 > 3(n+1)^2 + 3(n+1) + 1,\nou seja, P(n+1) e verdadeira.\n\nCONCLUSAO\nP(3) vale e, para todo n >= 3, P(n) => P(n+1). Pelo Principio de Inducao Finita (com base deslocada para 3), P(n) vale para todo inteiro n >= 3:\n\n  2n^3 > 3n^2 + 3n + 1  para todo n >= 3.\n\nOBSERVACAO SOBRE A BASE DESLOCADA\nA versao do PIF usada aqui e a padrao com inicio em n0: se P(n0) vale e P(n) => P(n+1) para todo n >= n0, entao P(n) vale para todo n >= n0. Aqui n0 = 3. Nada foi afirmado sobre n = 1 e n = 2 — e bom, porque nesses pontos a afirmacao e falsa, como calculado acima."
+          },
+          {
+            "id": "2.3",
+            "resposta": "F_(5n) e multiplo de 5 para todo n >= 1 (e tambem para n = 0, pois F_0 = 0). A prova sai por inducao usando a identidade F_(5n+5) = 5*F_(5n+1) + 3*F_(5n).",
+            "justificativa": "CONVENCAO ADOTADA\nUso a convencao padrao\n  F_0 = 0,  F_1 = 1,  e  F_k = F_(k-1) + F_(k-2) para todo k >= 2.\nAssim a sequencia comeca 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...\n(Quem prefere F_1 = F_2 = 1 obtem exatamente os mesmos valores para indices >= 1, entao o enunciado nao muda.)\n\nENUNCIADO DE P(n)\nPara cada inteiro n >= 1, seja P(n) a afirmacao:\n\n  P(n):  5 divide F_(5n),  isto e, existe um inteiro t tal que F_(5n) = 5t.\n\nBASE (n = 1)\nCalculando os primeiros termos: F_0 = 0, F_1 = 1, F_2 = 1, F_3 = 2, F_4 = 3, F_5 = 5.\nLogo F_(5*1) = F_5 = 5 = 5*1, que e multiplo de 5. P(1) e verdadeira.\n(Conferindo os proximos, so para ilustrar: F_10 = 55 = 5*11, F_15 = 610 = 5*122, F_20 = 6765 = 5*1353.)\n\nLEMA (identidade que liga F_(5n+5) a F_(5n))\nAfirmo que, para todo inteiro m >= 0,\n\n  (L)  F_(m+5) = 5*F_(m+1) + 3*F_m.\n\nDemonstracao do lema: basta aplicar a recorrencia F_k = F_(k-1) + F_(k-2) cinco vezes, sempre reescrevendo tudo em funcao de F_(m+1) e F_m:\n  F_(m+2) = F_(m+1) + F_m                               = 1*F_(m+1) + 1*F_m\n  F_(m+3) = F_(m+2) + F_(m+1) = (F_(m+1) + F_m) + F_(m+1) = 2*F_(m+1) + 1*F_m\n  F_(m+4) = F_(m+3) + F_(m+2) = (2F_(m+1) + F_m) + (F_(m+1) + F_m) = 3*F_(m+1) + 2*F_m\n  F_(m+5) = F_(m+4) + F_(m+3) = (3F_(m+1) + 2F_m) + (2F_(m+1) + F_m) = 5*F_(m+1) + 3*F_m.\nIsso prova (L). (Nota: (L) e um caso particular da identidade de adicao de Fibonacci F_(m+k) = F_m*F_(k+1) + F_(m-1)*F_k, resultado padrao; com k = 5 ela da F_(m+5) = 8*F_m + 5*F_(m-1). Qualquer uma das duas serve — usarei (L), que acabei de provar do zero pela propria recorrencia.)\n\nHIPOTESE DE INDUCAO\nSeja n >= 1 um inteiro fixo e suponha que P(n) e verdadeira, isto e:\n\n  (HI)  F_(5n) = 5t  para algum inteiro t.\n\nPASSO INDUTIVO (P(n) => P(n+1))\nQueremos mostrar que 5 divide F_(5(n+1)) = F_(5n+5).\nAplicando o lema (L) com m = 5n (valido, pois 5n >= 0):\n\n  F_(5n+5) = 5*F_(5n+1) + 3*F_(5n).\n\nPela hipotese (HI), F_(5n) = 5t, logo                       <-- AQUI se aplica (HI)\n\n  F_(5n+5) = 5*F_(5n+1) + 3*(5t) = 5*( F_(5n+1) + 3t ).\n\nComo F_(5n+1) e t sao inteiros, F_(5n+1) + 3t e inteiro. Portanto F_(5n+5) e 5 vezes um inteiro, ou seja, 5 divide F_(5(n+1)). Logo P(n+1) e verdadeira.\n\nCONCLUSAO\nP(1) vale e, para todo n >= 1, P(n) => P(n+1). Pelo Principio de Inducao Finita, P(n) vale para todo inteiro n >= 1:\n\n  F_(5n) e multiplo de 5 para todo n >= 1.\n\n(Se quisermos incluir n = 0, tambem vale trivialmente: F_0 = 0 = 5*0.)\n\nCAMINHO ALTERNATIVO (equivalente)\nUsando a identidade de adicao com m = 5n e k = 5:\n  F_(5n+5) = F_(5n)*F_6 + F_(5n-1)*F_5 = 8*F_(5n) + 5*F_(5n-1).\nPela hipotese 5 | F_(5n), entao 5 | 8*F_(5n); e 5 | 5*F_(5n-1) obviamente. Como a soma de dois multiplos de 5 e multiplo de 5, segue 5 | F_(5n+5). O unico cuidado extra desse caminho e que ele exige n >= 1 (para que o indice 5n-1 seja >= 0) e o uso de um resultado que nao foi provado aqui — por isso preferi o lema (L), autocontido."
+          },
+          {
+            "id": "2.4",
+            "resposta": "(PIF) => (PBO): todo subconjunto nao-vazio S dos inteiros positivos possui elemento minimo. A prova e por absurdo: supondo que S nao tenha minimo, uma inducao mostra que nenhum inteiro positivo esta em S, logo S seria vazio.",
+            "justificativa": "O QUE SE QUER PROVAR\nPrincipio da Boa Ordenacao (PBO): se S e subconjunto dos inteiros positivos Z+ = {1, 2, 3, ...} e S e nao-vazio, entao existe m em S tal que m <= s para todo s em S (m e o elemento minimo de S).\nVamos deduzir isso admitindo apenas o Principio de Inducao Finita (PIF).\n\nESTRATEGIA\nProva por contradicao. Suponha, por absurdo, que exista S subconjunto de Z+ com S nao-vazio e SEM elemento minimo. A partir dessa suposicao, mostraremos por inducao que S nao contem nenhum inteiro positivo — o que forca S = vazio e contradiz S nao-vazio.\n\nENUNCIADO DE P(n)\nFixada a suposicao de absurdo acima, para cada inteiro n >= 1 seja P(n) a afirmacao:\n\n  P(n):  nenhum dos inteiros 1, 2, ..., n pertence a S.\n     (equivalentemente: S nao contem elemento algum <= n)\n\nATENCAO A FORMA DE P(n): ela nao fala de um unico valor, e sim de TODOS os inteiros de 1 ate n. Isso e proposital — e o modo padrao de simular inducao forte dentro do PIF comum. A hipotese de inducao, portanto, me dara de uma vez a informacao sobre 1, 2, ..., n, e nao apenas sobre n. Nao ha troca indevida de hipotese: e exatamente a afirmacao P(n) enunciada acima que sera suposta e usada.\n\nBASE (n = 1)\nAfirmo que 1 nao pertence a S. Suponha que 1 pertencesse a S. Como S esta contido em Z+, todo s em S satisfaz s >= 1; logo 1 <= s para todo s em S, e 1 pertence a S. Ou seja, 1 seria o elemento minimo de S — contradizendo a suposicao de que S nao tem minimo. Portanto 1 nao pertence a S, e P(1) e verdadeira.\n\nHIPOTESE DE INDUCAO\nSeja n >= 1 fixo e suponha P(n), isto e:\n\n  (HI)  nenhum dos inteiros 1, 2, ..., n pertence a S.\n\nPASSO INDUTIVO (P(n) => P(n+1))\nBasta mostrar que n+1 tambem nao pertence a S, pois entao nenhum dos inteiros 1, ..., n, n+1 estara em S, que e exatamente P(n+1).\nSuponha, por absurdo dentro do passo, que n+1 pertenca a S. Tome s em S qualquer. Como s e inteiro positivo, ou s <= n ou s >= n+1. O caso s <= n esta excluido pela hipotese (HI), que diz que nenhum inteiro de 1 a n esta em S.   <-- AQUI se aplica (HI)\nLogo s >= n+1 para todo s em S. Como alem disso n+1 pertence a S, concluimos que n+1 e o elemento minimo de S — contradizendo novamente a suposicao de que S nao tem minimo.\nPortanto n+1 nao pertence a S, e P(n+1) e verdadeira.\n\nAPLICACAO DO PIF\nP(1) vale e P(n) => P(n+1) para todo n >= 1. Pelo PIF, P(n) e verdadeira para todo inteiro n >= 1.\n\nFECHAMENTO DA CONTRADICAO\nSeja k um inteiro positivo qualquer. Tomando n = k, a afirmacao P(k) diz em particular que k nao pertence a S. Como k era arbitrario, nenhum inteiro positivo pertence a S. Mas S esta contido em Z+, logo S = vazio.\nIsso contradiz a hipotese de que S e nao-vazio.\n\nCONCLUSAO\nA suposicao de absurdo (existir S subconjunto de Z+, nao-vazio, sem elemento minimo) e insustentavel. Logo todo subconjunto nao-vazio de Z+ possui elemento minimo, isto e, (PIF) => (PBO). Como se queria demonstrar.\n\nCOMENTARIO CONCEITUAL (por que a prova tem esse formato)\nO PBO fala de existencia de um objeto (o minimo) dentro de um conjunto sobre o qual nao sabemos nada alem de 'nao-vazio'. Nao ha como construir esse minimo diretamente por inducao, porque inducao percorre os inteiros de baixo para cima, e nao os elementos de S. O truque e inverter: em vez de procurar o minimo, usa-se a inducao para varrer 1, 2, 3, ... e mostrar que a ausencia de minimo obriga cada um desses inteiros a ficar de fora de S. A varredura esgota Z+, e um subconjunto de Z+ que exclui todos os inteiros positivos so pode ser o vazio. O 'nao-vazio' do enunciado e justamente o que colide com esse esvaziamento.\nVale notar ainda que a reciproca tambem e verdadeira ((PBO) => (PIF)), de modo que os dois principios sao equivalentes sobre os inteiros positivos; aqui foi pedida apenas uma das direcoes."
+          }
+        ],
+        "observacoes": "Todos os quatro itens foram conferidos numericamente antes da redacao (a conferencia nao aparece nas justificativas, conforme o estilo pedido). 2.1: a igualdade em aritmetica exata de fracoes bate para n = 1..1999. 2.2: falsa em n = 1 (2 > 7) e n = 2 (16 > 19), verdadeira em n = 3 (54 > 37) e para todo n de 3 a 5000; o passo auxiliar 6n^2 >= 4 vale para todo n >= 1. 2.3: F_(5n) divisivel por 5 para n = 1..129 (F5 = 5, F10 = 55, F15 = 610, F20 = 6765); as duas identidades usadas foram verificadas exaustivamente em faixa ampla — F_(m+5) = 5F_(m+1) + 3F_m e F_(m+k) = F_m*F_(k+1) + F_(m-1)*F_k. Escolhi o lema autocontido (5F_(m+1) + 3F_m) como caminho principal por ser provado do zero pela propria recorrencia, e citei o caminho pela identidade de adicao como alternativa. 2.4: prova estrutural, sem conteudo numerico a conferir; o ponto delicado (P(n) cobrir todos os valores de 1 a n, isto e, inducao forte simulada) foi declarado explicitamente no texto, como pedido. Confianca: confirmado nos quatro itens."
+      },
+      "problemas": [],
+      "todosVereditos": [
+        "HOLDS",
+        "HOLDS",
+        "HOLDS"
+      ]
+    }
+  ],
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Resolver"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Verificar"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "IFMG:solver:1",
+      "phaseIndex": 1,
+      "phaseTitle": "Resolver",
+      "agentId": "a549029e95c7309b4",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787833863156,
+      "queuedAt": 1787833860730,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Todos os seis itens foram resolvidos e conferidos numericam…",
+      "promptPreview": "CONTEXTO DA DISCIPLINA\nIFMG Campus Formiga, Bacharelado em Ciencia da Computacao.\nDisciplina: Projeto e Analise de Algoritmos. Prof. Mario Luiz Rodrigues Oliveira. 2026/2.\nReferencia: CLRS 3a edicao. Estes sao exercicios dos MATERIAIS COMPLEMENTARES da disciplina.\n\nREGRAS OBRIGATORIAS:\n1. TESTEMUNHAS CONCRETAS. Afirmar f(n) em O(g(n)) exige exibir c > 0 e n0 > 0 NUMERICOS.\n   Theta exige c1, c2 e …",
+      "lastProgressAt": 1787834036636,
+      "tokens": 34923,
+      "toolCalls": 4,
+      "durationMs": 173080,
+      "resultPreview": "{\"itens\":[{\"id\":\"(1)\",\"resposta\":\"Verdadeiro: para todo inteiro n >= 1 vale 0^2 + 1^2 + ... + n^2 = n(n+1)(2n+1)/6. Provado por inducao em n.\",\"justificativa\":\"ENUNCIADO. Seja P(n) a proposicao\\n\\n    P(n):  soma de i^2 para i = 0 ate n  =  (2n+1)(n+1)(n)/6.\\n\\nObserve que o termo i = 0 contribui 0^2 = 0, entao a soma que comeca em 0 e igual a soma que comeca em 1; isso nao muda nada, mas justific…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "CAMPELLO:solver:1",
+      "phaseIndex": 1,
+      "phaseTitle": "Resolver",
+      "agentId": "a4489fd415aa90594",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787833862663,
+      "queuedAt": 1787833860735,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Todos os oito itens foram conferidos numericamente antes da…",
+      "promptPreview": "CONTEXTO DA DISCIPLINA\nIFMG Campus Formiga, Bacharelado em Ciencia da Computacao.\nDisciplina: Projeto e Analise de Algoritmos. Prof. Mario Luiz Rodrigues Oliveira. 2026/2.\nReferencia: CLRS 3a edicao. Estes sao exercicios dos MATERIAIS COMPLEMENTARES da disciplina.\n\nREGRAS OBRIGATORIAS:\n1. TESTEMUNHAS CONCRETAS. Afirmar f(n) em O(g(n)) exige exibir c > 0 e n0 > 0 NUMERICOS.\n   Theta exige c1, c2 e …",
+      "lastProgressAt": 1787834070962,
+      "tokens": 39713,
+      "toolCalls": 3,
+      "durationMs": 207406,
+      "resultPreview": "{\"itens\":[{\"id\":\"(1)\",\"resposta\":\"NÃO. 5n não é o(n).\",\"justificativa\":\"Definição adotada no material: f(n) é o(g(n)) se, para QUALQUER constante real c > 0, existe n0 tal que f(n) < c*g(n) para todo n >= n0. A ordem dos quantificadores é: para todo c > 0, existe n0, para todo n >= n0. Ou seja, a desigualdade tem de valer para TODA constante c, por menor que seja — e não apenas para alguma.\\n\\nPar…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "LOUREIRO:solver:1",
+      "phaseIndex": 1,
+      "phaseTitle": "Resolver",
+      "agentId": "a623f71b48f169bc0",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787833862523,
+      "queuedAt": 1787833860738,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Teorema Mestre usado em todos os itens (CLRS, Teorema 4.1),…",
+      "promptPreview": "CONTEXTO DA DISCIPLINA\nIFMG Campus Formiga, Bacharelado em Ciencia da Computacao.\nDisciplina: Projeto e Analise de Algoritmos. Prof. Mario Luiz Rodrigues Oliveira. 2026/2.\nReferencia: CLRS 3a edicao. Estes sao exercicios dos MATERIAIS COMPLEMENTARES da disciplina.\n\nREGRAS OBRIGATORIAS:\n1. TESTEMUNHAS CONCRETAS. Afirmar f(n) em O(g(n)) exige exibir c > 0 e n0 > 0 NUMERICOS.\n   Theta exige c1, c2 e …",
+      "lastProgressAt": 1787833938562,
+      "tokens": 33799,
+      "toolCalls": 3,
+      "durationMs": 76038,
+      "resultPreview": "{\"itens\":[{\"id\":\"(5)\",\"resposta\":\"T(n) = Theta(n^2)  (Caso 1 do Teorema Mestre)\",\"justificativa\":\"TEOREMA MESTRE (CLRS, Teorema 4.1). Seja T(n) = a*T(n/b) + f(n), com a >= 1 e b > 1 constantes, e seja E = log_b(a). Entao:\\n  Caso 1: se f(n) = O(n^(E - eps)) para algum eps > 0, entao T(n) = Theta(n^E).\\n  Caso 2: se f(n) = Theta(n^E), entao T(n) = Theta(n^E * lg n).\\n  Caso 3: se f(n) = Omega(n^(E …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "USP:solver:1",
+      "phaseIndex": 1,
+      "phaseTitle": "Resolver",
+      "agentId": "a20bb7b7d9ec292f1",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787833862596,
+      "queuedAt": 1787833860741,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Todos os quatro itens foram conferidos numericamente antes …",
+      "promptPreview": "CONTEXTO DA DISCIPLINA\nIFMG Campus Formiga, Bacharelado em Ciencia da Computacao.\nDisciplina: Projeto e Analise de Algoritmos. Prof. Mario Luiz Rodrigues Oliveira. 2026/2.\nReferencia: CLRS 3a edicao. Estes sao exercicios dos MATERIAIS COMPLEMENTARES da disciplina.\n\nREGRAS OBRIGATORIAS:\n1. TESTEMUNHAS CONCRETAS. Afirmar f(n) em O(g(n)) exige exibir c > 0 e n0 > 0 NUMERICOS.\n   Theta exige c1, c2 e …",
+      "lastProgressAt": 1787833984344,
+      "tokens": 34715,
+      "toolCalls": 3,
+      "durationMs": 120789,
+      "resultPreview": "{\"itens\":[{\"id\":\"2.1\",\"resposta\":\"Vale a igualdade 1/(1*2) + 1/(2*3) + ... + 1/(n*(n+1)) = n/(n+1) para todo n >= 1, demonstrada por inducao sobre n.\",\"justificativa\":\"ENUNCIADO DE P(n)\\nPara cada inteiro n >= 1, seja P(n) a afirmacao:\\n\\n  P(n):  soma_{k=1}^{n} 1/(k*(k+1)) = n/(n+1).\\n\\nBASE (n = 1)\\nLado esquerdo: a soma tem um unico termo, k = 1, e vale 1/(1*2) = 1/2.\\nLado direito: n/(n+1) com…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 5,
+      "label": "LOUREIRO:verif:1",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "adb0c7a6173cf910a",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787833942596,
+      "queuedAt": 1787833940647,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLDS",
+      "promptPreview": "Voce e um verificador adversarial. Sua tarefa e DERRUBAR a solucao abaixo, nao avalia-la.\nVoce NAO viu o raciocinio de quem resolveu. Ve apenas o enunciado e a solucao final.\nAssuma que ha um erro e procure-o.\n\n=== ENUNCIADO ===\nExercicios dos slides \"Analise de Complexidade\" do Prof. Antonio Alfredo Ferreira Loureiro\n(UFMG/ICEx/DCC), secao \"Uso do teorema\" — aplicacao do TEOREMA MESTRE.\n\n(5) T(n)…",
+      "lastProgressAt": 1787834021578,
+      "tokens": 37238,
+      "toolCalls": 2,
+      "durationMs": 78982,
+      "resultPreview": "{\"verdict\":\"HOLDS\",\"problemas\":[{\"item\":\"(8)\",\"local\":\"Cabecalho do PASSO 3: \\\"a condicao 'A' e assintoticamente mais rapido que A'\\\"\",\"padrao\":\"#60 (interpretacao trocada / A vs A')\",\"porque\":\"O enunciado pede que A' seja mais rapido que A; o cabecalho inverte os dois algoritmos. O corpo do passo imediatamente abaixo usa a direcao correta (log_4(a) < log_2(7)) e a resposta 48 nao muda, entao e ty…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 6,
+      "label": "LOUREIRO:verif:2",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "ada3b203981f2d363",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787833942605,
+      "queuedAt": 1787833940647,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLDS",
+      "promptPreview": "Voce e um verificador adversarial. Sua tarefa e DERRUBAR a solucao abaixo, nao avalia-la.\nVoce NAO viu o raciocinio de quem resolveu. Ve apenas o enunciado e a solucao final.\nAssuma que ha um erro e procure-o.\n\n=== ENUNCIADO ===\nExercicios dos slides \"Analise de Complexidade\" do Prof. Antonio Alfredo Ferreira Loureiro\n(UFMG/ICEx/DCC), secao \"Uso do teorema\" — aplicacao do TEOREMA MESTRE.\n\n(5) T(n)…",
+      "lastProgressAt": 1787833983643,
+      "tokens": 35695,
+      "toolCalls": 2,
+      "durationMs": 39345,
+      "resultPreview": "{\"verdict\":\"HOLDS\",\"problemas\":[{\"item\":\"(8)\",\"local\":\"Titulo do PASSO 3: \\\"PASSO 3 — a condicao 'A' e assintoticamente mais rapido que A'.\\\"\",\"padrao\":\"#60 (troca de leitura: quem e mais rapido que quem)\",\"porque\":\"O titulo inverte os papeis (escreve A mais rapido que A', quando o enunciado pede A' mais rapido que A). E apenas erro de digitacao no rotulo: a linha seguinte usa a condicao correta T…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 7,
+      "label": "USP:verif:1",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "ae8bd3dafbb949da6",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787833987506,
+      "queuedAt": 1787833985827,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLDS",
+      "promptPreview": "Voce e um verificador adversarial. Sua tarefa e DERRUBAR a solucao abaixo, nao avalia-la.\nVoce NAO viu o raciocinio de quem resolveu. Ve apenas o enunciado e a solucao final.\nAssuma que ha um erro e procure-o.\n\n=== ENUNCIADO ===\nExercicios do material \"O Principio de Inducao Finita\" (IME-USP), Aula 2.\nTodos devem ser provados por INDUCAO MATEMATICA.\n\n(2.1) Mostre que  1/(1*2) + 1/(2*3) + ... + 1/(…",
+      "lastProgressAt": 1787834043558,
+      "tokens": 39939,
+      "toolCalls": 3,
+      "durationMs": 56052,
+      "resultPreview": "{\"problemas\":[],\"verdict\":\"HOLDS\"}"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 8,
+      "label": "USP:verif:2",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "a39f9e0beb8673aa0",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787833987657,
+      "queuedAt": 1787833985827,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLDS",
+      "promptPreview": "Voce e um verificador adversarial. Sua tarefa e DERRUBAR a solucao abaixo, nao avalia-la.\nVoce NAO viu o raciocinio de quem resolveu. Ve apenas o enunciado e a solucao final.\nAssuma que ha um erro e procure-o.\n\n=== ENUNCIADO ===\nExercicios do material \"O Principio de Inducao Finita\" (IME-USP), Aula 2.\nTodos devem ser provados por INDUCAO MATEMATICA.\n\n(2.1) Mostre que  1/(1*2) + 1/(2*3) + ... + 1/(…",
+      "lastProgressAt": 1787834034106,
+      "tokens": 40421,
+      "toolCalls": 3,
+      "durationMs": 46449,
+      "resultPreview": "{\"verdict\":\"HOLDS\",\"problemas\":[]}"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 9,
+      "label": "USP:verif:3",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "a059b6d029602e95e",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787833987775,
+      "queuedAt": 1787833985827,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLDS",
+      "promptPreview": "Voce e um verificador adversarial. Sua tarefa e DERRUBAR a solucao abaixo, nao avalia-la.\nVoce NAO viu o raciocinio de quem resolveu. Ve apenas o enunciado e a solucao final.\nAssuma que ha um erro e procure-o.\n\n=== ENUNCIADO ===\nExercicios do material \"O Principio de Inducao Finita\" (IME-USP), Aula 2.\nTodos devem ser provados por INDUCAO MATEMATICA.\n\n(2.1) Mostre que  1/(1*2) + 1/(2*3) + ... + 1/(…",
+      "lastProgressAt": 1787834035884,
+      "tokens": 40039,
+      "toolCalls": 2,
+      "durationMs": 48108,
+      "resultPreview": "{\"problemas\":[{\"item\":\"2.2\",\"local\":\"Passo 4: \\\"De fato 6n^2 >= 4 ja vale para todo n >= 1\\\"\",\"padrao\":\"IND-5 / #40\",\"porque\":\"Observacao lateral verdadeira mas irrelevante e potencialmente confusa: a desigualdade 9n^2+9n+3 >= 3n^2+9n+7 realmente so precisa de 6n^2 >= 4, que vale desde n=1; isso poderia sugerir ao leitor que o passo indutivo vale para n>=1 e que a base poderia ser deslocada. Nao e…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 10,
+      "label": "IFMG:verif:1",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "aefa93ecaefef02ec",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787834040077,
+      "queuedAt": 1787834038211,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLE_FOUND",
+      "promptPreview": "Voce e um verificador adversarial. Sua tarefa e DERRUBAR a solucao abaixo, nao avalia-la.\nVoce NAO viu o raciocinio de quem resolveu. Ve apenas o enunciado e a solucao final.\nAssuma que ha um erro e procure-o.\n\n=== ENUNCIADO ===\nExercicios do material \"Matematica Discreta\" do Prof. Diego Mello da Silva (IFMG Campus Formiga).\n\n(1) Prove, para n inteiro positivo, que  0^2 + 1^2 + 2^2 + ... + n^2 = (…",
+      "lastProgressAt": 1787834194740,
+      "tokens": 51421,
+      "toolCalls": 5,
+      "durationMs": 154663,
+      "resultPreview": "{\"verdict\":\"HOLE_FOUND\",\"problemas\":[{\"item\":\"3\",\"local\":\"Bloco CUSTO, parágrafo das testemunhas: \\\"prova-se por inducao que F_n >= 2^((n-1)/2) para todo n >= 1, portanto C(n) >= 2*2^((n-1)/2) - 1 >= 2^(n/2) para n >= 2; isto e, C(n) = Omega(2^(n/2)) com c = 1 e n0 = 2\\\"\",\"padrao\":\"IND-1 / #23 / #17 — lema universalmente quantificado FALSO num caso de borda, e o n0 exibido nao funciona\",\"porque\":\"…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 11,
+      "label": "IFMG:verif:2",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "a8f8bbafb195e4914",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787834040031,
+      "queuedAt": 1787834038211,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLE_FOUND",
+      "promptPreview": "Voce e um verificador adversarial. Sua tarefa e DERRUBAR a solucao abaixo, nao avalia-la.\nVoce NAO viu o raciocinio de quem resolveu. Ve apenas o enunciado e a solucao final.\nAssuma que ha um erro e procure-o.\n\n=== ENUNCIADO ===\nExercicios do material \"Matematica Discreta\" do Prof. Diego Mello da Silva (IFMG Campus Formiga).\n\n(1) Prove, para n inteiro positivo, que  0^2 + 1^2 + 2^2 + ... + n^2 = (…",
+      "lastProgressAt": 1787834173371,
+      "tokens": 48696,
+      "toolCalls": 2,
+      "durationMs": 133339,
+      "resultPreview": "{\"verdict\":\"HOLE_FOUND\",\"problemas\":[{\"item\":\"3\",\"local\":\"Secao CUSTO, paragrafo 'Testemunhas para a cota inferior exponencial': \\\"prova-se por inducao que F_n >= 2^((n-1)/2) para todo n >= 1\\\"\",\"padrao\":\"#23 / IND-5\",\"porque\":\"O lema afirmado e FALSO. Em n = 2: F_2 = 1 e 2^((2-1)/2) = 2^0,5 = 1,41421... Logo 1 >= 1,414 e falso e nenhuma inducao pode provar o enunciado 'para todo n >= 1'. O lema c…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 12,
+      "label": "CAMPELLO:verif:1",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "a51b23e55246fc8e2",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787834074407,
+      "queuedAt": 1787834072510,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLDS",
+      "promptPreview": "Voce e um verificador adversarial. Sua tarefa e DERRUBAR a solucao abaixo, nao avalia-la.\nVoce NAO viu o raciocinio de quem resolveu. Ve apenas o enunciado e a solucao final.\nAssuma que ha um erro e procure-o.\n\n=== ENUNCIADO ===\nExercicios do material \"Analise de Algoritmos: Parte II\" do Prof. Ricardo J. G. B. Campello.\n\nDefinicoes usadas por esse material:\n  f(n) e o(g(n))     se para QUALQUER co…",
+      "lastProgressAt": 1787834230999,
+      "tokens": 47800,
+      "toolCalls": 3,
+      "durationMs": 156592,
+      "resultPreview": "{\"verdict\":\"HOLDS\",\"problemas\":[{\"item\":\"4\",\"local\":\"linha f(n) = log n da tabela: as quatro células dizem 'ilimitado (*)'\",\"padrao\":\"OUTRO-1 (tabela/valor exato incompleto)\",\"porque\":\"O enunciado pede o MAIOR n tal que f(n) <= t. Para f(n) = log n esse n é finito e tem forma fechada: n = 2^(10^6), 2^(3,6*10^9), 2^(2,592*10^12) e 2^(3,1536*10^15). Escrever 'ilimitado' é literalmente falso (o limit…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 13,
+      "label": "CAMPELLO:verif:2",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "a2393be702418ab3d",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787834074456,
+      "queuedAt": 1787834072510,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLE_FOUND",
+      "promptPreview": "Voce e um verificador adversarial. Sua tarefa e DERRUBAR a solucao abaixo, nao avalia-la.\nVoce NAO viu o raciocinio de quem resolveu. Ve apenas o enunciado e a solucao final.\nAssuma que ha um erro e procure-o.\n\n=== ENUNCIADO ===\nExercicios do material \"Analise de Algoritmos: Parte II\" do Prof. Ricardo J. G. B. Campello.\n\nDefinicoes usadas por esse material:\n  f(n) e o(g(n))     se para QUALQUER co…",
+      "lastProgressAt": 1787834383381,
+      "tokens": 54635,
+      "toolCalls": 6,
+      "durationMs": 308925,
+      "resultPreview": "{\"verdict\":\"HOLE_FOUND\",\"problemas\":[{\"item\":\"(4)\",\"local\":\"Linha f(n) = log n da tabela: as quatro células trazem \\\"ilimitado (*)\\\" em vez de um valor, e o rodapé (*) só calcula o caso de 1 segundo.\",\"padrao\":\"OUTRO-1 (tabela pedida não entregue completa) + afirmação literalmente falsa\",\"porque\":\"O enunciado pede \\\"o MAIOR tamanho de entrada n\\\" para CADA combinação. Para f(n) = lg n esse máximo …"
+    }
+  ],
+  "totalTokens": 539034,
+  "totalToolCalls": 41
+}

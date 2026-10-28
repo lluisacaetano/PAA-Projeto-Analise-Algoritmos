@@ -1,0 +1,26 @@
+# Placar — complementares (4 HOLDS confirma / 2 HOLE refuta)
+- C01-Loureiro-ex-5: A HOLE(baixa: "log_2 n niveis" + soma sem folhas);  B HOLE(intuição folhas dominam=>Caso 1; domínio potência de 2); C HOLDS; D HOLDS; E,F HOLDS => CONFIRMADA 4/4 (C,D,E,F);
+- C02-Loureiro-ex-6: A HOLDS;  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4; R HOLDS (rótulo reverificado) => CONFIRMADA;
+- C03-Loureiro-ex-7: A HOLDS(apres.: letra c dupla, B&B=1º caso);  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4; R HOLDS => CONFIRMADA;
+- C04-Loureiro-ex-8: A HOLDS;  B HOLDS; C HOLDS; D HOLE(ref "item (5)" errada; Θ com expoente arredondado); E1-E4 HOLDS => CONFIRMADA 4/4;
+- C05-Campello-ex-1: A HOLDS;  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4;
+- C06-Campello-ex-2: A HOLDS(apres.: "qualquer c<=5");  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4;
+- C07-Campello-ex-3: A HOLDS;  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4;
+- C08-Campello-ex-6: A HOLDS;  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4;
+- C09-Campello-ex-8: A HOLDS;  B HOLE(3 frases laterais + base do log na Resposta); C HOLDS; D HOLDS; E HOLDS; F HOLDS => CONFIRMADA 4/4 (C,D,E,F);
+- C10-Campello-ex-7: REFEITA (pede Ω(1)), 3 solvers concordam; A HOLDS; B HOLDS; C HOLE(frase: "cota superior do melhor caso não vale"); E HOLDS (texto atual: 1); F HOLDS (texto atual: 2); G,H HOLDS => CONFIRMADA 4/4 (E,F,G,H);
+- C11-Campello-ex-4: A HOLE(baixa: produto com 15,9372 impresso);  B HOLE(frase: "n representável" valor×tamanho); C HOLE(frase: "acrescenta lg k" só base 2); E1,E3 HOLDS; E4 HOLDS; E2 HOLE(k^(1/grau) geral; "todas por busca binária"; √(3·10^9)); G1 HOLDS (texto atual: 1); G3 HOLDS (texto atual: 2); G4 HOLDS (texto atual: 3); G2 HOLDS => CONFIRMADA 4/4 (G1-G4);
+- C12-Campello-ex-5: A HOLE(mat.: n_k>=n/2^k-1 falso; corrigido com x>A[n]);  B HOLDS; C HOLDS; D HOLDS; E HOLE(c2 pela metade; n_0 duplo; b duplo); G3 HOLDS (texto atual: 1); G4 HOLDS (texto atual: 2); G2 HOLDS (texto atual: 3); G1 HOLDS => CONFIRMADA 4/4 (G1-G4);
+- C13-IFMG-ex-3: A HOLDS;  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4; R HOLDS => CONFIRMADA;
+- C14-IFMG-ex-4: A HOLDS;  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4; R HOLDS => CONFIRMADA;
+- C15-IFMG-ex-1: A HOLDS;  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4;
+- C16-IFMG-ex-2: A HOLDS;  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4;
+- C17-IFMG-ex-5: A HOLE(custo unitário falso; recorrência exata "para toda entrada");  B HOLDS; C HOLDS; D HOLDS; E HOLDS => CONFIRMADA 4/4 (B,C,D,E);
+- C18-IFMG-ex-6: A HOLDS;  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4;
+- C19-Walace-IFMG-ex-1: A HOLDS;  B HOLE(frase: cancelamento = "coração do método"); C HOLE(MINHA frase nova: geométrica com S_n de i=1); E1 HOLDS (texto atual: 1); E3 HOLDS (texto atual: 2); E2 HOLDS (texto atual: 3); E4 HOLDS => CONFIRMADA 4/4 (E1-E4);
+- C20-Walace-IFMG-ex-2: A HOLDS;  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4;
+- C21-USP-ex-2-1: A HOLDS;  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4;
+- C22-USP-ex-2-2: A HOLDS;  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4;
+- C23-USP-ex-2-3: A HOLDS;  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4;
+- C24-USP-ex-2-4: A HOLDS(apres.: minimal x mínimo);  B HOLE(frase: "não há como construir o mínimo por indução"); C HOLDS (texto atual); E1,E2 HOLDS (texto atual: 3); E3 HOLDS => CONFIRMADA 4/4 (C,E1,E2,E3);
+- C25-MC458: A HOLDS (renumeração conferida);  B HOLDS; C HOLDS; D HOLDS => CONFIRMADA 4/4;

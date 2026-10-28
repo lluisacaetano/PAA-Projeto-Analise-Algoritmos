@@ -1,0 +1,356 @@
+{
+  "summary": "Resolve a prova de 2025 e os exercicios de somatorios com verificacao adversarial",
+  "agentCount": 9,
+  "logs": [
+    "Consolidado: PROVA-A=REVISAR | PROVA-B=CONFIRMADO | SOMATORIOS=CONFIRMADO"
+  ],
+  "result": [
+    {
+      "bloco": "PROVA-A",
+      "status": "REVISAR",
+      "votos": {
+        "holds": 1,
+        "holes": 1,
+        "total": 2
+      },
+      "solucao": {
+        "itens": [
+          {
+            "id": "1",
+            "resposta": "Busca por duplicação (exponential search) alternando os dois lados: para i = 0, 1, 2, ... anda-se 2^i passos para a direita (checando o detector a CADA passo), volta-se à origem, anda-se 2^i passos para a esquerda (checando a cada passo) e volta-se à origem. O algoritmo encontra a mina gastando menos de 14m passos, isto é, O(m) passos — logo f(m) = m, que é polinomial em m.",
+            "justificativa": "PARTE 1 — O ALGORITMO (3,0)\n\nModelo. A origem é a posição 0; a mina está na posição +m ou -m, com m >= 1 inteiro desconhecido. O detector, estando o agente na posição p, acusa a mina se ela estiver a no máximo um passo de distância, ou seja, se |p - (posição da mina)| <= 1. Um \"passo\" é o movimento de uma unidade; contamos passos.\n\nPor que não basta varrer um lado só. O campo é infinito e não se sabe o lado. Se o algoritmo caminhasse indefinidamente para a direita e a mina estivesse à esquerda, ele nunca terminaria. Portanto qualquer algoritmo correto tem de alternar os dois lados, e cada troca de lado obriga a voltar pela origem. É esse vaivém que precisa ser contabilizado.\n\nAlgoritmo (busca por duplicação, com sondagens alternadas):\n\n  i <- 0\n  repita\n     ande 2^i passos para a DIREITA, acionando o detector a cada passo;\n        se o detector acusar, PARE (mina encontrada)\n     volte 2^i passos, retornando à origem\n     ande 2^i passos para a ESQUERDA, acionando o detector a cada passo;\n        se o detector acusar, PARE (mina encontrada)\n     volte 2^i passos, retornando à origem\n     i <- i + 1\n  fim repita\n\nPonto essencial: o detector tem alcance 1, então NÃO se pode apenas testar no ponto final do salto de 2^i passos — a mina seria simplesmente ultrapassada sem ser vista. É preciso acionar o detector a cada passo do percurso. Isso não aumenta o número de passos (andar 2^i unidades custa 2^i passos, com ou sem sondagem), mas é o que garante a corretude e o que torna a contagem abaixo legítima.\n\nCorretude e término. Seja k o menor inteiro k >= 0 com 2^k >= m. Ele existe porque as potências de 2 crescem sem limite. Na iteração i = k, ao varrer o lado correto o agente percorre todas as posições 1, 2, ..., 2^k desse lado; como m <= 2^k, ele passa pela própria posição da mina (e, antes disso, pela posição m-1, a um passo dela). Como o detector é acionado a cada passo, a mina é acusada o mais tardar nessa iteração. Logo o algoritmo termina, e termina na iteração k ou antes.\n\nPARTE 2 — COMPLEXIDADE (2,0)\n\nSeja T(m) o número de passos no pior caso.\n\n(i) Iterações completas 0, 1, ..., k-1. Como cota superior, suponha o pior: nenhuma delas encontra a mina (encontrar antes só diminui o custo). Uma iteração completa i custa\n   2^i (ida à direita) + 2^i (volta) + 2^i (ida à esquerda) + 2^i (volta) = 4·2^i passos.\nSomando a progressão geométrica em forma fechada:\n   soma_{i=0}^{k-1} 4·2^i = 4·(2^k - 1).\n\n(ii) Iteração k. Nela a mina é certamente encontrada. O pior caso é a mina estar à ESQUERDA, pois aí gasta-se a varredura completa à direita (2^k), a volta (2^k) e no máximo mais 2^k passos à esquerda até acusá-la: no máximo 3·2^k passos. (Se estivesse à direita, custaria no máximo 2^k, ainda menos.)\n\nTotal:\n   T(m) <= 4·(2^k - 1) + 3·2^k = 7·2^k - 4 < 7·2^k.\n\nFalta relacionar 2^k com m. Pela MINIMALIDADE de k:\n   - se k >= 1, então 2^(k-1) < m, e multiplicando por 2: 2^k < 2m;\n   - se k = 0, então 2^k = 1 <= m < 2m (pois m >= 1).\nEm ambos os casos 2^k < 2m. Portanto\n   T(m) < 7·(2m) = 14m  para todo m >= 1.\n\nTestemunhas: c = 14 e m0 = 1 satisfazem 0 <= T(m) <= c·m para todo m >= m0. Confirindo em m = m0 = 1 exatamente: com m = 1 tem-se k = 0 e o algoritmo acusa a mina já no primeiro passo (na verdade a mina está a um passo da origem, então T(1) = 0 ou 1), e 1 <= 14·1. A desigualdade vale.\n\nConclusão: T(m) = O(m). Tomando f(m) = m, o algoritmo roda em O(f(m)) passos com f polinomial (grau 1) em m, como exigido.\n\nObservação sobre alternativas. A estratégia ingênua de alternar os lados com incrementos 1, 2, 3, 4, ... (isto é, ir j passos para cada lado na j-ésima rodada) também é correta, mas custa da ordem de 1 + 2 + ... + m = m(m+1)/2 = Theta(m^2) passos: é polinomial e portanto aceitável pelo enunciado, mas estritamente pior. A duplicação atinge Theta(m), que é ótimo a menos de constante, já que qualquer algoritmo precisa de pelo menos m-1 passos para chegar à vizinhança da mina."
+          },
+          {
+            "id": "2a",
+            "resposta": "FALSA.",
+            "justificativa": "AFIRMATIVA: se f(n) = O(u(n)) e g(n) = O(v(n)), então f(n) - g(n) = O(u(n) - v(n)).\n\nÉ FALSA. Dois motivos independentes.\n\nMotivo 1 — contraexemplo concreto.\nTome\n   f(n) = 2n,  u(n) = n,  g(n) = n,  v(n) = n.\nTodas são assintoticamente não negativas.\n\n(1) f(n) = O(u(n)): tomando c = 2 e n0 = 1, vale 0 <= 2n <= 2·n para todo n >= 1. Em n = n0 = 1: 0 <= 2 <= 2. OK.\n(2) g(n) = O(v(n)): tomando c = 1 e n0 = 1, vale 0 <= n <= 1·n para todo n >= 1. Em n = n0 = 1: 0 <= 1 <= 1. OK.\n\nMas\n   f(n) - g(n) = 2n - n = n   e   u(n) - v(n) = n - n = 0.\nSe f - g estivesse em O(u - v), existiriam c > 0 e n0 tais que 0 <= n <= c·0 = 0 para todo n >= n0. Isso obriga n <= 0 para todo n >= n0, o que é falso já em n = n0 (por exemplo, para qualquer n0 >= 1, em n = n0 >= 1 teríamos 1 <= n0 <= 0, absurdo). Como nenhum par (c, n0) serve, f(n) - g(n) NÃO pertence a O(u(n) - v(n)).\n\nMotivo 2 — a expressão pode nem estar bem definida.\nA definição de O(h(n)) pressupõe h assintoticamente não negativa (é a hipótese padrão do CLRS para que a classe faça sentido). Nada nas hipóteses garante que u(n) - v(n) seja assintoticamente não negativa: basta tomar u(n) = n e v(n) = n^2, com f(n) = n em O(u) e g(n) = n^2 em O(v); aí u(n) - v(n) = n - n^2 < 0 para todo n >= 2, e a própria notação O(u - v) fica mal formada. Ou seja, além de a implicação falhar, o lado direito pode sequer denotar uma classe legítima.\n\nA raiz do erro: a notação O é fechada para SOMA (se f = O(u) e g = O(v), então f + g = O(u + v), pois as cotas superiores se somam), mas não para subtração: subtrair destrói a monotonia das desigualdades — de f <= c1·u e g <= c2·v não se conclui nada sobre f - g comparado a u - v, porque a cota de g é superior, e o que se precisaria ali seria uma cota INFERIOR de g."
+          },
+          {
+            "id": "2b",
+            "resposta": "VERDADEIRA.",
+            "justificativa": "AFIRMATIVA: se f(n) = O(g(n)), então g(n) = Omega(f(n)).\n\nÉ VERDADEIRA. As duas notações expressam a MESMA desigualdade, lida de um lado e do outro.\n\nHipótese. f(n) = O(g(n)) significa: existem uma constante c > 0 e um n0 > 0 tais que\n   0 <= f(n) <= c·g(n)   para todo n >= n0.   (*)\nAqui c e n0 são fixados de uma vez e não dependem de n.\n\nTese. Queremos exibir uma constante d > 0 e um m0 > 0 tais que\n   0 <= d·f(n) <= g(n)   para todo n >= m0,\nque é exatamente a definição de g(n) = Omega(f(n)).\n\nConstrução das testemunhas. Tome\n   d = 1/c   e   m0 = n0.\nA escolha é legítima: como c > 0 estritamente, 1/c está definido e 1/c > 0. Além disso d e m0 são constantes — não dependem de n.\n\nVerificação. Seja n >= m0 = n0 qualquer. Por (*), f(n) <= c·g(n). Dividindo ambos os lados por c > 0 (o que preserva o sentido da desigualdade, pois c é positivo):\n   (1/c)·f(n) <= g(n),  isto é,  d·f(n) <= g(n).\nFalta a não negatividade: por (*) também vale f(n) >= 0, e como d > 0, temos d·f(n) >= 0. Juntando,\n   0 <= d·f(n) <= g(n)   para todo n >= m0.\n\nIsso é precisamente a definição de g(n) = Omega(f(n)), com testemunhas d = 1/c e m0 = n0. Como o argumento vale para qualquer par (c, n0) dado pela hipótese, a implicação é verdadeira em geral.\n\nExemplo ilustrativo (não é a prova, apenas leitura concreta): f(n) = n, g(n) = n^2, com c = 1 e n0 = 1 dão n <= n^2 para n >= 1; então d = 1 e m0 = 1 dão 0 <= n <= n^2, ou seja, n^2 = Omega(n)."
+          },
+          {
+            "id": "2c",
+            "resposta": "VERDADEIRA (é o Teorema 3.1 do CLRS, na direção \"O e Omega implicam Theta\").",
+            "justificativa": "AFIRMATIVA: se f(n) = O(g(n)) e g(n) = O(f(n)), então f(n) = Theta(g(n)).\n\nÉ VERDADEIRA.\n\nHipóteses (com nomes de constantes distintos, para não colidirem).\n(H1) f(n) = O(g(n)): existem b > 0 e n1 > 0 com 0 <= f(n) <= b·g(n) para todo n >= n1.\n(H2) g(n) = O(f(n)): existem a > 0 e n2 > 0 com 0 <= g(n) <= a·f(n) para todo n >= n2.\n\nDe (H2), dividindo por a > 0 (permitido, pois a é estritamente positivo, e a divisão por positivo preserva a desigualdade):\n   (1/a)·g(n) <= f(n)   para todo n >= n2.   (**)\nOu seja, (H2) fornece uma cota INFERIOR para f em termos de g — que é justamente o que falta para Theta.\n\nTese. Queremos c1 > 0, c2 > 0 e n0 > 0 com\n   0 <= c1·g(n) <= f(n) <= c2·g(n)   para todo n >= n0,\nque é a definição de f(n) = Theta(g(n)).\n\nConstrução das testemunhas. Tome\n   c1 = 1/a,   c2 = b,   n0 = max(n1, n2).\nSão legítimas: a > 0 garante c1 = 1/a > 0; b > 0 por (H1); e n0 é uma constante, o máximo de duas constantes, não dependendo de n.\n\nVerificação. Seja n >= n0 qualquer. Então n >= n1 e n >= n2 simultaneamente, de modo que valem (H1) e (**) ao mesmo tempo:\n   - de (**):  c1·g(n) = (1/a)·g(n) <= f(n);\n   - de (H1):  f(n) <= b·g(n) = c2·g(n);\n   - não negatividade: g(n) >= 0 (hipótese do enunciado, f e g assintoticamente não negativas; alternativamente, de 0 <= f(n) <= b·g(n) com b > 0 já segue g(n) >= 0 para n >= n1), e como c1 > 0, tem-se c1·g(n) >= 0.\nEncadeando:\n   0 <= c1·g(n) <= f(n) <= c2·g(n)   para todo n >= n0.\n\nIsso é exatamente a definição de f(n) = Theta(g(n)), com testemunhas c1 = 1/a, c2 = b e n0 = max(n1, n2). Logo a implicação é verdadeira.\n\nLeitura conceitual: f = O(g) diz que f não cresce mais rápido que g; g = O(f) diz que g não cresce mais rápido que f; as duas juntas prendem f entre dois múltiplos positivos de g, que é a mesma taxa de crescimento a menos de constantes — Theta. Note também a coerência com o item (b): por (b), g = O(f) equivale a f = Omega(g); portanto as hipóteses dizem f = O(g) e f = Omega(g), e Theta é precisamente a conjunção de O com Omega.\n\nExemplo ilustrativo: f(n) = 3n + 5 e g(n) = n. Vale 3n + 5 <= 8n para n >= 1 (b = 8, n1 = 1) e n <= 1·(3n + 5) para n >= 1 (a = 1, n2 = 1); logo c1 = 1, c2 = 8, n0 = 1, e 0 <= n <= 3n + 5 <= 8n para todo n >= 1 — conferindo em n = 1: 0 <= 1 <= 8 <= 8. Correto."
+          }
+        ],
+        "observacoes": "Q1: a análise apresentada é a honesta quanto ao pior caso — na última fase (i = k) o pior caso é a mina estar à ESQUERDA, o que custa 3·2^k (ida à direita + volta + ida à esquerda), e não apenas 2^k. Isso dá T(m) < 7·2^k < 14m, com testemunhas c = 14 e m0 = 1. Conferência numérica da fórmula fechada 4(2^k - 1) + 2·2^k + min(m-1, 2^k) para m de 1 a 200000: razão passos/m fica entre 1,5 e 13,0 (máximo em m = 131074), confirmando a cota 14m e que ela é justa. A constante exata é irrelevante para a conclusão O(m); qualquer solução polinomial seria aceita, mas a duplicação dá Theta(m).\n\nQ2(a): dois motivos independentes citados (contraexemplo f=2n, u=n, g=n, v=n; e a possível má formação de O(u-v) quando u-v não é assintoticamente não negativa).\n\nQ2(b) e (c): constantes nomeadas de forma a não colidir (c/d em (b); a, b, n1, n2 em (c)), com verificação da não negatividade e do valor em n = n0.\n"
+      },
+      "problemas": [
+        {
+          "item": "1",
+          "local": "Pseudocódigo do algoritmo (laço principal) — o detector só é acionado \"a cada passo\" DURANTE as varridas de ida; nunca na posição inicial 0, nem durante as voltas.",
+          "padrao": "#17 FENCEPOST / ALG-1",
+          "porque": "Simulei o pseudocódigo exatamente como escrito. Para m = 1 o detector nunca é consultado antes do primeiro passo, então: (a) mina em +1 → o agente dá 1 passo e PISA na mina (posição do agente = posição da mina) — a acusação só ocorre porque ele chegou em cima dela, não a um passo dela; (b) mina em -1 → estando na origem a distância é 1 e o detector acusaria, mas o algoritmo não sonda ali (nem na ida inicial nem na volta), gasta 1 passo à direita, 1 de volta e 1 à esquerda, pisando na mina em -1. O propósito declarado do alcance 1 (\"parar ANTES da mina\") é violado exatamente no caso de fronteira m = 1. Para m >= 2 o algoritmo de fato para em m-1 (verificado por simulação), então o defeito é exclusivamente do ponto de fronteira.",
+          "corrigivel": "Sim, uma linha: acionar o detector na origem antes de entrar no laço (e, opcionalmente, também nas voltas). Não altera a contagem assintótica."
+        },
+        {
+          "item": "1",
+          "local": "Parte 2, parágrafo \"Testemunhas: c = 14 e m0 = 1 ... com m = 1 tem-se k = 0 e o algoritmo acusa a mina já no primeiro passo (na verdade a mina está a um passo da origem, então T(1) = 0 ou 1)\".",
+          "padrao": "#17 FENCEPOST (substituição literal em m = m0)",
+          "porque": "A conferência no próprio m0 declarado está ERRADA e contradiz a fórmula da própria solução. A cota fechada dela dá T(1) <= 7·2^0 - 4 = 3, e a simulação do pseudocódigo dá exatamente T(1) = 3 no pior caso (mina em -1: 1 passo à direita, 1 de volta, 1 à esquerda), não \"0 ou 1\". Além disso T(1) = 0 é impossível sob o pseudocódigo escrito, pois ele não sonda a origem — o valor 0 pressupõe uma sondagem inicial que o algoritmo não faz (inconsistência interna com o item anterior). A afirmação \"o algoritmo acusa a mina já no primeiro passo\" só vale se a mina estiver à direita, isto é, no caso MELHOR, não no pior — e a análise é de pior caso.",
+          "corrigivel": "Sim: trocar por \"T(1) = 3 <= 14·1\". A testemunha (c = 14, m0 = 1) em si SOBREVIVE — simulei m = 1..39 e a razão máxima T(m)/m foi ~12,15 (em m = 34), sempre < 14. A conclusão T(m) = O(m) permanece válida; o que falha é a verificação escrita."
+        },
+        {
+          "item": "1",
+          "local": "Observação final: \"qualquer algoritmo precisa de pelo menos m-1 passos para chegar à vizinhança da mina\", usada para concluir Theta(m) e otimalidade.",
+          "padrao": "#40 PASSO LIMPO DEMAIS / OUTRO (limite afirmado sem prova)",
+          "porque": "A cota inferior é apenas afirmada, sem argumento (nem sequer o trivial: para acusar a mina em m é preciso ocupar alguma posição a distância <= 1 dela, logo >= m-1 movimentos). Como é dela que sai a alegação de Theta(m) e de otimalidade, o Theta fica sustentado por uma asserção não demonstrada. Severidade baixa: a cota é verdadeira e o enunciado pede apenas O(f(m)) polinomial, e o trecho é explicitamente rotulado como observação extra.",
+          "corrigivel": "Sim: uma frase de justificativa, ou simplesmente suprimir a alegação de Theta/otimalidade, que não é exigida."
+        }
+      ],
+      "todosVereditos": [
+        "HOLE_FOUND",
+        "HOLDS"
+      ]
+    },
+    {
+      "bloco": "PROVA-B",
+      "status": "CONFIRMADO",
+      "votos": {
+        "holds": 2,
+        "holes": 0,
+        "total": 2
+      },
+      "solucao": {
+        "itens": [
+          {
+            "id": "3a",
+            "resposta": "V (verdadeira) — mas é um limite superior correto e NÃO justo",
+            "justificativa": "Sentença: a solução de T(n) = 2T(n/7) + n pertence a O(n^2). VERDADEIRA.\n\n1) Resolução da recorrência pelo Teorema Mestre (forma de Brassard & Bratley).\nA recorrência tem o formato T(n) = a*T(n/b) + c*n^k, com a = 2, b = 7, k = 1 e c = 1 (todos naturais, a >= 1, b >= 2, k >= 0, c > 0). Supomos, como na hipótese do teorema, n potência exata de 7 e T assintoticamente não decrescente.\nCompara-se a com b^k:\n  b^k = 7^1 = 7  e  a = 2.\nComo a = 2 < 7 = b^k, estamos no primeiro caso, logo\n  T(n) = Theta(n^k) = Theta(n).\n\nIntuição (por que o caso 'a < b^k' dá Theta(n)): o custo total é a soma dos níveis da árvore de recursão. O nível i tem 2^i subproblemas de tamanho n/7^i, cada um custando n/7^i, ou seja, o nível i custa (2/7)^i * n. Somando:\n  n * SOMA_{i>=0} (2/7)^i = n * 1/(1 - 2/7) = n * 7/5 = 1,4n.\nA série é geométrica de razão 2/7 < 1, portanto converge para uma constante: o custo é dominado pela raiz e o total é Theta(n).\n\n2) De Theta(n) para O(n^2).\nT(n) = Theta(n) implica em particular T(n) = O(n): existem c0 > 0 e n1 tais que T(n) <= c0*n para todo n >= n1. Como n <= n^2 para todo n >= 1, segue\n  T(n) <= c0*n <= c0*n^2  para todo n >= max(n1, 1).\nTESTEMUNHAS: c = c0 e n0 = max(n1, 1). Verificação em n = n0: T(n0) <= c0*n0 <= c0*n0^2, pois n0 >= 1. Logo T(n) pertence a O(n^2) e a sentença é VERDADEIRA.\n\n3) Observação que a questão pede implicitamente: O(n^2) é um limite superior VÁLIDO porém FROUXO (não justo). O limite superior justo é O(n), pois T(n) = Theta(n). Isso não torna a sentença falsa: a notação O é apenas um teto, não uma promessa de ajuste fino — Theta(n) está contido em O(n^2), assim como está contido em O(n^3), O(2^n) etc."
+          },
+          {
+            "id": "3b",
+            "resposta": "V (verdadeira)",
+            "justificativa": "Sentença: f(n) = 3n^2 - n + 4 pertence a Theta(n^2). VERDADEIRA.\n\nPela definição, precisamos exibir c1 > 0, c2 > 0 e n0 tais que\n  0 <= c1*n^2 <= 3n^2 - n + 4 <= c2*n^2  para todo n >= n0.\n\nTESTEMUNHAS: c1 = 2, c2 = 6, n0 = 1.\n\n(i) Limite inferior: 2n^2 <= 3n^2 - n + 4.\nEquivale a 0 <= 3n^2 - n + 4 - 2n^2 = n^2 - n + 4.\nO polinômio n^2 - n + 4 tem discriminante D = (-1)^2 - 4*1*4 = 1 - 16 = -15 < 0 e coeficiente líder 1 > 0, logo não possui raízes reais e é estritamente positivo para TODO n real. Em particular vale para todo n >= 1.\nConferindo em n = n0 = 1: 2*1^2 = 2 e f(1) = 3 - 1 + 4 = 6; de fato 2 <= 6. OK.\n\n(ii) Limite superior: 3n^2 - n + 4 <= 6n^2.\nEquivale a 0 <= 6n^2 - 3n^2 + n - 4 = 3n^2 + n - 4 = (3n + 4)(n - 1).\nPara n >= 1 tem-se 3n + 4 > 0 e n - 1 >= 0, logo o produto é >= 0. Vale para todo n >= 1.\nConferindo em n = n0 = 1: f(1) = 6 e 6*1^2 = 6; de fato 6 <= 6 (igualdade, e a definição usa <=). OK.\n\n(iii) Positividade: para n >= 1, f(n) >= 2n^2 > 0, então as três quantidades da definição são não negativas.\n\nComo as duas desigualdades valem simultaneamente a partir de n0 = 1, concluímos f(n) = Theta(n^2).\n\nCUIDADO COM O FENCEPOST: a escolha c2 = 4 com n0 = 1 seria ERRADA, pois em n = 1 teríamos f(1) = 6 e 4*1^2 = 4, e 6 <= 4 é falso. Com c2 = 4 seria necessário n0 = 2 (f(2) = 12 - 2 + 4 = 14 <= 4*4 = 16, e 4n^2 - 3n^2 + n - 4 = n^2 + n - 4 >= 0 para n >= 2). Por isso conferimos a desigualdade exatamente em n = n0.\n\nComentário conceitual: o resultado é o caso particular do fato geral de que todo polinômio de grau d com coeficiente líder positivo é Theta(n^d) — os termos de menor ordem (-n e +4) e a constante multiplicativa 3 são exatamente o que a notação assintótica descarta."
+          },
+          {
+            "id": "3c",
+            "resposta": "V (verdadeira)",
+            "justificativa": "Sentença: f e g assintoticamente positivas, g domina assintoticamente f; então f(n) + g(n) pertence a Omega(f(n)). VERDADEIRA.\n\nPor definição, f e g assintoticamente positivas significa que existem N1 e N2 com f(n) > 0 para n >= N1 e g(n) > 0 para n >= N2. Tome N = max(N1, N2).\n\nPara todo n >= N vale g(n) > 0, logo\n  f(n) + g(n) >= f(n) + 0 = f(n) = 1 * f(n),\ne além disso f(n) + g(n) > 0, de modo que ambos os lados são positivos, como exige a definição.\n\nTESTEMUNHAS: c = 1 e n0 = N. Conferindo exatamente em n = n0 = N: f(N) + g(N) >= f(N) porque g(N) > 0. OK.\n\nPortanto existe c = 1 > 0 e existe n0 = N tais que, para todo n >= n0, f(n) + g(n) >= c*f(n), ou seja, f(n) + g(n) = Omega(f(n)).\n\nOBSERVAÇÃO IMPORTANTE: a hipótese de que g DOMINA assintoticamente f (isto é, f(n) = o(g(n)), ou f(n)/g(n) -> 0) NÃO foi utilizada e NÃO é necessária. A conclusão vale para quaisquer f e g assintoticamente não negativas — basta que g não seja negativa a partir de certo ponto para que somar g só possa aumentar o valor. A dominância é, aqui, dado supérfluo do enunciado (as instruções da prova alertam que pode haver informação supérflua). O que a dominância acrescenta, se quisermos usá-la, é o resultado MAIS FORTE f(n) + g(n) = Theta(g(n)): como f(n) <= g(n) a partir de certo ponto, tem-se g(n) <= f(n) + g(n) <= 2g(n).\n\nEsta sentença é exatamente a mesma da Questão 4(b), e a resposta lá é a mesma: sim, pode-se afirmar."
+          },
+          {
+            "id": "4a",
+            "resposta": "É perfeitamente possível: Theta descarta constantes multiplicativas e termos de menor ordem, e só garante o comportamento a partir de um n0; para n pequeno as constantes mandam.",
+            "justificativa": "A situação descrita não contradiz coisa alguma. A notação Theta é uma afirmação sobre o COMPORTAMENTO ASSINTÓTICO, isto é, sobre o que acontece quando n cresce indefinidamente, e ela deliberadamente joga fora duas coisas: (i) as CONSTANTES MULTIPLICATIVAS e (ii) os TERMOS DE MENOR ORDEM. Além disso, a própria definição só exige que as desigualdades valham 'para todo n >= n0' — nada é prometido para os n pequenos.\n\nPar concreto que reproduz exatamente o relato de Alice e Bob:\n  Alice: T_A(n) = 15*n*lg n + 20   (de fato Theta(n lg n))\n  Bob:   T_B(n) = n^2             (de fato Theta(n^2))\n\nValores:\n  n = 1:   T_A = 20        contra T_B = 1          -> Bob mais rápido\n  n = 50:  T_A ~ 4.253     contra T_B = 2.500      -> Bob mais rápido\n  n = 99:  T_A ~ 9.865     contra T_B = 9.801      -> Bob mais rápido\n  n = 100: T_A ~ 9.986     contra T_B = 10.000     -> ALICE mais rápida\n  n = 1000: T_A ~ 149.507  contra T_B = 1.000.000  -> Alice mais rápida, e por muito\n\nO termo constante +20 é ESSENCIAL no exemplo: sem ele teríamos T_A(1) = 15*1*lg 1 = 0, pois lg 1 = 0, e Alice 'venceria' em n = 1 com tempo zero, o que contradiria o enunciado. Nenhum algoritmo real custa zero: sempre há um custo fixo de inicialização, e é ele que o termo constante modela.\n\nPONTO DE CRUZAMENTO. Igualando as duas funções (na forma dominante) 15*n*lg n = n^2 e dividindo por n*lg n — divisão legítima apenas para n >= 2, pois exige lg n > 0 — obtemos\n  n / lg n = 15.\nA função n/lg n tem mínimo em n = e e é monótona crescente a partir daí; restringindo-nos a n >= 3, ela é crescente e portanto a raiz é única. Numericamente,\n  99 / lg 99  = 99 / 6,6294  ~ 14,93  (< 15)\n  100 / lg 100 = 100 / 6,6439 ~ 15,05  (> 15)\nou seja, o cruzamento ocorre em n ~ 99,82, ENTRE 99 e 100 — não 'exatamente em 100'. Como n é inteiro, o primeiro inteiro em que Alice passa a vencer é n = 100, exatamente o que Alice e Bob observaram.\n\nCUIDADO CONCEITUAL: esse 100 é o PONTO DE CRUZAMENTO entre T_A e T_B, provocado pela constante multiplicativa 15 de Alice; ele NÃO é o n0 das definições de Theta de cada algoritmo (para T_A e T_B as testemunhas de Theta podem ser obtidas já com n0 = 2). É um erro chamar o cruzamento de 'n0 do par'.\n\nO que mais pode explicar a diferença na prática, além da constante multiplicativa:\n- TERMOS DE MENOR ORDEM: o algoritmo de Alice pode custar, digamos, 15n lg n + 40n + 20; para n pequeno os termos 40n e 20 pesam mais que o termo dominante.\n- FATORES QUE O MODELO RAM NÃO ENXERGA: localidade de cache (um algoritmo simples e sequencial percorre memória contígua e sofre menos cache miss), custo de chamada de função e de recursão (empilhar/desempilhar quadros), alocação de memória auxiliar e cópia de vetores.\n\nESTE É EXATAMENTE O CASO CLÁSSICO insertion sort vs. mergesort: insertion sort é Theta(n^2) mas com constante minúscula e ótimo comportamento de cache, sendo mais rápido para entradas pequenas; mergesort é Theta(n lg n) mas paga recursão e vetor auxiliar. Por isso implementações reais de mergesort/quicksort trocam para insertion sort quando o subvetor fica menor que um limiar (tipicamente entre 10 e 50 elementos).\n\nCONCLUSÃO: Alice está certa assintoticamente — para n suficientemente grande seu algoritmo é melhor, e a vantagem cresce sem limite. Mas 'assintoticamente melhor' não significa 'melhor para todo n'. Se a aplicação só processa entradas com n < 100, o algoritmo de Bob é a escolha correta."
+          },
+          {
+            "id": "4b",
+            "resposta": "Sim, pode-se afirmar: f(n) + g(n) pertence a Omega(f(n))",
+            "justificativa": "Sim. E a demonstração é a mesma da Questão 3(c) — as duas questões são a MESMA sentença, e por isso as respostas são idênticas e consistentes.\n\nHipóteses: f e g são assintoticamente positivas, ou seja, existem N1 e N2 tais que f(n) > 0 para todo n >= N1 e g(n) > 0 para todo n >= N2. Defina N = max(N1, N2).\n\nDemonstração formal. Precisamos exibir c > 0 e n0 tais que 0 <= c*f(n) <= f(n) + g(n) para todo n >= n0.\nTome c = 1 e n0 = N.\nPara todo n >= n0 = N:\n  - f(n) > 0, logo c*f(n) = f(n) > 0 (a condição de não negatividade está satisfeita);\n  - g(n) > 0, portanto f(n) + g(n) >= f(n) + 0 = f(n) = c*f(n).\nConferência exatamente em n = n0 = N: f(N) + g(N) >= f(N), pois g(N) > 0. A desigualdade vale já no primeiro ponto, sem erro de fencepost.\n\nComo exibimos testemunhas concretas c = 1 e n0 = N, satisfazendo a definição 'existe c > 0, existe n0, para todo n >= n0', concluímos\n  f(n) + g(n) = Omega(f(n)).\n\nOBSERVAÇÃO QUE VALE PONTOS: a hipótese de que g DOMINA assintoticamente f (f(n) = o(g(n))) NÃO foi usada em momento algum e é desnecessária. O argumento só precisa que g seja não negativa a partir de certo ponto — somar uma parcela não negativa nunca diminui o valor. Logo a afirmação vale para QUAISQUER f e g assintoticamente não negativas; a dominância é informação supérflua do enunciado.\n\nSe quisermos usar a dominância, ela permite uma conclusão mais forte: como f(n) = o(g(n)) implica f(n) <= g(n) a partir de certo ponto N', temos, para n >= max(N, N'),\n  1*g(n) <= f(n) + g(n) <= 2*g(n),\nou seja, f(n) + g(n) = Theta(g(n)) — a soma é governada pela função dominante (regra da soma). Isso, aliás, também dá Omega(f(n)), já que g(n) >= f(n) nessa faixa."
+          },
+          {
+            "id": "5a",
+            "resposta": "Algoritmo A: Theta(n). Algoritmo B: Theta(n).",
+            "justificativa": "ALGORITMO A. Ele gera UM ÚNICO subproblema de tamanho n/5 e gasta Theta(n) para dividir/combinar. A recorrência é\n  T_A(n) = T_A(n/5) + Theta(n),  com T_A(1) = Theta(1).\n\nAplicando o Teorema Mestre na forma de Brassard & Bratley (T(n) = a*T(n/b) + c*n^k):\n  a = 1 (um único subproblema), b = 5, k = 1, c > 0.\n  b^k = 5^1 = 5.\nComo a = 1 < 5 = b^k, cai-se no primeiro caso e\n  T_A(n) = Theta(n^k) = Theta(n).\n\nIntuição / verificação pela árvore de recursão: a árvore é um caminho (um filho por nível). O nível i custa c*(n/5^i). Somando a série geométrica de razão 1/5:\n  c*n * SOMA_{i>=0} (1/5)^i = c*n * 1/(1 - 1/5) = c*n * 5/4 = 1,25*c*n.\nÉ uma série geométrica DECRESCENTE: o termo do topo domina e a soma total é apenas uma constante (5/4) vezes o custo da raiz. Daí T_A(n) = Theta(n). A profundidade da recursão é log_5 n = Theta(log n).\n\nATENÇÃO À PEGADINHA: é tentador achar que 'dividir em subproblemas' produz algo logarítmico, mas aqui o custo de combinação é linear e é ele que domina; a redução de tamanho por fator 5 só faz a série convergir.\n\nALGORITMO B. Ele gera UM ÚNICO subproblema de tamanho n-1 e combina em tempo constante:\n  T_B(n) = T_B(n-1) + Theta(1),  com T_B(1) = Theta(1).\n\nO TEOREMA MESTRE NÃO SE APLICA aqui: a recorrência não tem o formato a*T(n/b) + f(n) — o tamanho do subproblema é obtido por SUBTRAÇÃO (n-1) e não por DIVISÃO (n/b). Resolve-se por expansão (método iterativo). Escrevendo o custo de combinação como uma constante c > 0:\n  T_B(n) = T_B(n-1) + c\n         = T_B(n-2) + 2c\n         = T_B(n-3) + 3c\n         = ...\n         = T_B(n-i) + i*c.\nParando em n - i = 1, isto é, i = n - 1:\n  T_B(n) = T_B(1) + (n-1)*c = c*n + (T_B(1) - c).\nEm forma fechada, o somatório é SOMA_{i=1}^{n-1} c = c*(n-1), mais o caso base.\n\nPortanto T_B(n) = c*n + d, uma função linear em n, e assim T_B(n) = Theta(n).\nTestemunhas (supondo T_B(1) = c, ou seja, T_B(n) = c*n): c1 = c, c2 = c, n0 = 1, pois c*n <= c*n <= c*n para todo n >= 1. No caso geral T_B(n) = c*n + d com d >= 0, valem c1 = c e c2 = c + d com n0 = 1, já que c*n <= c*n + d <= (c+d)*n para n >= 1 (conferindo em n = 1: c <= c + d <= c + d, correto).\n\nCONCLUSÃO DE (a): T_A(n) = Theta(n) e T_B(n) = Theta(n)."
+          },
+          {
+            "id": "5b",
+            "resposta": "Nenhum dos dois — são assintoticamente equivalentes, ambos Theta(n).",
+            "justificativa": "Como mostrado em (a), T_A(n) = Theta(n) e T_B(n) = Theta(n). Logo T_A(n) = Theta(T_B(n)) e T_B(n) = Theta(T_A(n)): as duas funções de custo pertencem à MESMA classe assintótica. Portanto NENHUM dos dois algoritmos é assintoticamente mais eficiente que o outro no pior caso — eles são assintoticamente EQUIVALENTES.\n\nEsta é a pegadinha da questão: a aparência dos dois algoritmos é bem diferente (um reduz o tamanho por um fator 5 com combinação linear, o outro reduz de 1 em 1 com combinação constante), mas os dois efeitos se compensam exatamente. Em A a recursão é rasa (log_5 n níveis) e cada nível é caro (linear, em série geométrica que converge para 5n/4); em B a recursão é profunda (n níveis) e cada nível é barato (constante, somando c*n). Responder 'A é melhor' ou 'B é melhor' é errado.\n\nOnde a diferença realmente aparece — e não é assintótica no tempo:\n1) CONSTANTES MULTIPLICATIVAS: o custo total de A é aproximadamente 5n/4 = 1,25n unidades de trabalho de combinação, enquanto o de B é aproximadamente 1,00n. Na mesma unidade de medida, B tem constante ligeiramente menor. Mas a notação Theta descarta constantes, então isso não muda a resposta assintótica.\n2) CONSUMO DE PILHA (memória), e aqui sim há diferença ASSINTÓTICA: A faz Theta(log n) chamadas recursivas aninhadas, enquanto B faz Theta(n). Em uma implementação recursiva sem otimização de chamada de cauda, B usa espaço de pilha Theta(n) e pode causar estouro de pilha para n grande, ao passo que A usa Theta(log n) e é seguro. Na prática, portanto, A tende a ser preferível — mas por causa do espaço, não do tempo.\n\nRESPOSTA FINAL: nenhum é assintoticamente mais eficiente em tempo no pior caso; ambos são Theta(n). Se for preciso desempatar, o critério é o espaço de pilha, e aí A (Theta(log n)) leva vantagem sobre B (Theta(n))."
+          }
+        ],
+        "observacoes": "Q3(c) e Q4(b) são a mesma sentença e foram respondidas de forma consistente (VERDADEIRA, com testemunhas c = 1 e n0 = N), destacando em ambas que a hipótese de dominância é supérflua. Em Q3(a) foi enfatizado que O(n^2) é teto correto mas não justo (o justo é O(n)). Em Q3(b) as testemunhas c1 = 2, c2 = 6, n0 = 1 foram conferidas exatamente em n = n0, e o erro de fencepost com c2 = 4 foi explicitado. Em Q4(a) o ponto de cruzamento (~99,82, entre 99 e 100) foi distinguido do n0 das definições de Theta. Em Q5 a resposta é que ambos são Theta(n) e portanto assintoticamente equivalentes, com a diferença aparecendo apenas nas constantes (5/4 contra 1) e no espaço de pilha (Theta(log n) contra Theta(n)); registrou-se também que o Teorema Mestre não se aplica à recorrência T(n) = T(n-1) + Theta(1)."
+      },
+      "problemas": [],
+      "todosVereditos": [
+        "HOLDS",
+        "HOLDS"
+      ]
+    },
+    {
+      "bloco": "SOMATORIOS",
+      "status": "CONFIRMADO",
+      "votos": {
+        "holds": 2,
+        "holes": 0,
+        "total": 2
+      },
+      "solucao": {
+        "itens": [
+          {
+            "id": "1",
+            "resposta": "soma de i^2, para i = 1 ate n+1  =  (n+1)(n+2)(2n+3)/6  =  (2n^3 + 9n^2 + 13n + 6)/6.\n\nObservacao central do exercicio: a perturbacao aplicada diretamente a soma dos QUADRADOS nao produz a formula dos quadrados — ela cancela S_n e devolve a soma dos PRIMEIROS POTENCIAS, soma de i = n(n+1)/2. Para obter a soma dos quadrados e preciso perturbar a soma dos CUBOS.",
+            "justificativa": "O METODO DA PERTURBACAO\n\nSeja S_n = soma de a_i, para i = 1 ate n. A ideia e escrever a soma estendida S_{n+1} de DUAS maneiras diferentes:\n\n  Forma A (destacando o ULTIMO termo):  S_{n+1} = S_n + a_{n+1}.\n  Forma B (destacando o PRIMEIRO termo e reindexando i -> i+1):\n        S_{n+1} = a_1 + soma de a_{i+1}, para i = 1 ate n.\n\nComo as duas expressoes representam o mesmo numero, igualam-se. O termo S_n aparece nos dois lados; quando a_{i+1} pode ser escrito como a_i mais termos de ordem menor, o S_n CANCELA e sobra uma equacao envolvendo apenas somatorios mais simples. Esse cancelamento e o coracao do metodo: ele nao resolve a propria soma, ele a REDUZ a somas de grau inferior.\n\nEXAME DO PROCESSO PARA OS QUADRADOS\n\nSeja S_n = soma de i^2, para i = 1 ate n.\n\nForma A:  S_{n+1} = S_n + (n+1)^2.\n\nForma B:  S_{n+1} = 1^2 + soma de (i+1)^2, para i = 1 ate n\n                  = 1 + soma de (i^2 + 2i + 1), para i = 1 ate n\n                  = 1 + S_n + 2*(soma de i, i = 1..n) + n.\n\nIgualando A e B:\n        S_n + (n+1)^2 = 1 + S_n + 2*(soma de i) + n.\n\nO S_n CANCELA dos dois lados. Sobra:\n        (n+1)^2 = 1 + n + 2*(soma de i)\n  =>    soma de i, para i = 1 ate n = ((n+1)^2 - n - 1)/2 = (n^2 + n)/2 = n(n+1)/2.\n\nEste e exatamente o ponto que o enunciado manda examinar: perturbar a soma dos quadrados NAO fornece a soma dos quadrados; fornece a formula da soma dos primeiros n inteiros. Em geral, perturbar a soma das potencias de expoente k devolve a formula da soma das potencias de expoente k-1. Logo, para achar a soma dos quadrados, deve-se perturbar a soma dos CUBOS.\n\nPERTURBACAO DOS CUBOS (para obter os quadrados)\n\nSeja C_n = soma de i^3, para i = 1 ate n, e mantenha S_n = soma de i^2 e T_n = soma de i = n(n+1)/2 (ja obtida acima).\n\nForma A:  C_{n+1} = C_n + (n+1)^3.\n\nForma B:  C_{n+1} = 1^3 + soma de (i+1)^3, para i = 1 ate n\n                  = 1 + soma de (i^3 + 3i^2 + 3i + 1), para i = 1 ate n\n                  = 1 + C_n + 3*S_n + 3*T_n + n.\n\nIgualando e cancelando C_n:\n        (n+1)^3 = 1 + 3*S_n + 3*T_n + n.\n\nSubstituindo T_n = n(n+1)/2 e (n+1)^3 = n^3 + 3n^2 + 3n + 1:\n        n^3 + 3n^2 + 3n + 1 = 1 + n + 3*S_n + 3n(n+1)/2\n  =>    3*S_n = n^3 + 3n^2 + 2n - (3n^2 + 3n)/2\n              = (2n^3 + 6n^2 + 4n - 3n^2 - 3n)/2\n              = (2n^3 + 3n^2 + n)/2\n              = n(n+1)(2n+1)/2\n  =>    S_n = n(n+1)(2n+1)/6.\n\nRESPOSTA DO ENUNCIADO (soma ate n+1)\n\nBasta avaliar a forma fechada em m = n+1:\n        soma de i^2, para i = 1 ate n+1 = S_{n+1} = (n+1)((n+1)+1)(2(n+1)+1)/6 = (n+1)(n+2)(2n+3)/6.\n\nExpandindo: (n+1)(n+2)(2n+3)/6 = (2n^3 + 9n^2 + 13n + 6)/6.\n\nVERIFICACAO\n\n n = 0: formula da (1)(2)(3)/6 = 1; soma de i^2 de 1 a 1 = 1. OK.\n n = 1: (2)(3)(5)/6 = 5; soma = 1 + 4 = 5. OK.\n n = 2: (3)(4)(7)/6 = 14; soma = 1 + 4 + 9 = 14. OK.\n n = 3: (4)(5)(9)/6 = 30; soma = 1 + 4 + 9 + 16 = 30. OK.\n\nConsistencia com a Forma A: S_{n+1} - S_n = (n+1)(n+2)(2n+3)/6 - n(n+1)(2n+1)/6 = (n+1)[(n+2)(2n+3) - n(2n+1)]/6 = (n+1)[2n^2+7n+6 - 2n^2 - n]/6 = (n+1)(6n+6)/6 = (n+1)^2, que e de fato o ultimo termo. OK.\n\nCOMPLEXIDADE ASSINTOTICA (leitura usual em PAA)\n\n(n+1)(n+2)(2n+3)/6 = Theta(n^3). Testemunhas: para todo n >= 1 vale (n+1)(n+2)(2n+3)/6 >= (n)(n)(2n)/6 = n^3/3 e (n+1)(n+2)(2n+3)/6 <= (2n)(3n)(5n)/6 = 5n^3. Logo c1 = 1/3, c2 = 5, n0 = 1. Em n = n0 = 1: valor exato 5; c1*1 = 1/3 <= 5 e c2*1 = 5 >= 5. Desigualdades validas em n0."
+          },
+          {
+            "id": "2",
+            "resposta": "soma de i*2^i, para i = 1 ate n  =  (n-1)*2^(n+1) + 2.",
+            "justificativa": "O OPERADOR DIFERENCA E A SOMA TELESCOPICA\n\nDefine-se o operador diferenca (analogo discreto da derivada) por\n        (Delta f)(i) = f(i+1) - f(i).\n\nO analogo discreto do Teorema Fundamental do Calculo e a soma telescopica: somando (Delta f)(i) de i = a ate b, todos os termos intermediarios se cancelam,\n        soma de (Delta f)(i), para i = a ate b = [f(a+1) - f(a)] + [f(a+2) - f(a+1)] + ... + [f(b+1) - f(b)] = f(b+1) - f(a).\n\nPortanto, para resolver uma soma de termos g(i) basta encontrar uma \"antidiferenca\" f tal que (Delta f)(i) = g(i); a soma sai avaliada apenas nos extremos.\n\nESCOLHA DO CANDIDATO\n\nQueremos f com (Delta f)(i) = i*2^i. Como o termo e o produto de um polinomio de grau 1 por 2^i, e a diferenca de (polinomio)*2^i devolve outro (polinomio de mesmo grau)*2^i, tenta-se o mesmo formato:\n        f(i) = (a*i + b)*2^i,  com a, b constantes a determinar.\n\nEntao\n        (Delta f)(i) = f(i+1) - f(i)\n                     = (a(i+1) + b)*2^(i+1) - (a*i + b)*2^i\n                     = 2^i * [ 2*(a*i + a + b) - (a*i + b) ]\n                     = 2^i * (2a*i + 2a + 2b - a*i - b)\n                     = 2^i * (a*i + 2a + b).\n\nPara que isso seja identicamente igual a i*2^i, igualam-se os coeficientes:\n        coeficiente de i:      a = 1;\n        termo independente:    2a + b = 0  =>  b = -2.\n\nLogo a antidiferenca e\n        f(i) = (i - 2)*2^i.\n\nConferencia direta: (Delta f)(i) = (i-1)*2^(i+1) - (i-2)*2^i = 2^i*[2(i-1) - (i-2)] = 2^i*(2i - 2 - i + 2) = i*2^i. Confere.\n\nAPLICACAO DA SOMA TELESCOPICA\n\n        soma de i*2^i, para i = 1 ate n = soma de (Delta f)(i), para i = 1 ate n = f(n+1) - f(1)\n                                        = ((n+1) - 2)*2^(n+1) - (1 - 2)*2^1\n                                        = (n - 1)*2^(n+1) - (-1)*2\n                                        = (n - 1)*2^(n+1) + 2.\n\nForma fechada:\n        soma de i*2^i, para i = 1 ate n = (n - 1)*2^(n+1) + 2.\n\nVERIFICACAO\n\n Caso base n = 1: (1-1)*2^2 + 2 = 0 + 2 = 2, e a soma e 1*2^1 = 2. OK.\n n = 2: (2-1)*2^3 + 2 = 8 + 2 = 10, e 2 + 8 = 10. OK.\n n = 3: (3-1)*2^4 + 2 = 32 + 2 = 34, e 2 + 8 + 24 = 34. OK.\n n = 4: (4-1)*2^5 + 2 = 96 + 2 = 98, e 34 + 64 = 98. OK.\n n = 5: 4*2^6 + 2 = 258, e 98 + 160 = 258. OK.\n\nVerificacao geral por passo indutivo: F(n) = (n-1)*2^(n+1) + 2 satisfaz\n        F(n) - F(n-1) = (n-1)*2^(n+1) - (n-2)*2^n = 2^n*[2(n-1) - (n-2)] = n*2^n,\nque e exatamente o n-esimo termo. Junto com o caso base n = 1, a formula esta provada por inducao.\n\nCOMPLEXIDADE ASSINTOTICA (leitura usual em PAA)\n\n(n-1)*2^(n+1) + 2 = Theta(n*2^n). Testemunhas: para todo n >= 2 vale\n        (n-1)*2^(n+1) + 2 >= (n-1)*2^(n+1) >= (n/2)*2^(n+1) = n*2^n,\npois n - 1 >= n/2 quando n >= 2; e\n        (n-1)*2^(n+1) + 2 <= n*2^(n+1) + n*2^n = 3*n*2^n.\nLogo c1 = 1, c2 = 3, n0 = 2. Em n = n0 = 2: valor exato 10; c1*n*2^n = 2*4 = 8 <= 10 e c2*n*2^n = 3*8 = 24 >= 10. Desigualdades validas em n0."
+          }
+        ],
+        "observacoes": "Ambas as formas fechadas foram conferidas por substituicao em varios valores pequenos e por verificacao do passo indutivo (a diferenca F(n) - F(n-1) reproduz o termo geral em cada caso). No item (1) o ponto pedido pelo enunciado (\"examine o processo\") e o cancelamento de S_n na perturbacao: perturbar a soma de i^2 devolve a soma de i, e so a perturbacao da soma de i^3 fornece n(n+1)(2n+1)/6; a resposta pedida, ate n+1, e essa formula avaliada em n+1. No item (2) a antidiferenca e f(i) = (i-2)*2^i, obtida por coeficientes indeterminados sobre o candidato (a*i+b)*2^i."
+      },
+      "problemas": [],
+      "todosVereditos": [
+        "HOLDS",
+        "HOLDS"
+      ]
+    }
+  ],
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Resolver"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Verificar"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "PROVA-A:solver:1",
+      "phaseIndex": 1,
+      "phaseTitle": "Resolver",
+      "agentId": "a90c39dc92ae6955a",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787834861814,
+      "queuedAt": 1787834859886,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Q1: a análise apresentada é a honesta quanto ao pior caso —…",
+      "promptPreview": "CONTEXTO. IFMG Campus Formiga, Projeto e Analise de Algoritmos, Prof. Mario Luiz Rodrigues Oliveira.\nReferencia: CLRS 3a edicao.\n\nREGRAS OBRIGATORIAS:\n1. TESTEMUNHAS CONCRETAS: O/Omega exigem c e n0 NUMERICOS; Theta exige c1, c2 e n0.\n   CONFIRA A DESIGUALDADE EM n = n0 EXATAMENTE antes de escrever. Erro de fencepost e o mais comum.\n2. QUANTIFICADORES: existe c, existe n0, para todo n >= n0. c e n…",
+      "lastProgressAt": 1787835120438,
+      "tokens": 38776,
+      "toolCalls": 5,
+      "durationMs": 257395,
+      "resultPreview": "{\"itens\":[{\"id\":\"1\",\"resposta\":\"Busca por duplicação (exponential search) alternando os dois lados: para i = 0, 1, 2, ... anda-se 2^i passos para a direita (checando o detector a CADA passo), volta-se à origem, anda-se 2^i passos para a esquerda (checando a cada passo) e volta-se à origem. O algoritmo encontra a mina gastando menos de 14m passos, isto é, O(m) passos — logo f(m) = m, que é polinomi…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "PROVA-B:solver:1",
+      "phaseIndex": 1,
+      "phaseTitle": "Resolver",
+      "agentId": "a6ada4494f5f8c79b",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787834861776,
+      "queuedAt": 1787834859890,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Q3(c) e Q4(b) são a mesma sentença e foram respondidas de f…",
+      "promptPreview": "CONTEXTO. IFMG Campus Formiga, Projeto e Analise de Algoritmos, Prof. Mario Luiz Rodrigues Oliveira.\nReferencia: CLRS 3a edicao.\n\nREGRAS OBRIGATORIAS:\n1. TESTEMUNHAS CONCRETAS: O/Omega exigem c e n0 NUMERICOS; Theta exige c1, c2 e n0.\n   CONFIRA A DESIGUALDADE EM n = n0 EXATAMENTE antes de escrever. Erro de fencepost e o mais comum.\n2. QUANTIFICADORES: existe c, existe n0, para todo n >= n0. c e n…",
+      "lastProgressAt": 1787834974305,
+      "tokens": 29942,
+      "toolCalls": 1,
+      "durationMs": 112528,
+      "resultPreview": "{\"itens\":[{\"id\":\"3a\",\"resposta\":\"V (verdadeira) — mas é um limite superior correto e NÃO justo\",\"justificativa\":\"Sentença: a solução de T(n) = 2T(n/7) + n pertence a O(n^2). VERDADEIRA.\\n\\n1) Resolução da recorrência pelo Teorema Mestre (forma de Brassard & Bratley).\\nA recorrência tem o formato T(n) = a*T(n/b) + c*n^k, com a = 2, b = 7, k = 1 e c = 1 (todos naturais, a >= 1, b >= 2, k >= 0, c > 0…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "SOMATORIOS:solver:1",
+      "phaseIndex": 1,
+      "phaseTitle": "Resolver",
+      "agentId": "aaca8fba2b8c75d9f",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787834862259,
+      "queuedAt": 1787834859892,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Ambas as formas fechadas foram conferidas por substituicao …",
+      "promptPreview": "CONTEXTO. IFMG Campus Formiga, Projeto e Analise de Algoritmos, Prof. Mario Luiz Rodrigues Oliveira.\nReferencia: CLRS 3a edicao.\n\nREGRAS OBRIGATORIAS:\n1. TESTEMUNHAS CONCRETAS: O/Omega exigem c e n0 NUMERICOS; Theta exige c1, c2 e n0.\n   CONFIRA A DESIGUALDADE EM n = n0 EXATAMENTE antes de escrever. Erro de fencepost e o mais comum.\n2. QUANTIFICADORES: existe c, existe n0, para todo n >= n0. c e n…",
+      "lastProgressAt": 1787834922116,
+      "tokens": 28224,
+      "toolCalls": 1,
+      "durationMs": 59072,
+      "resultPreview": "{\"itens\":[{\"id\":\"1\",\"resposta\":\"soma de i^2, para i = 1 ate n+1  =  (n+1)(n+2)(2n+3)/6  =  (2n^3 + 9n^2 + 13n + 6)/6.\\n\\nObservacao central do exercicio: a perturbacao aplicada diretamente a soma dos QUADRADOS nao produz a formula dos quadrados — ela cancela S_n e devolve a soma dos PRIMEIROS POTENCIAS, soma de i = n(n+1)/2. Para obter a soma dos quadrados e preciso perturbar a soma dos CUBOS.\",\"j…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "SOMATORIOS:verif:1",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "add200ffee3a7652a",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787834925607,
+      "queuedAt": 1787834923702,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLDS",
+      "promptPreview": "Voce e um verificador adversarial. DERRUBE a solucao abaixo, nao a avalie.\nVoce ve apenas o enunciado e a solucao final, nunca o raciocinio. Assuma que ha erro.\n\n=== ENUNCIADO ===\nExercicios do material \"Somatorios\" do Prof. Walace de Almeida Rodrigues (IFMG Campus Formiga).\n\n(1) [secao 3.2, Perturbacao] Examine o processo de PERTURBACAO da soma dos quadrados:\n        soma de i^2, para i = 1 ate n…",
+      "lastProgressAt": 1787835024085,
+      "tokens": 38294,
+      "toolCalls": 2,
+      "durationMs": 98478,
+      "resultPreview": "{\"problemas\":[{\"item\":\"2\",\"local\":\"Complexidade assintotica, cota superior: \\\"(n-1)*2^(n+1) + 2 <= n*2^(n+1) + n*2^n = 3*n*2^n\\\"\",\"padrao\":\"#40 PASSO LIMPO DEMAIS\",\"porque\":\"O passo troca a constante 2 por n*2^n sem declarar a desigualdade auxiliar 2 <= n*2^n, que so e o que autoriza a majoracao. Ela e verdadeira para todo n >= 1 (em n0 = 2: 2 <= 8), entao a cota c2 = 3 permanece valida e nao ha b…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 5,
+      "label": "SOMATORIOS:verif:2",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "aae01e109fe5a1a50",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787834925776,
+      "queuedAt": 1787834923702,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLDS",
+      "promptPreview": "Voce e um verificador adversarial. DERRUBE a solucao abaixo, nao a avalie.\nVoce ve apenas o enunciado e a solucao final, nunca o raciocinio. Assuma que ha erro.\n\n=== ENUNCIADO ===\nExercicios do material \"Somatorios\" do Prof. Walace de Almeida Rodrigues (IFMG Campus Formiga).\n\n(1) [secao 3.2, Perturbacao] Examine o processo de PERTURBACAO da soma dos quadrados:\n        soma de i^2, para i = 1 ate n…",
+      "lastProgressAt": 1787835014313,
+      "tokens": 38832,
+      "toolCalls": 2,
+      "durationMs": 87746,
+      "resultPreview": "{\"verdict\":\"HOLDS\",\"problemas\":[{\"item\":\"1\",\"local\":\"Frase 'Em geral, perturbar a soma das potencias de expoente k devolve a formula da soma das potencias de expoente k-1', no bloco 'EXAME DO PROCESSO PARA OS QUADRADOS'\",\"padrao\":\"#40 PASSO LIMPO DEMAIS (generalizacao afirmada sem prova)\",\"porque\":\"A generalizacao e forte demais: perturbar a soma de i^3 produz uma equacao que contem S_n (k-1=2) E …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 6,
+      "label": "PROVA-B:verif:1",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "abea21ded6b317f1b",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787834977830,
+      "queuedAt": 1787834975920,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLDS",
+      "promptPreview": "Voce e um verificador adversarial. DERRUBE a solucao abaixo, nao a avalie.\nVoce ve apenas o enunciado e a solucao final, nunca o raciocinio. Assuma que ha erro.\n\n=== ENUNCIADO ===\nPROVA I de 2025 — Questoes 3, 4 e 5.\n\nQuestao 3. Responda V para as sentencas verdadeiras e F para as falsas. Justifique. Respostas sem\njustificativas nao serao consideradas.\n  a) (2,0) A solucao da equacao de recorrenci…",
+      "lastProgressAt": 1787835111321,
+      "tokens": 46527,
+      "toolCalls": 3,
+      "durationMs": 133491,
+      "resultPreview": "{\"verdict\":\"HOLDS\",\"problemas\":[{\"item\":\"4a\",\"local\":\"Trecho PONTO DE CRUZAMENTO: 'obtemos n / lg n = 15 ... ou seja, o cruzamento ocorre em n ~ 99,82'\",\"padrao\":\"numero que nao segue da conta exibida\",\"porque\":\"A equacao exibida (forma dominante, 15*n*lg n = n^2, isto e n/lg n = 15) tem raiz n ~ 99,563, nao 99,82. O valor 99,82 e a raiz da equacao COMPLETA 15*n*lg n + 20 = n^2 (verifiquei: 99,819…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 7,
+      "label": "PROVA-B:verif:2",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "a4291d4fdf6ebc2e3",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787834977765,
+      "queuedAt": 1787834975920,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLDS",
+      "promptPreview": "Voce e um verificador adversarial. DERRUBE a solucao abaixo, nao a avalie.\nVoce ve apenas o enunciado e a solucao final, nunca o raciocinio. Assuma que ha erro.\n\n=== ENUNCIADO ===\nPROVA I de 2025 — Questoes 3, 4 e 5.\n\nQuestao 3. Responda V para as sentencas verdadeiras e F para as falsas. Justifique. Respostas sem\njustificativas nao serao consideradas.\n  a) (2,0) A solucao da equacao de recorrenci…",
+      "lastProgressAt": 1787835146507,
+      "tokens": 48926,
+      "toolCalls": 3,
+      "durationMs": 168742,
+      "resultPreview": "{\"verdict\":\"HOLDS\",\"problemas\":[{\"item\":\"4a\",\"local\":\"Bloco 'PONTO DE CRUZAMENTO': 'o cruzamento ocorre em n ~ 99,82' logo após resolver n / lg n = 15\",\"padrao\":\"#40 PASSO LIMPO DEMAIS / número não derivado do passo anterior\",\"porque\":\"A raiz de n/lg n = 15 é 99,5631, não 99,82 (verifiquei por bisseção). Em n = 99,82 tem-se 99,82/lg 99,82 = 15,030, ou seja, o valor apresentado NÃO satisfaz a equaç…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 8,
+      "label": "PROVA-A:verif:1",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "a1ebc5b452ac48820",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787835125394,
+      "queuedAt": 1787835122114,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLE_FOUND",
+      "promptPreview": "Voce e um verificador adversarial. DERRUBE a solucao abaixo, nao a avalie.\nVoce ve apenas o enunciado e a solucao final, nunca o raciocinio. Assuma que ha erro.\n\n=== ENUNCIADO ===\nPROVA I de 2025 — Questoes 1 e 2.\n\nQuestao 1 (5,0 pontos). Voce esta em um campo minado infinitamente grande. Voce tem um detector de\nminas que so consegue identificar uma mina localizada no maximo a UM PASSO de distanci…",
+      "lastProgressAt": 1787835255276,
+      "tokens": 44534,
+      "toolCalls": 2,
+      "durationMs": 129882,
+      "resultPreview": "{\"problemas\":[{\"item\":\"1\",\"local\":\"Pseudocódigo do algoritmo (laço principal) — o detector só é acionado \\\"a cada passo\\\" DURANTE as varridas de ida; nunca na posição inicial 0, nem durante as voltas.\",\"padrao\":\"#17 FENCEPOST / ALG-1\",\"porque\":\"Simulei o pseudocódigo exatamente como escrito. Para m = 1 o detector nunca é consultado antes do primeiro passo, então: (a) mina em +1 → o agente dá 1 pas…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 9,
+      "label": "PROVA-A:verif:2",
+      "phaseIndex": 2,
+      "phaseTitle": "Verificar",
+      "agentId": "afd0b4fc85b5b7bb0",
+      "model": "claude-opus-5[1m]",
+      "state": "done",
+      "startedAt": 1787835125026,
+      "queuedAt": 1787835122114,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "HOLDS",
+      "promptPreview": "Voce e um verificador adversarial. DERRUBE a solucao abaixo, nao a avalie.\nVoce ve apenas o enunciado e a solucao final, nunca o raciocinio. Assuma que ha erro.\n\n=== ENUNCIADO ===\nPROVA I de 2025 — Questoes 1 e 2.\n\nQuestao 1 (5,0 pontos). Voce esta em um campo minado infinitamente grande. Voce tem um detector de\nminas que so consegue identificar uma mina localizada no maximo a UM PASSO de distanci…",
+      "lastProgressAt": 1787835276626,
+      "tokens": 32898,
+      "toolCalls": 1,
+      "durationMs": 151599,
+      "resultPreview": "{\"problemas\":[{\"item\":\"1\",\"local\":\"Pseudocódigo (\\\"ande 2^i passos para a DIREITA, acionando o detector a cada passo\\\") vs. verificação fencepost \\\"com m = 1 ... T(1) = 0 ou 1\\\"\",\"padrao\":\"#17 FENCEPOST / ALG-1 (inconsistência no caso de borda m = 1)\",\"porque\":\"Como escrito, o algoritmo só aciona o detector DEPOIS de cada passo, e nunca na origem antes do primeiro movimento. Substituindo m = 1 exa…"
+    }
+  ],
+  "totalTokens": 346953,
+  "totalToolCalls": 20
+}

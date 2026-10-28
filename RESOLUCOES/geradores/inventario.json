@@ -1,0 +1,768 @@
+{
+ "LOU": {
+  "nome": "Loureiro — Sequências e Indução Matemática (UFMG/ICEx/DCC)",
+  "paginas": [
+   {
+    "pag": 17,
+    "exemplos": [
+     1
+    ]
+   },
+   {
+    "pag": 18,
+    "exemplos": [
+     1
+    ]
+   },
+   {
+    "pag": 19,
+    "exemplos": [
+     1
+    ]
+   },
+   {
+    "pag": 20,
+    "exemplos": [
+     1
+    ]
+   },
+   {
+    "pag": 21,
+    "exemplos": [
+     1
+    ]
+   },
+   {
+    "pag": 22,
+    "exemplos": [
+     2
+    ]
+   },
+   {
+    "pag": 23,
+    "exemplos": [
+     2
+    ]
+   },
+   {
+    "pag": 24,
+    "exemplos": [
+     3
+    ]
+   },
+   {
+    "pag": 25,
+    "exemplos": [
+     3
+    ]
+   },
+   {
+    "pag": 26,
+    "exemplos": [
+     4
+    ]
+   },
+   {
+    "pag": 27,
+    "exemplos": [
+     4
+    ]
+   },
+   {
+    "pag": 28,
+    "exemplos": [
+     5
+    ]
+   },
+   {
+    "pag": 29,
+    "exemplos": [
+     5
+    ]
+   },
+   {
+    "pag": 30,
+    "exemplos": [
+     6
+    ]
+   },
+   {
+    "pag": 31,
+    "exemplos": [
+     6
+    ]
+   },
+   {
+    "pag": 32,
+    "exemplos": [
+     7
+    ]
+   },
+   {
+    "pag": 33,
+    "exemplos": [
+     7
+    ]
+   },
+   {
+    "pag": 34,
+    "exemplos": [
+     8
+    ]
+   },
+   {
+    "pag": 35,
+    "exemplos": [
+     8
+    ]
+   },
+   {
+    "pag": 36,
+    "exemplos": [
+     9
+    ]
+   },
+   {
+    "pag": 37,
+    "exemplos": [
+     9
+    ]
+   },
+   {
+    "pag": 38,
+    "exemplos": [
+     10
+    ]
+   },
+   {
+    "pag": 39,
+    "exemplos": [
+     10
+    ]
+   },
+   {
+    "pag": 40,
+    "exemplos": [
+     10
+    ]
+   },
+   {
+    "pag": 41,
+    "exemplos": [
+     10
+    ]
+   },
+   {
+    "pag": 42,
+    "exemplos": [
+     10
+    ]
+   },
+   {
+    "pag": 43,
+    "exemplos": []
+   },
+   {
+    "pag": 44,
+    "exemplos": [
+     11
+    ]
+   },
+   {
+    "pag": 45,
+    "exemplos": [
+     12
+    ]
+   },
+   {
+    "pag": 46,
+    "exemplos": [
+     12
+    ]
+   }
+  ]
+ },
+ "SHE": {
+  "nome": "Sheila Almeida — Notação Assintótica (DAINF-UTFPR-PG)",
+  "paginas": [
+   {
+    "pag": 21,
+    "exemplos": [
+     1
+    ]
+   },
+   {
+    "pag": 51,
+    "exemplos": [
+     1
+    ]
+   },
+   {
+    "pag": 52,
+    "exemplos": [
+     2
+    ]
+   },
+   {
+    "pag": 53,
+    "exemplos": [
+     3
+    ]
+   },
+   {
+    "pag": 54,
+    "exemplos": [
+     4
+    ]
+   },
+   {
+    "pag": 55,
+    "exemplos": [
+     5
+    ]
+   },
+   {
+    "pag": 56,
+    "exemplos": []
+   },
+   {
+    "pag": 57,
+    "exemplos": [
+     6
+    ]
+   },
+   {
+    "pag": 58,
+    "exemplos": [
+     7
+    ]
+   },
+   {
+    "pag": 59,
+    "exemplos": [
+     8
+    ]
+   },
+   {
+    "pag": 60,
+    "exemplos": []
+   },
+   {
+    "pag": 61,
+    "exemplos": []
+   },
+   {
+    "pag": 62,
+    "exemplos": [
+     9
+    ]
+   },
+   {
+    "pag": 63,
+    "exemplos": [
+     10
+    ]
+   },
+   {
+    "pag": 64,
+    "exemplos": []
+   },
+   {
+    "pag": 65,
+    "exemplos": [
+     11
+    ]
+   },
+   {
+    "pag": 66,
+    "exemplos": [
+     12
+    ]
+   }
+  ]
+ },
+ "CAV": {
+  "nome": "Cavalcanti — Indução Matemática (CIn-UFPE)",
+  "paginas": [
+   {
+    "pag": 7,
+    "exemplos": [
+     1
+    ]
+   },
+   {
+    "pag": 8,
+    "exemplos": [
+     1
+    ]
+   },
+   {
+    "pag": 9,
+    "exemplos": [
+     1
+    ]
+   },
+   {
+    "pag": 10,
+    "exemplos": [
+     2
+    ]
+   },
+   {
+    "pag": 11,
+    "exemplos": [
+     2
+    ]
+   },
+   {
+    "pag": 12,
+    "exemplos": [
+     2
+    ]
+   },
+   {
+    "pag": 13,
+    "exemplos": [
+     3
+    ]
+   },
+   {
+    "pag": 14,
+    "exemplos": [
+     3
+    ]
+   },
+   {
+    "pag": 15,
+    "exemplos": [
+     3
+    ]
+   },
+   {
+    "pag": 16,
+    "exemplos": [
+     4
+    ]
+   },
+   {
+    "pag": 17,
+    "exemplos": [
+     4
+    ]
+   },
+   {
+    "pag": 18,
+    "exemplos": [
+     4
+    ]
+   },
+   {
+    "pag": 19,
+    "exemplos": [
+     5
+    ]
+   },
+   {
+    "pag": 20,
+    "exemplos": [
+     5
+    ]
+   },
+   {
+    "pag": 21,
+    "exemplos": [
+     5
+    ]
+   },
+   {
+    "pag": 22,
+    "exemplos": [
+     6
+    ]
+   },
+   {
+    "pag": 23,
+    "exemplos": [
+     6
+    ]
+   },
+   {
+    "pag": 24,
+    "exemplos": [
+     6
+    ]
+   },
+   {
+    "pag": 25,
+    "exemplos": [
+     7
+    ]
+   },
+   {
+    "pag": 26,
+    "exemplos": [
+     7
+    ]
+   },
+   {
+    "pag": 27,
+    "exemplos": [
+     7
+    ]
+   },
+   {
+    "pag": 28,
+    "exemplos": [
+     8
+    ]
+   },
+   {
+    "pag": 29,
+    "exemplos": [
+     8
+    ]
+   },
+   {
+    "pag": 30,
+    "exemplos": [
+     8
+    ]
+   }
+  ]
+ },
+ "UES": {
+  "nome": "Silva & Almeida — O poderoso princípio da indução (UESB)",
+  "paginas": [
+   {
+    "pag": 3,
+    "exemplos": [
+     1,
+     2,
+     3
+    ]
+   },
+   {
+    "pag": 4,
+    "exemplos": [
+     4,
+     5,
+     6,
+     7
+    ]
+   },
+   {
+    "pag": 5,
+    "exemplos": [
+     8,
+     9
+    ]
+   },
+   {
+    "pag": 6,
+    "exemplos": [
+     10,
+     11,
+     12,
+     13
+    ]
+   },
+   {
+    "pag": 7,
+    "exemplos": []
+   }
+  ]
+ },
+ "REZ": {
+  "nome": "Rezende — Relações de Recorrência (IC-UNICAMP)",
+  "paginas": [
+   {
+    "pag": 4,
+    "exemplos": [
+     1,
+     2,
+     3
+    ]
+   }
+  ]
+ },
+ "PAA1": {
+  "nome": "Loureiro — Análise de Complexidade (UFMG) · semana 1",
+  "paginas": [
+   {
+    "pag": 32,
+    "exemplos": [],
+    "titulo": "Exemplo de modelagem:"
+   },
+   {
+    "pag": 57,
+    "exemplos": [],
+    "titulo": "Função de complexidade"
+   },
+   {
+    "pag": 63,
+    "exemplos": [],
+    "titulo": "Exemplo: Registros de um arquivo"
+   },
+   {
+    "pag": 64,
+    "exemplos": [],
+    "titulo": "Exemplo: Registros de um arquivo"
+   },
+   {
+    "pag": 65,
+    "exemplos": [],
+    "titulo": "Exemplo: Maior e menor elementos (1)"
+   },
+   {
+    "pag": 66,
+    "exemplos": [],
+    "titulo": "Exemplo: Maior e menor elementos (2)"
+   },
+   {
+    "pag": 67,
+    "exemplos": [],
+    "titulo": "Exemplo: Maior e menor elementos (2)"
+   },
+   {
+    "pag": 68,
+    "exemplos": [],
+    "titulo": "Exemplo: Maior e menor elementos (3)"
+   },
+   {
+    "pag": 69,
+    "exemplos": [],
+    "titulo": "Exemplo: Maior e menor elementos (3)"
+   },
+   {
+    "pag": 70,
+    "exemplos": [],
+    "titulo": "Exemplo: Maior e menor elementos (3)"
+   },
+   {
+    "pag": 71,
+    "exemplos": [],
+    "titulo": "Exemplo: Maior e menor elementos (3)"
+   },
+   {
+    "pag": 80,
+    "exemplos": [],
+    "titulo": "Como medir o custo de execução de um algoritmo?"
+   },
+   {
+    "pag": 128,
+    "exemplos": [],
+    "titulo": "Exemplo de algoritmo exponencial"
+   },
+   {
+    "pag": 141,
+    "exemplos": [],
+    "titulo": "Razões para limitar a recursão"
+   },
+   {
+    "pag": 142,
+    "exemplos": [],
+    "titulo": "Quando não usar recursividade"
+   },
+   {
+    "pag": 148,
+    "exemplos": [],
+    "titulo": "Exemplo de resolução de equação de recorrência"
+   },
+   {
+    "pag": 149,
+    "exemplos": [],
+    "titulo": "Exemplo de resolução de equação de recorrência"
+   },
+   {
+    "pag": 150,
+    "exemplos": [],
+    "titulo": "Exemplo de resolução de equação de recorrência"
+   },
+   {
+    "pag": 172,
+    "exemplos": [],
+    "titulo": "Notação assintótica em funções"
+   },
+   {
+    "pag": 179,
+    "exemplos": [],
+    "titulo": "Modelagem usando equação de recorrência"
+   },
+   {
+    "pag": 190,
+    "exemplos": [],
+    "titulo": "Exemplo: Incrementar um contador binário"
+   },
+   {
+    "pag": 191,
+    "exemplos": [],
+    "titulo": "Exemplo: Incrementar um contador binário"
+   }
+  ]
+ },
+ "CAM2": {
+  "nome": "Campello — Análise de Algoritmos II · exemplos",
+  "paginas": [
+   {
+    "pag": 7,
+    "exemplos": [],
+    "titulo": "Notação O (Big-O)"
+   },
+   {
+    "pag": 11,
+    "exemplos": [],
+    "titulo": "Exercício"
+   },
+   {
+    "pag": 15,
+    "exemplos": [],
+    "titulo": "Análise Assintótica de Algoritmos"
+   },
+   {
+    "pag": 18,
+    "exemplos": [],
+    "titulo": "Exemplo (Média de Prefixo)"
+   },
+   {
+    "pag": 19,
+    "exemplos": [],
+    "titulo": "Exemplo (Média de Prefixo)"
+   },
+   {
+    "pag": 20,
+    "exemplos": [],
+    "titulo": "Exemplo (Média de Prefixo)"
+   },
+   {
+    "pag": 21,
+    "exemplos": [],
+    "titulo": "Exemplo (Média de Prefixo)"
+   },
+   {
+    "pag": 22,
+    "exemplos": [],
+    "titulo": "Exercício"
+   },
+   {
+    "pag": 25,
+    "exemplos": [],
+    "titulo": "Parentes do Big-O"
+   },
+   {
+    "pag": 31,
+    "exemplos": [],
+    "titulo": "Forma Assintótica usando Limites"
+   }
+  ]
+ },
+ "IFM2": {
+  "nome": "Diego Mello — Matemática Discreta (IFMG) · exemplos",
+  "paginas": [
+   {
+    "pag": 17,
+    "exemplos": [],
+    "titulo": "Funções Definidas Recursivamente"
+   },
+   {
+    "pag": 18,
+    "exemplos": [],
+    "titulo": "Exemplos"
+   },
+   {
+    "pag": 19,
+    "exemplos": [],
+    "titulo": "Exemplos"
+   },
+   {
+    "pag": 26,
+    "exemplos": [],
+    "titulo": "Algoritmos Recursivos e Relações de Recorrência"
+   },
+   {
+    "pag": 33,
+    "exemplos": [],
+    "titulo": "Exemplo: Solução em Forma Fechada"
+   },
+   {
+    "pag": 34,
+    "exemplos": [],
+    "titulo": "Exemplo: Solução em Forma Fechada"
+   }
+  ]
+ },
+ "REZ2": {
+  "nome": "Rezende — Relações de Recorrência (UNICAMP) · exemplos",
+  "paginas": [
+   {
+    "pag": 3,
+    "exemplos": [],
+    "titulo": "Em decorrência da propriedade de linearidade, é possı́vel co"
+   },
+   {
+    "pag": 12,
+    "exemplos": [],
+    "titulo": "para b ≥ 1."
+   },
+   {
+    "pag": 18,
+    "exemplos": [],
+    "titulo": "de grau < k, precisamos percorrer apenas uma linha (correspond"
+   }
+  ]
+ },
+ "WAL": {
+  "nome": "Walace Rodrigues — Somatórios (IFMG) · exemplos",
+  "paginas": [
+   {
+    "pag": 19,
+    "exemplos": [],
+    "titulo": "3.3. Operador diferença"
+   },
+   {
+    "pag": 22,
+    "exemplos": [],
+    "titulo": "3.4. Soma das derivadas"
+   }
+  ]
+ },
+ "USP2": {
+  "nome": "Princípio de Indução Finita (IME-USP) · exemplos",
+  "paginas": [
+   {
+    "pag": 2,
+    "exemplos": [],
+    "titulo": "2"
+   },
+   {
+    "pag": 3,
+    "exemplos": [],
+    "titulo": "3"
+   },
+   {
+    "pag": 4,
+    "exemplos": [],
+    "titulo": "4"
+   }
+  ]
+ },
+ "SHE2": {
+  "nome": "Sheila Almeida — Notação Assintótica (UTFPR) · exemplo extra",
+  "paginas": [
+   {
+    "pag": 18,
+    "exemplos": [],
+    "titulo": "Notação O"
+   }
+  ]
+ },
+ "LOU2": {
+  "nome": "Loureiro — Indução (UFMG) · exemplo extra",
+  "paginas": [
+   {
+    "pag": 3,
+    "exemplos": [],
+    "titulo": "Sequências"
+   }
+  ]
+ }
+}

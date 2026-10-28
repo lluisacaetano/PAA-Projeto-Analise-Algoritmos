@@ -1,0 +1,1459 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>PAA — Lista de Exercícios IV — Resolução</title>
+<style>
+  @page { size: A4; margin: 9mm 11mm 11mm 11mm; }
+
+  :root {
+    --tinta: #16181d;
+    --fraco: #5b6068;
+    --linha: #c8ccd2;
+    --caixa: #f2f3f5;
+    --realce: #1a4a7a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: "Charter", "Georgia", "Times New Roman", serif;
+    font-size: 9.1pt;
+    line-height: 1.34;
+    color: var(--tinta);
+    margin: 0;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  h1 { font-size: 13pt; margin: 0 0 1mm 0; letter-spacing: -0.15pt; }
+
+  .cabecalho { border-bottom: 1.2pt solid var(--tinta); padding-bottom: 2mm; margin-bottom: 3.5mm; }
+  .cabecalho .meta { font-size: 8pt; color: var(--fraco); line-height: 1.4; }
+
+  h2 {
+    font-size: 10.5pt; margin: 5mm 0 1.5mm 0; padding-bottom: 0.8mm;
+    border-bottom: 0.6pt solid var(--linha); break-after: avoid;
+  }
+
+  h3 { font-size: 9.3pt; margin: 3mm 0 1mm 0; color: var(--realce); break-after: avoid; }
+
+  p { margin: 0 0 1.6mm 0; }
+
+  .enunciado {
+    background: var(--caixa); border-left: 2pt solid var(--fraco);
+    padding: 2mm 2.5mm 1.4mm 2.5mm; margin: 0 0 2.5mm 0;
+    font-size: 8.6pt; break-inside: avoid;
+  }
+  .enunciado p { margin-bottom: 1.2mm; }
+  .enunciado .rot {
+    font-variant: small-caps; letter-spacing: 0.4pt; color: var(--fraco);
+    font-size: 7.6pt; display: block; margin-bottom: 0.8mm;
+  }
+  .enunciado ol { margin: 0.8mm 0 0 4.5mm; padding: 0; }
+  .enunciado ol li { margin-bottom: 0.6mm; }
+
+  .resp { font-weight: 700; color: var(--realce); }
+
+  /* Na lista 4 as seções são longas; manter o item inteiro numa página só abre
+     vãos grandes. Deixa-se o item quebrar, protegendo os blocos curtos. */
+  .item { margin-bottom: 2.4mm; }
+  .passo { break-inside: avoid; }
+  h3 + p, h3 + div { break-before: avoid; }
+
+  code, .cod { font-family: "SF Mono", "Menlo", "Consolas", monospace; font-size: 7.6pt; }
+
+  .mat { font-family: "Cambria Math", "Georgia", serif; font-style: italic; }
+
+  .centro { text-align: center; margin: 1.4mm 0; font-family: "Cambria Math", "Georgia", serif; }
+
+  .passo {
+    margin: 1.2mm 0 1.2mm 0;
+    padding-left: 2.5mm;
+    border-left: 1pt solid var(--linha);
+  }
+  .passo .rot2 {
+    font-weight: 700; font-style: normal; color: var(--tinta);
+  }
+
+  table {
+    width: 100%; border-collapse: collapse; font-size: 8.2pt;
+    margin: 1.5mm 0 2mm 0; break-inside: avoid;
+  }
+  th, td { border: 0.4pt solid var(--linha); padding: 0.9mm 1.5mm; text-align: left; vertical-align: top; }
+  th { background: var(--caixa); font-weight: 700; font-size: 7.9pt; }
+  td.n { text-align: center; white-space: nowrap; }
+
+  .nota {
+    font-size: 8pt; color: var(--fraco);
+    border-left: 1.5pt solid var(--linha);
+    padding-left: 2mm; margin: 1.5mm 0;
+  }
+
+  .rodape {
+    margin-top: 6mm; padding-top: 2mm;
+    border-top: 0.6pt solid var(--linha);
+    font-size: 7.6pt; color: var(--fraco);
+  }
+
+  sub, sup { font-size: 68%; line-height: 0; position: relative; font-style: normal; }
+  sub { bottom: -0.25em; }
+  sup { top: -0.32em; }
+
+  /* 06/10/2026 — enunciados literais: numeração de linhas dos códigos do professor */
+  pre.cod .ln { display: inline-block; width: 1.6em; margin-right: 1.2em; text-align: right;
+                color: #9aa0a6; user-select: none; }
+  .enunciado.enun-cod pre.cod { margin: 0.8mm 0 0 0; background: #fff; }
+  .enunciado .lit { margin: 0.4mm 0; }
+</style>
+</head>
+<body>
+
+<div class="cabecalho">
+  <h1>Projeto e Análise de Algoritmos — Lista de Exercícios IV</h1>
+  <div class="meta">
+    Instituto Federal de Minas Gerais, Campus Formiga · Bacharelado em Ciência da Computação · 2026/2 · Lista de 30/08/2026, atualizada em 09/09/2026<br>
+    Professor: Mário Luiz Rodrigues Oliveira · Aluna: Luisa Caetano
+  </div>
+</div>
+
+<div class="nota">
+<strong>Como ler esta resolução.</strong> As Questões 1 e 2 seguem o mesmo esqueleto exigido pela
+disciplina: enunciar <span class="mat">P(n)</span>, verificar a <strong>base</strong> com os dois
+lados avaliados, escrever a <strong>hipótese</strong> e provar o <strong>passo</strong> marcando o
+ponto exato em que a hipótese é usada. Toda afirmação de Θ vem com <span class="mat">c<sub>1</sub>,
+c<sub>2</sub>, n<sub>0</sub></span> numéricos, conferidos em <span class="mat">n = n<sub>0</sub></span>
+exatamente. A Questão 3 é de lógica, não de conta: ali o que se pede é localizar o elo que falha.
+As Questões 4 e 5 entraram na versão de 09/09/2026: a 4 é mais uma indução sobre somatório; a 5 é,
+como a 3, uma prova defeituosa para diagnosticar — e o defeito é outro.
+</div>
+
+<!-- ══════════════════════ QUESTÃO 1 ══════════════════════ -->
+
+<div class="enunciado" id="instrucoes-lista">
+  <span class="rot">Cabeçalho e instruções da lista (transcrição literal)</span>
+  <p>Instituto Federal de Educação, Ciência e Tecnologia · Curso: Bacharelado em Ciência da Computação ·
+  Disciplina: Projeto e Análise de Algoritmos · Professor: Mário Luiz Rodrigues Oliveira ·
+  Atividade: Lista Exercícios IV · Formiga,MG, 30 de agosto de 2026</p>
+  <p><strong>Instruções:</strong></p>
+  <ol>
+    <li>Essa lista não será avaliada e, portanto, não precisa ser entregue. Resolva os exercícios
+    como forma de fixação do conteúdo ministrado.</li>
+    <li>Caso você ache que falta algum detalhe nas especificações, você deverá fazer as suposições
+    que julgar necessárias e escrevê-las junto à resolução do trabalho. Pode acontecer também que a
+    descrição dessa atividade contenha dados e/ou especificações supérfluas para sua solução.
+    Utilize sua capacidade de julgamento para separar o supérfluo do necessário.</li>
+    <li>Não basta escrever apenas o resultado. É necessário mostrar a resolução ou o raciocínio
+    utilizado para responder às questões. Portanto, justifique todas as suas respostas.</li>
+  </ol>
+</div>
+<h2>Questão 1 — provas por indução</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Use o método da indução matemática para provar as assertivas abaixo.</p>
+  <p>(a) <span class="mat">S(n) : 1 + 3 + 5+ … +(2 ∗ n − 1) = n<sup>2</sup></span>, ∀<span class="mat">n ≥ 1</span></p>
+  <p>(b) <span class="mat">T(n) = 2</span> se <span class="mat">n = 1</span>;
+     <span class="mat">T(n) = 2T(n−1)</span> se <span class="mat">n ≥ 2</span>.
+     A fórmula fechada para essa recorrência é <span class="mat">T(n) = 2<sup>n</sup></span></p>
+  <p>(c) <span class="mat">T(n) = 1</span> se <span class="mat">n = 1</span>;
+     <span class="mat">T(n) = T(n−1) + 1</span> se <span class="mat">n ≥ 2</span>.
+     A fórmula fechada para essa recorrência é <span class="mat">T(n) = n</span></p>
+  <p>(d) <span class="mat">T(n) = 1</span> se <span class="mat">n = 1</span>;
+     <span class="mat">T(n) = T(n−1) + 3</span> se <span class="mat">n ≥ 2</span>.
+     A fórmula fechada para essa recorrência é <span class="mat">T(n) = 3 ∗ n − 2</span></p>
+  <p>(e) <span class="mat">T(n) = 1</span> se <span class="mat">n = 1</span>;
+     <span class="mat">T(n) = T(n−1) + 2</span> se <span class="mat">n ≥ 2</span>.
+     A fórmula fechada para essa recorrência ∈ <span class="mat">θ(n)</span></p>
+</div>
+
+<div class="nota">
+<strong>Uma observação de domínio que vale para (b), (c), (d) e (e), e que quase todo mundo pula.</strong>
+Cada recorrência está definida sobre os inteiros <span class="mat">n ≥ 1</span> — <em>não</em> sobre
+<span class="mat">n ≥ 0</span>. A primeira cláusula fixa o valor em <span class="mat">n = 1</span>; a
+segunda, <span class="mat">T(n) = … T(n−1) …</span>, vem sob a condição <em>“se n ≥ 2”</em> e só pode
+ser aplicada quando o argumento é <span class="mat">≥ 2</span>. Nos passos abaixo calcula-se
+<span class="mat">T(n+1)</span> com <span class="mat">n ≥ 1</span>; como <span class="mat">n ≥ 1</span>
+implica <span class="mat">n+1 ≥ 2</span>, a segunda cláusula é aplicável — e é aí, e só aí, que a
+restrição de domínio é consumida. Uma prova que aplicasse a cláusula recursiva em
+<span class="mat">n = 1</span> concluiria coisas sobre <span class="mat">T(0)</span>, que não existe.
+</div>
+
+<div class="item">
+<h3>(a) &nbsp; 1 + 3 + 5 + … + (2n − 1) = n²</h3>
+<p><span class="rot2">Proposição.</span> Para cada inteiro <span class="mat">n ≥ 1</span>, seja
+<span class="mat">P(n)</span>: <span class="mat">∑<sub>k=1</sub><sup>n</sup> (2k − 1) = n²</span>.
+O somatório é a notação precisa para “1 + 3 + 5 + … + (2n − 1)”; em particular, para
+<span class="mat">n = 1</span> a soma tem <strong>um único</strong> termo — a reticência não
+representa termo algum. É nesse sentido que a base é verificada.</p>
+
+<div class="passo">
+<p><span class="rot2">Base (n = 1).</span> Os dois lados, calculados separadamente:
+lado esquerdo <span class="mat">= 2·1 − 1 = 1</span>; lado direito <span class="mat">= 1² = 1</span>.
+Como <span class="mat">1 = 1</span>, <span class="mat">P(1)</span> é verdadeira.</p>
+<p><span class="rot2">Hipótese (h.i.).</span> Seja <span class="mat">n ≥ 1</span> um inteiro
+<em>fixado</em> e suponha <span class="mat">∑<sub>k=1</sub><sup>n</sup> (2k − 1) = n²</span>.</p>
+<p><span class="rot2">Passo.</span> Separa-se o somatório até <span class="mat">n+1</span> no
+somatório até <span class="mat">n</span> mais o termo <span class="mat">k = n+1</span> — separação
+válida para todo <span class="mat">n ≥ 0</span>, inclusive quando a soma restante é vazia:</p>
+<p class="centro">∑<sub>k=1</sub><sup>n+1</sup> (2k − 1) = [ ∑<sub>k=1</sub><sup>n</sup> (2k − 1) ] + (2(n+1) − 1)</p>
+<p class="centro">= n² + (2(n+1) − 1)&nbsp;&nbsp;<span style="font-style:normal">← (h.i.) aplicada ao colchete</span></p>
+<p class="centro">= n² + 2n + 1 = (n + 1)². ∎</p>
+</div>
+<p class="nota">Detalhe que vale um ponto: a condição de fronteira que <em>de fato</em> importa aqui
+não é a do somatório — separar o último termo vale mesmo quando o que sobra é a soma vazia — e sim a
+convenção declarada acima, de que em <span class="mat">n = 1</span> a soma tem um único termo. É ali
+que a base do item se decide.</p>
+</div>
+
+<div class="item">
+<h3>(b) &nbsp; T(1) = 2, T(n) = 2T(n−1) &nbsp;⟹&nbsp; T(n) = 2<sup>n</sup></h3>
+<div class="passo">
+<p><span class="rot2">Base (n = 1).</span> <span class="mat">T(1) = 2</span> pela primeira cláusula;
+<span class="mat">2<sup>1</sup> = 2</span>. Como <span class="mat">2 = 2</span>, vale.</p>
+<p><span class="rot2">Hipótese.</span> Seja <span class="mat">n ≥ 1</span> fixado e suponha
+<span class="mat">T(n) = 2<sup>n</sup></span>.</p>
+<p><span class="rot2">Passo.</span> Como <span class="mat">n ≥ 1</span>, então
+<span class="mat">n+1 ≥ 2</span>, e <em>é por isso</em> que a segunda cláusula é aplicável ao
+argumento <span class="mat">n+1</span>:</p>
+<p class="centro">T(n+1) = 2·T((n+1) − 1) = 2·T(n) = 2·2<sup>n</sup>&nbsp;&nbsp;<span style="font-style:normal">← (h.i.)</span></p>
+<p class="centro">= 2<sup>n+1</sup>. ∎</p>
+</div>
+<p class="nota"><strong>A armadilha do item.</strong> A mesma recorrência com base
+<span class="mat">T(1) = 1</span> resolveria para <span class="mat">2<sup>n−1</sup></span>, não
+<span class="mat">2<sup>n</sup></span>. Aqui a base vale 2, e é a base que fixa a constante
+multiplicativa. Esse é exatamente o tipo de troca que o professor faz entre a lista e a prova
+(compare com a Q2(a) da prova de 2025, em que o <span class="mat">+</span> virou
+<span class="mat">−</span> e a resposta se inverteu).</p>
+</div>
+
+<div class="item">
+<h3>(c) &nbsp; T(1) = 1, T(n) = T(n−1) + 1 &nbsp;⟹&nbsp; T(n) = n</h3>
+<div class="passo">
+<p><span class="rot2">Base (n = 1).</span> <span class="mat">T(1) = 1</span> pela primeira cláusula;
+e <span class="mat">n = 1</span>. Como <span class="mat">1 = 1</span>, vale.</p>
+<p><span class="rot2">Hipótese.</span> Seja <span class="mat">n ≥ 1</span> fixado e suponha
+<span class="mat">T(n) = n</span>.</p>
+<p><span class="rot2">Passo.</span> Como <span class="mat">n ≥ 1</span>, então
+<span class="mat">n+1 ≥ 2</span> e a segunda cláusula é aplicável ao argumento
+<span class="mat">n+1</span>:</p>
+<p class="centro">T(n+1) = T((n+1) − 1) + 1 = T(n) + 1 = n + 1&nbsp;&nbsp;<span style="font-style:normal">← (h.i.)</span>&nbsp;&nbsp;∎</p>
+</div>
+</div>
+
+<div class="item">
+<h3>(d) &nbsp; T(1) = 1, T(n) = T(n−1) + 3 &nbsp;⟹&nbsp; T(n) = 3n − 2</h3>
+<div class="passo">
+<p><span class="rot2">Base (n = 1).</span> <span class="mat">T(1) = 1</span> pela primeira cláusula;
+<span class="mat">3·1 − 2 = 3 − 2 = 1</span>. Como <span class="mat">1 = 1</span>, vale.</p>
+<p><span class="rot2">Hipótese.</span> Seja <span class="mat">n ≥ 1</span> fixado e suponha
+<span class="mat">T(n) = 3n − 2</span>.</p>
+<p><span class="rot2">Passo.</span> Como <span class="mat">n ≥ 1</span>, então
+<span class="mat">n+1 ≥ 2</span> e a segunda cláusula é aplicável:</p>
+<p class="centro">T(n+1) = T((n+1) − 1) + 3 = T(n) + 3 = (3n − 2) + 3&nbsp;&nbsp;<span style="font-style:normal">← (h.i.)</span></p>
+<p class="centro">= 3n + 1 = 3n + 3 − 2 = 3(n + 1) − 2. ∎</p>
+</div>
+<p class="nota">Dois pontos que valem nota. Primeiro: a base é <em>calculada</em>, não declarada — é
+exatamente ali que uma fórmula quase certa como <span class="mat">3n − 3</span> ou
+<span class="mat">3n − 1</span> seria refutada. Segundo: a constante da hipótese (o
+<span class="mat">−2</span>) reaparece <strong>intacta</strong> na conclusão. Constante que “cresce”
+no meio do passo é o erro mais comum da técnica.</p>
+</div>
+
+<div class="item">
+<h3>(e) &nbsp; T(1) = 1, T(n) = T(n−1) + 2 &nbsp;⟹&nbsp; T(n) ∈ Θ(n)</h3>
+<p>O enunciado pede a classe Θ. O caminho é em duas fases: primeiro a indução dá a forma fechada,
+depois as testemunhas dão o Θ.</p>
+
+<p><span class="rot2">Fase 1 — forma fechada: T(n) = 2n − 1.</span> De onde vem o palpite:
+desenrolando a recorrência, <span class="mat">T(n) = T(n−1) + 2 = T(n−2) + 2·2 = … = T(1) + 2(n−1)
+= 1 + 2n − 2 = 2n − 1</span>. O desenrolar é <em>heurística</em>, não demonstração — quem demonstra é
+a indução abaixo, que parte da definição recursiva e chega à fórmula.</p>
+<div class="passo">
+<p><span class="rot2">Base (n = 1).</span> <span class="mat">T(1) = 1</span> pela primeira cláusula;
+<span class="mat">2·1 − 1 = 1</span>. Como <span class="mat">1 = 1</span>, vale.</p>
+<p><span class="rot2">Hipótese.</span> Seja <span class="mat">n ≥ 1</span> fixado e suponha
+<span class="mat">T(n) = 2n − 1</span>.</p>
+<p><span class="rot2">Passo.</span> Como <span class="mat">n ≥ 1</span>, então
+<span class="mat">n+1 ≥ 2</span> e a segunda cláusula é aplicável:</p>
+<p class="centro">T(n+1) = T((n+1) − 1) + 2 = T(n) + 2 = (2n − 1) + 2&nbsp;&nbsp;<span style="font-style:normal">← (h.i.)</span></p>
+<p class="centro">= 2n + 1 = 2n + 2 − 1 = 2(n + 1) − 1. ∎</p>
+</div>
+
+<p><span class="rot2">Fase 2 — de T(n) = 2n − 1 para T(n) ∈ Θ(n).</span></p>
+<p>Pela definição (CLRS 3ª ed., §3.1), <span class="mat">Θ(g(n))</span> é o conjunto das funções
+<span class="mat">f</span> para as quais <strong>existem</strong> constantes positivas
+<span class="mat">c<sub>1</sub>, c<sub>2</sub>, n<sub>0</sub></span> tais que, <strong>para todo</strong>
+<span class="mat">n ≥ n<sub>0</sub></span>, vale
+<span class="mat">0 ≤ c<sub>1</sub>·g(n) ≤ f(n) ≤ c<sub>2</sub>·g(n)</span>. A ordem dos
+quantificadores é <span class="mat">∃c<sub>1</sub> ∃c<sub>2</sub> ∃n<sub>0</sub> ∀n ≥ n<sub>0</sub></span>:
+as três constantes são escolhidas primeiro, de uma vez, e não podem depender de
+<span class="mat">n</span>.</p>
+
+<p><span class="resp">Testemunhas: c<sub>1</sub> = 1, c<sub>2</sub> = 2, n<sub>0</sub> = 1.</span>
+Todas positivas (<span class="mat">1 &gt; 0</span>, <span class="mat">2 &gt; 0</span>,
+<span class="mat">1 &gt; 0</span>) — condição da definição, não decorrência dela — e nenhuma contém
+<span class="mat">n</span>. Aqui <span class="mat">f(n) = T(n) = 2n − 1</span> e
+<span class="mat">g(n) = n</span>.</p>
+
+<div class="passo">
+<p><span class="rot2">Conferência em n = n<sub>0</sub> = 1, exatamente.</span>
+<span class="mat">c<sub>1</sub>·g(1) = 1·1 = 1</span>;
+<span class="mat">T(1) = 2·1 − 1 = 1</span> (e <span class="mat">T(1) = 1</span> pela recorrência —
+os dois caminhos concordam); <span class="mat">c<sub>2</sub>·g(1) = 2·1 = 2</span>.
+Logo <span class="mat">0 ≤ 1 ≤ 1 ≤ 2</span>. Vale em <span class="mat">n<sub>0</sub></span>, com
+igualdade na cota inferior — permitido, pois a definição usa <span class="mat">≤</span>, não
+<span class="mat">&lt;</span>.</p>
+<p><span class="rot2">Verificação para todo n ≥ 1</span> (algébrica, não amostral). Seja
+<span class="mat">n</span> inteiro com <span class="mat">n ≥ 1</span>.</p>
+<p>(i) <span class="mat">c<sub>1</sub>·g(n) = n ≥ 1 &gt; 0</span>, portanto
+<span class="mat">0 ≤ c<sub>1</sub>·g(n)</span>.</p>
+<p>(ii) <span class="mat">n ≤ 2n − 1</span> equivale, subtraindo <span class="mat">n</span> dos dois
+lados, a <span class="mat">0 ≤ n − 1</span>, isto é <span class="mat">1 ≤ n</span> — verdadeira por
+hipótese.</p>
+<p>(iii) <span class="mat">2n − 1 ≤ 2n</span> equivale, subtraindo <span class="mat">2n</span> dos
+dois lados, a <span class="mat">−1 ≤ 0</span> — verdadeira incondicionalmente.</p>
+<p>Reunindo: para todo <span class="mat">n ≥ 1</span>,
+<span class="mat">0 ≤ 1·n ≤ 2n − 1 = T(n) ≤ 2·n</span>. Portanto
+<span class="mat">T(n) = 2n − 1 ∈ Θ(n)</span>. ∎</p>
+</div>
+<p class="nota"><span class="mat">Θ(n)</span> é teto <em>e</em> piso; não diz que
+<span class="mat">T(n) = n</span>. De fato <span class="mat">T(n) ≠ n</span> para
+<span class="mat">n ≥ 2</span>, e ainda assim <span class="mat">T ∈ Θ(n)</span> — é precisamente para
+isso que servem <span class="mat">c<sub>1</sub></span> e <span class="mat">c<sub>2</sub></span>.</p>
+</div>
+
+<table>
+<tr><th>Item</th><th>Resultado provado</th><th>Detalhe que decide o item</th></tr>
+<tr><td class="n">(a)</td><td class="mat">∑<sub>k=1</sub><sup>n</sup>(2k−1) = n², ∀n ≥ 1</td><td>base n = 1: 1 = 1; a soma tem um só termo</td></tr>
+<tr><td class="n">(b)</td><td class="mat">T(n) = 2<sup>n</sup>, ∀n ≥ 1</td><td>a base T(1) = 2 é o que dá 2<sup>n</sup>, e não 2<sup>n−1</sup></td></tr>
+<tr><td class="n">(c)</td><td class="mat">T(n) = n, ∀n ≥ 1</td><td>—</td></tr>
+<tr><td class="n">(d)</td><td class="mat">T(n) = 3n − 2, ∀n ≥ 1</td><td>base n = 1: 3·1 − 2 = 1 = T(1); o −2 sobrevive ao passo</td></tr>
+<tr><td class="n">(e)</td><td class="mat">T(n) = 2n − 1 ∈ Θ(n)</td><td>c<sub>1</sub> = 1, c<sub>2</sub> = 2, n<sub>0</sub> = 1; em n<sub>0</sub>: 0 ≤ 1 ≤ 1 ≤ 2</td></tr>
+</table>
+
+<!-- ══════════════════════ QUESTÃO 2 ══════════════════════ -->
+<h2>Questão 2 — limites assintóticos por Teorema Mestre</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Indique o limite assintótico usando a notação Θ, para cada uma das equações de recorrência
+  abaixo. Considere o caso base <span class="mat">T(1) = 1</span> ou <span class="mat">T(n) = c</span>,
+  para alguma constante <span class="mat">c</span> e ∀<span class="mat">n ≤ n<sub>0</sub></span>, para
+  alguma constante <span class="mat">n<sub>0</sub></span>. Suponha, também, que
+  <span class="mat">n</span> uma potência exata de <span class="mat">b</span>. Escolha o valor
+  adequado para a constante <span class="mat">b</span> conforme a equação de recorrência a ser
+  resolvida. Justifique todas as suas respostas. Respostas sem justificativas não serão consideradas.</p>
+  <p>(a) <span class="mat">T(n) = 2T(n/3) + 1</span> &nbsp;&nbsp; (b) <span class="mat">T(n) = 5T(n/4) + n</span>
+  &nbsp;&nbsp; (c) <span class="mat">T(n) = 7T(n/7) + n</span> &nbsp;&nbsp;
+  (d) <span class="mat">T(n) = 9T(n/3) + n²</span> &nbsp;&nbsp; (e) <span class="mat">T(n) = 8T(n/2) + n³</span></p>
+</div>
+
+<div class="item">
+<h3>O teorema na forma que a prova entrega</h3>
+<p>A prova desta disciplina fornece o Teorema Mestre na forma de <strong>Brassard &amp; Bratley</strong>,
+que compara <span class="mat">a</span> com <span class="mat">b<sup>k</sup></span> — não
+<span class="mat">f(n)</span> com <span class="mat">n<sup>log<sub>b</sub> a</sup></span>, como o CLRS.
+Hipóteses, como o formulário da prova as enuncia: <span class="mat">a ≥ 1</span> e
+<span class="mat">b ≥ 2</span> naturais, <span class="mat">k ≥ 0</span>,
+<span class="mat">f(n) = c·n<sup>k</sup></span> com <span class="mat">c &gt; 0</span> real,
+<span class="mat">n</span> potência exata de <span class="mat">b</span>, e <strong>T
+assintoticamente não decrescente</strong>. A tabela abaixo está <strong>na mesma ordem em que a
+prova imprime os casos</strong> — assim “primeiro/segundo/terceiro caso” aponta para a linha certa
+com a folha na mesa.</p>
+<table>
+<tr><th class="n">caso</th><th>Comparação</th><th>Conclusão</th><th>Leitura</th></tr>
+<tr><td class="n">1º</td><td class="mat">a &lt; b<sup>k</sup></td><td class="mat">Θ(n<sup>k</sup>)</td><td>a raiz domina</td></tr>
+<tr><td class="n">2º</td><td class="mat">a = b<sup>k</sup></td><td class="mat">Θ(n<sup>k</sup> · lg n)</td><td>todos os níveis custam o mesmo</td></tr>
+<tr><td class="n">3º</td><td class="mat">a &gt; b<sup>k</sup></td><td class="mat">Θ(n<sup>log<sub>b</sub> a</sup>)</td><td>as folhas dominam</td></tr>
+</table>
+<p>O valor de <span class="mat">b</span> <strong>não é escolhido arbitrariamente</strong>: ele é lido
+no argumento da chamada recursiva. Se a chamada é <span class="mat">T(n/3)</span>, então
+<span class="mat">b = 3</span>. “Escolher o valor adequado de <span class="mat">b</span>”, como diz o
+enunciado, significa usar essa base ao supor <span class="mat">n = b<sup>m</sup></span>. Dentro de Θ a
+base do logaritmo é irrelevante, pois <span class="mat">log<sub>x</sub> n = lg n / lg x</span> e
+<span class="mat">1/lg x</span> é constante positiva; escreve-se <span class="mat">lg = log<sub>2</sub></span>.</p>
+</div>
+
+<div class="item">
+<h3>Lema da expansão — onde a hipótese “n é potência exata de b” é usada</h3>
+<p>Aplicar a fórmula não é justificar. Como o enunciado garante que <span class="mat">n</span> é
+potência exata de <span class="mat">b</span>, dá para exibir a <strong>forma fechada exata</strong> e
+extrair dela as testemunhas. Isso vale para os cinco itens de uma vez.</p>
+<p class="nota">O lema abaixo é enunciado com <span class="mat">c = 1</span>, que é o caso dos
+cinco itens desta questão. Para <span class="mat">c &gt; 0</span> qualquer, o termo motor fica
+multiplicado por <span class="mat">c</span>, mas o termo do caso base
+<span class="mat">a<sup>m</sup></span> <strong>não</strong> — de modo que
+<span class="mat">T<sub>c</sub>(n) = a<sup>m</sup> + c·(T<sub>1</sub>(n) − a<sup>m</sup>)</span>, e
+<em>não</em> <span class="mat">c·T<sub>1</sub>(n)</span>. Por isso as testemunhas não se reescalam
+por um simples fator <span class="mat">c</span>: no caso <span class="mat">a = b<sup>k</sup></span>
+ficam <span class="mat">c<sub>1</sub> = c/lg b</span>,
+<span class="mat">c<sub>2</sub> = (1+c)/lg b</span>, <span class="mat">n<sub>0</sub> = b</span>; no
+caso <span class="mat">a &gt; b<sup>k</sup></span> ficam <span class="mat">c<sub>1</sub> = 1</span>,
+<span class="mat">c<sub>2</sub> = 1 + c·B</span>, <span class="mat">n<sub>0</sub> = 1</span>. As
+classes Θ, que é o que importa aqui, não mudam.</p>
+<p><span class="rot2">Lema.</span> Seja <span class="mat">T(1) = 1</span> e
+<span class="mat">T(n) = a·T(n/b) + n<sup>k</sup></span> para <span class="mat">n &gt; 1</span>. Se
+<span class="mat">n = b<sup>m</sup></span> com <span class="mat">m ≥ 0</span> inteiro, então</p>
+<p class="centro">T(b<sup>m</sup>) = a<sup>m</sup> + ∑<sub>i=0</sub><sup>m−1</sup> a<sup>i</sup> · b<sup>k(m−i)</sup></p>
+<div class="passo">
+<p><span class="rot2">Base (m = 0).</span> O lado direito vale <span class="mat">a<sup>0</sup> = 1</span>
+(a soma é vazia) e <span class="mat">T(b<sup>0</sup>) = T(1) = 1</span>. Confere.</p>
+<p><span class="rot2">Passo.</span> Suponha a fórmula válida para <span class="mat">m</span>. Então</p>
+<p class="centro">T(b<sup>m+1</sup>) = a·T(b<sup>m</sup>) + (b<sup>m+1</sup>)<sup>k</sup>
+= a·a<sup>m</sup> + ∑<sub>i=0</sub><sup>m−1</sup> a<sup>i+1</sup> b<sup>k(m−i)</sup> + b<sup>k(m+1)</sup></p>
+<p>Trocando o índice para <span class="mat">j = i+1</span>, a soma vira
+<span class="mat">∑<sub>j=1</sub><sup>m</sup> a<sup>j</sup> b<sup>k(m+1−j)</sup></span>; e o termo
+isolado <span class="mat">b<sup>k(m+1)</sup></span> é exatamente a parcela <span class="mat">j = 0</span>
+dessa mesma soma (substituindo <span class="mat">j = 0</span> em
+<span class="mat">a<sup>j</sup>b<sup>k(m+1−j)</sup></span> obtém-se
+<span class="mat">1·b<sup>k(m+1)</sup></span>). Logo</p>
+<p class="centro">T(b<sup>m+1</sup>) = a<sup>m+1</sup> + ∑<sub>j=0</sub><sup>m</sup> a<sup>j</sup> b<sup>k(m+1−j)</sup>, ∎</p>
+<p>que é a fórmula para <span class="mat">m+1</span>.</p>
+</div>
+<p class="nota"><strong>Onde a hipótese entra.</strong> Em cada um dos <span class="mat">m</span>
+desdobramentos, o argumento <span class="mat">b<sup>m</sup>/b<sup>i</sup> = b<sup>m−i</sup></span> é
+<em>inteiro</em>, e a recursão atinge o caso base <span class="mat">T(1)</span> após exatamente
+<span class="mat">m = log<sub>b</sub> n</span> níveis. Sem essa hipótese apareceriam pisos e tetos
+<span class="mat">⌊n/b⌋</span>, e a igualdade acima seria apenas aproximada — a conclusão Θ
+continuaria valendo, a forma fechada exata não.</p>
+
+<p><span class="rot2">Somando a série geométrica.</span> Escrevendo
+<span class="mat">b<sup>k(m−i)</sup> = b<sup>km</sup>·(b<sup>−k</sup>)<sup>i</sup></span>, tem-se
+<span class="mat">∑<sub>i=0</sub><sup>m−1</sup> a<sup>i</sup>b<sup>k(m−i)</sup> = b<sup>km</sup> ∑<sub>i=0</sub><sup>m−1</sup> (a/b<sup>k</sup>)<sup>i</sup></span>,
+com <span class="mat">b<sup>km</sup> = (b<sup>m</sup>)<sup>k</sup> = n<sup>k</sup></span> e
+<span class="mat">a<sup>m</sup> = (b<sup>m</sup>)<sup>log<sub>b</sub> a</sup> = n<sup>log<sub>b</sub> a</sup></span>.</p>
+<p><strong>Caso <span class="mat">a = b<sup>k</sup></span>.</strong> A razão é 1, a soma tem
+<span class="mat">m</span> parcelas iguais a 1:</p>
+<p class="centro">(F1) &nbsp;&nbsp; T(n) = (m+1)·n<sup>k</sup> = n<sup>k</sup>·(log<sub>b</sub> n + 1)</p>
+<p><strong>Caso <span class="mat">a ≠ b<sup>k</sup></span>.</strong> A soma geométrica de razão
+<span class="mat">a/b<sup>k</sup> ≠ 1</span> vale
+<span class="mat">((a/b<sup>k</sup>)<sup>m</sup> − 1)/((a/b<sup>k</sup>) − 1)</span>. Multiplicando
+numerador e denominador por <span class="mat">b<sup>k</sup></span>:</p>
+<p class="centro">(F2) &nbsp;&nbsp; T(n) = <span style="font-style:normal">A</span>·n<sup>log<sub>b</sub> a</sup> − <span style="font-style:normal">B</span>·n<sup>k</sup>,
+&nbsp; com A = a/(a − b<sup>k</sup>) e B = b<sup>k</sup>/(a − b<sup>k</sup>)</p>
+</div>
+
+<div class="item">
+<h3>Dois corolários que dão as testemunhas</h3>
+<p><span class="rot2">Corolário 1 — caso a &gt; b<sup>k</sup>.</span> Aqui
+<span class="mat">a − b<sup>k</sup> &gt; 0</span>, logo <span class="mat">A</span> e
+<span class="mat">B</span> são positivos, e <span class="mat">A − B = (a − b<sup>k</sup>)/(a − b<sup>k</sup>) = 1</span>.
+Como <span class="mat">a &gt; b<sup>k</sup></span> implica
+<span class="mat">log<sub>b</sub> a &gt; k</span>, o expoente
+<span class="mat">k − log<sub>b</sub> a</span> é negativo, e portanto
+<span class="mat">n<sup>k−log<sub>b</sub> a</sup> ≤ 1</span> para todo <span class="mat">n ≥ 1</span>.
+Escrevendo <span class="mat">T(n) = n<sup>log<sub>b</sub> a</sup>·(A − B·n<sup>k−log<sub>b</sub> a</sup>)</span>:</p>
+<p class="centro">1·n<sup>log<sub>b</sub> a</sup> = (A−B)·n<sup>log<sub>b</sub> a</sup> ≤ T(n) ≤ A·n<sup>log<sub>b</sub> a</sup>, &nbsp; ∀ n = b<sup>m</sup> ≥ 1</p>
+<p>ou seja <span class="resp">c<sub>1</sub> = 1, c<sub>2</sub> = A, n<sub>0</sub> = 1</span>. Isso é
+<span class="mat">Θ(n<sup>log<sub>b</sub> a</sup>)</span>. Checagem de consistência: em
+<span class="mat">n = 1</span> a fórmula dá <span class="mat">T(1) = A − B = 1</span>, que é o caso
+base dado.</p>
+
+<p><span class="rot2">Corolário 2 — caso a = b<sup>k</sup>.</span> De (F1),
+<span class="mat">T(n) = n<sup>k</sup>·(lg n / lg b + 1)</span>. Para <span class="mat">n ≥ b</span>
+vale <span class="mat">lg n ≥ lg b</span>, isto é <span class="mat">1 ≤ lg n / lg b</span>; portanto</p>
+<p class="centro">(1/lg b)·n<sup>k</sup> lg n ≤ T(n) ≤ (2/lg b)·n<sup>k</sup> lg n, &nbsp; ∀ n = b<sup>m</sup> ≥ b</p>
+<p>ou seja <span class="resp">c<sub>1</sub> = 1/lg b, c<sub>2</sub> = 2/lg b, n<sub>0</sub> = b</span>.
+Isso é <span class="mat">Θ(n<sup>k</sup> lg n)</span>.</p>
+<p class="nota"><strong>A restrição <span class="mat">n<sub>0</sub> = b</span> não é cosmética — é o
+ponto de fencepost do item.</strong> Com <span class="mat">n<sub>0</sub> = 1</span> teríamos
+<span class="mat">lg 1 = 0</span>, e a cota <em>superior</em> viraria
+<span class="mat">T(1) = 1 ≤ c<sub>2</sub>·0 = 0</span>, que é falsa. Escrever
+<span class="mat">n<sub>0</sub> = 1</span> aqui perde o item inteiro.</p>
+</div>
+
+<div class="item">
+<h3>(a) &nbsp; T(n) = 2T(n/3) + 1</h3>
+<p><span class="rot2">Identificação.</span> A chamada é <span class="mat">T(n/3)</span> ⟹
+<span class="mat">b = 3</span>. Há duas chamadas ⟹ <span class="mat">a = 2</span>. O termo não
+recursivo é <span class="mat">1 = 1·n<sup>0</sup></span> ⟹ <span class="mat">k = 0</span>,
+<span class="mat">c = 1</span>. <em>(Armadilha: o “+1” é <span class="mat">n<sup>0</sup></span>,
+não <span class="mat">n<sup>1</sup></span>.)</em></p>
+<p><span class="rot2">Comparação.</span> <span class="mat">b<sup>k</sup> = 3<sup>0</sup> = 1</span>.
+Como <span class="mat">2 &gt; 1</span>, tem-se <span class="mat">a &gt; b<sup>k</sup></span>:
+<strong>terceiro caso</strong>.</p>
+<p><span class="resp">T(n) ∈ Θ(n<sup>log<sub>3</sub> 2</sup>)</span>, com
+<span class="mat">log<sub>3</sub> 2 ≈ 0,630930</span>. A forma exata
+<span class="mat">log<sub>3</sub> 2</span> é a resposta; o decimal é só orientação.</p>
+<div class="passo">
+<p><span class="rot2">Confirmação por expansão</span> (<span class="mat">n = 3<sup>m</sup></span>).
+Aqui <span class="mat">a/b<sup>k</sup> = 2</span>, e (F2) dá
+<span class="mat">A = 2/(2−1) = 2</span>, <span class="mat">B = 1/(2−1) = 1</span>:</p>
+<p class="centro">T(3<sup>m</sup>) = 2<sup>m+1</sup> − 1, &nbsp; isto é &nbsp;
+T(n) = 2·n<sup>log<sub>3</sub> 2</sup> − 1</p>
+<p>Conferindo pela recorrência: <span class="mat">T(3) = 2·T(1) + 1 = 3 = 2² − 1</span>;
+<span class="mat">T(9) = 2·3 + 1 = 7 = 2³ − 1</span>.</p>
+<p><span class="rot2">Testemunhas</span> (Corolário 1, <span class="mat">A = 2</span>):
+<span class="resp">c<sub>1</sub> = 1, c<sub>2</sub> = 2, n<sub>0</sub> = 1</span>. A cota inferior
+<span class="mat">n<sup>log<sub>3</sub> 2</sup> ≤ 2n<sup>log<sub>3</sub> 2</sup> − 1</span> equivale
+a <span class="mat">n<sup>log<sub>3</sub> 2</sup> ≥ 1</span>, verdadeira exatamente para
+<span class="mat">n ≥ 1</span>. Em <span class="mat">n = n<sub>0</sub> = 1</span>:
+<span class="mat">1 ≤ 1 ≤ 2</span>.</p>
+</div>
+<p class="nota"><strong>Cruzando com o CLRS.</strong>
+<span class="mat">n<sup>log<sub>b</sub> a</sup> = n<sup>log<sub>3</sub> 2</sup></span> e
+<span class="mat">f(n) = 1 = O(n<sup>log<sub>3</sub> 2 − ε</sup>)</span> para
+<span class="mat">ε = 0,5 &gt; 0</span> (pois <span class="mat">0,630930 − 0,5 = 0,130930 &gt; 0</span>).
+Caso 1 do CLRS ⟹ mesma resposta.</p>
+</div>
+
+<div class="item">
+<h3>(b) &nbsp; T(n) = 5T(n/4) + n</h3>
+<p><span class="rot2">Identificação.</span> <span class="mat">b = 4</span>,
+<span class="mat">a = 5</span>, <span class="mat">f(n) = n = 1·n<sup>1</sup></span> ⟹
+<span class="mat">k = 1</span>, <span class="mat">c = 1</span>.</p>
+<p><span class="rot2">Comparação.</span> <span class="mat">b<sup>k</sup> = 4</span>. Como
+<span class="mat">5 &gt; 4</span>: <strong>terceiro caso</strong>.</p>
+<p><span class="resp">T(n) ∈ Θ(n<sup>log<sub>4</sub> 5</sup>)</span>, com
+<span class="mat">log<sub>4</sub> 5 ≈ 1,160964</span>.</p>
+<div class="passo">
+<p><span class="rot2">Confirmação por expansão</span> (<span class="mat">n = 4<sup>m</sup></span>).
+<span class="mat">a − b<sup>k</sup> = 1</span>, logo <span class="mat">A = 5</span>,
+<span class="mat">B = 4</span>:</p>
+<p class="centro">T(4<sup>m</sup>) = 5·5<sup>m</sup> − 4·4<sup>m</sup>, &nbsp; isto é &nbsp;
+T(n) = 5·n<sup>log<sub>4</sub> 5</sup> − 4n</p>
+<p>Conferindo: <span class="mat">T(4) = 5·1 + 4 = 9</span> e
+<span class="mat">5·5 − 4·4 = 9</span>; <span class="mat">T(16) = 5·9 + 16 = 61</span> e
+<span class="mat">125 − 64 = 61</span>.</p>
+<p><span class="rot2">Testemunhas</span> (Corolário 1, <span class="mat">A = 5</span>):
+<span class="resp">c<sub>1</sub> = 1, c<sub>2</sub> = 5, n<sub>0</sub> = 1</span>. A cota inferior
+<span class="mat">5n<sup>α</sup> − 4n ≥ n<sup>α</sup></span> (com
+<span class="mat">α = log<sub>4</sub> 5</span>) equivale a
+<span class="mat">n<sup>α−1</sup> ≥ 1</span>, com <span class="mat">α − 1 ≈ 0,161 &gt; 0</span> —
+verdadeira para todo <span class="mat">n ≥ 1</span>. Em <span class="mat">n = n<sub>0</sub> = 1</span>:
+<span class="mat">T(1) = 5 − 4 = 1</span>, e <span class="mat">1 ≤ 1 ≤ 5</span>. Em
+<span class="mat">n = 4</span>: <span class="mat">5 ≤ 9 ≤ 25</span>.</p>
+</div>
+<p class="nota"><strong>Um susto que a forma fechada desfaz.</strong> A razão
+<span class="mat">T(n)/n<sup>log<sub>4</sub> 5</sup></span> vale 1,80 · 2,44 · 2,95 · 3,36 · 3,69 ·
+3,95 · 4,16 · 4,33 em <span class="mat">n = 4<sup>1</sup>…4<sup>8</sup></span> — ainda subindo, o que
+<em>parece</em> divergência e sugeriria um fator logarítmico faltando. Não falta: a forma fechada dá
+<span class="mat">T(n)/n<sup>α</sup> = 5 − 4·n<sup>1−α</sup></span>, monótona crescente e
+<strong>limitada por 5</strong>. A convergência é lenta só porque
+<span class="mat">1 − α ≈ −0,161</span> é pequeno em módulo. Ler tabela sem a forma fechada engana.</p>
+</div>
+
+<div class="item">
+<h3>(c) &nbsp; T(n) = 7T(n/7) + n</h3>
+<p><span class="rot2">Identificação.</span> <span class="mat">b = 7</span>,
+<span class="mat">a = 7</span>, <span class="mat">k = 1</span>, <span class="mat">c = 1</span>.</p>
+<p><span class="rot2">Comparação.</span> <span class="mat">b<sup>k</sup> = 7 = a</span>:
+<strong>segundo caso</strong>.</p>
+<p><span class="resp">T(n) ∈ Θ(n lg n)</span>.</p>
+<div class="passo">
+<p><span class="rot2">Confirmação por expansão</span> (<span class="mat">n = 7<sup>m</sup></span>).
+Como <span class="mat">a = b<sup>k</sup></span>, cada nível custa o mesmo: no nível
+<span class="mat">i</span> há <span class="mat">7<sup>i</sup></span> subproblemas de tamanho
+<span class="mat">7<sup>m−i</sup></span>, custo total
+<span class="mat">7<sup>i</sup>·7<sup>m−i</sup> = 7<sup>m</sup> = n</span> por nível, para
+<span class="mat">i = 0, …, m−1</span>; as <span class="mat">7<sup>m</sup> = n</span> folhas custam
+<span class="mat">T(1) = 1</span> cada. Por (F1):</p>
+<p class="centro">T(7<sup>m</sup>) = (m+1)·7<sup>m</sup>, &nbsp; isto é &nbsp;
+T(n) = n·(log<sub>7</sub> n + 1) = (1/lg 7)·n lg n + n</p>
+<p>Conferindo: <span class="mat">T(7) = 7·1 + 7 = 14 = 2·7</span>;
+<span class="mat">T(49) = 7·14 + 49 = 147 = 3·49</span>.</p>
+<p><span class="rot2">Testemunhas</span> (Corolário 2, <span class="mat">lg 7 ≈ 2,807355</span>):
+<span class="resp">c<sub>1</sub> = 1/lg 7 ≈ 0,356207, c<sub>2</sub> = 2/lg 7 ≈ 0,712414,
+n<sub>0</sub> = 7</span>. Em <span class="mat">n = n<sub>0</sub> = 7</span> exatamente:
+<span class="mat">n lg n = 7·lg 7 ≈ 19,6515</span>; <span class="mat">c<sub>1</sub>·19,6515 ≈ 7,0</span>
+e <span class="mat">c<sub>2</sub>·19,6515 ≈ 14,0</span>. Como <span class="mat">T(7) = 14</span>,
+vale <span class="mat">7 ≤ 14 ≤ 14</span> — a cota superior é atingida <strong>com igualdade</strong>
+em <span class="mat">n<sub>0</sub></span>, o que a definição permite (usa
+<span class="mat">≤</span>), mas mostra que <span class="mat">c<sub>2</sub></span> não pode ser
+reduzido mantendo <span class="mat">n<sub>0</sub> = 7</span>.</p>
+</div>
+<p class="nota"><strong>Por que NÃO é Θ(n) — a resposta errada plausível do conjunto.</strong>
+Com <span class="mat">a = b = 7</span> a intuição sugere “<span class="mat">n</span> subproblemas de
+custo unitário, logo <span class="mat">Θ(n)</span>”. A forma fechada refuta:
+<span class="mat">T(n)/n = log<sub>7</sub> n + 1</span>, que vale 2, 3, 4, 5 em
+<span class="mat">n = 7, 49, 343, 2401</span> — <strong>diverge</strong>. Não existe
+<span class="mat">c</span> com <span class="mat">T(n) ≤ c·n</span> para todo <span class="mat">n</span>
+grande, logo <span class="mat">T ∉ O(n)</span> e, a fortiori,
+<span class="mat">T ∉ Θ(n)</span>. O fator <span class="mat">lg n</span> vem do <em>número de
+níveis</em>, não do custo por nível.</p>
+</div>
+
+<div class="item">
+<h3>(d) &nbsp; T(n) = 9T(n/3) + n²</h3>
+<p><span class="rot2">Identificação.</span> <span class="mat">b = 3</span> (lido no argumento
+<span class="mat">n/3</span>), <span class="mat">a = 9</span>,
+<span class="mat">f(n) = n² = 1·n<sup>2</sup></span> ⟹ <span class="mat">k = 2</span>.</p>
+<p><span class="rot2">Comparação.</span> <span class="mat">b<sup>k</sup> = 3² = 9 = a</span>:
+<strong>segundo caso</strong>.</p>
+<p><span class="resp">T(n) ∈ Θ(n² lg n)</span>.</p>
+<div class="passo">
+<p><span class="rot2">Confirmação por expansão</span> (<span class="mat">n = 3<sup>m</sup></span>).
+No nível <span class="mat">i</span> há <span class="mat">9<sup>i</sup></span> subproblemas de
+tamanho <span class="mat">3<sup>m−i</sup></span>, custo
+<span class="mat">9<sup>i</sup>·(3<sup>m−i</sup>)² = 9<sup>i</sup>·9<sup>m−i</sup> = 9<sup>m</sup> = n²</span>
+— custo idêntico em todos os níveis. Por (F1), usando
+<span class="mat">9<sup>m</sup> = (3<sup>m</sup>)² = n²</span>:</p>
+<p class="centro">T(3<sup>m</sup>) = (m+1)·9<sup>m</sup>, &nbsp; isto é &nbsp;
+T(n) = n²·(log<sub>3</sub> n + 1)</p>
+<p>Conferindo: <span class="mat">T(3) = 9·1 + 9 = 18 = 2·9</span>;
+<span class="mat">T(9) = 9·18 + 81 = 243 = 3·81</span>.</p>
+<p><span class="rot2">Testemunhas</span> (Corolário 2, <span class="mat">lg 3 ≈ 1,584963</span>):
+<span class="resp">c<sub>1</sub> = 1/lg 3 ≈ 0,630930, c<sub>2</sub> = 2/lg 3 ≈ 1,261860,
+n<sub>0</sub> = 3</span>. Em <span class="mat">n = n<sub>0</sub> = 3</span> exatamente:
+<span class="mat">n² lg n = 9·lg 3 ≈ 14,2647</span>; as cotas dão ≈ 9,0 e ≈ 18,0; com
+<span class="mat">T(3) = 18</span>, vale <span class="mat">9 ≤ 18 ≤ 18</span>.</p>
+</div>
+</div>
+
+<div class="item">
+<h3>(e) &nbsp; T(n) = 8T(n/2) + n³</h3>
+<p><span class="rot2">Identificação.</span> <span class="mat">b = 2</span>,
+<span class="mat">a = 8</span>, <span class="mat">k = 3</span>.</p>
+<p><span class="rot2">Comparação.</span> <span class="mat">b<sup>k</sup> = 2³ = 8 = a</span>:
+<strong>segundo caso</strong>.</p>
+<p><span class="resp">T(n) ∈ Θ(n³ lg n)</span>.</p>
+<div class="passo">
+<p><span class="rot2">Confirmação por expansão</span> (<span class="mat">n = 2<sup>m</sup></span>).
+No nível <span class="mat">i</span>: <span class="mat">8<sup>i</sup></span> subproblemas de tamanho
+<span class="mat">2<sup>m−i</sup></span>, custo
+<span class="mat">8<sup>i</sup>·(2<sup>m−i</sup>)³ = 8<sup>m</sup> = n³</span> por nível. Por (F1),
+com <span class="mat">b = 2</span> não há fator de conversão
+(<span class="mat">log<sub>2</sub> n = lg n</span>):</p>
+<p class="centro">T(2<sup>m</sup>) = (m+1)·8<sup>m</sup>, &nbsp; isto é &nbsp;
+T(n) = n³·(lg n + 1) = n³ lg n + n³</p>
+<p>Conferindo: <span class="mat">T(2) = 8·1 + 8 = 16 = 2·8</span>;
+<span class="mat">T(4) = 8·16 + 64 = 192 = 3·64</span>.</p>
+<p><span class="rot2">Testemunhas</span> (Corolário 2, <span class="mat">lg 2 = 1</span>):
+<span class="resp">c<sub>1</sub> = 1, c<sub>2</sub> = 2, n<sub>0</sub> = 2</span>. Em
+<span class="mat">n = n<sub>0</sub> = 2</span> exatamente:
+<span class="mat">n³ lg n = 8·1 = 8</span>; as cotas dão 8 e 16; com
+<span class="mat">T(2) = 16</span>, vale <span class="mat">8 ≤ 16 ≤ 16</span>.</p>
+</div>
+</div>
+
+<div class="item">
+<h3>O caso base não muda nenhuma das respostas</h3>
+<p>O enunciado admite <span class="mat">T(1) = 1</span> <em>ou</em> <span class="mat">T(n) = c</span>
+para todo <span class="mat">n ≤ n<sub>base</sub></span>. Refazendo o Lema com
+<span class="mat">T(1) = c</span>, o único termo afetado é
+<span class="mat">a<sup>m</sup>·T(1) = c·a<sup>m</sup></span>:</p>
+<p class="centro">(a) (c+1)n<sup>log<sub>3</sub> 2</sup> − 1 &nbsp;·&nbsp;
+(b) (c+4)n<sup>log<sub>4</sub> 5</sup> − 4n &nbsp;·&nbsp;
+(c) n(log<sub>7</sub> n + c) &nbsp;·&nbsp;
+(d) n²(log<sub>3</sub> n + c) &nbsp;·&nbsp;
+(e) n³(lg n + c)</p>
+<p class="nota"><strong>Cuidado com o símbolo.</strong> Aqui <span class="mat">c</span> é a
+constante do <em>caso base</em>, não o coeficiente do termo motor — e os dois papéis dão
+testemunhas diferentes. Com <span class="mat">T(1) = c</span> a razão
+<span class="mat">T(n)/(n<sup>k</sup> lg n)</span> vale
+<span class="mat">1/lg b + c/lg n</span>, cujo ínfimo é <span class="mat">1/lg b</span> e
+<strong>não depende de c</strong>; no regime do termo motor a razão é
+<span class="mat">1/lg n + c/lg b</span>, com ínfimo <span class="mat">c/lg b</span>. Trocar um
+pelo outro produz uma cota inferior falsa: no item (e) com <span class="mat">c = 3</span> tem-se
+<span class="mat">T(4) = 320</span>, e a cota <span class="mat">c/lg b</span> exigiria 384.</p>
+<p>Assim, no caso <span class="mat">a = b<sup>k</sup></span> com <span class="mat">T(1) = c</span>
+as testemunhas são <span class="resp">c<sub>1</sub> = 1/lg b, c<sub>2</sub> = (1+c)/lg b,
+n<sub>0</sub> = b</span>; e no caso <span class="mat">a &gt; b<sup>k</sup></span>, como
+<span class="mat">T<sub>c</sub>(n) = T<sub>1</sub>(n) + (c−1)·a<sup>m</sup></span> e
+<span class="mat">A − B = 1</span>, ficam <span class="resp">c<sub>1</sub> = c,
+c<sub>2</sub> = c + B, n<sub>0</sub> = 1</span>. Em todos os casos,
+<span class="mat">c &gt; 0</span> muda <span class="mat">c<sub>1</sub></span> e
+<span class="mat">c<sub>2</sub></span> apenas por constantes — nunca a classe. Nos casos de
+igualdade o fator <span class="mat">lg n</span> sobrevive porque vem do <strong>número de
+níveis</strong> (<span class="mat">log<sub>b</sub> n</span>), que independe do caso base. Interromper
+a recursão em <span class="mat">n ≤ n<sub>base</sub></span> em vez de <span class="mat">n = 1</span>
+corta apenas <span class="mat">log<sub>b</sub> n<sub>base</sub> = O(1)</span> níveis — os mais
+profundos da árvore de recursão.</p>
+</div>
+
+<table>
+<tr><th>item</th><th>recorrência</th><th class="n">a</th><th class="n">b</th><th class="n">k</th>
+<th class="n">b<sup>k</sup></th><th>caso</th><th>forma fechada (n = b<sup>m</sup>, T(1)=1)</th><th>resposta</th></tr>
+<tr><td class="n">(a)</td><td class="mat">2T(n/3)+1</td><td class="n">2</td><td class="n">3</td><td class="n">0</td><td class="n">1</td><td>3º (a &gt; b<sup>k</sup>)</td><td class="mat">2n<sup>log<sub>3</sub>2</sup> − 1</td><td class="mat"><strong>Θ(n<sup>log<sub>3</sub>2</sup>)</strong> ≈ Θ(n<sup>0,6309</sup>)</td></tr>
+<tr><td class="n">(b)</td><td class="mat">5T(n/4)+n</td><td class="n">5</td><td class="n">4</td><td class="n">1</td><td class="n">4</td><td>3º (a &gt; b<sup>k</sup>)</td><td class="mat">5n<sup>log<sub>4</sub>5</sup> − 4n</td><td class="mat"><strong>Θ(n<sup>log<sub>4</sub>5</sup>)</strong> ≈ Θ(n<sup>1,1610</sup>)</td></tr>
+<tr><td class="n">(c)</td><td class="mat">7T(n/7)+n</td><td class="n">7</td><td class="n">7</td><td class="n">1</td><td class="n">7</td><td>2º (a = b<sup>k</sup>)</td><td class="mat">n(log<sub>7</sub> n + 1)</td><td class="mat"><strong>Θ(n lg n)</strong></td></tr>
+<tr><td class="n">(d)</td><td class="mat">9T(n/3)+n²</td><td class="n">9</td><td class="n">3</td><td class="n">2</td><td class="n">9</td><td>2º (a = b<sup>k</sup>)</td><td class="mat">n²(log<sub>3</sub> n + 1)</td><td class="mat"><strong>Θ(n² lg n)</strong></td></tr>
+<tr><td class="n">(e)</td><td class="mat">8T(n/2)+n³</td><td class="n">8</td><td class="n">2</td><td class="n">3</td><td class="n">8</td><td>2º (a = b<sup>k</sup>)</td><td class="mat">n³(lg n + 1)</td><td class="mat"><strong>Θ(n³ lg n)</strong></td></tr>
+</table>
+
+<p class="nota"><strong>Ressalva de escopo.</strong> As formas fechadas exatas valem apenas sobre
+<span class="mat">n = b<sup>m</sup></span>. Para <span class="mat">n</span> arbitrário, com pisos, a
+conclusão Θ continua válida, mas a igualdade exata não. As testemunhas exibidas certificam o Θ nessa
+subsequência — que é exatamente o que o enunciado pede ao mandar supor potência exata de
+<span class="mat">b</span>.</p>
+
+<!-- ══════════════════════ QUESTÃO 3 ══════════════════════ -->
+<h2>Questão 3 — a prova por indução defeituosa</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Considere a seguinte prova por indução matemática:</p>
+  <ol>
+    <li><strong>Proposição.</strong> Dado um conjunto de <span class="mat">n</span> pessoas, se pelo
+    menos uma pessoa tem a nacionalidade chinesa, então todas os demais pessoas também são chinesas.</li>
+    <li><strong>Caso base (n = 1):</strong> Em um conjunto com uma pessoa, se ela é chinesa, então
+    todas as pessoas do conjunto são chinesa. Portanto, a afirmação é verdadeira.</li>
+    <li><strong>Hipótese de indução:</strong>
+      <ul>
+      <li>Suponha que a proposição é verdadeira para <span class="mat">n = 3</span>;</li>
+      <li>Sejam <span class="mat">T<sub>1</sub>, T<sub>2</sub>, T<sub>3</sub></span> e
+      <span class="mat">T<sub>4</sub></span> quatro pessoas das quais pelo menos uma tem
+      nacionalidade chinesa (suponha que é <span class="mat">T<sub>1</sub></span>);</li>
+      <li>Supondo que o conjunto <span class="mat">{T<sub>1</sub>, T<sub>2</sub>, T<sub>3</sub>}</span>
+      é a hipótese de que é verdadeiro para <span class="mat">n = 3</span>, então
+      <span class="mat">T<sub>2</sub></span> e <span class="mat">T<sub>3</sub></span> são pessoas com
+      nacionalidade chinesa;</li>
+      <li>Analogamente para <span class="mat">{T<sub>1</sub>, T<sub>2</sub>, T<sub>4</sub>}</span>,
+      tem-se que <span class="mat">T<sub>2</sub></span> e <span class="mat">T<sub>4</sub></span> são
+      pessoas com nacionalidade chinesa.</li>
+      </ul>
+      Portanto, as quatro pessoas tem nacionalidade chinesa! A generalização da construção para
+      <span class="mat">k</span> e <span class="mat">k + 1</span> é a prova desejada.</li>
+  </ol>
+  <p><strong>Pergunta:</strong> Essa prova está correta? Justifique formalmente sua resposta.</p>
+  <p style="font-size:7.6pt;color:#5b6068;margin-top:1mm;">Transcrição literal do PDF do professor,
+  inclusive as concordâncias “todas os demais pessoas” e “são chinesa”.</p>
+</div>
+
+<p><span class="resp">Não, a prova não está correta.</span> São dois defeitos, e vale separá-los.
+O <em>imediato</em>, no texto tal como escrito: ele supõe <span class="mat">P(3)</span>, que nunca
+foi derivada da base <span class="mat">P(1)</span>, e apresenta a conclusão como fato categórico —
+de modo que o máximo que estabelece é a implicação <span class="mat">P(3) → P(4)</span>. O
+<em>de fundo</em>, que aparece ao completar a generalização que o texto delega a um “analogamente”:
+a proposição que ela pretende demonstrar é <strong>falsa</strong>. Como o Princípio da
+Indução Finita é uma regra de inferência correta — de premissas verdadeiras nunca extrai conclusão
+falsa —, uma “demonstração” de proposição falsa tem obrigatoriamente ao menos uma premissa não
+estabelecida. Abaixo: a refutação da proposição, a localização exata da premissa que falha, os
+defeitos adicionais de redação e o diagnóstico estrutural.</p>
+
+<div class="item">
+<h3>0. Notação</h3>
+<p>Para cada inteiro <span class="mat">n ≥ 1</span>, seja</p>
+<p class="centro"><span class="mat">P(n)</span>: “em todo conjunto <span class="mat">C</span> de
+<span class="mat">n</span> pessoas, se existe pelo menos uma pessoa chinesa em
+<span class="mat">C</span>, então todas as pessoas de <span class="mat">C</span> são chinesas”.</p>
+<p>Duas observações que decidem tudo o que vem depois: <span class="mat">P(n)</span> é uma afirmação
+<strong>universal sobre todos os conjuntos</strong> de tamanho <span class="mat">n</span>, e cada
+instância é uma <strong>implicação</strong> (antecedente: “há pelo menos um chinês”; consequente:
+“todos são chineses”).</p>
+</div>
+
+<div class="item">
+<h3>1. A proposição é falsa — contraexemplo</h3>
+<p>Tome <span class="mat">n = 2</span> e <span class="mat">C = {T<sub>1</sub>, T<sub>2</sub>}</span>,
+com <span class="mat">T<sub>1</sub></span> de nacionalidade chinesa e
+<span class="mat">T<sub>2</sub></span> de nacionalidade brasileira. O antecedente é verdadeiro
+(<span class="mat">T<sub>1</sub></span>); o consequente é falso
+(<span class="mat">T<sub>2</sub></span> não é). Implicação com antecedente verdadeiro e consequente
+falso é falsa: <span class="resp">P(2) é falsa</span>. O mesmo contraexemplo —
+<span class="mat">C = {T<sub>1</sub> chinês, T<sub>2</sub>, …, T<sub>n</sub> não-chineses}</span> —
+refuta <span class="mat">P(n)</span> para qualquer <span class="mat">n ≥ 2</span> para o qual
+existam <span class="mat">n</span> pessoas; e é <span class="mat">P(2)</span> que o resto desta
+resposta usa.</p>
+<table>
+<tr><th class="n">n</th><td class="n">1</td><td class="n">2</td><td class="n">3</td><td class="n">4</td><td class="n">5</td><td class="n">…</td></tr>
+<tr><th class="n">P(n)</th><td class="n"><strong>V</strong></td><td class="n">F</td><td class="n">F</td><td class="n">F</td><td class="n">F</td><td class="n">…</td></tr>
+</table>
+<p class="nota">A tabela supõe pessoas em número suficiente para formar cada conjunto — num
+universo com menos de <span class="mat">n</span> pessoas, <span class="mat">P(n)</span> seria
+vacuamente verdadeira, por falta de conjunto a testar. Isso não socorre a prova: o que ela
+precisaria é de <span class="mat">P(2)</span>, e <span class="mat">P(2)</span> é falsa em
+qualquer universo com ao menos uma pessoa chinesa e ao menos uma não-chinesa.</p>
+<p>Como a conclusão pretendida — “<span class="mat">P(n)</span> para todo <span class="mat">n</span>”
+— é falsa, o veredito está encerrado. O que resta é responder <em>onde</em>.</p>
+</div>
+
+<div class="item">
+<h3>2. Localização exata do defeito</h3>
+<p><span class="rot2">2.1 Reconstrução do passo.</span> O texto não escreve o passo genérico — diz
+“a generalização … é a prova desejada”. Mas a construção exibida em <span class="mat">3 → 4</span>
+tem uma generalização natural (e o item 2.4 mostra que a conclusão não depende de qual escolha
+de elementos removidos se adote):</p>
+<div class="passo">
+<p>Seja <span class="mat">k ≥ 1</span> e suponha <span class="mat">P(k)</span>. Seja
+<span class="mat">S = {T<sub>1</sub>, …, T<sub>k+1</sub>}</span> com pelo menos uma pessoa chinesa;
+sem perda de generalidade, <span class="mat">T<sub>1</sub></span>. Defina
+<span class="mat">A = S∖{T<sub>k+1</sub>}</span> e <span class="mat">B = S∖{T<sub>k</sub>}</span>.
+Então <span class="mat">|A| = |B| = k</span> e <span class="mat">A ∪ B = S</span>. Aplicando
+<span class="mat">P(k)</span> a <span class="mat">A</span> e a <span class="mat">B</span>, e usando
+<span class="mat">A ∪ B = S</span>, conclui-se <span class="mat">P(k+1)</span>.</p>
+</div>
+<p>No texto, <span class="mat">k = 3</span>: <span class="mat">A = {T<sub>1</sub>,T<sub>2</sub>,T<sub>3</sub>}</span>
+e <span class="mat">B = {T<sub>1</sub>,T<sub>2</sub>,T<sub>4</sub>}</span>.</p>
+
+<p><span class="rot2">2.2 A condição exata de aplicabilidade da hipótese.</span>
+<span class="mat">P(k)</span> é uma <em>implicação</em>. Aplicá-la a um conjunto
+<span class="mat">X</span> com <span class="mat">|X| = k</span> só produz “todos de
+<span class="mat">X</span> são chineses” se o <strong>antecedente estiver verificado</strong> para
+<span class="mat">X</span> — isto é, se soubermos que <span class="mat">X</span> contém pelo menos
+uma pessoa chinesa. Ter <span class="mat">|X| = k</span> não basta.</p>
+<p>A sutileza é que a lista de pessoas sabidamente chinesas <strong>cresce</strong> ao longo do
+argumento. No início a única testemunha é <span class="mat">T<sub>1</sub></span>; mas ao aplicar
+<span class="mat">P(k)</span> a <span class="mat">A</span>, que contém
+<span class="mat">T<sub>1</sub></span>, <em>todo</em> elemento de <span class="mat">A</span> passa a
+ser sabidamente chinês — e então qualquer elemento de <span class="mat">A ∩ B</span> serve de
+testemunha para a segunda aplicação. Com a rotulação de 2.1 — <span class="mat">A</span> é o
+primeiro subconjunto a receber a hipótese —, o passo exige
+<span class="mat">T<sub>1</sub> ∈ A</span> e <span class="mat">A ∩ B ≠ ∅</span>. Mas
+<span class="mat">T<sub>1</sub> ∈ A ∪ B = S</span> sempre vale, de modo que chamar de
+<span class="mat">A</span> aquele que contém <span class="mat">T<sub>1</sub></span> é escolha de
+<em>rótulo</em>, não exigência. A condição substantiva — a única que pode falhar — é:</p>
+<p class="centro"><span class="resp">A ∩ B ≠ ∅</span></p>
+<p>(Exigir <span class="mat">T<sub>1</sub> ∈ A ∩ B</span> também funcionaria, mas é forte demais:
+para <span class="mat">k = 3</span> o par <span class="mat">A = {T<sub>1</sub>,T<sub>2</sub>,T<sub>3</sub>}</span>,
+<span class="mat">B = {T<sub>2</sub>,T<sub>3</sub>,T<sub>4</sub>}</span> fecha o passo sem que
+<span class="mat">T<sub>1</sub></span> esteja em <span class="mat">B</span>.)</p>
+<p>Na construção do texto, a conta é imediata:</p>
+<p class="centro">A ∩ B = S∖{T<sub>k</sub>, T<sub>k+1</sub>} = {T<sub>1</sub>, …, T<sub>k−1</sub>},
+&nbsp; com &nbsp; |A ∩ B| = k − 1</p>
+<p>Logo <span class="mat">A ∩ B ≠ ∅</span> se e somente se <span class="mat">k ≥ 2</span>. A
+cardinalidade nem depende da rotulação: <span class="mat">|A| = |B| = k</span> e
+<span class="mat">|A ∪ B| = k + 1</span> forçam
+<span class="mat">|A ∩ B| = 2k − (k+1) = k − 1</span>.</p>
+
+<p><span class="rot2">2.3 O caso k = 1, onde tudo desaba.</span> Para
+<span class="mat">k = 1</span> temos <span class="mat">S = {T<sub>1</sub>, T<sub>2</sub>}</span> com
+<span class="mat">T<sub>1</sub></span> chinês, e a construção dá
+<span class="mat">A = {T<sub>1</sub>}</span>, <span class="mat">B = {T<sub>2</sub>}</span>.</p>
+<div class="passo">
+<p>Aplicar <span class="mat">P(1)</span> a <span class="mat">A</span> é legítimo, mas conclui apenas
+“<span class="mat">T<sub>1</sub></span> é chinês” — nada de novo.</p>
+<p>Aplicar <span class="mat">P(1)</span> a <span class="mat">B</span> é <strong>ilegítimo</strong>:
+não se sabe que <span class="mat">T<sub>2</sub></span> é chinês — esse é exatamente o fato que se
+quer provar. O antecedente de <span class="mat">P(1)</span> para <span class="mat">B</span> não está
+verificado, e de <span class="mat">P(1)</span> nada se deduz sobre <span class="mat">B</span>.
+Insistir seria usar a tese para provar a tese.</p>
+<p>Consequentemente <span class="mat">S = A ∪ B</span> não fica coberto: sobre
+<span class="mat">T<sub>2</sub></span> não se obteve nada.</p>
+</div>
+<p><span class="resp">Conclusão: a implicação P(1) → P(2) não é demonstrada pela construção.</span>
+É o único elo faltante — e, pelo item 1, é também um elo <strong>falso</strong>
+(<span class="mat">P(1)</span> verdadeira, <span class="mat">P(2)</span> falsa). Não há remendo
+possível: não se trata de prova malfeita de algo verdadeiro, e sim da tentativa de provar algo falso.</p>
+
+<p><span class="rot2">2.4 O defeito não depende da rotulação.</span> Qualquer versão dessa construção
+obtém os dois subconjuntos de tamanho <span class="mat">k</span> removendo de
+<span class="mat">S</span> dois elementos <em>distintos</em> (removendo o mesmo duas vezes teríamos
+<span class="mat">A = B</span> e <span class="mat">A ∪ B ≠ S</span>, e o argumento nem cobriria
+<span class="mat">S</span>). Removendo dois elementos distintos de um conjunto de
+<span class="mat">k+1 = 2</span> elementos, os subconjuntos resultantes são forçosamente os
+singletons <span class="mat">{T<sub>1</sub>}</span> e <span class="mat">{T<sub>2</sub>}</span>, que
+são <strong>disjuntos</strong> — e sem interseção não há como transportar testemunha de um para o
+outro, qualquer que seja a rotulação.</p>
+</div>
+
+<div class="item">
+<h3>3. Defeitos adicionais de redação</h3>
+<p><span class="rot2">(a) A hipótese foi enunciada para um valor fixo.</span> O texto escreve
+“suponha que a proposição é verdadeira para <span class="mat">n = 3</span>”. Isso não é hipótese de
+indução legítima: a hipótese é “seja <span class="mat">k ≥ n<sub>0</sub></span> <em>arbitrário</em> e
+suponha <span class="mat">P(k)</span>”. Duas regras trabalham juntas — descarregar a hipótese
+<span class="mat">P(k)</span> é o que produz a implicação
+<span class="mat">P(k) → P(k+1)</span>, e a arbitrariedade de <span class="mat">k</span> é o que
+autoriza a <em>generalização universal</em>, <span class="mat">∀k (P(k) → P(k+1))</span>. Fixando
+<span class="mat">n = 3</span>, a primeira ainda se aplica — assumir <span class="mat">P(3)</span>,
+derivar <span class="mat">P(4)</span> e descarregar produz legitimamente a implicação
+<span class="mat">P(3) → P(4)</span> — mas a segunda não: sem <span class="mat">k</span> arbitrário
+não há generalização universal. É por isso que o texto fica preso a essa única implicação concreta.</p>
+<p><span class="rot2">(b) P(3) nunca foi estabelecida</span> — e é falsa. O caso base provado é
+<span class="mat">P(1)</span>; nada liga <span class="mat">P(1)</span> a
+<span class="mat">P(3)</span>. Sutileza importante: <em>supor</em> <span class="mat">P(3)</span>
+dentro de uma prova condicional não é falácia — obtém-se legitimamente a implicação
+<span class="mat">P(3) → P(4)</span>. A falácia está em <strong>concluir o consequente de uma prova
+condicional sem ter estabelecido o antecedente</strong> — modus ponens sem a premissa menor: a frase “Portanto, as quatro
+pessoas tem nacionalidade chinesa!” é apresentada como fato categórico quando só vale sob uma
+hipótese não demonstrada.</p>
+<p><span class="rot2">(c) O rótulo está trocado.</span> O que o texto chama de “hipótese de indução”
+é o <em>passo</em> indutivo, e apenas na instância concreta <span class="mat">3 → 4</span>. Enunciar a hipótese dentro do
+passo é prática comum e não seria defeito; o defeito é o rótulo esconder que ali está sendo feita
+justamente a parte que precisaria de <span class="mat">k</span> arbitrário — e a quantificação
+universal sobre <span class="mat">k</span> nunca aparece.</p>
+<p><span class="rot2">(d) “A generalização … é a prova desejada” é um buraco, não um passo.</span>
+É o padrão “analogamente / claramente”: a frase ocupa exatamente o lugar onde a demonstração deveria
+estar — e é precisamente onde a prova falha. Se o autor tivesse escrito o passo genérico com os
+quantificadores explícitos, seria obrigado a justificar que
+<span class="mat">A ∩ B ≠ ∅</span> — na construção do texto, que
+<span class="mat">T<sub>1</sub> ∈ B</span> — e o caso <span class="mat">k = 1</span> apareceria
+imediatamente.</p>
+<p><span class="rot2">(e) Base e passo não se encaixam.</span> A base é
+<span class="mat">n = 1</span>; o passo só funciona de <span class="mat">k = 2</span> em diante.</p>
+</div>
+
+<div class="item">
+<h3>4. Diagnóstico estrutural: por que o dominó não cai</h3>
+<p>O texto do professor não escreve o passo genérico — exibe só a instância
+<span class="mat">3 → 4</span> e delega o resto a um “analogamente”. Completando-o como em 2.1,
+com a aplicabilidade da hipótese verificada como em 2.2, dá para separar o que fica de pé do que
+não fica. A indução é uma cadeia de implicações ancorada na base:</p>
+<p class="centro">P(1) → P(2) → P(3) → P(4) → …</p>
+<table>
+<tr><th>Peça</th><th>Status</th></tr>
+<tr><td>Base: <span class="mat">P(1)</span></td><td>verdadeira ✔</td></tr>
+<tr><td>Passo: <span class="mat">P(k) → P(k+1)</span> para todo <span class="mat">k ≥ 2</span></td><td>demonstrável — mas pela reconstrução de 2.1, não pelo texto ✔</td></tr>
+<tr><td>Elo <span class="mat">P(1) → P(2)</span></td><td><strong>não demonstrado — e falso ✘</strong></td></tr>
+</table>
+<p>O primeiro dominó cai e os do segundo em diante estão bem posicionados uns em relação aos outros,
+mas <strong>ninguém empurra o segundo</strong>. A única instância <span class="mat">P(n)</span>
+inferível dessas premissas é <span class="mat">P(1)</span>.</p>
+<p><span class="rot2">Por que “base válida + passo válido para quase todo k” não basta.</span>
+O argumento decisivo é um contramodelo. Tome um mundo com pelo menos uma pessoa chinesa e pelo
+menos uma não-chinesa — <span class="mat">T<sub>1</sub></span> chinês,
+<span class="mat">T<sub>2</sub></span> brasileiro, e quantas mais se queira. Confira nele as
+premissas oferecidas:</p>
+<div class="passo">
+<p>(i) <span class="mat">P(1)</span> é verdadeira, logo a base vale — de fato
+<span class="mat">P(1)</span> é verdadeira em todo mundo;</p>
+<p>(ii) <span class="mat">P(k) → P(k+1)</span> vale para todo <span class="mat">k ≥ 2</span>, logo o
+passo vale — a derivação de 2.1 é correta sempre que <span class="mat">k ≥ 2</span>, qualquer que
+seja o mundo;</p>
+<p>(iii) e, no entanto, <span class="mat">∀n P(n)</span> é falsa, pois
+<span class="mat">P(2)</span> falha pelo contraexemplo do item 1.</p>
+</div>
+<p>Existe, portanto, um modelo que satisfaz <em>todas</em> as premissas oferecidas e refuta a
+conclusão. Logo essas premissas não implicam a conclusão — nenhuma reescrita da prova poderia
+salvá-la. E, coerentemente, a única implicação da cadeia que é falsa nesse modelo é exatamente
+<span class="mat">P(1) → P(2)</span>, a que o texto não demonstrou.</p>
+<p class="nota"><strong>Lição geral.</strong> Uma única lacuna em <span class="mat">k = m</span>
+corta a cadeia, e nada a respeito de <span class="mat">n &gt; m</span> fica demonstrado — a menos que
+se prove independentemente uma nova base acima de <span class="mat">m</span>. Aqui não há base a
+resgatar: qualquer nova base teria de recuperar <span class="mat">P(2)</span> para cobrir
+<span class="mat">n = 2</span>, e <span class="mat">P(2)</span> é falsa pelo contraexemplo do
+item 1.</p>
+</div>
+
+<div class="item">
+<h3>5. O nome do padrão, e a regra de higiene</h3>
+<p>É o disfarce brasileiro de um clássico. A falácia foi levantada por George Pólya em
+<em>Induction and Analogy in Mathematics</em> (1954), na forma “quaisquer <span class="mat">n</span>
+moças têm olhos da mesma cor”; a formulação que ficou famosa — “todos os cavalos têm a mesma cor” —
+é creditada a Joel E. Cohen (1961). A anatomia é idêntica à desta questão: base em
+<span class="mat">n = 1</span> e passo por dois subconjuntos de tamanho
+<span class="mat">n−1</span>, que só têm elemento em comum quando <span class="mat">n − 1 ≥ 2</span>.</p>
+<p><span class="rot2">O que o Princípio da Indução Finita realmente exige.</span> Seja
+<span class="mat">P(n)</span> propriedade sobre os inteiros e <span class="mat">n<sub>0</sub> ∈ ℤ</span>.
+Se (1) <span class="mat">P(n<sub>0</sub>)</span> é verdadeira e (2) para <strong>todo</strong> inteiro
+<span class="mat">k ≥ n<sub>0</sub></span> vale <span class="mat">P(k) → P(k+1)</span>, então
+<span class="mat">P(n)</span> é verdadeira para todo <span class="mat">n ≥ n<sub>0</sub></span>. A
+quantificação em (2) é universal e <em>sem exceções</em>: o passo tem de valer para todo
+<span class="mat">k</span> a partir de <span class="mat">n<sub>0</sub></span>, começando no próprio
+<span class="mat">n<sub>0</sub></span>. Uma demonstração do passo que use, ainda que tacitamente,
+uma hipótese extra — aqui <span class="mat">k ≥ 2</span>, disfarçada na suposição não declarada de
+que <span class="mat">A ∩ B ≠ ∅</span> (na construção do texto, de que
+<span class="mat">T<sub>1</sub> ∈ B</span>) — estabelece apenas o passo <em>restrito</em> a esse
+domínio.</p>
+<p class="nota"><strong>Regra de higiene, que é o que transfere para a prova.</strong> Em toda prova
+por indução, <strong>substitua <span class="mat">k = n<sub>0</sub></span> literalmente no passo e
+refaça a conta</strong>, em vez de confiar no <span class="mat">k</span> genérico. Neste exercício,
+<span class="mat">k = 1</span> destrói a prova em duas linhas — e foi por não fazer esse teste,
+escondendo o caso geral atrás de um “a generalização … é a prova desejada”, que o argumento pareceu
+convincente. É o mesmo ataque de <em>fencepost</em> que decide as Questões 1 e 2.</p>
+</div>
+
+<!-- ══════════════════════ QUESTÃO 4 (nova em 09/09/2026) ══════════════════════ -->
+<h2>Questão 4 — soma dos quadrados</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Prove a proposição <span class="mat">P(n) = 1<sup>2</sup> + 2<sup>2</sup> + 3<sup>2</sup> + ... + n<sup>2</sup> = n ∗ (n + 1) ∗ (2n + 1)/6</span>
+  usando o método da indução matemática.</p>
+</div>
+
+<div class="item">
+<h3>1² + 2² + … + n² = n(n+1)(2n+1)/6, para todo n ≥ 1</h3>
+<p><span class="rot2">Suposições declaradas.</span> (1) O enunciado escreve “P(n) = …”, mas
+<span class="mat">P(n)</span> é uma proposição, não um número. Lê-se
+<span class="mat">P(n): 1² + 2² + … + n² = n(n+1)(2n+1)/6</span>. (2) O enunciado não fixa o domínio
+de <span class="mat">n</span>. Supõe-se <span class="mat">n</span> inteiro, <span class="mat">n ≥ 1</span>,
+que é o menor valor em que a soma escrita “1² + 2² + … + n²” tem ao menos o termo 1². (A identidade
+também vale em <span class="mat">n = 0</span>, lendo o lado esquerdo como soma vazia, igual a 0:
+<span class="mat">0·1·1/6 = 0</span>. Isso não é necessário para o que se pede.) (3) Em notação de
+somatório, <span class="mat">P(n): Σ<sub>k=1</sub><sup>n</sup> k² = n(n+1)(2n+1)/6</span>.</p>
+<p><span class="rot2">Princípio usado.</span> Se <span class="mat">P(1)</span> é verdadeira e, para todo
+inteiro <span class="mat">n ≥ 1</span>, <span class="mat">P(n)</span> implica <span class="mat">P(n+1)</span>,
+então <span class="mat">P(n)</span> é verdadeira para todo inteiro <span class="mat">n ≥ 1</span>.</p>
+<div class="passo">
+<p><span class="rot2">Base (n = 1).</span> Lado esquerdo: <span class="mat">1² = 1</span>. Lado direito:
+<span class="mat">1·(1+1)·(2·1+1)/6 = 1·2·3/6 = 6/6 = 1</span>. Como <span class="mat">1 = 1</span>,
+<span class="mat">P(1)</span> é verdadeira.</p>
+<p><span class="rot2">Hipótese de indução.</span> Seja <span class="mat">n ≥ 1</span> um inteiro fixado,
+e suponha <span class="mat">P(n): Σ<sub>k=1</sub><sup>n</sup> k² = n(n+1)(2n+1)/6</span>.</p>
+<p><span class="rot2">Passo.</span> Quer-se <span class="mat">P(n+1): Σ<sub>k=1</sub><sup>n+1</sup> k² =
+(n+1)((n+1)+1)(2(n+1)+1)/6 = (n+1)(n+2)(2n+3)/6</span>. Separa-se o último termo da soma:</p>
+<p class="centro">Σ<sub>k=1</sub><sup>n+1</sup> k² = [Σ<sub>k=1</sub><sup>n</sup> k²] + (n+1)²
+= n(n+1)(2n+1)/6 + (n+1)²&nbsp;&nbsp;<span style="font-style:normal">← hipótese aplicada ao colchete</span></p>
+<p class="centro">= [n(n+1)(2n+1) + 6(n+1)²]/6 = (n+1)·[n(2n+1) + 6(n+1)]/6&nbsp;&nbsp;<span style="font-style:normal">← fator comum (n+1)</span></p>
+<p class="centro">= (n+1)·(2n² + n + 6n + 6)/6 = (n+1)(2n² + 7n + 6)/6.</p>
+<p>Fatorando o trinômio: <span class="mat">(n+2)(2n+3) = 2n² + 3n + 4n + 6 = 2n² + 7n + 6</span>. Logo
+<span class="mat">Σ<sub>k=1</sub><sup>n+1</sup> k² = (n+1)(n+2)(2n+3)/6</span>, que é exatamente o lado
+direito de <span class="mat">P(n+1)</span>. Portanto <span class="mat">P(n)</span> implica
+<span class="mat">P(n+1)</span>, para todo <span class="mat">n ≥ 1</span>.</p>
+<p><span class="rot2">Conclusão.</span> Pelo princípio da indução matemática, <span class="mat">P(n)</span>
+é verdadeira para todo inteiro <span class="mat">n ≥ 1</span>. ∎</p>
+</div>
+<p class="nota"><strong>Conferência de fencepost.</strong> <span class="mat">n = 1</span>: 1 = 1 (base).
+<span class="mat">n = 2</span>: <span class="mat">1 + 4 = 5</span> e <span class="mat">2·3·5/6 = 5</span>.
+<span class="mat">n = 3</span>: <span class="mat">1 + 4 + 9 = 14</span> e <span class="mat">3·4·7/6 = 14</span>.
+O passo com <span class="mat">n = 1</span> (o menor valor em que é aplicado):
+<span class="mat">1·2·3/6 + 2² = 1 + 4 = 5 = 2·3·5/6</span>. É a mesma identidade do IFMG, ex. 1, do
+banco de questões (lá escrita a partir de <span class="mat">0²</span>).</p>
+</div>
+
+<!-- ══════════════════════ QUESTÃO 5 (nova em 09/09/2026) ══════════════════════ -->
+<h2>Questão 5 — a prova defeituosa sobre árvores</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Considere a proposição P(n): Toda árvore com n vértices possui exatamente n-1 arestas.</p>
+  <p>Um estudante apresentou a seguinte prova por indução.</p>
+  <p><strong>Caso base.</strong> Para n = 1, uma árvore possui um único vértice e nenhuma aresta.
+  Portanto, 0 = 1 − 1, e a afirmação é verdadeira para n = 1.</p>
+  <p><strong>Hipótese de indução.</strong> Suponha que toda árvore com n vértices possua exatamente
+  n−1 arestas.</p>
+  <p><strong>Passo indutivo.</strong> Considere uma árvore T com n vértices. Pela hipótese de indução,
+  T possui n − 1 arestas. Acrescente a T um novo vértice v e ligue-o, por meio de uma única aresta, a
+  algum vértice de T. O novo vértice v é uma folha, e o grafo resultante continua sendo uma árvore.
+  Assim, a nova árvore possui n + 1 vértices e (n − 1) + 1 = n arestas. Como n = (n + 1) − 1,
+  conclui-se que toda árvore com n + 1 vértices possui n arestas. Logo, pelo princípio da indução
+  matemática, toda árvore com n vértices possui exatamente n − 1 arestas.</p>
+  <p><strong>Pergunta:</strong> Embora a afirmação seja verdadeira, a prova acima é logicamente
+  incorreta. Identifique precisamente o erro no passo indutivo e explique por que a construção
+  apresentada não é suficiente para demonstrar que toda árvore com n + 1 vértices possui n arestas.</p>
+</div>
+
+<div class="item">
+<p><span class="resp">O erro está no passo indutivo: ele parte de uma árvore T com n vértices e
+constrói, pendurando uma folha, UMA árvore com n + 1 vértices; prova assim a propriedade apenas para as
+árvores de n + 1 vértices obtidas por essa construção, e conclui para TODAS, sem provar que toda árvore
+com n + 1 vértices pode ser obtida assim.</span> P(n+1) é universal e exige partir de uma árvore
+ARBITRÁRIA T' com n + 1 vértices; o caminho natural é reduzi-la a n vértices. A construção não basta
+porque a mesma forma de argumento “prova” a afirmação falsa “todo grafo com n ≥ 2 vértices, todos de
+grau ≥ 1, é conexo” (contraexemplo: duas arestas disjuntas, 4 vértices). O conserto: toda árvore com
+n + 1 ≥ 2 vértices tem uma folha v (caminho máximo), T' − v é árvore com n vértices, e a hipótese dá
+|E(T')| = (n − 1) + 1 = n.</p>
+<p class="nota"><strong>Convenções.</strong> Grafo simples, finito. Árvore = grafo conexo e acíclico.
+Folha = vértice de grau 1. <span class="mat">n</span> é inteiro, <span class="mat">n ≥ 1</span>.</p>
+<h3>1. O que o passo indutivo precisa provar</h3>
+<p>Fixado <span class="mat">n ≥ 1</span> e suposta a hipótese de indução, o passo precisa estabelecer
+<span class="mat">P(n+1)</span>, que é uma afirmação universal:</p>
+<p class="centro">P(n+1): &nbsp; para TODA árvore T' com n + 1 vértices, |E(T')| = n.</p>
+<p>Para provar uma afirmação universal, parte-se de um objeto ARBITRÁRIO da classe — uma árvore
+<span class="mat">T'</span> qualquer com <span class="mat">n + 1</span> vértices — e mostra-se que ele
+tem a propriedade.</p>
+</div>
+
+<div class="item">
+<h3>2. O que o passo do estudante efetivamente prova</h3>
+<p>O texto parte de uma árvore <span class="mat">T</span> com <span class="mat">n</span> vértices,
+escolhe um vértice <span class="mat">u</span> de <span class="mat">T</span>, e forma
+<span class="mat">T + v</span> (novo vértice <span class="mat">v</span> e aresta <span class="mat">uv</span>).
+Mostra que <span class="mat">T + v</span> tem <span class="mat">(n − 1) + 1 = n</span> arestas. O que
+fica provado é:</p>
+<p class="centro">para toda árvore T com n vértices e todo vértice u de T, a árvore T + v tem n arestas.</p>
+<p>Isto é, a propriedade vale para as árvores de <span class="mat">n + 1</span> vértices QUE SÃO
+OBTIDAS por esta construção. A frase final — “conclui-se que toda árvore com n + 1 vértices possui n
+arestas” — troca “toda árvore construída assim” por “toda árvore”. Essa troca só seria legítima se
+estivesse provado que TODA árvore com <span class="mat">n + 1</span> vértices pode ser obtida
+pendurando uma folha em alguma árvore de <span class="mat">n</span> vértices. Esse fato não é
+enunciado nem provado em lugar nenhum do texto.</p>
+</div>
+
+<div class="item">
+<h3>3. O erro, com precisão</h3>
+<p>O passo começa numa árvore de <span class="mat">n</span> vértices e CONSTRÓI uma de
+<span class="mat">n + 1</span> (<span class="mat">n → n + 1</span>). Construir não é, por si só,
+inválido; mas, assim, o passo cobre apenas a imagem da construção, e conclui sobre a classe inteira
+sem mostrar que a imagem é a classe inteira. O caminho que evita essa lacuna é o inverso: começar numa
+árvore ARBITRÁRIA de <span class="mat">n + 1</span> vértices e REDUZI-LA a uma de
+<span class="mat">n</span> vértices, onde a hipótese se aplica (<span class="mat">n + 1 → n</span>).</p>
+<p>É um erro de quantificador: prova-se “<span class="mat">∀T ∀u</span>: T + v tem n arestas” e
+conclui-se “<span class="mat">∀T'</span> com n + 1 vértices: T' tem n arestas”, sem o elo
+“<span class="mat">∀T' ∃T ∃u: T' = T + v</span>” (igualdade a menos do nome dos vértices). (Esse
+padrão é conhecido em inglês como <em>build-up error</em>, “erro de construção”.)</p>
+</div>
+
+<div class="item">
+<h3>4. Por que a construção não basta: a mesma forma de argumento prova uma falsidade</h3>
+<p>Se o argumento do estudante fosse válido pela sua forma, a mesma forma provaria qualquer coisa com
+a mesma estrutura. Considere a afirmação FALSA</p>
+<p class="centro">C(n): todo grafo com n vértices, todos de grau ≥ 1, é conexo &nbsp;&nbsp; (n ≥ 2).</p>
+<p>“Prova” com a mesma forma. <strong>Base (n = 2):</strong> o único grafo simples com 2 vértices,
+ambos de grau ≥ 1, é a aresta única, que é conexo; <span class="mat">C(2)</span> vale.
+<strong>Hipótese:</strong> todo grafo com <span class="mat">n</span> vértices, todos de grau ≥ 1, é
+conexo. <strong>“Passo”:</strong> tome um grafo <span class="mat">G</span> com <span class="mat">n</span>
+vértices, todos de grau ≥ 1; pela hipótese, <span class="mat">G</span> é conexo. Acrescente um novo
+vértice <span class="mat">v</span> ligado por uma aresta a algum vértice de <span class="mat">G</span>.
+O novo grafo tem <span class="mat">n + 1</span> vértices, todos de grau ≥ 1, e é conexo
+(<span class="mat">v</span> está ligado a <span class="mat">G</span>, que é conexo). “Logo” todo grafo
+com <span class="mat">n + 1</span> vértices, todos de grau ≥ 1, é conexo.</p>
+<p>Mas <span class="mat">C(4)</span> é falsa: o grafo com vértices {1, 2, 3, 4} e arestas {1,2} e
+{3,4} tem todos os graus iguais a 1 e não é conexo. A construção nunca produz esse grafo: ela parte de
+um grafo de 3 vértices com todos os graus ≥ 1, e remover qualquer vértice de {1,2},{3,4} deixa um
+vértice de grau 0 — logo ele não é imagem da construção. O passo “construtivo” só enxergou os grafos
+que ele mesmo gera.</p>
+<p>Portanto a forma de argumento usada pelo estudante é inválida; que a proposição
+<span class="mat">P(n)</span> sobre árvores seja verdadeira é um fato que a prova do estudante não
+estabelece.</p>
+</div>
+
+<div class="item">
+<h3>5. O conserto: partir de uma árvore arbitrária com n + 1 vértices</h3>
+<p><span class="rot2">Lema 1.</span> Toda árvore com <span class="mat">m ≥ 2</span> vértices tem uma
+folha.<br>
+<em>Prova.</em> Seja <span class="mat">T'</span> árvore com <span class="mat">m ≥ 2</span> vértices.
+Como <span class="mat">T'</span> é conexa e tem pelo menos dois vértices, tem pelo menos uma aresta;
+logo existem caminhos com pelo menos uma aresta. Seja
+<span class="mat">P = x<sub>0</sub>x<sub>1</sub>…x<sub>k</sub></span> um caminho de comprimento máximo em
+<span class="mat">T'</span> (existe, pois <span class="mat">T'</span> é finita e todo caminho tem no máximo
+<span class="mat">m</span> vértices); <span class="mat">k ≥ 1</span>. Todo vizinho de
+<span class="mat">x<sub>0</sub></span> está em <span class="mat">P</span>: se <span class="mat">x<sub>0</sub></span>
+tivesse um vizinho <span class="mat">y</span> fora de <span class="mat">P</span>,
+<span class="mat">yx<sub>0</sub>x<sub>1</sub>…x<sub>k</sub></span> seria caminho mais longo. Se
+<span class="mat">x<sub>0</sub></span> fosse vizinho de <span class="mat">x<sub>i</sub></span> com
+<span class="mat">i ≥ 2</span>, então <span class="mat">x<sub>0</sub>x<sub>1</sub>…x<sub>i</sub>x<sub>0</sub></span>
+seria um ciclo, impossível em árvore. Logo o único vizinho de <span class="mat">x<sub>0</sub></span> é
+<span class="mat">x<sub>1</sub></span>, e <span class="mat">grau(x<sub>0</sub>) = 1</span>. ∎</p>
+<p><span class="rot2">Lema 2.</span> Se <span class="mat">v</span> é folha de uma árvore
+<span class="mat">T'</span> com <span class="mat">m ≥ 2</span> vértices, então
+<span class="mat">T' − v</span> (remove-se <span class="mat">v</span> e a única aresta incidente a
+<span class="mat">v</span>) é uma árvore com <span class="mat">m − 1</span> vértices.<br>
+<em>Prova.</em> Acíclico: todo ciclo de <span class="mat">T' − v</span> seria ciclo de
+<span class="mat">T'</span>. Conexo: sejam <span class="mat">x, y</span> vértices de
+<span class="mat">T' − v</span>. Em <span class="mat">T'</span> existe um caminho de
+<span class="mat">x</span> a <span class="mat">y</span>. Um vértice interno de um caminho tem grau ≥ 2
+dentro dele; como <span class="mat">grau(v) = 1</span> e <span class="mat">v ∉ {x, y}</span>,
+<span class="mat">v</span> não está nesse caminho, que portanto está inteiro em
+<span class="mat">T' − v</span>. ∎</p>
+<div class="passo">
+<p><span class="rot2">Passo correto.</span> Seja <span class="mat">n ≥ 1</span> e suponha a hipótese de
+indução (toda árvore com <span class="mat">n</span> vértices tem <span class="mat">n − 1</span> arestas).
+Seja <span class="mat">T'</span> uma árvore ARBITRÁRIA com <span class="mat">n + 1</span> vértices. Como
+<span class="mat">n + 1 ≥ 2</span>, pelo Lema 1 <span class="mat">T'</span> tem uma folha
+<span class="mat">v</span>. Pelo Lema 2, <span class="mat">T = T' − v</span> é árvore com
+<span class="mat">n</span> vértices; pela hipótese de indução, <span class="mat">|E(T)| = n − 1</span>.
+Como <span class="mat">v</span> tem grau 1, <span class="mat">T'</span> tem exatamente uma aresta a mais
+que <span class="mat">T</span>: <span class="mat">|E(T')| = (n − 1) + 1 = n</span>. Como
+<span class="mat">T'</span> era arbitrária, <span class="mat">P(n+1)</span> vale. Com a base do estudante
+(que está correta), a indução fica completa. ∎</p>
+</div>
+</div>
+
+<div class="item">
+<h3>6. Observações</h3>
+<p>Para árvores, a imagem da construção É a classe inteira: pelos Lemas 1 e 2, toda árvore
+<span class="mat">T'</span> com <span class="mat">n + 1 ≥ 2</span> vértices é
+<span class="mat">(T' − v) + v</span>. Por isso a conclusão é verdadeira. Mas esse fato é exatamente o
+conteúdo dos Lemas 1 e 2 — o trabalho que o estudante deixou de fazer.</p>
+<p>A afirmação do estudante de que “o grafo resultante continua sendo uma árvore” é verdadeira (conexo
+porque <span class="mat">v</span> se liga a <span class="mat">T</span> conexa; acíclico porque um ciclo
+passando por <span class="mat">v</span> exigiria <span class="mat">grau(v) ≥ 2</span>, e um ciclo que não
+passa por <span class="mat">v</span> estaria inteiro em <span class="mat">T</span>, que é acíclica), mas
+foi dada sem justificativa. É uma lacuna menor; não é ela que invalida a prova.</p>
+<p>A base e a hipótese de indução do estudante estão corretas; o erro está só no passo.</p>
+<p class="nota"><strong>Comparação com a Questão 3.</strong> As duas são provas defeituosas, mas por
+motivos diferentes. Na Questão 3 o passo <em>não vale</em> num valor específico (<span class="mat">k = 1</span>),
+e a proposição é falsa. Aqui o passo vale para cada árvore construída, e a proposição é verdadeira: o
+defeito é concluir sobre uma classe inteira a partir de uma construção que não se provou cobrir a
+classe.</p>
+</div>
+
+<!-- ══════════════════════ APÊNDICE ══════════════════════ -->
+
+<h2>Informações que podem ser úteis</h2>
+<div class="enunciado" id="informacoes-lista">
+  <span class="rot">Anexo da lista (transcrição literal)</span>
+  <p><strong>Somatórios e Logaritmos:</strong></p>
+  <ul>
+    <li>Σ<sub>i=1</sub><sup>n</sup> (i) = n(n + 1)/2</li>
+    <li>Σ<sub>i=1</sub><sup>n</sup> (a<sup>i</sup>) = a(a<sup>n</sup> − 1)/(a − 1)</li>
+    <li>log (a ∗ b) = log a + log b</li>
+    <li>log (a/b) = log a − log b</li>
+    <li>log<sub>b</sub> a = log<sub>c</sub> a/ log<sub>c</sub> b</li>
+    <li>log<sub>b</sub> a<sup>c</sup> = c ∗ log<sub>b</sub> a</li>
+    <li>lg a = log<sub>2</sub> a</li>
+  </ul>
+  <p><strong>Hierarquia de funções:</strong></p>
+  <p>A seguinte hierarquia de funções pode ser definida do ponto de vista assintótico:</p>
+  <p class="centro">1 ≺ log(n) ≺ √n ≺ n ≺ n ∗ log(n) ≺ n<sup>c</sup> ≺ c<sup>n</sup> ≺ n! ≺ n<sup>n</sup></p>
+  <p>onde c é uma constante arbitrária inteira ≥ 2.</p>
+</div>
+<h2>Apêndice — o exercício deixado em aberto no slide da semana 5</h2>
+
+<div class="enunciado">
+  <span class="rot">Contexto — slides de MC458 (UNICAMP), “Indução matemática no projeto de algoritmos”, Exemplo 3</span>
+  <p>Dada uma árvore binária <span class="mat">A</span> com <span class="mat">n</span> nós, calcular o
+  fator de balanceamento (f.b.) de cada nó — a altura da subárvore esquerda menos a da direita.
+  Convenção: árvore vazia tem altura <span class="mat">−1</span> e f.b. zero. A hipótese de indução
+  <strong>fortalecida</strong> (“sabemos calcular f.b. <em>e alturas</em> de árvores com menos que
+  <span class="mat">n</span> nós”) leva ao algoritmo:</p>
+  <p>No slide (“Exemplo 3 - Algoritmo”), transcrição literal:</p>
+  <p class="cod">FatorAltura (A)<br>
+  ▷ Entrada: Uma árvore binária A com n ≥ 0 nós<br>
+  ▷ Saída: A árvore A os f.b.s nos seus nós e a altura de A<br>
+  1. &nbsp;&nbsp;se n = 0 então h ← −1<br>
+  2. &nbsp;&nbsp;senão<br>
+  3. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; seja r a raiz de A<br>
+  3. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; h<sub>e</sub> ← FatorAltura(A<sub>e</sub>)<br>
+  4. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; h<sub>d</sub> ← FatorAltura(A<sub>d</sub>)<br>
+  5. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ▷ armazena o f.b. na raiz em r.f<br>
+  6. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; r.f ← h<sub>e</sub> − h<sub>d</sub><br>
+  7. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; h ← max(h<sub>e</sub>, h<sub>d</sub>) + 1<br>
+  8. &nbsp;&nbsp;devolva h</p>
+  <p>O slide numera duas linhas como “3.” e termina em 8. <strong>Nesta resolução as linhas são
+  citadas pela numeração corrida abaixo</strong> (1 a 9), que é a mesma do slide até a primeira
+  linha 3 e soma 1 dali em diante:</p>
+  <p class="cod">FatorAltura(A) — numeração corrida usada nesta resolução<br>
+  1. se n = 0 então h ← −1<br>
+  2. senão<br>
+  3. &nbsp;&nbsp;&nbsp;&nbsp; seja r a raiz de A<br>
+  4. &nbsp;&nbsp;&nbsp;&nbsp; he ← FatorAltura(Ae)<br>
+  5. &nbsp;&nbsp;&nbsp;&nbsp; hd ← FatorAltura(Ad)<br>
+  6. &nbsp;&nbsp;&nbsp;&nbsp; ▷ armazena o f.b. na raiz em r.f<br>
+  7. &nbsp;&nbsp;&nbsp;&nbsp; r.f ← he − hd<br>
+  8. &nbsp;&nbsp;&nbsp;&nbsp; h ← max(he, hd) + 1<br>
+  9. devolva h</p>
+  <p>Os dois slides seguintes (“Exemplo 3 - Complexidade”), transcrição literal:</p>
+  <p>“Seja T(n) o número de operações executadas pelo algoritmo para calcular os f.b.s e a altura de
+  uma árvore A de n nós. Então T(n) = Θ(1), se n = 0; T(n) = T(n<sub>e</sub>) + T(n<sub>d</sub>) + Θ(1),
+  se n &gt; 0, onde n<sub>e</sub>, n<sub>d</sub> são os números de nós das subárvores esquerda e
+  direita.”</p>
+  <p>“O pior caso da recorrência parece ser quando, ao longo da recursão, um de n<sub>e</sub>,
+  n<sub>d</sub> é sempre igual a zero (e o outro é sempre igual a n − 1). Chega-se então a:
+  T(n) = T(1) + Σ<sub>i=2</sub><sup>n</sup> Θ(1) = (n + 1)Θ(1) + nΘ(1) ∈ Θ(n).”</p>
+  <p>E então o slide deixa em aberto:</p>
+  <p><strong>Exercício:</strong> “Há algum ganho em complexidade quando ambos
+  <span class="mat">n<sub>e</sub></span> e <span class="mat">n<sub>d</sub></span> são aproximadamente
+  <span class="mat">n/2</span> ao longo da recursão?”</p>
+</div>
+
+<p><span class="resp">Não há ganho algum de complexidade de tempo</span> — e o resultado é mais forte
+que “mesma classe assintótica”: o custo é <strong>idêntico</strong>, não apenas da mesma ordem. O que
+o balanceamento melhora, e melhora muito, é a <strong>profundidade da pilha</strong>, que cai de
+<span class="mat">Θ(n)</span> para <span class="mat">Θ(lg n)</span> — ganho de espaço, não de tempo.</p>
+
+<div class="item">
+<h3>1. Modelo de custo</h3>
+<p>Duas constantes positivas, fixas e <strong>uniformes sobre todas as chamadas</strong> — é o que os
+<span class="mat">Θ(1)</span> do slide escondem, e explicitá-las é necessário para poder somar um
+número <em>variável</em> delas:</p>
+<p class="centro"><span class="mat">a &gt; 0</span>: custo de uma chamada com
+<span class="mat">A</span> vazia (linha 1 e a devolução)</p>
+<p class="centro"><span class="mat">b &gt; 0</span>: custo da parte não recursiva de uma chamada com
+<span class="mat">A</span> não vazia (linha 1 e linhas 3, 7, 8, 9)</p>
+<p>A recorrência estrutural exata é <span class="mat">T(A) = a</span> se <span class="mat">A</span> é
+vazia, e <span class="mat">T(A) = b + T(A<sub>e</sub>) + T(A<sub>d</sub>)</span> caso contrário.</p>
+</div>
+
+<div class="item">
+<h3>2. O caso balanceado pelo Teorema Mestre</h3>
+<p>Com <span class="mat">n<sub>e</sub> ≈ n<sub>d</sub> ≈ n/2</span> a recorrência vira
+<span class="mat">T(n) = 2·T(n/2) + Θ(1)</span>. Para não colidir com as constantes de custo
+<span class="mat">a</span> e <span class="mat">b</span>, escrevo os parâmetros do teorema como
+<span class="mat">α</span> (número de chamadas recursivas), <span class="mat">β</span> (fator de
+redução) e <span class="mat">k</span>, na forma
+<span class="mat">T(n) = α·T(n/β) + c·n<sup>k</sup></span>, com o critério
+<span class="mat">α ≷ β<sup>k</sup></span>.</p>
+<table>
+<tr><th>parâmetro</th><th class="n">valor</th><th>de onde vem</th></tr>
+<tr><td class="mat">α</td><td class="n">2</td><td>linhas 4 e 5: a esquerda <em>e</em> a direita são visitadas</td></tr>
+<tr><td class="mat">β</td><td class="n">2</td><td>cada subárvore tem ≈ n/2 nós</td></tr>
+<tr><td class="mat">k</td><td class="n">0</td><td>o trabalho fora da recursão é constante: c·n<sup>0</sup></td></tr>
+</table>
+<p><span class="mat">β<sup>k</sup> = 2<sup>0</sup> = 1</span> e <span class="mat">α = 2</span>, logo
+<span class="mat">α &gt; β<sup>k</sup></span> — o <strong>terceiro</strong> dos três casos, na ordem
+em que o formulário da prova os imprime. Portanto</p>
+<p class="centro"><span class="resp">T(n) = Θ(n<sup>log<sub>β</sub> α</sup>) = Θ(n<sup>log<sub>2</sub> 2</sup>) = Θ(n)</span></p>
+<p class="nota">Detalhe de rigor: “<span class="mat">T(n) = 2·T(n/2) + Θ(1)</span>” é uma aproximação
+— as subárvores somam <span class="mat">n − 1</span> nós, não <span class="mat">n</span>, e o formulário
+pede termo motor <em>literalmente</em> <span class="mat">c·n<sup>k</sup></span>. A forma exata cabe no
+formulário. Numa árvore perfeitamente balanceada (<span class="mat">n = 2<sup>h+1</sup> − 1</span>), cada
+filho tem <span class="mat">(n−1)/2</span> nós e <span class="mat">T(n) = 2·T((n−1)/2) + b</span>, com
+<span class="mat">T(0) = a</span>. Trocando <span class="mat">U(m) = T(m − 1)</span>, fica
+<span class="mat">U(m) = 2·U(m/2) + b</span> com <span class="mat">U(1) = a</span> e
+<span class="mat">m = n + 1</span> potência exata de 2: <span class="mat">α = 2</span>,
+<span class="mat">β = 2</span>, <span class="mat">k = 0</span>, termo motor <span class="mat">b·m<sup>0</sup></span>
+com <span class="mat">b &gt; 0</span>, e <span class="mat">U</span> positiva e crescente. Terceiro caso:
+<span class="mat">U(m) = Θ(m)</span>, isto é, <span class="mat">T(n) = Θ(n)</span>. Para formas só
+aproximadamente balanceadas, quem decide é o teorema da seção 3, que vale para toda árvore.</p>
+</div>
+
+<div class="item">
+<h3>3. A razão estrutural: a forma da árvore é irrelevante para o custo</h3>
+<p>As duas contas acima cobrem apenas os dois extremos. O que segue vale para <strong>toda</strong>
+árvore binária, e é a resposta de verdade.</p>
+<p><span class="rot2">Teorema.</span> Para toda árvore binária <span class="mat">A</span> com
+<span class="mat">n ≥ 0</span> nós, <span class="resp">T(A) = (n+1)·a + n·b</span>, qualquer que seja
+a forma de <span class="mat">A</span>.</p>
+<div class="passo">
+<p><span class="rot2">Prova, por indução forte em n.</span></p>
+<p><span class="rot2">Base (n = 0).</span> <span class="mat">A</span> é vazia; por definição
+<span class="mat">T(A) = a</span>. A fórmula dá <span class="mat">(0+1)a + 0·b = a</span>. ✓</p>
+<p><span class="rot2">Passo (n ≥ 1).</span> Suponha a fórmula válida para toda árvore com
+estritamente menos que <span class="mat">n</span> nós — a hipótese <em>forte</em> é necessária, porque
+não se sabe como os <span class="mat">n−1</span> nós se repartem. Seja <span class="mat">A</span> com
+<span class="mat">n</span> nós, subárvores <span class="mat">A<sub>e</sub></span> com
+<span class="mat">n<sub>e</sub></span> nós e <span class="mat">A<sub>d</sub></span> com
+<span class="mat">n<sub>d</sub></span>. Como a raiz não está em nenhuma das duas,
+<span class="mat">n<sub>e</sub> + n<sub>d</sub> = n − 1</span>; e como
+<span class="mat">n ≥ 1</span>, vale <span class="mat">n<sub>e</sub>, n<sub>d</sub> ≤ n−1 &lt; n</span>,
+logo a hipótese se aplica às duas. Então</p>
+<p class="centro">T(A) = b + [(n<sub>e</sub>+1)a + n<sub>e</sub>b] + [(n<sub>d</sub>+1)a + n<sub>d</sub>b]</p>
+<p class="centro">= b + (n<sub>e</sub> + n<sub>d</sub> + 2)·a + (n<sub>e</sub> + n<sub>d</sub>)·b</p>
+<p class="centro">= b + (n+1)·a + (n−1)·b&nbsp;&nbsp;<span style="font-style:normal">← usando n<sub>e</sub> + n<sub>d</sub> = n − 1</span></p>
+<p class="centro">= (n+1)·a + n·b. ∎</p>
+</div>
+<p><span class="rot2">Corolário.</span> Tomando <span class="mat">a = b = 1</span>, o número total de
+invocações de <span class="cod">FatorAltura</span> numa árvore de <span class="mat">n</span> nós é
+<span class="resp">exatamente 2n + 1</span>: <span class="mat">n</span> chamadas com árvore não vazia
+(uma por nó) e <span class="mat">n + 1</span> com árvore vazia — que são exatamente os
+<span class="mat">n+1</span> ponteiros nulos de uma árvore binária de <span class="mat">n</span> nós (contando,
+em <span class="mat">n = 0</span>, o ponteiro para a raiz).
+Casos pequenos: <span class="mat">n = 0 → 1</span>; <span class="mat">n = 1 → 3</span> (a raiz e os
+dois filhos vazios).</p>
+<p><span class="rot2">Consequência.</span> Escrever “<span class="mat">T(n)</span>” para um algoritmo
+cujo custo dependesse da <em>forma</em> da entrada só faria sentido como pior caso. Aqui o custo
+depende <strong>só de n</strong>: <span class="mat">T(n)</span> é função genuína de
+<span class="mat">n</span>, e pior caso = melhor caso = caso médio. Não há forma de árvore boa nem
+ruim.</p>
+<p><span class="rot2">Testemunhas.</span> Com <span class="mat">T(n) = (a+b)n + a</span>:
+<span class="resp">c<sub>1</sub> = a + b, c<sub>2</sub> = 2a + b, n<sub>0</sub> = 1</span>. Em
+<span class="mat">n = n<sub>0</sub> = 1</span> exatamente: <span class="mat">T(1) = 2a + b</span>; a
+cota inferior dá <span class="mat">a + b ≤ 2a + b ⟺ 0 ≤ a</span> ✓ (estrito, pois
+<span class="mat">a &gt; 0</span>), e a superior <span class="mat">2a + b ≥ 2a + b</span> ✓ com
+igualdade. No modelo unitário (<span class="mat">a = b = 1</span>):
+<span class="mat">T(n) = 2n + 1</span>, <span class="mat">c<sub>1</sub> = 2</span>,
+<span class="mat">c<sub>2</sub> = 3</span>, <span class="mat">n<sub>0</sub> = 1</span>; em
+<span class="mat">n = 1</span>: <span class="mat">2 ≤ 3 ≤ 3</span>; em <span class="mat">n = 5</span>:
+<span class="mat">10 ≤ 11 ≤ 15</span>.</p>
+</div>
+
+<div class="item">
+<h3>4. Por que tinha de ser assim — e o contraste que torna isso não trivial</h3>
+<p>O algoritmo faz, <strong>por nó</strong>, uma quantidade fixa de trabalho: uma subtração, um
+<span class="cod">max</span>, uma soma. Nenhum nó é visitado duas vezes e nenhum é pulado — é um
+percurso em pós-ordem disfarçado de recorrência. A forma da árvore <em>redistribui</em> as
+<span class="mat">n</span> unidades de trabalho entre os níveis, mas não muda quantas são.</p>
+<p>O contraste: se o passo de combinação custasse
+<span class="mat">Θ(tamanho da subárvore)</span> em vez de <span class="mat">Θ(1)</span> — como no
+MergeSort —, a forma importaria muito: cadeia daria <span class="mat">Θ(n²)</span> e balanceada
+<span class="mat">Θ(n lg n)</span>. O que anula o efeito da forma aqui é especificamente o custo de
+combinação ser <em>constante</em>.</p>
+<p><span class="rot2">Cota inferior do problema.</span> Qualquer algoritmo correto precisa escrever um
+f.b. em cada um dos <span class="mat">n</span> nós, logo executa <span class="mat">Ω(n)</span>
+operações (testemunhas: ao menos 1 escrita por nó, isto é <span class="mat">c = 1</span>,
+<span class="mat">n<sub>0</sub> = 1</span>). Como <span class="cod">FatorAltura</span> é
+<span class="mat">O(n)</span>, ele é <strong>assintoticamente ótimo</strong>. Nenhum balanceamento
+baixa a classe: o gargalo é o tamanho da saída, não a estratégia.</p>
+</div>
+
+<div class="item">
+<h3>5. O que muda e o que não muda</h3>
+<table>
+<tr><th>Aspecto</th><th>Cadeia</th><th>Balanceada</th><th class="n">Muda?</th></tr>
+<tr><td>Tempo assintótico</td><td class="mat">Θ(n)</td><td class="mat">Θ(n)</td><td class="n">não</td></tr>
+<tr><td>Número exato de chamadas</td><td class="mat">2n + 1</td><td class="mat">2n + 1</td><td class="n">não — <em>idênticos</em></td></tr>
+<tr><td>Custo exato</td><td class="mat">(n+1)a + n·b</td><td class="mat">(n+1)a + n·b</td><td class="n">não</td></tr>
+<tr><td>Profundidade máxima da recursão</td><td class="mat">n + 1 = Θ(n)</td><td class="mat">⌊lg n⌋ + 2 no split perfeito; Θ(lg n) em qualquer split de fração constante</td><td class="n"><strong>sim</strong></td></tr>
+<tr><td>Risco de estouro de pilha</td><td>alto para n grande</td><td>praticamente nulo</td><td class="n"><strong>sim</strong></td></tr>
+</table>
+<p>Os quadros simultaneamente ativos formam um caminho da raiz até uma chamada vazia. Numa cadeia de
+<span class="mat">n</span> nós são <span class="mat">n + 1</span> quadros; numa árvore balanceada de
+altura <span class="mat">⌊lg n⌋</span> são <span class="mat">⌊lg n⌋ + 2</span>. Conferindo em
+<span class="mat">n = 1</span>: cadeia dá <span class="mat">1+1 = 2</span>, balanceada dá
+<span class="mat">⌊lg 1⌋ + 2 = 2</span> — coincidem, como devem, pois com um nó só as duas formas são
+a mesma árvore.</p>
+<p>Para <span class="mat">n = 10<sup>6</sup></span> é a diferença entre
+<span class="mat">10<sup>6</sup> + 1</span> quadros (estouro certo na maioria dos ambientes) e
+<span class="mat">⌊lg 10<sup>6</sup>⌋ + 2 = 21</span> quadros. Não é ganho de complexidade de
+<em>tempo</em>; é ganho de complexidade de <em>espaço auxiliar</em>, de <span class="mat">Θ(n)</span>
+para <span class="mat">Θ(lg n)</span>. Responder “Θ(n) nos dois casos, logo tanto faz” seria errado
+por omissão.</p>
+<p class="nota"><strong>Por que não é como a busca binária.</strong> É tentador esperar ganho
+logarítmico “porque a árvore está balanceada”. A busca binária tem
+<span class="mat">T(n) = T(n/2) + Θ(1)</span>, ou seja <span class="mat">α = 1</span>,
+<span class="mat">β = 2</span>, <span class="mat">k = 0</span>,
+<span class="mat">β<sup>k</sup> = 1</span>; aqui <span class="mat">α = β<sup>k</sup></span>, segundo
+caso, dando <span class="mat">Θ(n<sup>k</sup> lg n) = Θ(lg n)</span>. A queda vem de
+<span class="mat">α = 1</span>: a busca binária <strong>descarta</strong> uma das metades.
+<span class="cod">FatorAltura</span> tem <span class="mat">α = 2</span> — desce nas duas e não
+descarta nada, porque precisa do f.b. de todo mundo. Com combinação de custo constante e as duas partes
+visitadas (<span class="mat">α = 2</span>), o equilíbrio não muda o tempo. O que dá à busca binária o
+ganho logarítmico são <em>duas coisas juntas</em>: descartar uma das partes (<span class="mat">α = 1</span>)
+<em>e</em> ficar, a cada passo, com no máximo uma fração constante <span class="mat">q &lt; 1</span> de
+<span class="mat">n</span> — então <span class="mat">T(n) ≤ T(q·n) + Θ(1)</span> e
+<span class="mat">T(n) = O(lg n)</span>. A metade da busca binária é só um caso: ficar com
+<span class="mat">9/10</span> também dá <span class="mat">O(lg n)</span>. Descartando um só elemento por vez,
+<span class="mat">T(n) = T(n − 1) + Θ(1) = Θ(n)</span>. E com combinação de custo proporcional ao tamanho,
+como no contraste da seção 4, a divisão equilibrada ganha mesmo sem descartar nada:
+<span class="mat">Θ(n lg n)</span> contra <span class="mat">Θ(n²)</span>.</p>
+</div>
+
+<div class="item">
+<h3>6. Uma nota sobre a contagem escrita no slide</h3>
+<p>O <strong>resultado final do slide está exatamente certo</strong>: a expressão
+“<span class="mat">(n+1)Θ(1) + nΘ(1)</span>” corresponde termo a termo ao que foi provado —
+<span class="mat">n + 1</span> chamadas com árvore vazia e <span class="mat">n</span> com árvore não
+vazia. Não é sequer aproximação: é o custo exato, e vale para qualquer forma, não só para a cadeia.</p>
+<p>E o <em>passo intermediário</em> é abreviado, não errado — vale desfazer a objeção fácil. O slide
+escreve <span class="mat">T(n) = T(1) + ∑<sub>i=2</sub><sup>n</sup> Θ(1)</span>, e isso de fato liga
+os extremos: cada <span class="mat">Θ(1)</span> da soma é o incremento de um passo do desenrolar, que
+já embute o <span class="mat">T(0)</span> do filho vazio, de modo que</p>
+<p class="centro">T(1) + (n−1)·(T(0) + b) = (2a + b) + (n−1)(a + b) = (n+1)a + n·b</p>
+<p>que é exatamente o lado direito que o slide escreve. Objetar que “a soma tem
+<span class="mat">n−1</span> parcelas e o total tem <span class="mat">2n+1</span>” seria contar
+parcelas — e <span class="mat">Θ(1)</span> não se compromete com constante nenhuma. O que vale
+registrar é outra coisa: somar um número <em>variável</em> de termos <span class="mat">Θ(1)</span> só
+é legítimo porque existe uma constante uniforme limitando todos eles —
+<span class="mat">a + b</span>, o valor de cada incremento <span class="mat">T(0) + b</span> —, e essa uniformidade não está na notação, está no algoritmo. E o
+caso base declarado é <span class="mat">n = 0</span>: parar em <span class="mat">T(1)</span> é atalho
+legítimo, desde que se saiba que <span class="mat">T(1) = 2a + b</span>, e não
+<span class="mat">a</span>.</p>
+<p>E o slide diz “o pior caso da recorrência <em>parece ser</em> quando um de
+<span class="mat">n<sub>e</sub>, n<sub>d</sub></span> é sempre zero”. O teorema da seção 3 mostra que,
+no modelo de contagem de operações, <strong>não há pior caso de forma</strong>: toda árvore com
+<span class="mat">n</span> nós custa exatamente o mesmo. A cadeia é o pior caso para outra grandeza —
+a profundidade da pilha. O “parece ser” do slide é prudente, e o exercício é justamente o convite a
+descobrir que a suspeita não se confirma no tempo.</p>
+</div>
+
+<p class="nota"><strong>Ressalvas declaradas.</strong> A contagem de pilha supõe o modelo usual, um
+quadro por chamada ativa e sem otimização de chamada em cauda — a chamada da linha 5 não está em
+posição de cauda (a linha 7 usa <span class="cod">he</span>), então nenhuma otimização razoável
+elimina a pilha aqui. E adota-se o modelo de custo uniforme do RAM (CLRS 3ª ed., §2.2): uma
+subtração, um <span class="cod">max</span> e uma soma custam <span class="mat">Θ(1)</span>
+independentemente da magnitude das alturas.</p>
+
+<div class="rodape">
+<strong>Sobre esta resolução.</strong> Fluxo em sete passos, como registrado no
+<code>CLAUDE.md</code> desta pasta: chão determinístico em Python puro antes de qualquer redação;
+solvers em contexto isolado; limpeza (o raciocínio é descartado, só a prova final segue adiante);
+verificadores adversariais em contexto limpo, cegos ao raciocínio e uns aos outros, com instrução de
+<em>derrubar</em> a prova e com Bash para conferir as contas; voto assimétrico; correções; e
+<strong>reverificação da versão corrigida</strong>.<br>
+<strong>O que foi conferido numericamente.</strong> As cinco formas fechadas da Questão 1 por
+recursão direta, incluindo n = 1, 2, 3; as testemunhas do item (e) em n = 1…200 000. Na Questão 2, as
+cinco recorrências resolvidas em aritmética inteira exata e comparadas com as formas fechadas; o Lema
+da expansão, (F1), (F2), a identidade A − B = 1 e os dois Corolários varridos em centenas de triplas
+(a, b, k) — inclusive o caso a &lt; b<sup>k</sup>, que nenhum item exerce; as testemunhas em
+n = n<sub>0</sub> exatamente, e a refutação explícita de n<sub>0</sub> = 1 nos casos de igualdade
+(lg 1 = 0). Na Questão 3, enumeração exaustiva de todos os conjuntos rotulados e de todos os pares de
+subconjuntos, confirmando que a construção falha exatamente em k = 1. No apêndice, o algoritmo foi
+implementado e medido em cadeia, ziguezague, árvore balanceada e árvores aleatórias.<br>
+<strong>O que a reverificação pegou.</strong> Onze achados na primeira rodada e mais nove na segunda —
+destes, dois <em>introduzidos pelas próprias correções</em> (uma frase sobre reescala de constantes
+que é falsa para 0 &lt; c &lt; 1, e uma afirmação autocontraditória sobre regras de inferência) e dois
+que a primeira correção deveria ter removido e não removeu. Todos os patches estão em
+<code>geradores/dados/lista04/correcoes-lista04.py</code>, cada um com o motivo e quem o achou; os
+scripts de conferência, em <code>verificacao/lista04-*.py</code>.<br>
+<strong>Atualização de 09/09/2026.</strong> As Questões 4 e 5 entraram na versão revisada da lista.
+Textos-fonte verificados: <code>geradores/dados/lista04/questao4-soma-dos-quadrados-limpo.md</code> e
+<code>questao5-arvores-limpo.md</code>. Questão 4: 4 de 4 verificadores sem defeito; identidade conferida
+em n = 0…20 000 e cada linha do passo em aritmética exata. Questão 5: 4 de 4 sem defeito; por
+sugestão de três verificadores, a frase “o passo vai na direção errada” (que sugeria que construir
+n → n+1 é sempre inválido) foi reescrita, e a versão nova voltou com 4 de 4. As árvores rotuladas com
+até 6 vértices (1 296 no último tamanho, igual a Cayley) foram enumeradas para conferir a
+contagem de arestas e os Lemas 1 e 2, e o contraexemplo de C(4) foi conferido por força bruta
+(<code>verificacao/atualizacao-2026-09-chao-deterministico.py</code>).<br>
+<strong>Enunciados.</strong> Transcritos literalmente do PDF do professor, com conferência automática
+contra o original — inclusive onde o original traz erro de digitação ou concordância, marcados com
+<em>[sic]</em> e nunca corrigidos.<br>
+Lista de estudo, sem entrega — IFMG Campus Formiga, 2026/2.
+</div>
+
+</body>
+</html>

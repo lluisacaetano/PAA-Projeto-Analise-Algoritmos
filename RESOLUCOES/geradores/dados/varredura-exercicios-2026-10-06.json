@@ -1,0 +1,1618 @@
+[
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "11",
+  "item": "1",
+  "classificacao": "EXERCÍCIO (duvidoso, conceitual)",
+  "enunciado_resumido": "\"Algumas perguntas importantes — Apresente as justificativas\": Qualquer computador pode executar qualquer programa?",
+  "por_que": "Título pede justificativas; nenhuma resposta nos slides seguintes (12–14 são citação de Hartmanis)"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "11",
+  "item": "2",
+  "classificacao": "EXERCÍCIO (duvidoso, conceitual)",
+  "enunciado_resumido": "Todos os problemas ligados às ciências exatas possuem algoritmos?",
+  "por_que": "Só parcialmente respondido no slide 15 (\"Não! em vários casos é possível mostrar que não existe algoritmo\"), sem justificativa"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "11",
+  "item": "3",
+  "classificacao": "EXERCÍCIO (duvidoso, conceitual)",
+  "enunciado_resumido": "Todos os problemas computacionais têm a mesma dificuldade de resolução?",
+  "por_que": "Sem resposta explícita nos slides seguintes"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "11",
+  "item": "4",
+  "classificacao": "EXERCÍCIO (duvidoso, conceitual)",
+  "enunciado_resumido": "Como algoritmos diferentes para um mesmo problema podem ser comparados/avaliados?",
+  "por_que": "Respondido indiretamente pelo curso inteiro; nenhuma resposta direta"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "28",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Problema dos dois robôs: projete algoritmo para coordenar robôs carregando mesa",
+  "por_que": "Resposta no slide 29 (não existe algoritmo distribuído)"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "43",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Sudoku força bruta: quantas possibilidades?",
+  "por_que": "Resposta no próprio slide"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "58",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Maior elemento: \"Vamos provar que é ótimo\"",
+  "por_que": "Prova no slide 59"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "73",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "É possível MaxMin mais eficiente?",
+  "por_que": "Pergunta retórica, respondida em 74–77 (oráculo)"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "85",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Mostre que n²/2 − 3n = Θ(n²)",
+  "por_que": "Solução em 85–86 (c1=1/14, c2=1/2, n0=7)"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "87",
+  "item": "-",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "Usando a definição formal de Θ, prove que 6n³ ≠ Θ(n²)",
+  "por_que": "Slide só tem o enunciado; o 88 já muda de assunto (Notação O)"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "90",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Mostre que n² não é O(n)",
+  "por_que": "Solução no próprio slide"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "91",
+  "item": "1",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Mostre que 3n³+2n²+n é O(n³)",
+  "por_que": "Solução no próprio slide"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "91",
+  "item": "2",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Mostre que log₅ n é O(log n)",
+  "por_que": "Solução no próprio slide"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "98",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "O que significa \"tempo de execução é Ω(g(n))\"?",
+  "por_que": "Respondido no próprio slide"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "108",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "100n vs 2n²: qual programa é melhor?",
+  "por_que": "Respondido no próprio slide (n < 50)"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "109",
+  "item": "-",
+  "classificacao": "EXERCÍCIO (duvidoso)",
+  "enunciado_resumido": "O que significa um algoritmo ser O(2) ou O(5)?",
+  "por_que": "Pergunta aberta ao aluno; slide 110 muda para complexidade logarítmica sem responder"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "119",
+  "item": "-",
+  "classificacao": "EXERCÍCIO (duvidoso, prático)",
+  "enunciado_resumido": "Usando MatLab ou outro pacote, desenhe os gráficos das funções da hierarquia (slide 118) quando n → ∞",
+  "por_que": "Tarefa prática; nenhum gráfico nos slides seguintes"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "120",
+  "item": "a",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Onde π(n) = n/ln n se encaixa na hierarquia?",
+  "por_que": "\"Solução de (a)\" no slide 122"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "120",
+  "item": "b",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Onde e^√(log n) se encaixa na hierarquia?",
+  "por_que": "\"Solução de (b)\" no slide 123"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "140",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Recursão tem que ser mantida pequena! Por que?",
+  "por_que": "Respondido no slide 141 (razões para limitar a recursão)"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "168",
+  "item": "Ex. 5",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Teorema Mestre: T(n)=4T(n/2)+n",
+  "por_que": "Coberto no banco (Loureiro, ex. 5)"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "169",
+  "item": "Ex. 6",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Teorema Mestre: T(n)=4T(n/2)+n²",
+  "por_que": "Coberto no banco (Loureiro, ex. 6)"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "170",
+  "item": "Ex. 7",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Teorema Mestre: T(n)=4T(n/2)+n³",
+  "por_que": "Coberto no banco (Loureiro, ex. 7)"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "171",
+  "item": "Ex. 8",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "T(n)=7T(n/2)+n² vs T'(n)=aT'(n/4)+n²: maior a inteiro",
+  "por_que": "Coberto no banco (Loureiro, ex. 8)"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "172",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Como se interpreta 2n²+3n+1 = 2n²+Θ(n)?",
+  "por_que": "Respondido nos slides 173–177"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "183",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Torre de Hanói: provar forma fechada T(n)=2ⁿ−1",
+  "por_que": "Prova no próprio bloco 178–183"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "185",
+  "item": "-",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "Linhas no plano: qual o número máximo de regiões Lₙ determinado por n retas? (L0=1, L1=2, L2=4)",
+  "por_que": "Problema proposto; o slide 186 já inicia Análise Amortizada — sem recorrência nem forma fechada"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "187",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Como fazer análise mais precisa? → Análise amortizada",
+  "por_que": "Pergunta retórica respondida no slide"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "198",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Método contábil: \"Prove que o saldo nunca fica negativo\"",
+  "por_que": "É a obrigação genérica do método, não um exercício; aplicada ao contador binário no slide 200"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "199",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Qual o significado do saldo ficar negativo?",
+  "por_que": "Respondido no próprio slide"
+ },
+ {
+  "pdf": "semana-01-analise-de-algoritmos/slides-analise-de-complexidade-loureiro-ufmg.pdf",
+  "pagina": "202",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Como encontrar o potencial?",
+  "por_que": "Respondido no próprio slide"
+ },
+ {
+  "pdf": "semana-02-notacao-assintotica/resumo-complexidade-prof-mario-oliveira.pdf",
+  "pagina": "3",
+  "item": "-",
+  "classificacao": "EXERCÍCIO (duvidoso, conceitual)",
+  "enunciado_resumido": "\"Existem situações nas quais a análise empírica é indicada???\" (no meio da comparação análise empírica × modelo matemático)",
+  "por_que": "Pergunta deixada em aberto pelo professor; o texto segue para o modelo matemático sem responder"
+ },
+ {
+  "pdf": "semana-02-notacao-assintotica/resumo-complexidade-prof-mario-oliveira.pdf",
+  "pagina": "1",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "\"supercomputadores???, computadores quânticos???\" (intratáveis)",
+  "por_que": "Interrogações retóricas no meio da teoria"
+ },
+ {
+  "pdf": "semana-02-notacao-assintotica/resumo-complexidade-prof-mario-oliveira.pdf",
+  "pagina": "5",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Qual operação escolher?",
+  "por_que": "Respondido na mesma frase"
+ },
+ {
+  "pdf": "semana-02-notacao-assintotica/resumo-complexidade-prof-mario-oliveira.pdf",
+  "pagina": "11",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Como verificar que a implementação tem o desempenho previsto pela análise?",
+  "por_que": "Respondido na página 12 (razão T(n)/f(n))"
+ },
+ {
+  "pdf": "semana-02-notacao-assintotica/resumo-complexidade-prof-mario-oliveira.pdf",
+  "pagina": "12",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "O que fazer quando a análise não bate com o observado? / Como comparar com valores finitos de n?",
+  "por_que": "Respondido na própria página (taxa T(n)/f(n), causas da divergência)"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "4",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "O que as sequências k/(k+1) e (i−1)/i têm em comum?",
+  "por_que": "Respondido no slide (\"São idênticas\")"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "10",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Mudança de variável em Σ 1/(k+1): calcule limites e termo geral",
+  "por_que": "Resolvido no próprio slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "17",
+  "item": "Ex. 1",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prove 1+…+n = n(n+1)/2",
+  "por_que": "Prova nos slides 17–18"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "20",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "\"Parece circular! O que está ocorrendo?\"",
+  "por_que": "Respondido no próprio slide e no 21"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "22",
+  "item": "Ex. 2",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "\"Prove\" 0+1+…+n = n(n+2)/2 (ERRADO)",
+  "por_que": "Mostrado no slide 23 que o passo falha"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "24",
+  "item": "Ex. 3",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prove Σ rⁱ = (r^{n+1}−1)/(r−1)",
+  "por_que": "Prova nos slides 24–25"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "26",
+  "item": "Ex. 4",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prove 2^{2n}−1 divisível por 3",
+  "por_que": "Prova nos slides 26–27"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "28",
+  "item": "Ex. 5",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prove 2⁰+…+2ⁿ = 2^{n+1}−1",
+  "por_que": "Prova nos slides 28–29"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "30",
+  "item": "Ex. 6",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prove H_{2ⁿ} ≥ 1 + n/2",
+  "por_que": "Prova nos slides 30–31"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "32",
+  "item": "Ex. 7",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "a1=2, ak=5a(k−1): prove an = 2·5^{n−1}",
+  "por_que": "Prova nos slides 32–33"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "34",
+  "item": "Ex. 8",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prove 2n+1 < 2ⁿ para n ≥ 3",
+  "por_que": "Prova nos slides 34–35"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "36",
+  "item": "Ex. 9",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prove n³−n divisível por 3",
+  "por_que": "Prova nos slides 36–37"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "38",
+  "item": "Ex. 10",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Tabuleiro 2ⁿ×2ⁿ com um quadrado removido coberto por peças L",
+  "por_que": "Prova nos slides 38–42"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "44",
+  "item": "Ex. 11",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prove que todo inteiro > 1 é divisível por um primo (indução forte)",
+  "por_que": "Prova no próprio slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "45",
+  "item": "Ex. 12",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "a1=0, a2=2, ak=3a(⌊k/2⌋)+2: prove an par",
+  "por_que": "Prova nos slides 45–46"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/inducao-matematica-loureiro-ufmg.pdf",
+  "pagina": "47",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO (duvidoso)",
+  "enunciado_resumido": "\"Usando o princípio da boa ordenação podemos demonstrar que indução fraca e forte são equivalentes\"",
+  "por_que": "Afirmação de teoria sem pedido ao aluno; a demonstração não está no material"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "8",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Geração n de descendentes tem 2ⁿ membros",
+  "por_que": "Prova por indução no próprio slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "9",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "1+3+…+(2n−1) = n²",
+  "por_que": "Prova no próprio slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "10",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "1+2+…+2ⁿ = 2^{n+1}−1",
+  "por_que": "Prova no próprio slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "11",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "1+…+n = n(n+1)/2",
+  "por_que": "Prova no próprio slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "12",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "0+1+…+n = n(n+2)/2 (predicado falso)",
+  "por_que": "Mostrado no próprio slide que o passo falha"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "14",
+  "item": "1",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Para Casa: prove 0²+1²+…+n² = (2n+1)(n+1)n/6",
+  "por_que": "Coberto no banco (IFMG, ex.)"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "14",
+  "item": "2",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Para Casa: prove 1+4+7+…+(3n−2) = n(3n−1)/2",
+  "por_que": "Coberto no banco (IFMG, ex.)"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "17",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "f(0)=3, f(n+1)=2f(n)+3: encontre f(1)…f(4)",
+  "por_que": "Resolvido no slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "18",
+  "item": "1",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Dê definição recursiva de aⁿ",
+  "por_que": "Solução no slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "18",
+  "item": "2",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Dê definição recursiva de Σ a_k",
+  "por_que": "Solução no slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "19",
+  "item": "1",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Fatorial recursivo; determine F(6)",
+  "por_que": "Resolvido no slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "19",
+  "item": "2",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Fibonacci: encontre f2…f6",
+  "por_que": "Resolvido no slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "19",
+  "item": "3",
+  "classificacao": "EXERCÍCIO (trivial)",
+  "enunciado_resumido": "\"Enumere a sequência de números de Fibonacci, de f0 à f12\"",
+  "por_que": "Última linha do slide, sem resposta (o slide só calcula até f6)"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "21",
+  "item": "1",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Dê algoritmo recursivo para n!",
+  "por_que": "Algoritmo 2 no slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "21",
+  "item": "2",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Dê algoritmo recursivo para aⁿ",
+  "por_que": "Algoritmo 3 no slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "22",
+  "item": "1",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Dê algoritmo recursivo para S(n) (S(1)=2, S(n)=2S(n−1))",
+  "por_que": "Algoritmo 4 no slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "22",
+  "item": "2",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Dê algoritmo recursivo para o produto m·n",
+  "por_que": "Algoritmo 5 no slide"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "23",
+  "item": "1",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "ORDENACAO-POR-SELECAO recursiva: \"Pergunta: como deve ser a primeira chamada do algoritmo recursivo acima?\"",
+  "por_que": "Pergunta ao aluno sem resposta (24 já é \"Para Casa\")"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "23",
+  "item": "2",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "\"Pergunta: mostre, passo a passo, a ordenação de V = [10, 2, 13, 22, 8, 3, 12, 9, 1, 50]\" pelo Algoritmo 6",
+  "por_que": "Sem resposta no material"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "24",
+  "item": "1",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Para Casa: projete algoritmo recursivo para Fₙ",
+  "por_que": "Coberto no banco (IFMG, ex.)"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "24",
+  "item": "2",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Para Casa: diagrama de árvore das chamadas para n = 6",
+  "por_que": "Coberto no banco (IFMG, ex.)"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "25",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO (duvidoso)",
+  "enunciado_resumido": "Torre de Hanói: \"Pergunta: qual é a quantidade mínima de movimentos para n discos?\"",
+  "por_que": "A recorrência T(n)=2T(n−1)+1 aparece no slide 27; a forma fechada é o Para Casa do slide 35 (coberto)"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "26",
+  "item": "-",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "\"Exercício: esboce uma árvore com as chamadas recursivas do algoritmo TORRE-HANOI para n = 4 discos\"",
+  "por_que": "Sem solução no material (27 vai para a relação de recorrência)"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "27",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "\"Podemos determinar o tempo sem desenvolver a recorrência?\"",
+  "por_que": "Retórica, respondida no slide (solução em forma fechada)"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "28",
+  "item": "1",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Para Casa: dê a relação de recorrência do ORDENACAO-POR-SELECAO recursivo",
+  "por_que": "Coberto no banco (IFMG, ex.)"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "30",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "S(1)=2, S(n)=2S(n−1): conjecturar e verificar S(n)=2ⁿ",
+  "por_que": "Resolvido nos slides 30–32"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "33",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Encontre forma fechada de T(1)=1, T(n)=T(n−1)+3",
+  "por_que": "Resolvido nos slides 33–34 (3n−2)"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "35",
+  "item": "1",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Para Casa: Hanói, expandir/conjecturar/verificar a forma fechada de T(n)=2T(n−1)+1",
+  "por_que": "Coberto no banco (IFMG, ex.)"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/matematica-discreta-recorrencia-e-inducao-diego-mello-ifmg.pdf",
+  "pagina": "37",
+  "item": "-",
+  "classificacao": "EXERCÍCIO (bloqueado, fora do PDF)",
+  "enunciado_resumido": "Atividades recomendadas: listas de exercícios de Rosen (p.279, 291, 308, 321) e Gersting (p.84, 111)",
+  "por_que": "Só referências; enunciados não estão no PDF (pendência Rosen/Gersting já registrada)"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/relacoes-de-recorrencia-rezende-unicamp.pdf",
+  "pagina": "6",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "T(n)=T(n/2)+n, T(1)=? por expansão telescópica",
+  "por_que": "Resolvido no texto (2n−1)"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/relacoes-de-recorrencia-rezende-unicamp.pdf",
+  "pagina": "8",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO (duvidoso)",
+  "enunciado_resumido": "Nota 2: \"pisos e tetos afetam pouco ... pode ser demonstrado por indução, mas não faremos isso nestas notas\"",
+  "por_que": "Não é dirigido ao aluno"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/relacoes-de-recorrencia-rezende-unicamp.pdf",
+  "pagina": "9",
+  "item": "1",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "\"Deixamos a prova de que ambas são Ω(n log n) como exercício para o leitor\" — recorrência (3): T(n)=2T(n/2)+n",
+  "por_que": "Explicitamente deixado ao leitor; o texto só prova o O (para a (4))"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/relacoes-de-recorrencia-rezende-unicamp.pdf",
+  "pagina": "9",
+  "item": "2",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "Idem para a recorrência (4): T(n)=2T(⌊n/2⌋)+n ∈ Ω(n log n)",
+  "por_que": "Explicitamente deixado ao leitor"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/relacoes-de-recorrencia-rezende-unicamp.pdf",
+  "pagina": "9",
+  "item": "3",
+  "classificacao": "FALSO POSITIVO (duvidoso)",
+  "enunciado_resumido": "Recorrências (5) T(n)=2T(⌊n/2⌋+37)+n e (6) T(n)=2T(⌊n/2⌋+37)+41n+101 são Θ(n log n)",
+  "por_que": "Afirmado com intuição, sem pedido explícito de prova"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/relacoes-de-recorrencia-rezende-unicamp.pdf",
+  "pagina": "10",
+  "item": "-",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "\"Convidamos o leitor a provar que a solução de T(n)=2T(⌊n/3⌋)+n pertence a O(n)\" (recorrência (8))",
+  "por_que": "Só a árvore da figura 3 (p.11) com \"Total: O(n)\"; sem prova"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/relacoes-de-recorrencia-rezende-unicamp.pdf",
+  "pagina": "11",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "T(n)=T(⌊n/2⌋)+T(⌈n/2⌉)+1 com palpite cn−b",
+  "por_que": "Resolvido nas p.11–12"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/relacoes-de-recorrencia-rezende-unicamp.pdf",
+  "pagina": "12",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "T(n)=2T(⌊√n⌋)+log n por troca de variáveis",
+  "por_que": "Resolvido no texto (O(log n log log n))"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/relacoes-de-recorrencia-rezende-unicamp.pdf",
+  "pagina": "13",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "\"Convidamos o leitor sagaz a consultar em [1] a prova\" do Teorema Master",
+  "por_que": "Convite à leitura, não exercício"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/relacoes-de-recorrencia-rezende-unicamp.pdf",
+  "pagina": "17",
+  "item": "-",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "Subgrafo induzido maximal (lista de adjacências, T(n)=T(n−1)+n+(k−1)(n−1) ∈ O(kn²)): \"O algoritmo tem complexidade linear, quadrática ou exponencial? Justifique\"",
+  "por_que": "Quadro \"Exercício:\" sem resposta"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/relacoes-de-recorrencia-rezende-unicamp.pdf",
+  "pagina": "18",
+  "item": "-",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "Subgrafo induzido maximal com heap (construção O(n log n), remoção O(log(n−i+1))): qual a complexidade final do algoritmo?",
+  "por_que": "Quadro \"Exercício:\" sem resposta"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/relacoes-de-recorrencia-rezende-unicamp.pdf",
+  "pagina": "19",
+  "item": "-",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "Quantos dígitos decimais tem 2^2^2^2^2 = 2^65536 (menor N com log*₂ N > 4)?",
+  "por_que": "Quadro \"Exercício:\" sem resposta"
+ },
+ {
+  "pdf": "semana-04-inducao-e-recorrencias/relacoes-de-recorrencia-rezende-unicamp.pdf",
+  "pagina": "21",
+  "item": "Supl. 1",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "Exercícios Suplementares 1: limite superior para T(n)=168T(⌊n/672⌋+135)+168T(⌊n/672⌋+135)+168T(⌊n/672⌋+189)+168T(⌊n/672⌋+189)+456n+1",
+  "por_que": "Seção de exercícios, sem solução"
+ },
+ {
+  "pdf": "semana-05-inducao-projeto-recursividade/inducao-no-projeto-de-algoritmos-unicamp-mc458.pdf",
+  "pagina": "2",
+  "item": "Ex. 3",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Fatores de balanceamento em árvores binárias (projeto por indução, h.i. fortalecida)",
+  "por_que": "Algoritmo FatorAltura e complexidade Θ(n) nos slides"
+ },
+ {
+  "pdf": "semana-05-inducao-projeto-recursividade/inducao-no-projeto-de-algoritmos-unicamp-mc458.pdf",
+  "pagina": "3",
+  "item": "Exercício do Ex. 3",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "\"Há algum ganho em complexidade quando nₑ e n_d são ≈ n/2 ao longo da recursão?\"",
+  "por_que": "Coberto no banco (Slides UNICAMP MC458, Exemplo 3)"
+ },
+ {
+  "pdf": "semana-05-inducao-projeto-recursividade/inducao-no-projeto-de-algoritmos-unicamp-mc458.pdf",
+  "pagina": "3",
+  "item": "Ex. 4",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Problema da celebridade (solução laboriosa 2n(n−1), segunda tentativa linear)",
+  "por_que": "Resolvido nos slides 3–5"
+ },
+ {
+  "pdf": "semana-05-inducao-projeto-recursividade/inducao-no-projeto-de-algoritmos-unicamp-mc458.pdf",
+  "pagina": "4",
+  "item": "Ex. 4 \"Por quê?\"",
+  "classificacao": "EXERCÍCIO (duvidoso)",
+  "enunciado_resumido": "Celebridade, 1ª tentativa (h.i. sobre n−1 pessoas, removendo a pessoa n): \"Essa primeira tentativa, infelizmente, também conduz a um algoritmo quadrático. Por quê?\"",
+  "por_que": "Pergunta ao aluno; o slide seguinte passa direto à segunda tentativa sem justificar o custo quadrático"
+ },
+ {
+  "pdf": "semana-05-inducao-projeto-recursividade/inducao-no-projeto-de-algoritmos-unicamp-mc458.pdf",
+  "pagina": "5",
+  "item": "Ex. 5",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Subsequência consecutiva máxima (SCM) com sufixo máximo",
+  "por_que": "Resolvido nos slides 5–7"
+ },
+ {
+  "pdf": "semana-05-inducao-projeto-recursividade/inducao-no-projeto-de-algoritmos-unicamp-mc458.pdf",
+  "pagina": "6",
+  "item": "Ex. 5 \"O que falta na h.i.?\"",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "SCM: o que falta na h.i.?",
+  "por_que": "Respondido no mesmo slide (o sufixo máximo)"
+ },
+ {
+  "pdf": "semana-05-inducao-projeto-recursividade/using-induction-to-design-algorithms-manber-cacm-1988.pdf",
+  "pagina": "6",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "\"But, can we always find a vertex of indegree zero?\" (ordenação topológica)",
+  "por_que": "Respondido logo a seguir no texto"
+ },
+ {
+  "pdf": "semana-05-inducao-projeto-recursividade/using-induction-to-design-algorithms-manber-cacm-1988.pdf",
+  "pagina": "7",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Celebrity Problem (\"a popular exercise in algorithm design\")",
+  "por_que": "Resolvido no artigo"
+ },
+ {
+  "pdf": "semana-05-inducao-projeto-recursividade/using-induction-to-design-algorithms-manber-cacm-1988.pdf",
+  "pagina": "10",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "\"Can we somehow solve the sorting problem at the same time [as] closest pair?\"",
+  "por_que": "Respondido (algoritmo O(n log n))"
+ },
+ {
+  "pdf": "semana-05-inducao-projeto-recursividade/using-induction-to-design-algorithms-manber-cacm-1988.pdf",
+  "pagina": "11",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Knapsack: \"Can we use this negative result?\"",
+  "por_que": "Respondido (\"Yes, ...\")"
+ },
+ {
+  "pdf": "semana-05-inducao-projeto-recursividade/using-induction-to-design-algorithms-manber-cacm-1988.pdf",
+  "pagina": "13",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Reversed induction: \"what would be the base case?\"",
+  "por_que": "Respondido no texto"
+ },
+ {
+  "pdf": "semana-05-inducao-projeto-recursividade/using-induction-to-design-algorithms-manber-cacm-1988.pdf",
+  "pagina": "-",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Artigo inteiro",
+  "por_que": "Artigo expositivo sem lista de exercícios; nenhum \"left to the reader\""
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/analise-de-algoritmos-parte-2-campello.pdf",
+  "pagina": "8",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "n² é O(n)?",
+  "por_que": "Respondido no slide (impossível, c deve ser constante)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/analise-de-algoritmos-parte-2-campello.pdf",
+  "pagina": "11",
+  "item": "-",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "\"Exercício: Mostre que f(n) = log_y n é O(log_x n) para x, y > 1, ou seja, a base logarítmica não afeta a complexidade assintótica\"",
+  "por_que": "Slide só com o enunciado; o 12 muda de assunto"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/analise-de-algoritmos-parte-2-campello.pdf",
+  "pagina": "12",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Afinal, o que quer dizer \"f(n) é O(g(n))\"?",
+  "por_que": "Respondido no próprio slide"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/analise-de-algoritmos-parte-2-campello.pdf",
+  "pagina": "20",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prefix1 é O(1+2+…+n) = O(n²) (prova gráfica)",
+  "por_que": "Resolvido no slide"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/analise-de-algoritmos-parte-2-campello.pdf",
+  "pagina": "22",
+  "item": "-",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "\"Exercício: análise detalhada do nº de operações primitivas de Prefix1 e Prefix2 (média de prefixo), número exato de operações de cada; prove pela definição que Prefix1 é O(n²) e Prefix2 é O(n); discuta pior/melhor/caso médio. Justifique\"",
+  "por_que": "Slide só com o enunciado (algoritmos nos slides 19 e 21)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/analise-de-algoritmos-parte-2-campello.pdf",
+  "pagina": "27",
+  "item": "-",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "f(n)=5n é o(n)? Justifique",
+  "por_que": "Coberto no banco (Campello)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/analise-de-algoritmos-parte-2-campello.pdf",
+  "pagina": "28",
+  "item": "-",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "f(n)=5n² é ω(n²)? Justifique",
+  "por_que": "Coberto no banco (Campello)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/analise-de-algoritmos-parte-2-campello.pdf",
+  "pagina": "32",
+  "item": "1",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "f(n)=3n² (n par) ou 7n (n ímpar): mostre O(n²) e Ω(n)",
+  "por_que": "Coberto no banco (Campello)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/analise-de-algoritmos-parte-2-campello.pdf",
+  "pagina": "32",
+  "item": "2",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Maior n resolvível em t ∈ {1s, 1h, 1mês, 1século} para log n, n, n log n, n², n³, 2ⁿ (µs)",
+  "por_que": "Coberto no banco (Campello)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/analise-de-algoritmos-parte-2-campello.pdf",
+  "pagina": "32",
+  "item": "3",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Pior caso da busca binária iterativa, justificar pela definição de O",
+  "por_que": "Coberto no banco (Campello)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/analise-de-algoritmos-parte-2-campello.pdf",
+  "pagina": "33",
+  "item": "1",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Mostre pela definição que f(n)=d (constante) é O(1)",
+  "por_que": "Coberto no banco (Campello)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/analise-de-algoritmos-parte-2-campello.pdf",
+  "pagina": "33",
+  "item": "2",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Explique por que o melhor caso da busca binária iterativa é O(1); pode-se concluir que é Ω(1)?",
+  "por_que": "Coberto no banco (Campello) — conferir se a subpergunta Ω(1) foi respondida"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/analise-de-algoritmos-parte-2-campello.pdf",
+  "pagina": "33",
+  "item": "3",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Ordene 4n log n + 2n, 2¹⁰, 2^{log n}, 3n+100 log n, 4n, 2ⁿ, 3^{3n}, n²+10n, n³, n log n",
+  "por_que": "Coberto no banco (Campello)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/analise-de-algoritmos-parte-2-campello.pdf",
+  "pagina": "34",
+  "item": "-",
+  "classificacao": "EXERCÍCIO (fora do PDF)",
+  "enunciado_resumido": "\"Lista de Exercícios Extras — Vide Webpage da Disciplina\"",
+  "por_que": "Só referência externa; enunciados não estão no PDF"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "3",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Como expressar a eficiência de um algoritmo?",
+  "por_que": "Respondido nos overlays 4–5"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "8",
+  "item": "1",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "\"Exemplos\" (slide 5/33): pela definição de O, V ou F: 100n² = O(n²)",
+  "por_que": "Rotulado \"Exemplos\" mas sem resposta (slide seguinte é teoria)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "8",
+  "item": "2",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "V/F pela definição de O: (1/2)n² − 3n = O(n²)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "8",
+  "item": "3",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "V/F pela definição de O: 3n + 20 = O(n²)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "8",
+  "item": "4",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "V/F pela definição de O: 6n³ = O(n²)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "8",
+  "item": "5",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "V/F pela definição de O: 720 = O(1)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "12",
+  "item": "1",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "\"Exemplos\" (slide 8/33): pela definição de Ω, V ou F: 100n² = Ω(n²)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "12",
+  "item": "2",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "V/F pela definição de Ω: (1/2)n² − 3n = Ω(n²)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "12",
+  "item": "3",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "V/F pela definição de Ω: 3n² + 20 = Ω(n)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "12",
+  "item": "4",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "V/F pela definição de Ω: 6n = Ω(n²)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "12",
+  "item": "5",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "V/F pela definição de Ω: 720 = Ω(1)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "17",
+  "item": "1",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "\"Exemplos\" (slide 12/33): pela definição de Θ, V ou F: 100n² = Θ(n²)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "17",
+  "item": "2",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "V/F pela definição de Θ: (1/2)n² − 3n = Θ(n²)",
+  "por_que": "Sem resposta (o Loureiro resolve este mesmo item, sem. 1 p.85)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "17",
+  "item": "3",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "V/F pela definição de Θ: 3n² + 20 = Θ(n)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "17",
+  "item": "4",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "V/F pela definição de Θ: 6n = Θ(n²)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "17",
+  "item": "5",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "V/F pela definição de Θ: 720 = Θ(1)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "18",
+  "item": "1",
+  "classificacao": "EXERCÍCIO (duvidoso, conceitual)",
+  "enunciado_resumido": "\"Como interpretamos as seguintes fórmulas?\" 2n²+3n+1 = 2n²+Θ(n)",
+  "por_que": "Sem resposta no slide nem nos seguintes (o 19 já é notação o)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "18",
+  "item": "2",
+  "classificacao": "EXERCÍCIO (duvidoso, conceitual)",
+  "enunciado_resumido": "Interpretar T(n) = 2T(n/2) + Θ(n)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "18",
+  "item": "3",
+  "classificacao": "EXERCÍCIO (duvidoso, conceitual)",
+  "enunciado_resumido": "Interpretar 2n² + Θ(n) = Θ(n²)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "18",
+  "item": "4",
+  "classificacao": "EXERCÍCIO (duvidoso, conceitual)",
+  "enunciado_resumido": "Interpretar 2n²+3n+1 = 2n²+Θ(n) = Θ(n²)",
+  "por_que": "Sem resposta"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "37",
+  "item": "3.1-1",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prove max(f,g) = Θ(f+g) (CLRS 3.1-1)",
+  "por_que": "Prova completa nos overlays 37–42 (c1=1/2, c2=1)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "43",
+  "item": "3.1-2",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Mostre (n+a)^b = Θ(n^b), b > 0 (CLRS 3.1-2)",
+  "por_que": "Prova nos overlays 43–49"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/crescimento-de-funcoes-uber-uem.pdf",
+  "pagina": "50",
+  "item": "3.1-4",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "2^{n+1} = O(2ⁿ)? 2^{2n} = O(2ⁿ)? (CLRS 3.1-4)",
+  "por_que": "Resolvido nos overlays 50–59"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "4",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "T(n) é razoável? É possível resolver com menos instruções? Qual de dois algoritmos é mais eficiente?",
+  "por_que": "Perguntas motivadoras, respondidas pela aula"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "13",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Por que se preocupar mais com as entradas grandes?",
+  "por_que": "Respondido no próprio slide"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "20",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Será que n² ∈ O(2ⁿ)?",
+  "por_que": "Provado no slide 21 (Exemplo 1, por indução, n ≥ 4)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "51",
+  "item": "Ex. 1",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prove n²+2n+1 ∈ O(n²)",
+  "por_que": "Prova no slide"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "52",
+  "item": "Ex. 2",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prove 7n² ∈ O(n³)",
+  "por_que": "Prova no slide"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "53",
+  "item": "Ex. 3",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prove n² ∉ O(n)",
+  "por_que": "Prova no slide"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "54",
+  "item": "Ex. 4",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "x³ ∈ O(7x²)?",
+  "por_que": "Prova no slide (não)"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "55",
+  "item": "Ex. 5",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prove n! ∈ O(nⁿ) (e log n! ∈ O(n log n), p.56)",
+  "por_que": "Prova no slide"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "57",
+  "item": "Ex. 6",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Mostre n ∈ O(2ⁿ)",
+  "por_que": "Prova no slide"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "58",
+  "item": "Ex. 7",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Mostre log n ∈ O(n)",
+  "por_que": "Prova no slide"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "59",
+  "item": "Ex. 8",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Mostre 3n log(n!) + (n²+3) log n ∈ O(n² log n)",
+  "por_que": "Prova nos slides 59–61"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "62",
+  "item": "Ex. 9",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Mostre 8n³+5n²+7 ∈ Ω(n³)",
+  "por_que": "Prova no slide"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "63",
+  "item": "Ex. 10",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Mostre 8n³+5n²+7 ∈ Θ(n³)",
+  "por_que": "Prova nos slides 63–64"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "65",
+  "item": "Ex. 11",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Mostre n² ∈ o(n³)",
+  "por_que": "Prova no slide"
+ },
+ {
+  "pdf": "material-complementar/analise-assintotica/notacao-assintotica-sheila-almeida-utfpr.pdf",
+  "pagina": "66",
+  "item": "Ex. 12",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Mostre n² ∈ ω(n log n)",
+  "por_que": "Prova no slide"
+ },
+ {
+  "pdf": "material-complementar/somatorios/somatorios-walace-rodrigues-ifmg.pdf",
+  "pagina": "14",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Σ i = ? por recombinação (associando pares)",
+  "por_que": "Resolvido no slide: (n+1)·n/2"
+ },
+ {
+  "pdf": "material-complementar/somatorios/somatorios-walace-rodrigues-ifmg.pdf",
+  "pagina": "15",
+  "item": "-",
+  "classificacao": "EXERCÍCIO (duvidoso — mesmo conteúdo do p.16 item 1)",
+  "enunciado_resumido": "Σ i² = ? por perturbação (\"Dica: perturbe a soma dos cubos\"); o slide para em \"= agora continue daqui\"",
+  "por_que": "Derivação interrompida; só o resultado final aparece na tabela do slide 28. Coincide com o Exercício 1 do slide 16 (coberto)"
+ },
+ {
+  "pdf": "material-complementar/somatorios/somatorios-walace-rodrigues-ifmg.pdf",
+  "pagina": "16",
+  "item": "1",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Examine o processo de perturbação da soma dos quadrados: Σ i² = ?",
+  "por_que": "Coberto no banco (Walace, ex. 1)"
+ },
+ {
+  "pdf": "material-complementar/somatorios/somatorios-walace-rodrigues-ifmg.pdf",
+  "pagina": "16",
+  "item": "2",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "\"Dica: perturbe i!\": Σ_{i=1}^{n} i·i! = ? (pelo método da perturbação)",
+  "por_que": "O slide 18 resolve a mesma soma pelo operador diferença ((n+1)! − 1), não por perturbação; o exercício pede o método da perturbação"
+ },
+ {
+  "pdf": "material-complementar/somatorios/somatorios-walace-rodrigues-ifmg.pdf",
+  "pagina": "16",
+  "item": "3",
+  "classificacao": "EXERCÍCIO",
+  "enunciado_resumido": "\"Se vire com esse\": Σ_{i=1}^{n} i·2ⁱ = ? (na seção de perturbação)",
+  "por_que": "Sem solução; a mesma soma reaparece no slide 19 pelo operador diferença (coberto), e a fórmula 8 do slide 28 dá a resposta sem derivação"
+ },
+ {
+  "pdf": "material-complementar/somatorios/somatorios-walace-rodrigues-ifmg.pdf",
+  "pagina": "19",
+  "item": "1",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Resolva usando o operador diferença: Σ i·2ⁱ = ?",
+  "por_que": "Coberto no banco (Walace, ex. 2)"
+ },
+ {
+  "pdf": "material-complementar/somatorios/somatorios-walace-rodrigues-ifmg.pdf",
+  "pagina": "21",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Σ i·xⁱ = ? pela soma das derivadas (\"agora continue daqui\")",
+  "por_que": "Concluído no slide 22 (\"Exemplo completo\")"
+ },
+ {
+  "pdf": "material-complementar/somatorios/somatorios-walace-rodrigues-ifmg.pdf",
+  "pagina": "25",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Σ 1/i = ? por aproximação por integral",
+  "por_que": "Resolvido no slide: ln(n+1) ≤ Σ ≤ ln n + 1"
+ },
+ {
+  "pdf": "material-complementar/somatorios/somatorios-walace-rodrigues-ifmg.pdf",
+  "pagina": "26",
+  "item": "-",
+  "classificacao": "EXERCÍCIO (duvidoso)",
+  "enunciado_resumido": "Combinação de métodos: Σ_{i=1}^{n} xⁱ = ? (x constante); o slide para em \"agora continue daqui\"",
+  "por_que": "Derivação interrompida; o slide 27 já é \"Fórmulas notáveis\" e a fórmula 6 do slide 28 dá só o resultado"
+ },
+ {
+  "pdf": "material-complementar/somatorios/somatorios-walace-rodrigues-ifmg.pdf",
+  "pagina": "28",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Tabela de fórmulas notáveis (PA, Σi², Σi³, binomiais, PG, Σ i·xⁱ, Σ 1/i, Σ i·i!)",
+  "por_que": "Formulário, sem pedido de demonstração"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/principio-de-inducao-finita-usp.pdf",
+  "pagina": "1",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "\"Mas como provar essa regra para cada valor de n?\"",
+  "por_que": "Pergunta retórica respondida pela própria exposição"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/principio-de-inducao-finita-usp.pdf",
+  "pagina": "2",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Fórmulas provadas por indução nas p.2–3 (incl. 7k² < k³ < 2ᵏ para k ≥ 10)",
+  "por_que": "Provas completas no texto"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/principio-de-inducao-finita-usp.pdf",
+  "pagina": "5",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Fₙ < 2ⁿ (indução forte com dois passos anteriores)",
+  "por_que": "Provado no texto"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/principio-de-inducao-finita-usp.pdf",
+  "pagina": "6",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Fórmula de Binet via Lema 3.1 (xⁿ = xFₙ + Fₙ₋₁)",
+  "por_que": "Provado nas p.6–7"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/principio-de-inducao-finita-usp.pdf",
+  "pagina": "7",
+  "item": "-",
+  "classificacao": "FALSO POSITIVO (duvidoso)",
+  "enunciado_resumido": "Dominó: \"como o faria?\" / \"Compare estas condições com as condições na (PIF)\"",
+  "por_que": "Respondido no texto; a comparação é retórica"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/principio-de-inducao-finita-usp.pdf",
+  "pagina": "9",
+  "item": "2.1",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Mostre 1/(1·2)+…+1/(n(n+1)) = n/(n+1)",
+  "por_que": "Coberto no banco (USP, ex. 2.1)"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/principio-de-inducao-finita-usp.pdf",
+  "pagina": "9",
+  "item": "2.2",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Mostre 2n³ > 3n²+3n+1 para n ≥ 3",
+  "por_que": "Coberto no banco (USP, ex. 2.2)"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/principio-de-inducao-finita-usp.pdf",
+  "pagina": "9",
+  "item": "2.3",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "F_{5n} é múltiplo de 5",
+  "por_que": "Coberto no banco (USP, ex. 2.3)"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/principio-de-inducao-finita-usp.pdf",
+  "pagina": "9",
+  "item": "2.4",
+  "classificacao": "EXERCÍCIO (já coberto)",
+  "enunciado_resumido": "Mostre (PIF) ⇒ (PBO)",
+  "por_que": "Coberto no banco (USP, ex. 2.4)"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/inducao-matematica-cavalcanti-ufpe.pdf",
+  "pagina": "2",
+  "item": "-",
+  "classificacao": "EXERCÍCIO (duvidoso, motivação)",
+  "enunciado_resumido": "Introdução: \"Qual é a fórmula para a soma dos primeiros n inteiros ímpares positivos? ... encontra-se n². É necessário provar que essa suposição é verdadeira\"",
+  "por_que": "A prova não aparece neste PDF (nenhum dos Exemplos 1–8 é a soma dos ímpares); está resolvida em Diego Mello, slide 9"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/inducao-matematica-cavalcanti-ufpe.pdf",
+  "pagina": "7",
+  "item": "Ex. 1",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Prove 1+…+n = n(n+1)/2",
+  "por_que": "Prova nos slides 7–9"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/inducao-matematica-cavalcanti-ufpe.pdf",
+  "pagina": "10",
+  "item": "Ex. 2",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "\"Prove\" 0+…+n = n(n+2)/2 (ERRADO)",
+  "por_que": "Slides 10–12 mostram que o passo falha"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/inducao-matematica-cavalcanti-ufpe.pdf",
+  "pagina": "13",
+  "item": "Ex. 3",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Σ rⁱ = (r^{n+1}−1)/(r−1)",
+  "por_que": "Prova nos slides 13–15"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/inducao-matematica-cavalcanti-ufpe.pdf",
+  "pagina": "16",
+  "item": "Ex. 4",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "2^{2n}−1 divisível por 3",
+  "por_que": "Prova nos slides 16–18"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/inducao-matematica-cavalcanti-ufpe.pdf",
+  "pagina": "19",
+  "item": "Ex. 5",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "2⁰+…+2ⁿ = 2^{n+1}−1",
+  "por_que": "Prova nos slides 19–21"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/inducao-matematica-cavalcanti-ufpe.pdf",
+  "pagina": "22",
+  "item": "Ex. 6",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "H_{2ⁿ} ≥ 1 + n/2",
+  "por_que": "Prova nos slides 22–24"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/inducao-matematica-cavalcanti-ufpe.pdf",
+  "pagina": "25",
+  "item": "Ex. 7",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "a1=2, ak=5a(k−1): an = 2·5^{n−1}",
+  "por_que": "Prova nos slides 25–27"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/inducao-matematica-cavalcanti-ufpe.pdf",
+  "pagina": "28",
+  "item": "Ex. 8",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "n³−n divisível por 3",
+  "por_que": "Prova nos slides 28–30"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/inducao-matematica-cavalcanti-ufpe.pdf",
+  "pagina": "32",
+  "item": "Ex. (forte)",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "an = 2ⁿ pela indução forte (a(k+1) = 4a(k) − 4a(k−1))",
+  "por_que": "Prova nos slides 32–34"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/inducao-matematica-cavalcanti-ufpe.pdf",
+  "pagina": "36",
+  "item": "-",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Demonstração do princípio da indução via boa ordenação",
+  "por_que": "Demonstração no slide 37"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/o-poderoso-principio-da-inducao-matematica-uesb.pdf",
+  "pagina": "3",
+  "item": "Ex. 1",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "2+4+…+2n = n(n+1)",
+  "por_que": "Solução no texto"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/o-poderoso-principio-da-inducao-matematica-uesb.pdf",
+  "pagina": "3",
+  "item": "Obs. 1",
+  "classificacao": "EXERCÍCIO (duvidoso, trivial)",
+  "enunciado_resumido": "\"Observação 1: consequência imediata: 1+2+…+n = n(n+1)/2, o que pode facilmente ser provada pelo leitor\"",
+  "por_que": "Deixado ao leitor (corolário do Ex. 1)"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/o-poderoso-principio-da-inducao-matematica-uesb.pdf",
+  "pagina": "3",
+  "item": "Ex. 2",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "1+3+…+(2n−1) = n²",
+  "por_que": "Solução no texto"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/o-poderoso-principio-da-inducao-matematica-uesb.pdf",
+  "pagina": "3",
+  "item": "Ex. 3",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Números de Fermat: F0·F1·…·F(n−1) = Fn − 2",
+  "por_que": "Solução no texto"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/o-poderoso-principio-da-inducao-matematica-uesb.pdf",
+  "pagina": "4",
+  "item": "Ex. 4–7",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Desigualdades (3^{n−1} < 2^{2n}?, 2ⁿ < n! para n > 3, radicais encaixados √(2+√(2+…)) < 2, Bernoulli)",
+  "por_que": "Soluções no texto"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/o-poderoso-principio-da-inducao-matematica-uesb.pdf",
+  "pagina": "5",
+  "item": "Ex. 8–9",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "n³+2n divisível por 3; soma dos cubos de 3 consecutivos divisível por 9",
+  "por_que": "Soluções no texto"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/o-poderoso-principio-da-inducao-matematica-uesb.pdf",
+  "pagina": "6",
+  "item": "Ex. 10–11",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Soma dos ângulos internos (n−2)π; diagonais n(n−3)/2",
+  "por_que": "Soluções no texto"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/o-poderoso-principio-da-inducao-matematica-uesb.pdf",
+  "pagina": "6",
+  "item": "Ex. 12",
+  "classificacao": "FALSO POSITIVO",
+  "enunciado_resumido": "Classificação de recorrências lineares/não lineares",
+  "por_que": "Exemplo de definição, sem pedido"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/o-poderoso-principio-da-inducao-matematica-uesb.pdf",
+  "pagina": "6",
+  "item": "Ex. 13",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "a0=8, a1=10, an=4a(n−1)−3a(n−2): prove an = 7+3ⁿ",
+  "por_que": "Solução na p.7"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/o-poderoso-principio-da-inducao-matematica-uesb.pdf",
+  "pagina": "7",
+  "item": "Prop. 1",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Σ Fi (i=1..n) = F(n+2) − 1",
+  "por_que": "Prova telescópica no texto"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/o-poderoso-principio-da-inducao-matematica-uesb.pdf",
+  "pagina": "7",
+  "item": "Prop. 2",
+  "classificacao": "EXERCÍCIO (duvidoso)",
+  "enunciado_resumido": "Fibonacci: F1+F3+…+F(2n−1) = F(2n) (soma dos n primeiros de índice ímpar)",
+  "por_que": "\"Prova: É análoga a propriedade 1\" — prova não escrita"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/o-poderoso-principio-da-inducao-matematica-uesb.pdf",
+  "pagina": "8",
+  "item": "Prop. 3",
+  "classificacao": "EXERCÍCIO (duvidoso)",
+  "enunciado_resumido": "Fibonacci: F2+F4+…+F(2n) = F(2n+1) − 1 (soma dos n primeiros de índice par)",
+  "por_que": "\"Prova: É análoga a propriedade 1\" — prova não escrita"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/o-poderoso-principio-da-inducao-matematica-uesb.pdf",
+  "pagina": "8",
+  "item": "Prop. 4–5",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "mdc(Fn, F(n+1)) = 1; F(m+n) = F(m−1)Fn + F(n+1)Fm",
+  "por_que": "Provas no texto"
+ },
+ {
+  "pdf": "material-complementar/inducao-matematica/o-poderoso-principio-da-inducao-matematica-uesb.pdf",
+  "pagina": "8",
+  "item": "Teo. 2",
+  "classificacao": "EXEMPLO RESOLVIDO",
+  "enunciado_resumido": "Fórmula de Binet",
+  "por_que": "Prova nas p.8–9"
+ }
+]

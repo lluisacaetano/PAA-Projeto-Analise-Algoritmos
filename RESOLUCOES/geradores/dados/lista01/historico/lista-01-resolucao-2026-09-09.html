@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>PAA — Lista de Exercícios I — Resolução</title>
+<style>
+  @page { size: A4; margin: 9mm 11mm 11mm 11mm; }
+
+  :root {
+    --tinta: #16181d;
+    --fraco: #5b6068;
+    --linha: #c8ccd2;
+    --caixa: #f2f3f5;
+    --realce: #1a4a7a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: "Charter", "Georgia", "Times New Roman", serif;
+    font-size: 9.1pt;
+    line-height: 1.34;
+    color: var(--tinta);
+    margin: 0;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  h1 {
+    font-size: 13pt;
+    margin: 0 0 1mm 0;
+    letter-spacing: -0.15pt;
+  }
+
+  .cabecalho {
+    border-bottom: 1.2pt solid var(--tinta);
+    padding-bottom: 2mm;
+    margin-bottom: 3.5mm;
+  }
+  .cabecalho .meta {
+    font-size: 8pt;
+    color: var(--fraco);
+    line-height: 1.4;
+  }
+
+  h2 {
+    font-size: 10.5pt;
+    margin: 5mm 0 1.5mm 0;
+    padding-bottom: 0.8mm;
+    border-bottom: 0.6pt solid var(--linha);
+    break-after: avoid;
+  }
+
+  h3 {
+    font-size: 9.3pt;
+    margin: 3mm 0 1mm 0;
+    color: var(--realce);
+    break-after: avoid;
+  }
+
+  p { margin: 0 0 1.6mm 0; }
+
+  .enunciado {
+    background: var(--caixa);
+    border-left: 2pt solid var(--fraco);
+    padding: 2mm 2.5mm 1.4mm 2.5mm;
+    margin: 0 0 2.5mm 0;
+    font-size: 8.6pt;
+    break-inside: avoid;
+  }
+  .enunciado p { margin-bottom: 1.2mm; }
+  .enunciado .rot {
+    font-variant: small-caps;
+    letter-spacing: 0.4pt;
+    color: var(--fraco);
+    font-size: 7.6pt;
+    display: block;
+    margin-bottom: 0.8mm;
+  }
+  .enunciado ol { margin: 0.8mm 0 0 4.5mm; padding: 0; }
+  .enunciado ol li { margin-bottom: 0.6mm; }
+
+  .resp {
+    font-weight: 700;
+    color: var(--realce);
+  }
+
+  .item { margin-bottom: 2.4mm; break-inside: avoid; }
+
+  code, .cod {
+    font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    font-size: 7.6pt;
+  }
+
+  pre.cod {
+    background: var(--caixa);
+    border: 0.4pt solid var(--linha);
+    padding: 1.4mm 2mm;
+    margin: 1.2mm 0;
+    line-height: 1.28;
+    white-space: pre;
+    overflow-x: auto;
+    break-inside: avoid;
+  }
+
+  .mat {
+    font-family: "Cambria Math", "Georgia", serif;
+    font-style: italic;
+  }
+
+  .centro {
+    text-align: center;
+    margin: 1.4mm 0;
+    font-family: "Cambria Math", "Georgia", serif;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.2pt;
+    margin: 1.5mm 0 2mm 0;
+    break-inside: avoid;
+  }
+  th, td {
+    border: 0.4pt solid var(--linha);
+    padding: 0.9mm 1.5mm;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--caixa);
+    font-weight: 700;
+    font-size: 7.9pt;
+  }
+  td.n { text-align: center; white-space: nowrap; }
+
+  .nota {
+    font-size: 8pt;
+    color: var(--fraco);
+    border-left: 1.5pt solid var(--linha);
+    padding-left: 2mm;
+    margin: 1.5mm 0;
+  }
+
+  .rodape {
+    margin-top: 6mm;
+    padding-top: 2mm;
+    border-top: 0.6pt solid var(--linha);
+    font-size: 7.6pt;
+    color: var(--fraco);
+  }
+
+  sub, sup {
+    font-size: 68%;
+    line-height: 0;
+    position: relative;
+    font-style: normal;
+  }
+  sub { bottom: -0.25em; }
+  sup { top: -0.32em; }
+</style>
+</head>
+<body>
+
+<div class="cabecalho">
+  <h1>Projeto e Análise de Algoritmos — Lista de Exercícios I</h1>
+  <div class="meta">
+    Instituto Federal de Minas Gerais, Campus Formiga · Bacharelado em Ciência da Computação · 2026/2<br>
+    Professor: Mário Luiz Rodrigues Oliveira · Aluna: Luisa Caetano
+  </div>
+</div>
+
+<div class="nota">
+<strong>Convenção de custo.</strong> Salvo menção em contrário, o custo é medido em
+<em>operações primitivas</em> no modelo RAM, atribuindo 1 unidade a cada atribuição, comparação
+e incremento, conforme o guia de análise fornecido no enunciado. Escreve-se
+<span class="mat">T(x)</span> para o custo de uma entrada específica <span class="mat">x</span> e
+<span class="mat">W(n) = máx{T(x) : |x| = n}</span> para o custo de pior caso.
+Declarar a unidade importa: uma testemunha obtida contando comparações não vale automaticamente
+para operações primitivas.
+</div>
+
+<!-- ══════════════════════ QUESTÃO 1 ══════════════════════ -->
+<h2>Questão 1</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Responda V para os itens que são verdadeiros e F para os itens que são falsos e justifique
+  suas respostas. Respostas sem justificativas não serão consideradas.</p>
+  <ol type="a">
+    <li>Se eu provar que um algoritmo leva O(n²) no pior caso, é possível que leve O(n) em
+        <em>algumas</em> entradas?</li>
+    <li>Se eu provar que um algoritmo leva O(n²) no pior caso, é possível que leve O(n) em
+        <em>todas</em> as entradas?</li>
+    <li>Se eu provar que um algoritmo leva Θ(n²) no pior caso, é possível que leve O(n) em
+        <em>algumas</em> entradas?</li>
+    <li>Se eu provar que um algoritmo leva Θ(n²) no pior caso, é possível que leve O(n) em
+        <em>todas</em> as entradas?</li>
+    <li>Se eu provar que um algoritmo leva θ(n²) no pior caso, é possível existir alguma entrada
+        suficientemente grande para a qual o algoritmo realiza pelo menos 100·n operações
+        primitivas?</li>
+    <li>Se eu provar que um algoritmo leva O(n²) no pior caso, há obrigatoriamente alguma entrada
+        suficientemente grande para a qual o algoritmo realiza pelo menos 100·n operações
+        primitivas?</li>
+  </ol>
+</div>
+
+<p class="nota"><strong>Lista revisada pelo professor</strong> (arquivo de 09/09/2026; o cabeçalho da lista
+manteve a data original). O item (e) trocou
+O(n²) por θ(n²), e o item (f) é novo. A versão anterior está arquivada em
+<code>listas-de-exercicios/versoes-anteriores/</code>.</p>
+
+<p>Os seis itens giram em torno de uma única distinção: <strong>O é teto e Θ é teto com piso</strong>,
+e ambos falam do <em>máximo</em> <span class="mat">W(n)</span>, não de cada entrada individual.
+Por isso custo O(n) em <em>algumas</em> entradas é possível — existe algoritmo em que isso ocorre —, e (a) e (c) são V
+com ou sem piso: o piso, quando existe, só obriga a entrada que realiza o máximo a ser cara;
+nada impede outra entrada de custar O(n), e o insertion sort com a entrada já ordenada é uma testemunha (itens (a) e
+(c) abaixo). Já custo O(n)
+em <em>todas</em> as entradas é incompatível com um piso de ordem n²: (b) é V porque O não impõe
+piso nenhum, e (d) é F porque o piso c<sub>1</sub>n² do Θ obriga alguma entrada a custar pelo menos
+c<sub>1</sub>n², o que nenhuma cota c·n acompanha para n grande.
+Em (e) e (f) mudam duas coisas de uma vez: a hipótese (θ ou O) e a pergunta (“é possível” ou
+“há obrigatoriamente”).</p>
+
+<div class="item">
+<h3>(a) V</h3>
+<p>Provar <span class="mat">W(n) = O(n²)</span> limita por cima o custo <em>máximo</em>. Nada é dito
+sobre entradas individuais, que podem custar muito menos que o teto.</p>
+<p>Tome o <em>insertion sort</em>, contando comparações de chave. Em toda entrada de tamanho
+<span class="mat">n</span> o algoritmo executa no máximo <span class="mat">n(n−1)/2</span> comparações, logo
+<span class="mat">W(n) ≤ ½n²</span> para todo <span class="mat">n ≥ 1</span>: temos
+<span class="mat">W(n) = O(n²)</span> com <span class="mat">c = ½</span> e <span class="mat">n<sub>0</sub> = 1</span>.
+Já numa entrada previamente ordenada em ordem crescente, o teste do <code>while</code> falha na
+primeira avaliação de cada iteração do <code>for</code>, e o custo é exatamente
+<span class="mat">n−1</span> comparações, isto é, <span class="mat">O(n)</span> com
+<span class="mat">c = 1</span> e <span class="mat">n<sub>0</sub> = 1</span>.</p>
+<p>As duas coisas convivem sem contradição: <span class="mat">½n²</span> é teto de todas as entradas,
+e as entradas ordenadas ficam bem abaixo dele. <span class="resp">Logo, é possível.</span></p>
+</div>
+
+<div class="item">
+<h3>(b) V</h3>
+<p>O ponto aqui é que <strong>um teto pode ser folgado</strong>. Provar
+<span class="mat">W(n) = O(n²)</span> não afirma que exista entrada custando da ordem de
+<span class="mat">n²</span>; a notação O não impõe piso nenhum.</p>
+<p>De fato, custar <span class="mat">O(n)</span> em todas as entradas já <em>implica</em>
+<span class="mat">O(n²)</span> no pior caso: se <span class="mat">T(x) ≤ c·n</span> para toda entrada
+<span class="mat">x</span> de tamanho <span class="mat">n ≥ n<sub>0</sub></span>, então
+<span class="mat">W(n) ≤ c·n ≤ c·n²</span> para todo <span class="mat">n ≥ máx(n<sub>0</sub>, 1)</span>,
+pois <span class="mat">n ≤ n²</span> quando <span class="mat">n ≥ 1</span>.</p>
+<p>Exemplo concreto: a busca linear executa no máximo <span class="mat">n</span> comparações em
+qualquer entrada, logo é <span class="mat">O(n)</span> em <em>todas</em> elas
+(<span class="mat">c = 1, n<sub>0</sub> = 1</span>) — e também é <span class="mat">O(n²)</span> no pior caso.
+A prova de <span class="mat">O(n²)</span> simplesmente não era justa.
+<span class="resp">Logo, é possível.</span></p>
+</div>
+
+<div class="item">
+<h3>(c) V</h3>
+<p><span class="mat">W(n) = Θ(n²)</span> significa que existem <span class="mat">c<sub>1</sub>, c<sub>2</sub> &gt; 0</span> e
+<span class="mat">n<sub>0</sub></span> com <span class="mat">c<sub>1</sub>n² ≤ W(n) ≤ c<sub>2</sub>n²</span> para todo
+<span class="mat">n ≥ n<sub>0</sub></span>. O piso <span class="mat">c<sub>1</sub>n²</span> incide sobre o
+<strong>máximo</strong>: ele obriga a existir, para cada <span class="mat">n</span> grande,
+<em>alguma</em> entrada cara. Não obriga que <em>toda</em> entrada seja cara.</p>
+<p>Insertion sort de novo, em comparações. No pior caso (vetor estritamente decrescente) a iteração
+<span class="mat">j</span> executa exatamente <span class="mat">j−1</span> comparações <em>de chave</em>:
+são <span class="mat">j</span> avaliações do teste do <code>while</code>, mas a última sai por
+esgotamento do índice (<span class="mat">i = 0</span>) e nem chega a comparar chaves. Somando,
+<span class="mat">Σ<sub>j=2..n</sub> (j−1) = n(n−1)/2</span>. Para <span class="mat">n ≥ 2</span> vale
+<span class="mat">n−1 ≥ n/2</span>, logo <span class="mat">W(n) ≥ ¼n²</span>; e sempre
+<span class="mat">W(n) ≤ ½n²</span>. Testemunhas: <span class="mat">c<sub>1</sub> = ¼, c<sub>2</sub> = ½, n<sub>0</sub> = 2</span>.</p>
+<p>Ainda assim, a entrada já ordenada custa <span class="mat">n−1</span> comparações, que é
+<span class="mat">O(n)</span>. <span class="resp">Logo, é possível.</span></p>
+</div>
+
+<div class="item">
+<h3>(d) F</h3>
+<p>Aqui o quantificador é universal, e ele colide frontalmente com o piso do Θ.</p>
+<p>Suponha as duas hipóteses simultaneamente. De <span class="mat">W(n) = Θ(n²)</span> vêm
+<span class="mat">c<sub>1</sub> &gt; 0</span> e <span class="mat">n<sub>1</sub></span> com
+<span class="mat">W(n) ≥ c<sub>1</sub>n²</span> para <span class="mat">n ≥ n<sub>1</sub></span>. De “<span class="mat">O(n)</span>
+em <em>todas</em> as entradas” vêm <span class="mat">c &gt; 0</span> e <span class="mat">n<sub>2</sub></span> com
+<span class="mat">T(x) ≤ c·n</span> para toda entrada de tamanho <span class="mat">n ≥ n<sub>2</sub></span>;
+como
+<span class="mat">W(n)</span> é o máximo de um conjunto de valores todos limitados por
+<span class="mat">c·n</span> — conjunto finito e não vazio, logo o máximo existe —, segue
+<span class="mat">W(n) ≤ c·n</span>.</p>
+<p class="centro">Para todo n ≥ n<sub>0</sub> = máx(n<sub>1</sub>, n<sub>2</sub>):&nbsp;&nbsp; c<sub>1</sub>n² ≤ W(n) ≤ c·n &nbsp;⟹&nbsp; c<sub>1</sub>n² ≤ c·n &nbsp;⟹&nbsp; n ≤ c/c<sub>1</sub>.</p>
+<p>Isto é, <em>todo</em> <span class="mat">n ≥ n<sub>0</sub></span> teria de satisfazer
+<span class="mat">n ≤ c/c<sub>1</sub></span>, o que é falso: basta tomar
+<span class="mat">n* = máx(n<sub>0</sub>, ⌊c/c<sub>1</sub>⌋ + 1)</span>, que cumpre <span class="mat">n* ≥ n<sub>0</sub></span> mas
+<span class="mat">n* &gt; c/c<sub>1</sub></span>. Contradição.</p>
+<p class="nota">O passo decisivo é <span class="mat">W(n) ≤ c·n</span>, e ele só existe porque o
+limite <span class="mat">O(n)</span> foi suposto para <strong>todas</strong> as entradas. Em (c),
+onde apenas <em>algumas</em> entradas eram <span class="mat">O(n)</span>, esse passo não pode ser dado
+— é exatamente aí que os dois itens se separam.</p>
+<p><span class="resp">Logo, é impossível.</span></p>
+</div>
+
+<div class="item">
+<h3>(e) V</h3>
+<p><strong>Duas leituras do enunciado.</strong> “Alguma entrada suficientemente grande para a qual
+realiza pelo menos 100n operações” pode querer dizer (L1) que existe <em>alguma</em> entrada
+<span class="mat">x</span>, de tamanho <span class="mat">n</span> qualquer, com
+<span class="mat">T(x) ≥ 100·n</span>; ou (L2) que, para <em>todo</em>
+<span class="mat">n</span> a partir de algum ponto, existe entrada de tamanho
+<span class="mat">n</span> com <span class="mat">T(x) ≥ 100·n</span>. (L2) implica (L1). Aqui se
+prova (L2), e em (f) se refuta (L1); por isso as duas respostas valem em qualquer das leituras.</p>
+<p>Suponha <span class="mat">W(n) ∈ θ(n²)</span>, com testemunhas
+<span class="mat">c<sub>1</sub>, c<sub>2</sub> &gt; 0</span> e <span class="mat">n<sub>0</sub> ≥ 1</span>:
+<span class="mat">c<sub>1</sub>n² ≤ W(n) ≤ c<sub>2</sub>n²</span> para todo
+<span class="mat">n ≥ n<sub>0</sub></span>. Defina</p>
+<p class="centro">N = máx(n<sub>0</sub>, ⌊100/c<sub>1</sub>⌋ + 1).</p>
+<p>Para todo <span class="mat">n ≥ N</span>: de <span class="mat">n ≥ ⌊100/c<sub>1</sub>⌋ + 1 &gt; 100/c<sub>1</sub></span>
+vem <span class="mat">c<sub>1</sub>·n &gt; 100</span> e, multiplicando por <span class="mat">n &gt; 0</span>,
+<span class="mat">c<sub>1</sub>·n² &gt; 100·n</span>; e de <span class="mat">n ≥ n<sub>0</sub></span> vem
+<span class="mat">W(n) ≥ c<sub>1</sub>·n²</span>. Encadeando, <span class="mat">W(n) &gt; 100·n</span>.
+Como <span class="mat">W(n)</span> é o máximo de <span class="mat">T(x)</span> sobre as entradas de
+tamanho <span class="mat">n</span>, ele é atingido por alguma entrada <span class="mat">x<sub>n</sub></span>, e
+<span class="mat">T(x<sub>n</sub>) = W(n) &gt; 100·n</span>. (Se se preferir definir
+<span class="mat">W(n)</span> como supremo, o argumento continua: como o supremo passa de
+<span class="mat">100·n</span>, pela definição de supremo existe <span class="mat">x</span> com
+<span class="mat">T(x) &gt; 100·n</span>.)</p>
+<p>Portanto, para <em>todo</em> <span class="mat">n ≥ N</span> existe uma entrada de tamanho
+<span class="mat">n</span> com mais de <span class="mat">100·n</span> operações — não só “é possível”:
+é obrigatório. Quem força isso é o piso <span class="mat">c<sub>1</sub>n²</span> do θ.
+<span class="resp">Logo, é possível (e até obrigatório).</span></p>
+<p class="nota"><strong>Exemplo numérico.</strong> Insertion sort, contando só as comparações de chave:
+no pior caso (vetor em ordem decrescente) são <span class="mat">C(n) = n(n−1)/2</span> comparações, e
+<span class="mat">C(n) ∈ θ(n²)</span> com <span class="mat">c<sub>1</sub> = ¼, c<sub>2</sub> = ½, n<sub>0</sub> = 2</span>
+(para <span class="mat">n ≥ 2</span>, <span class="mat">n − 1 ≥ n/2</span>, logo
+<span class="mat">n(n−1)/2 ≥ n²/4</span>; e <span class="mat">n(n−1)/2 ≤ n²/2</span> para todo
+<span class="mat">n ≥ 1</span>). Então <span class="mat">N = máx(2, ⌊100/(1/4)⌋ + 1) = máx(2, 401) = 401</span>
+e, para <span class="mat">n ≥ 401</span>, <span class="mat">C(n) ≥ n²/4 &gt; 100n</span>. Como cada
+comparação é pelo menos uma operação primitiva, o número de operações primitivas da entrada de
+pior caso também passa de <span class="mat">100n</span>. O limiar <span class="mat">N</span> da
+demonstração é suficiente, não o menor: as comparações da entrada de pior caso já atingem
+<span class="mat">100n</span> em <span class="mat">n = 201</span>, onde
+<span class="mat">201·200/2 = 20 100 = 100·201</span>.<br>
+<em>Fencepost:</em> com <span class="mat">N = 400</span>, o elo <span class="mat">c<sub>1</sub>n² &gt; 100n</span>
+da demonstração falharia, pois <span class="mat">(1/4)·400² = 40 000 = 100·400</span> — embora neste
+exemplo <span class="mat">C(400) = 79 800</span> ainda passe de <span class="mat">100·400</span>. É o elo
+genérico que exige o “+1” em <span class="mat">⌊100/c<sub>1</sub>⌋ + 1</span>.</p>
+</div>
+
+<div class="item">
+<h3>(f) F</h3>
+<p>Agora só se sabe <span class="mat">W(n) ∈ O(n²)</span>: um teto, sem piso. Um teto não obriga
+nenhuma entrada a ser cara.</p>
+<p><strong>Contraexemplo.</strong> O algoritmo que, recebendo um vetor
+<span class="mat">A[1..n]</span> com <span class="mat">n ≥ 1</span>, devolve
+<span class="mat">A[1]</span>. Ele executa um número fixo <span class="mat">K</span> de operações
+primitivas em toda entrada, independente de <span class="mat">n</span>; com a convenção de custo
+unitário, <span class="mat">K</span> é pequeno (acessar <span class="mat">A[1]</span> e devolver:
+<span class="mat">K ≤ 3</span>). O que o argumento usa é só que <span class="mat">K</span> é uma
+constante com <span class="mat">K &lt; 100</span>, qualquer que seja a convenção. Então:</p>
+<p>• <span class="mat">W(n) = K ≤ K·n²</span> para todo <span class="mat">n ≥ 1</span>, logo
+<span class="mat">W(n) ∈ O(n²)</span> com <span class="mat">c = K</span> e
+<span class="mat">n<sub>0</sub> = 1</span> (e <span class="mat">W(n) ≥ 0</span>);<br>
+• para toda entrada <span class="mat">x</span> de tamanho <span class="mat">n ≥ 1</span>:
+<span class="mat">T(x) = K &lt; 100 ≤ 100·n</span>.</p>
+<p>Portanto <em>nenhuma</em> entrada, de nenhum tamanho, atinge <span class="mat">100·n</span>
+operações — nem na leitura (L1). A hipótese “O(n²) no pior caso” é satisfeita e a conclusão falha;
+logo ela não é obrigatória. <span class="resp">Logo, não há obrigatoriamente.</span></p>
+<p class="nota">O contraexemplo não depende do algoritmo ser constante: qualquer algoritmo que gaste no
+máximo <span class="mat">a·n + b</span> operações em toda entrada de tamanho
+<span class="mat">n ≥ 1</span>, com constantes <span class="mat">a, b ≥ 0</span> e
+<span class="mat">a + b &lt; 100</span>, também serve, pois para <span class="mat">n ≥ 1</span> vale
+<span class="mat">a·n + b ≤ (a + b)·n &lt; 100·n</span>, e
+<span class="mat">a·n + b ≤ (a + b)·n²</span> dá <span class="mat">O(n²)</span>. É o caso da busca
+linear em vetor não vazio: na contagem usual, com laço <code>for</code>, a busca sem sucesso gasta
+<span class="mat">3n + 3</span> operações (<span class="mat">4n + 3</span> se o acesso a
+<span class="mat">A[i]</span> contar à parte), e <span class="mat">4 + 3 &lt; 100</span>.</p>
+<p class="nota"><strong>Por que (e) e (f) diferem.</strong> Em (e) a hipótese é θ(n²), que tem piso
+<span class="mat">c<sub>1</sub>n²</span>; como <span class="mat">n²</span> cresce mais que
+<span class="mat">100n</span>, o piso ultrapassa <span class="mat">100n</span> para todo
+<span class="mat">n ≥ N = máx(n<sub>0</sub>, ⌊100/c<sub>1</sub>⌋ + 1)</span>. Em (f) a hipótese é
+<span class="mat">O(n²)</span>, que é só teto, e o teto é compatível com custo constante.<br>
+<strong>Sobre a versão original do item (e).</strong> Na versão anterior da lista, o item (e) dizia
+“O(n²)” (e não θ(n²)) com “é possível existir”. Aquela versão também era V, mas por outro motivo: um
+algoritmo que faz exatamente <span class="mat">100n</span> operações em toda entrada é
+<span class="mat">O(n²)</span> (<span class="mat">100n ≤ 100n²</span> para <span class="mat">n ≥ 1</span>).
+A versão nova troca O por θ e mantém “é possível”; o item (f) mantém O e troca “é possível” por
+“há obrigatoriamente” — e essa troca inverte a resposta. Levar para o (f) o V do (e) antigo perde o item.</p>
+</div>
+
+<!-- ══════════════════════ QUESTÃO 2 ══════════════════════ -->
+<h2>Questão 2</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Considere <span class="mat">n</span> representando um valor variável e <span class="mat">k</span>
+  um valor <strong>constante</strong>. Analise os códigos abaixo e encontre a complexidade assintótica
+  em cada caso usando a notação Big O. Dê um limite assintótico <strong>tão firme quanto
+  possível</strong>. Ao realizar a análise, considere o pior caso. Justifique suas respostas.
+  Respostas sem justificativas não serão consideradas.</p>
+</div>
+
+<p>Todo laço <code>for (x = a; x &lt;= b; x = x+1)</code> com <span class="mat">m</span> iterações custa
+<span class="mat">1</span> (inicialização) <span class="mat">+ (m+1)</span> testes
+<span class="mat">+ m</span> incrementos <span class="mat">+ m·(custo do corpo)</span>, ou seja
+<span class="mat">2m + 2 + m·corpo</span>. É a regra 4 do guia do enunciado, e é dela que sai tudo
+abaixo. <strong>Atenção ao ponto que mais engana:</strong> o custo de um laço inclui os testes de
+condição, que ocorrem <em>mesmo quando o corpo não executa nenhuma vez</em>.</p>
+
+<div class="item">
+<h3>Código 1 &nbsp;—&nbsp; <span class="resp">O(n²)</span>, e o limite é justo: Θ(n²)</h3>
+<pre class="cod">soma = 0;
+for (i = 1; i &lt;= n; i = i + 1)
+    for (j = 1; j &lt;= n; j = j + 1)
+        soma = soma + 1;</pre>
+<p>O laço interno tem <span class="mat">n</span> iterações e corpo de custo 1, logo custa
+<span class="mat">2n + 2 + n = 3n + 2</span>. O laço externo tem <span class="mat">n</span> iterações
+e esse corpo:</p>
+<p class="centro">T<sub>1</sub>(n) = 1 + [2n + 2 + n(3n + 2)] = 3n² + 4n + 3.</p>
+<p>Como <span class="mat">3n² + 4n + 3 ≤ 10n²</span> para todo <span class="mat">n ≥ 1</span>, vale
+<span class="mat">T<sub>1</sub>(n) = O(n²)</span> com <span class="mat">c = 10, n<sub>0</sub> = 1</span>; e
+<span class="mat">T<sub>1</sub>(n) ≥ 3n²</span>, logo também <span class="mat">Ω(n²)</span>. Portanto
+<span class="mat">Θ(n²)</span>.</p>
+</div>
+
+<div class="item">
+<h3>Código 2 &nbsp;—&nbsp; <span class="resp">O(n²)</span>, e o limite é justo: Θ(n²)</h3>
+<pre class="cod">soma = 0;
+for (i = 1; i &lt;= n; i = i + 1)
+    for (j = 1; j &lt;= n; j = j + 1)
+        for (c = j; c &lt;= k; c = c + 1)
+            soma = soma + 1;</pre>
+<p>Este é o código-armadilha da questão, e ele engana nos <em>dois</em> sentidos.</p>
+<p><strong>O laço mais interno quase não contribui.</strong> Ele vai de <span class="mat">c = j</span>
+até <span class="mat">k</span>, com <span class="mat">k</span> constante, logo executa
+<span class="mat">r<sub>j</sub> = máx(0, k − j + 1)</span> vezes. Como <span class="mat">j</span>
+percorre até <span class="mat">n</span>, a partir de <span class="mat">j = k+1</span> ele
+<strong>não executa nenhuma vez</strong>. Somando sobre <span class="mat">j</span>, para
+<span class="mat">n ≥ k</span>:</p>
+<p class="centro">K = Σ<sub>j=1..n</sub> r<sub>j</sub> = k + (k−1) + ⋯ + 1 = k(k+1)/2 &nbsp;— uma constante, independente de n.</p>
+<p><strong>Mas o laço do meio continua custando n por iteração de i.</strong> Ele é executado
+<span class="mat">n</span> vezes e cada iteração paga o teste da condição e o incremento, tenha ou não
+trabalho interno. Custo do laço <span class="mat">j</span>:
+<span class="mat">1 + (n+1) + n + Σ<sub>j</sub>(3r<sub>j</sub> + 2) = 4n + 2 + 3K</span>. Logo</p>
+<p class="centro">T<sub>2</sub>(n) = 1 + [2n + 2 + n(4n + 2 + 3K)] = 4n² + (4 + 3K)n + 3,&nbsp;&nbsp; com K = k(k+1)/2, válido para n ≥ k.</p>
+<p>Como <span class="mat">K</span> é constante, <span class="mat">T<sub>2</sub>(n) = Θ(n²)</span>:
+o teto sai de <span class="mat">T<sub>2</sub>(n) ≤ (11 + 3K)n²</span> e o piso de
+<span class="mat">T<sub>2</sub>(n) ≥ 4n²</span>, ambos para <span class="mat">n ≥ máx(1, k)</span>.
+A constante 11 não é folga gratuita: com <span class="mat">c = 7 + 3K</span> a desigualdade
+falharia em <span class="mat">n = 1</span> sempre que <span class="mat">k ≤ 1</span>, pois
+<span class="mat">T<sub>2</sub>(1) = 11 + 3K &gt; 7 + 3K</span>.</p>
+<p class="nota">Duas conclusões erradas são comuns aqui. Dizer <span class="mat">O(n³)</span> por
+haver três laços aninhados é frouxo — o enunciado pede o limite <em>mais firme possível</em>, e o
+terceiro laço só contribui uma constante. E dizer <span class="mat">Θ(n)</span>, contando apenas as
+execuções de <code>soma = soma + 1</code>, ignora os <span class="mat">n²</span> testes do laço
+<span class="mat">j</span>, que dominam o custo.</p>
+</div>
+
+<div class="item">
+<h3>Código 3 &nbsp;—&nbsp; <span class="resp">O(n²)</span>, e o limite é justo: Θ(n²)</h3>
+<pre class="cod">soma = 0;
+for (i = 1; i &lt;= n; i = i + 1)
+    for (j = 1; j &lt;= i; j = j + 1)
+        soma = soma + 1;</pre>
+<p>O laço interno agora tem <span class="mat">i</span> iterações, custando
+<span class="mat">2i + 2 + i = 3i + 2</span>. Somando sobre o laço externo e usando
+<span class="mat">Σ i = n(n+1)/2</span>:</p>
+<p class="centro">T<sub>3</sub>(n) = 1 + [2n + 2 + Σ<sub>i=1..n</sub>(3i + 2)] = 1 + 2n + 2 + 3·n(n+1)/2 + 2n = (3/2)n² + (11/2)n + 3.</p>
+<p>Teto: <span class="mat">T<sub>3</sub>(n) ≤ 10n²</span> para <span class="mat">n ≥ 1</span>. Piso:
+<span class="mat">T<sub>3</sub>(n) ≥ (3/2)n²</span>. Portanto <span class="mat">Θ(n²)</span>.</p>
+<p class="nota">O laço interno é executado em média <span class="mat">(n+1)/2</span> vezes, e não
+<span class="mat">n</span> — o somatório <span class="mat">Σ i = n(n+1)/2</span> é a origem da constante
+<span class="mat">3/2</span> em vez de <span class="mat">3</span>. A <em>classe</em> é a mesma do código 1; o que muda é o fator constante.</p>
+</div>
+
+<div class="item">
+<h3>Código 4 &nbsp;—&nbsp; <span class="resp">O(n²)</span>, e o limite é justo: Θ(n²)</h3>
+<pre class="cod">soma = 0;
+for (i = 1; i &lt;= n; i = i + 1)
+    for (j = i; j &lt;= n; j = j + 1) {
+        c := 1;
+        while (c &lt;= k) { soma = soma + 1;  c = c * 2; }
+    }</pre>
+<p><strong>O <code>while</code> é O(1).</strong> Ele duplica <span class="mat">c</span> a partir de 1
+até ultrapassar <span class="mat">k</span>, logo executa
+<span class="mat">m<sub>k</sub> = ⌊lg k⌋ + 1</span> vezes, <strong>supondo k ≥ 1</strong>
+(para <span class="mat">k ≤ 0</span> o teste falha de saída e o laço não executa, isto é,
+<span class="mat">m<sub>k</sub> = 0</span>; note que <span class="mat">lg k</span> nem está definido aí). Como <span class="mat">k</span> é
+<em>constante</em>, <span class="mat">m<sub>k</sub></span> é constante: o bloco formado pela atribuição
+<code>c := 1</code> seguida do <code>while</code> custa
+<span class="mat">3m<sub>k</sub> + 2 = O(1)</span> — o <code>while</code> sozinho custa
+<span class="mat">3m<sub>k</sub> + 1</span>, e a unidade restante é a atribuição, que fica fora dele.</p>
+<p>O laço <span class="mat">j</span> vai de <span class="mat">i</span> até <span class="mat">n</span>,
+portanto tem <span class="mat">L = n − i + 1</span> iterações, e
+<span class="mat">Σ<sub>i=1..n</sub> L = n(n+1)/2</span>. Fazendo a conta:</p>
+<p class="centro">T<sub>4</sub>(n) = (3m<sub>k</sub> + 4)·n(n+1)/2 + 4n + 3.</p>
+<p>O par de laços forma um triângulo: são <span class="mat">n(n+1)/2</span> pares
+<span class="mat">(i, j)</span>, cada um com custo constante.</p>
+<p><em>Testemunhas.</em> De <span class="mat">n(n+1)/2 ≥ n²/2</span> vem o piso
+<span class="mat">T<sub>4</sub>(n) ≥ ((3m<sub>k</sub>+4)/2)·n²</span>, com
+<span class="mat">c<sub>1</sub> = (3m<sub>k</sub>+4)/2</span> e <span class="mat">n<sub>0</sub> = 1</span>.
+De <span class="mat">n(n+1)/2 ≤ n²</span>, <span class="mat">4n ≤ 4n²</span> e
+<span class="mat">3 ≤ 3n²</span> (todas para <span class="mat">n ≥ 1</span>) vem o teto
+<span class="mat">T<sub>4</sub>(n) ≤ (3m<sub>k</sub>+11)·n²</span>, com
+<span class="mat">c<sub>2</sub> = 3m<sub>k</sub>+11</span> e <span class="mat">n<sub>0</sub> = 1</span> —
+teto justo, com igualdade em <span class="mat">n = 1</span>. Portanto
+<span class="mat">Θ(n²)</span>, o mesmo do código 3, apenas com constante maior.</p>
+</div>
+
+<div class="item">
+<h3>Código 5 &nbsp;—&nbsp; <span class="resp">O(n² log n)</span>, e o limite é justo: Θ(n² lg n)</h3>
+<pre class="cod">soma = 0;
+for (i = 1; i &lt;= n; i = i + 1)
+    for (j = 1; j &lt;= n; j = j + 1) {
+        c = 1;
+        while (c &lt;= n) { soma = soma + 1;  c = c * 5; }
+    }</pre>
+<p><strong>Aqui está a diferença em relação ao código 4:</strong> o <code>while</code> testa contra
+<span class="mat">n</span>, não contra <span class="mat">k</span>. Multiplicando por 5 a cada passo, ele
+executa <span class="mat">m(n) = ⌊log<sub>5</sub> n⌋ + 1</span> vezes, que <em>depende de n</em> e vale
+<span class="mat">Θ(log n)</span>. Note que a base é irrelevante assintoticamente, pois
+<span class="mat">log<sub>5</sub> n = lg n / lg 5</span>.</p>
+<p>Os dois laços externos dão <span class="mat">n²</span> pares
+<span class="mat">(i, j)</span>, cada um pagando o <code>while</code>:</p>
+<p class="centro">T<sub>5</sub>(n) = n²·(3m(n) + 4) + 4n + 3 = Θ(n² log n).</p>
+<p>Formalmente, de <span class="mat">log<sub>5</sub> n ≤ m(n) ≤ log<sub>5</sub> n + 1</span> saem o piso
+<span class="mat">T<sub>5</sub>(n) ≥ (3/lg 5)·n² lg n</span> e o teto
+<span class="mat">T<sub>5</sub>(n) ≤ 12n² lg n</span> para <span class="mat">n ≥ 6</span>.</p>
+</div>
+
+<table>
+  <tr><th>Código</th><th>Custo exato (operações primitivas)</th><th>Resposta (Big O, mais firme)</th><th>Por quê</th></tr>
+  <tr><td class="n">1</td><td class="n">3n² + 4n + 3</td><td class="n"><strong>O(n²)</strong></td><td>dois laços completos, corpo O(1)</td></tr>
+  <tr><td class="n">2</td><td class="n">4n² + (4+3K)n + 3</td><td class="n"><strong>O(n²)</strong></td><td>3º laço só soma constante K = k(k+1)/2; os n² testes do laço j dominam</td></tr>
+  <tr><td class="n">3</td><td class="n">(3/2)n² + (11/2)n + 3</td><td class="n"><strong>O(n²)</strong></td><td>triângulo: Σi = n(n+1)/2</td></tr>
+  <tr><td class="n">4</td><td class="n">(3m<sub>k</sub>+4)·n(n+1)/2 + 4n + 3</td><td class="n"><strong>O(n²)</strong></td><td>triângulo × while constante (k é constante)</td></tr>
+  <tr><td class="n">5</td><td class="n">n²(3m(n)+4) + 4n + 3</td><td class="n"><strong>O(n² log n)</strong></td><td>while depende de n: Θ(log n) por par (i, j)</td></tr>
+</table>
+
+<!-- ══════════════════════ QUESTÃO 3 ══════════════════════ -->
+<h2>Questão 3</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Demonstre as seguintes propriedades relativas à notação assintótica.</p>
+  <ol type="a">
+    <li>f(n) = 2117,&nbsp; f(n) ∈ O(1)</li>
+    <li>f(n) = n² + 2n,&nbsp; f(n) ∈ O(n²)</li>
+    <li>f(n) = n² − 2n + 3,&nbsp; f(n) ∈ Θ(n²)</li>
+    <li>f(n) = 5n,&nbsp; f(n) ∈ Ω(n)</li>
+    <li>f(n) = n² + 2n − 8,&nbsp; f(n) ∈ Ω(n²)</li>
+  </ol>
+</div>
+
+<p>As três definições do CLRS, que é o que se deve exibir em cada item:</p>
+<table>
+  <tr><th style="width:16%">Notação</th><th>Definição</th><th style="width:30%">O que exibir</th></tr>
+  <tr><td class="n">O(g(n))</td><td class="n">∃ c &gt; 0, ∃ n<sub>0</sub> &gt; 0 : 0 ≤ f(n) ≤ c·g(n), ∀ n ≥ n<sub>0</sub></td><td>um c e um n<sub>0</sub></td></tr>
+  <tr><td class="n">Ω(g(n))</td><td class="n">∃ c &gt; 0, ∃ n<sub>0</sub> &gt; 0 : 0 ≤ c·g(n) ≤ f(n), ∀ n ≥ n<sub>0</sub></td><td>um c e um n<sub>0</sub></td></tr>
+  <tr><td class="n">Θ(g(n))</td><td class="n">∃ c<sub>1</sub>, c<sub>2</sub> &gt; 0, ∃ n<sub>0</sub> &gt; 0 : 0 ≤ c<sub>1</sub>·g(n) ≤ f(n) ≤ c<sub>2</sub>·g(n), ∀ n ≥ n<sub>0</sub></td><td>c<sub>1</sub>, c<sub>2</sub> e n<sub>0</sub></td></tr>
+</table>
+<p>Duas exigências que derrubam prova: as constantes são escolhidas <em>antes</em> e
+<strong>não podem depender de n</strong>; e a definição exige <span class="mat">f(n) ≥ 0</span> na
+região <span class="mat">n ≥ n<sub>0</sub></span> — o que restringe a escolha de <span class="mat">n<sub>0</sub></span> nos
+itens com termo negativo.</p>
+
+<div class="item">
+<h3>(a) f(n) = 2117 ∈ O(1)</h3>
+<p><span class="resp">Testemunhas: c = 2117 e n<sub>0</sub> = 1.</span></p>
+<p>Para todo <span class="mat">n ≥ 1</span> tem-se <span class="mat">0 ≤ 2117 ≤ 2117·1</span>,
+com igualdade. A desigualdade não depende de <span class="mat">n</span> porque
+<span class="mat">f</span> é constante, então vale trivialmente em toda a região. Qualquer
+<span class="mat">c ≥ 2117</span> também serve. ∎</p>
+</div>
+
+<div class="item">
+<h3>(b) f(n) = n² + 2n ∈ O(n²)</h3>
+<p><span class="resp">Testemunhas: c = 3 e n<sub>0</sub> = 1.</span></p>
+<p>Para <span class="mat">n ≥ 1</span> vale <span class="mat">n ≤ n²</span>, logo
+<span class="mat">2n ≤ 2n²</span>. Somando <span class="mat">n²</span> aos dois lados:</p>
+<p class="centro">0 ≤ n² + 2n ≤ n² + 2n² = 3n²,&nbsp;&nbsp; para todo n ≥ 1.</p>
+<p>A não-negatividade é imediata, pois <span class="mat">n² + 2n &gt; 0</span> para
+<span class="mat">n ≥ 1</span>. ∎</p>
+</div>
+
+<div class="item">
+<h3>(c) f(n) = n² − 2n + 3 ∈ Θ(n²)</h3>
+<p><span class="resp">Testemunhas: c<sub>1</sub> = 1/2, c<sub>2</sub> = 2 e n<sub>0</sub> = 1.</span></p>
+<p><em>Não-negatividade.</em> O discriminante de <span class="mat">n² − 2n + 3</span> é
+<span class="mat">4 − 12 = −8 &lt; 0</span> e o coeficiente líder é positivo, logo
+<span class="mat">f(n) &gt; 0</span> para todo <span class="mat">n</span> real. Nenhuma restrição
+vem daqui.</p>
+<p><em>Limite superior</em> (<span class="mat">c<sub>2</sub> = 2</span>). Basta
+<span class="mat">n² − 2n + 3 ≤ 2n²</span>, isto é, <span class="mat">0 ≤ n² + 2n − 3</span>,
+ou <span class="mat">0 ≤ (n+3)(n−1)</span>, verdadeiro para todo <span class="mat">n ≥ 1</span>.</p>
+<p><em>Limite inferior</em> (<span class="mat">c<sub>1</sub> = 1/2</span>). Basta
+<span class="mat">½n² ≤ n² − 2n + 3</span>, isto é, <span class="mat">0 ≤ ½n² − 2n + 3</span>,
+ou <span class="mat">0 ≤ n² − 4n + 6</span>. Esse polinômio tem discriminante
+<span class="mat">16 − 24 = −8 &lt; 0</span> e líder positivo, logo é positivo para todo
+<span class="mat">n</span>.</p>
+<p>Assim, <span class="mat">½n² ≤ n² − 2n + 3 ≤ 2n²</span> para todo
+<span class="mat">n ≥ 1</span>. ∎</p>
+<p class="nota">Observe que <span class="mat">c<sub>2</sub> = 1</span> <em>não</em> funcionaria com
+<span class="mat">n<sub>0</sub> = 1</span>: em <span class="mat">n = 1</span> temos
+<span class="mat">f(1) = 2 &gt; 1 = 1·g(1)</span>. Com <span class="mat">c<sub>2</sub> = 1</span> seria preciso
+<span class="mat">n<sub>0</sub> = 2</span>. A checagem em <span class="mat">n = n<sub>0</sub></span> exatamente é o que
+separa uma prova correta de uma quase-correta.</p>
+</div>
+
+<div class="item">
+<h3>(d) f(n) = 5n ∈ Ω(n)</h3>
+<p><span class="resp">Testemunhas: c = 5 e n<sub>0</sub> = 1.</span></p>
+<p>Para todo <span class="mat">n ≥ 1</span> vale <span class="mat">0 ≤ 5·n ≤ 5n</span>, com
+igualdade. Qualquer <span class="mat">0 &lt; c ≤ 5</span> também serve, pois então
+<span class="mat">c·n ≤ 5n</span>. ∎</p>
+</div>
+
+<div class="item">
+<h3>(e) f(n) = n² + 2n − 8 ∈ Ω(n²)</h3>
+<p><span class="resp">Testemunhas: c = 1 e n<sub>0</sub> = 4.</span></p>
+<p>É preciso <span class="mat">0 ≤ 1·n² ≤ n² + 2n − 8</span>. A segunda desigualdade equivale a
+<span class="mat">0 ≤ 2n − 8</span>, isto é, <span class="mat">n ≥ 4</span>. A primeira exige
+<span class="mat">f(n) ≥ 0</span>: como <span class="mat">f(n) = (n+4)(n−2)</span>, isso vale para
+<span class="mat">n ≥ 2</span>, e em particular para <span class="mat">n ≥ 4</span>.
+Logo <span class="mat">n² ≤ n² + 2n − 8</span> para todo <span class="mat">n ≥ 4</span>. ∎</p>
+<p class="nota"><strong>Por que n<sub>0</sub> = 4 e não menos.</strong> Este item é o que mais derruba prova,
+porque o <span class="mat">n<sub>0</sub></span> é justo — não há folga:</p>
+<table>
+  <tr><th class="n">n</th><th class="n">f(n) = n²+2n−8</th><th class="n">c·g(n) = n²</th><th>n² ≤ f(n)?</th></tr>
+  <tr><td class="n">1</td><td class="n">−5</td><td class="n">1</td><td>não — e f(n) é <em>negativa</em>, violando 0 ≤ f(n)</td></tr>
+  <tr><td class="n">2</td><td class="n">0</td><td class="n">4</td><td>não</td></tr>
+  <tr><td class="n">3</td><td class="n">7</td><td class="n">9</td><td>não</td></tr>
+  <tr><td class="n">4</td><td class="n">16</td><td class="n">16</td><td>sim, com igualdade</td></tr>
+</table>
+<p class="nota">Escrever “<span class="mat">n<sub>0</sub> = 1</span>” aqui é erro, e é um erro que passa
+despercebido numa leitura rápida. Alternativamente, com <span class="mat">c = 1/2</span> bastaria
+<span class="mat">n<sub>0</sub> = 2</span>: <span class="mat">½n² ≤ n² + 2n − 8</span> equivale a
+<span class="mat">0 ≤ n² + 4n − 16</span>, válido para <span class="mat">n ≥ 2,47…</span>, ou seja,
+<span class="mat">n ≥ 3</span>.</p>
+</div>
+
+<!-- ══════════════════════ QUESTÕES 4 E 5 ══════════════════════ -->
+<h2>Questão 4</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Suponha que um algoritmo para um certo problema consome O(n²) unidades de tempo, sendo
+  <span class="mat">n</span> o tamanho de uma instância. Meu amigo diz ter outro algoritmo para o
+  mesmo problema que consome apenas Ω(n) unidades de tempo. Devo ficar impressionado(a)?</p>
+</div>
+
+<p><span class="resp">Não.</span> A afirmação do amigo é quase vazia, e o “apenas” do enunciado é
+justamente a isca.</p>
+<p><strong>Ω é limite inferior.</strong> Dizer que um algoritmo consome
+<span class="mat">Ω(n)</span> é dizer que ele gasta <em>pelo menos</em> da ordem de
+<span class="mat">n</span>. Isso não é promessa de eficiência — é o contrário: é uma garantia sobre
+o quão ruim ele é, no mínimo. Para se impressionar seria preciso um <strong>teto</strong> (uma
+afirmação em O) melhor que <span class="mat">O(n²)</span>, e o amigo não deu nenhum.</p>
+<p><strong>A afirmação é compatível com um algoritmo péssimo.</strong> Um algoritmo
+<span class="mat">Θ(n<sup>5</sup>)</span> também é <span class="mat">Ω(n)</span>, pois
+<span class="mat">n<sup>5</sup> ≥ n</span> para <span class="mat">n ≥ 1</span>. O mesmo vale para
+<span class="mat">Θ(2<sup>n</sup>)</span>. Ou seja, a frase do amigo não exclui nenhum desses casos.</p>
+<p><strong>O que ela de fato informa.</strong> Rigorosamente, ela não é <em>totalmente</em> vazia:
+ela exclui que o algoritmo dele seja sublinear — algoritmos como a busca binária, que é
+<span class="mat">Θ(lg n)</span> e portanto <em>não</em> é <span class="mat">Ω(n)</span>, ficam de
+fora. Só que essa é a única informação carregada, e ela é <em>desfavorável</em> a ele: o amigo
+está dizendo que seu algoritmo não é sublinear.</p>
+<p class="nota">Cuidado com o argumento tentador “todo algoritmo que lê a entrada inteira já é
+<span class="mat">Ω(n)</span>, logo a frase não diz nada”. A implicação vale só nessa direção: ler a
+entrada inteira ⟹ <span class="mat">Ω(n)</span>. A recíproca é falsa, e existem problemas que
+admitem algoritmos sublineares. Por isso a formulação correta é a do parágrafo acima.</p>
+
+<h2>Questão 5</h2>
+
+<div class="enunciado">
+  <span class="rot">Enunciado</span>
+  <p>Meu algoritmo para um certo problema consome O(n²) unidades de tempo, sendo
+  <span class="mat">n</span> o tamanho de uma instância. Meu amigo diz ter outro algoritmo para o
+  mesmo problema que consome O(n·lg n) unidades de tempo. Devo ficar impressionado(a)?</p>
+</div>
+
+<p><span class="resp">Sim, com ressalvas.</span> Desta vez a comparação é ao menos entre grandezas
+do mesmo tipo (dois tetos), e <span class="mat">n lg n</span> é assintoticamente melhor que
+<span class="mat">n²</span>. Mas atenção: das duas afirmações em O, tomadas isoladamente, não se
+conclui ganho nenhum — é a Ressalva 1 abaixo, e ela é o coração da questão.</p>
+
+<p><strong>O ganho assintótico é real.</strong> Vale <span class="mat">n lg n = o(n²)</span>, e a
+recíproca falha: <span class="mat">n²</span> <em>não</em> é <span class="mat">O(n lg n)</span>.
+De fato, suponha por absurdo que existam <span class="mat">c &gt; 0</span> e
+<span class="mat">n<sub>0</sub> ≥ 2</span> (podemos supor <span class="mat">n<sub>0</sub> ≥ 2</span>, para que
+<span class="mat">lg n &gt; 0</span>) com <span class="mat">n² ≤ c·n lg n</span> para
+<span class="mat">n ≥ n<sub>0</sub></span>. Dividindo por <span class="mat">n lg n &gt; 0</span>:</p>
+<p class="centro">n / lg n ≤ c, para todo n ≥ n<sub>0</sub>.</p>
+<p>Mas <span class="mat">n / lg n</span> é ilimitada: tomando <span class="mat">n = 2<sup>k</sup></span> temos
+<span class="mat">n / lg n = 2<sup>k</sup>/k</span>, e como <span class="mat">2<sup>k</sup> ≥ k²</span> para
+<span class="mat">k ≥ 4</span>, segue <span class="mat">2<sup>k</sup>/k ≥ k</span>. Basta então escolher
+<span class="mat">k &gt; máx(c, 4)</span> com <span class="mat">2<sup>k</sup> ≥ n<sub>0</sub></span> para contradizer a
+desigualdade. ∎</p>
+
+<p><strong>Ressalva 1 — O é teto, dos dois lados.</strong> Só posso <em>concluir</em> que há ganho se
+o meu <span class="mat">O(n²)</span> for justo, isto é, se meu algoritmo for de fato
+<span class="mat">Θ(n²)</span>. Se minha análise foi frouxa e ele é na verdade
+<span class="mat">Θ(n lg n)</span>, as duas garantias declaradas deixam de separar os algoritmos.
+Note a diferença: nesse caso eu perco a capacidade de <em>concluir</em> o ganho — não que o ganho
+deixe de existir. Ele pode existir ainda assim (o do amigo pode ser <span class="mat">Θ(n)</span>),
+eu é que não consigo mais afirmá-lo a partir das duas frases.</p>
+
+<p><strong>Ressalva 2 — o teto dele também pode ser folgado.</strong> Simetricamente,
+<span class="mat">O(n lg n)</span> não impede que o algoritmo do amigo seja ainda melhor, por
+exemplo <span class="mat">Θ(n)</span>. A afirmação dele é um limite superior, não uma descrição
+exata.</p>
+
+<p><strong>Ressalva 3 — constantes ocultas e o tamanho real de n.</strong> A notação assintótica
+descarta constantes, e elas importam na prática. Se meu algoritmo custa
+<span class="mat">2n²</span> e o dele <span class="mat">1000·n lg n</span>, o meu é mais rápido até
+o cruzamento: <span class="mat">2n² ≤ 1000 n lg n</span> equivale a
+<span class="mat">n ≤ 500 lg n</span>, o que vale para <span class="mat">2 ≤ n ≤ 6311</span>.
+O cruzamento real é <span class="mat">n* ≈ 6311,93</span>, de modo que só a partir de
+<span class="mat">n = 6312</span> o dele passa à frente. Se as
+instâncias reais forem menores que isso, o ganho assintótico não se converte em ganho prático.</p>
+
+<div class="rodape">
+<strong>Sobre esta resolução.</strong> As classes assintóticas da Questão 2 e as testemunhas
+(c, n<sub>0</sub>) da Questão 3 foram conferidas por medição: os cinco laços foram transcritos em Python e
+suas operações primitivas contadas por força bruta, e cada desigualdade da Questão 3 foi testada em
+300 000 valores de n. Os scripts estão em <code>resolucoes/verificacao/</code>.
+As demonstrações foram submetidas a verificadores independentes em contexto isolado, que receberam
+apenas o enunciado e a prova final.<br>
+<strong>Atualização de 09/09/2026.</strong> Os itens (e) e (f) da Questão 1 foram refeitos para a
+versão revisada da lista. Texto-fonte verificado: <code>geradores/dados/lista01/q1ef-limpo.md</code>.
+Primeira rodada: 4 verificadores, 3 apontaram defeito numa nota lateral (a cota da busca linear
+estava errada na contagem usual); corrigida, a reverificação deu 4 de 4 sem defeito. Números
+conferidos em <code>verificacao/atualizacao-2026-09-chao-deterministico.py</code>.
+Lista de estudo, sem entrega — IFMG Campus Formiga, 2026/2.
+</div>
+
+</body>
+</html>
